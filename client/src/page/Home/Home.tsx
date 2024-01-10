@@ -5,12 +5,10 @@ import Carousel from "../../components/Molecule/Carousel/Carousel";
 import { centerColumn } from "../../components/CSS/Global/GlobalDisplay";
 
 const HomeWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 500px;
-  height: 500px;
-  background-color: blue;
+  ${centerColumn}
+  width: 100%;
+  height: 90vh;
+  /* background-color: red; */
 `;
 
 const Home = () => {
