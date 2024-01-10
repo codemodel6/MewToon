@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { GlobalWrapper } from "../../components/CSS/Global/GlobalWrapper";
-import { centerColumn } from "../../components/CSS/Global/GlobalDisplay";
+import { useNavigate } from "react-router-dom";
 
 const IntroWrapper = styled.div`
   display: flex;
@@ -18,7 +18,6 @@ const IntroWrapper = styled.div`
   .AnimationDiv {
     width: 500px;
     height: 800px;
-    background-color: black;
     border: 1px solid #215ba6;
     transform-style: preserve-3d;
     margin-left: 600px;
@@ -32,7 +31,7 @@ const IntroWrapper = styled.div`
       font-size: 50px;
       color: #fff;
       font-weight: bold;
-      transform: rotateZ(270deg);
+      transform: rotateZ(270deg) rotateY(5deg);
 
       span {
         display: inline-block;
@@ -121,6 +120,19 @@ const IntroWrapper = styled.div`
 `;
 
 const Intro = () => {
+  const navigate = useNavigate();
+
+  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - 훅 기능 : 애니메이션이 끝나는 시간에 /home 페이지로 이동
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+  // useEffect(() => {
+  //   const endIntro = setTimeout(() => {
+  //     navigate("/home");
+  //   }, 6500);
+
+  //   return () => clearTimeout(endIntro);
+  // }, []);
+
   return (
     <GlobalWrapper>
       <IntroWrapper>
