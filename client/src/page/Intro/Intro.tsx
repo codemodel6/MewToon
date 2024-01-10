@@ -18,7 +18,8 @@ const IntroWrapper = styled.div`
   .AnimationDiv {
     width: 500px;
     height: 800px;
-    background-color: #3498db;
+    background-color: black;
+    border: 1px solid #215ba6;
     transform-style: preserve-3d;
     margin-left: 600px;
     animation: spin 5s ease-in-out forwards;
