@@ -57,7 +57,7 @@ const CarouselWrapper = styled.div`
   }
 `;
 
-const Carousel = () => {
+const MyCarousel = () => {
   const settings = {
     dots: true,
     slidesToShow: 2,
@@ -101,4 +101,4 @@ const Carousel = () => {
   );
 };
 
-export default Carousel;
+export default MyCarousel;

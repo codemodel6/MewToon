@@ -7,7 +7,7 @@ import { centerColumn } from "./GlobalDisplay";
 
 export const GlobalWrapper = styled.div`
   ${centerColumn}
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   background-color: green;
 `;

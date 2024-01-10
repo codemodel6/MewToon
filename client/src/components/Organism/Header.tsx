@@ -70,6 +70,11 @@ const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  // 로그인 화면일 경우 보여주지 않음
+  if (location.pathname === "/") {
+    return null;
+  }
+
   return (
     <MyHeader>
       <div className="ImageDiv">

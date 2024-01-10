@@ -9,6 +9,6 @@ export const GlobalBody = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 2000px;
+  height: 4000px;
   background-color: orange;
 `;

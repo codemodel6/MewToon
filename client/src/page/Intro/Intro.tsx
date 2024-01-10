@@ -1,181 +1,142 @@
+import React from "react";
 import styled from "styled-components";
+import { GlobalWrapper } from "../../components/CSS/Global/GlobalWrapper";
 import { centerColumn } from "../../components/CSS/Global/GlobalDisplay";
-const IntroBody = styled.div`
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100vh;
-
-  .introMain {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-transform: uppercase;
-    font-size: 100px;
-    z-index: -1;
-    font-weight: bold;
-  }
-`;
 
 const IntroWrapper = styled.div`
-  ${centerColumn}
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  perspective: 1000px;
+  perspective-origin: 50% 50%;
   width: 100%;
   height: 100%;
-  margin: 0 auto;
-  background-color: #161616;
-  animation: slide-out-container 4s cubic-bezier(0.91, 0.01, 0.36, 0.99) 2.8s;
-  animation-fill-mode: forwards;
+  background-color: black;
+  padding-right: 500px;
 
-  .textWrapper {
+  .AnimationDiv {
+    width: 500px;
+    height: 800px;
+    background-color: #3498db;
+    transform-style: preserve-3d;
+    margin-left: 600px;
+    animation: spin 5s ease-in-out forwards;
+
+    .text {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      font-size: 50px;
+      color: #fff;
+      font-weight: bold;
+      transform: rotateZ(270deg);
+
+      span {
+        display: inline-block;
+        opacity: 0;
+        animation: fadeIn 0.5s ease-in-out forwards;
+      }
+
+      span:nth-child(1) {
+        animation-delay: 2s;
+      }
+
+      span:nth-child(2) {
+        animation-delay: 2.2s;
+      }
+      span:nth-child(3) {
+        animation-delay: 2.4s;
+      }
+      span:nth-child(4) {
+        animation-delay: 2.6s;
+      }
+      span:nth-child(5) {
+        animation-delay: 2.8s;
+      }
+      span:nth-child(6) {
+        animation-delay: 3s;
+      }
+      span:nth-child(7) {
+        animation-delay: 3.2s;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotateY(0deg) rotateZ(0deg);
+        }
+        30% {
+          transform: rotateY(60deg) rotateZ(90deg);
+        }
+        70% {
+          transform: rotateY(30deg) rotateZ(90deg);
+          margin-right: 0px;
+        }
+        100% {
+          transform: rotateY(30deg) rotateZ(90deg);
+          margin-right: 200px;
+          box-shadow: 0 0 200px rgba(33, 91, 166, 0.9);
+        }
+      }
+
+      @keyframes fadeIn {
+        0% {
+          opacity: 0; /* 시작할 때 투명도를 0으로 설정 */
+          transform: translateY(20px); /* 시작할 때 수직으로 20px 아래로 이동 */
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    }
+  }
+
+  .welcomeDiv {
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    width: 300px;
     color: white;
-    position: absolute;
-  }
+    font-size: 50px;
+    font-weight: bold;
+    animation: welcome 1.5s ease-in-out forwards;
+    animation-delay: 3.5s;
 
-  .text {
-    font-weight: lighter;
-    font-size: 54px;
-  }
-
-  .text-1,
-  .text-3,
-  .text-4,
-  .text-8,
-  .text-9,
-  .text-11 {
-    color: black;
-    -webkit-text-stroke: 1px white;
-  }
-
-  @keyframes blink {
-    0% {
-      opacity: 0;
-    }
-    1% {
-      opacity: 100%;
-    }
-    99% {
-      opacity: 100%;
-    }
-    100% {
-      opacity: 0%;
-    }
-  }
-
-  .text-1 {
-    animation: blink 0.8s linear 0.9s, blink 0.8s linear 2s;
-    opacity: 0;
-  }
-  .text-2 {
-    animation: blink 0.8s linear 0.8s, blink 0.8s linear 2.1s;
-    opacity: 0;
-  }
-  .text-3 {
-    animation: blink 0.8s linear 0.7s, blink 0.8s linear 2.2s;
-    opacity: 0;
-  }
-  .text-4 {
-    animation: blink 0.8s linear 0.6s, blink 0.8s linear 2.3s;
-    opacity: 0;
-  }
-  .text-5 {
-    animation: blink 0.8s linear 0.5s, blink 0.8s linear 2.4s;
-    opacity: 0;
-  }
-  .text-6 {
-    animation: blink 0.8s linear 0.4s, blink 0.8s linear 2.5s;
-    opacity: 0;
-  }
-  .text-7 {
-    animation: blink 0.8s linear 0.5s, blink 0.8s linear 2.4s;
-    opacity: 0;
-  }
-  .text-8 {
-    animation: blink 0.8s linear 0.6s, blink 0.8s linear 2.3s;
-    opacity: 0;
-  }
-  .text-9 {
-    animation: blink 0.8s linear 0.7s, blink 0.8s linear 2.2s;
-    opacity: 0;
-  }
-  .text-10 {
-    animation: blink 0.8s linear 0.8s, blink 0.8s linear 2.1s;
-    opacity: 0;
-  }
-  .text-11 {
-    animation: blink 0.8s linear 0.9s, blink 0.8s linear 2.2s;
-    opacity: 0;
-  }
-
-  @keyframes slide-out {
-    0% {
-      opacity: 0;
-    }
-    1% {
-      opacity: 100%;
-    }
-    19% {
-      opacity: 100%;
-    }
-    20% {
-      opacity: 0;
-    }
-    39% {
-      opacity: 0;
-    }
-    40% {
-      opacity: 100%;
-    }
-    59% {
-      opacity: 100%;
-    }
-    60% {
-      opacity: 0;
-    }
-    79% {
-      opacity: 0;
-    }
-    80% {
-      opacity: 100%;
-    }
-    100% {
-      opacity: 100%;
-    }
-  }
-
-  @keyframes slid-out-container {
-    0% {
-      height: 100vh;
-    }
-    40% {
-      height: 100vh;
-    }
-    100% {
-      height: 0%;
+    @keyframes welcome {
+      0% {
+        opacity: 0;
+        transform: translateY(10px); /* 시작할 때 수직으로 20px 아래로 이동 */
+      }
+      100% {
+        opacity: 1; /* 시작할 때 투명도를 0으로 설정 */
+        transform: translateY(0px);
+      }
     }
   }
 `;
 
 const Intro = () => {
   return (
-    <IntroBody>
-      <div className="introMain">Molru</div>
+    <GlobalWrapper>
       <IntroWrapper>
-        <div className="textWrapper">
-          <div className="text-1 text">Hello World</div>
-          <div className="text-2 text">Hello World</div>
-          <div className="text-3 text">Hello World</div>
-          <div className="text-4 text">Hello World</div>
-          <div className="text-5 text">Hello World</div>
-          <div className="text-6 text">Hello World</div>
-          <div className="text-7 text">Hello World</div>
-          <div className="text-8 text">Hello World</div>
-          <div className="text-9 text">Hello World</div>
-          <div className="text-10 text">Hello World</div>
-          <div className="text-11 text">Hello World</div>
+        <div className="AnimationDiv">
+          <div className="text">
+            <span>M</span>
+            <span>O</span>
+            <span>L</span>
+            <span>R</span>
+            <span>U</span>
+            <span>R</span>
+            <span>U</span>
+          </div>
         </div>
+        <div className="welcomeDiv">WELCOME</div>
       </IntroWrapper>
-    </IntroBody>
+    </GlobalWrapper>
   );
 };
 
