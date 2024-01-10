@@ -125,13 +125,13 @@ const Intro = () => {
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   - 훅 기능 : 애니메이션이 끝나는 시간에 /home 페이지로 이동
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-  // useEffect(() => {
-  //   const endIntro = setTimeout(() => {
-  //     navigate("/home");
-  //   }, 6500);
+  useEffect(() => {
+    const endIntro = setTimeout(() => {
+      navigate("/home");
+    }, 6500);
 
-  //   return () => clearTimeout(endIntro);
-  // }, []);
+    return () => clearTimeout(endIntro);
+  }, []);
 
   return (
     <GlobalWrapper>
