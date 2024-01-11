@@ -31,7 +31,7 @@ const IntroWrapper = styled.div`
       font-size: 50px;
       color: #fff;
       font-weight: bold;
-      transform: rotateZ(270deg) rotateY(5deg);
+      transform: rotateZ(270deg) rotateY(10deg);
 
       span {
         display: inline-block;
@@ -74,8 +74,8 @@ const IntroWrapper = styled.div`
           margin-right: 0px;
         }
         100% {
-          transform: rotateY(30deg) rotateZ(90deg);
-          margin-right: 200px;
+          transform: rotateY(30deg) rotateZ(90deg) translateY(70px);
+          /* margin-right: 200px; */
           box-shadow: 0 0 200px rgba(33, 91, 166, 0.9);
         }
       }
@@ -105,6 +105,7 @@ const IntroWrapper = styled.div`
     font-weight: bold;
     animation: welcome 1.5s ease-in-out forwards;
     animation-delay: 3.5s;
+    padding-left: 100px;
 
     @keyframes welcome {
       0% {
@@ -125,13 +126,13 @@ const Intro = () => {
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   - 훅 기능 : 애니메이션이 끝나는 시간에 /home 페이지로 이동
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-  useEffect(() => {
-    const endIntro = setTimeout(() => {
-      navigate("/home");
-    }, 6500);
+  // useEffect(() => {
+  //   const endIntro = setTimeout(() => {
+  //     navigate("/home");
+  //   }, 6500);
 
-    return () => clearTimeout(endIntro);
-  }, []);
+  //   return () => clearTimeout(endIntro);
+  // }, []);
 
   return (
     <GlobalWrapper>
