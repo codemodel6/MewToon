@@ -20,6 +20,8 @@ export const SubColor = {
 
 export const GrayColor = {
   // 회색 정리
+  // 메인 배경
+  Gray000: "#f2f2f2",
   // 본문 텍스트
   Gray100: "#343a40",
   // 메뉴 등 기능적인 요소

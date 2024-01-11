@@ -1,13 +1,14 @@
 import { GlobalBody } from "../../components/CSS/Global/GlobalBody";
-import { GlobalWrapper } from "../../components/CSS/Global/GlobalWrapper";
-import HomeCarousel from "./Area/HomeCarousel";
+import HmCarousel from "./Area/HmCarousel";
+import HmInfo from "./Area/HmInfo";
+import HmMove from "./Area/HmMove";
 
 const Home = () => {
   return (
     <GlobalBody>
-      <GlobalWrapper>
-        <HomeCarousel />
-      </GlobalWrapper>
+      <HmCarousel />
+      <HmMove />
+      <HmInfo />
     </GlobalBody>
   );
 };

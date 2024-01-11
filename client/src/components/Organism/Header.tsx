@@ -7,7 +7,7 @@ const MyHeader = styled.header`
   display: flex;
   flex-direction: row;
   background-color: ${BlackColor.Black100};
-  height: 60px;
+  height: 80px;
   border-bottom: 3px solid ${MainColor.Main100};
   width: 100%;
   position: fixed;

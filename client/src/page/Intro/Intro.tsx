@@ -71,11 +71,9 @@ const IntroWrapper = styled.div`
         }
         70% {
           transform: rotateY(30deg) rotateZ(90deg);
-          margin-right: 0px;
         }
         100% {
           transform: rotateY(30deg) rotateZ(90deg) translateY(70px);
-          /* margin-right: 200px; */
           box-shadow: 0 0 200px rgba(33, 91, 166, 0.9);
         }
       }
@@ -126,13 +124,13 @@ const Intro = () => {
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   - 훅 기능 : 애니메이션이 끝나는 시간에 /home 페이지로 이동
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-  // useEffect(() => {
-  //   const endIntro = setTimeout(() => {
-  //     navigate("/home");
-  //   }, 6500);
+  useEffect(() => {
+    const endIntro = setTimeout(() => {
+      navigate("/home");
+    }, 6500);
 
-  //   return () => clearTimeout(endIntro);
-  // }, []);
+    return () => clearTimeout(endIntro);
+  }, []);
 
   return (
     <GlobalWrapper>
