@@ -12,7 +12,6 @@ const InfoWrapper = styled.div`
   height: 100%;
   background-size: cover;
 `;
-
 const HmInfo = () => {
   return (
     <GlobalInfoWrapper>
