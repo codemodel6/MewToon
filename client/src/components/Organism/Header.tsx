@@ -5,17 +5,20 @@ import { useEffect, useState } from "react";
 import { aroundRow, betweenRow } from "../CSS/Global/GlobalDisplay";
 import onion from "../CSS/image/onion.png";
 
-const MyHeader = styled.header<{ scrolling: boolean }>`
+const MyHeader = styled.header<{ scrolling: boolean; hoverData: boolean }>`
   display: flex;
   flex-direction: row;
-  background-color: rgba(0, 0, 0, 0.2);
+  // 마우스 호버 시 색깔 변경
+  background-color: ${(props) =>
+    props.hoverData ? "white" : "rgba(0, 0, 0, 0.2)"};
   height: 80px;
   width: 100%;
   position: fixed;
   z-index: 999;
   // 스크롤에 따라 보이고 안보임
   transform: translateY(${(props) => (props.scrolling ? "-100%" : "0")});
-  transition: transform 0.8s ease; // 속성, 지속시간, 타이밍함수
+  // 속도를 제어한다
+  transition: background-color 0.5s ease, transform 0.8s ease; // 속성, 지속시간, 타이밍함수
 
   .menuDiv {
     ${betweenRow}
@@ -67,6 +70,9 @@ const Header: React.FC<HedaerProps> = () => {
   const [scrolling, setScrolling] = useState<boolean>(false);
   // 스크롤 위치 값
   const [scrollData, setScrollData] = useState<number>(0);
+  // 버튼 호버 유무
+  const [hoverData, setHoverData] = useState<boolean>(false);
+
   const navigate = useNavigate();
   const location = useLocation();
   const skillPage = location.pathname.startsWith("/skill");
@@ -98,8 +104,12 @@ const Header: React.FC<HedaerProps> = () => {
   }
 
   return (
-    <MyHeader scrolling={scrolling}>
-      <div className="menuDiv">
+    <MyHeader scrolling={scrolling} hoverData={hoverData}>
+      <div
+        className="menuDiv"
+        onMouseEnter={() => setHoverData(true)}
+        onMouseLeave={() => setHoverData(false)}
+      >
         <div
           className="imgDiv"
           onClick={() => {
