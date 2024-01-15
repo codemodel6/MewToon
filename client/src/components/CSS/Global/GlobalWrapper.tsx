@@ -1,14 +1,14 @@
 /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-- 가장 기본적인 CSS
+- 컴포넌트를 감싸는 css
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
 
 import styled from "styled-components";
 
-export const GlobalWrapper = styled.div`
+export const GlobalWrapper = styled.div<{ heightData: string }>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100vw;
-  height: 100vh;
-  background-color: green;
+  width: 100%;
+  height: ${(props) => props.heightData};
+  background-color: orange;
 `;

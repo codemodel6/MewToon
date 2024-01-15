@@ -1,13 +1,13 @@
 import styled from "styled-components";
 import { centerColumn } from "../../../components/CSS/Global/GlobalDisplay";
 import MyCarousel from "../../../components/Molecule/Carousel/MyCarousel";
-import { GlobalWrapper } from "../../../components/CSS/Global/GlobalWrapper";
+import { GlobalBlock } from "../../../components/CSS/Global/GlobalBlock";
 
 const HomeCarousel = () => {
   return (
-    <GlobalWrapper>
+    <GlobalBlock>
       <MyCarousel />
-    </GlobalWrapper>
+    </GlobalBlock>
   );
 };
 

@@ -1,14 +1,14 @@
 /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-- Body를 감싸는 CSS
+- 한 화면을 보여주는 css
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
 
 import styled from "styled-components";
 
-export const GlobalBody = styled.div`
+export const GlobalBlock = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
-  height: 4000px;
-  background-color: orange;
+  width: 100vw;
+  height: 100vh;
+  background-color: green;
 `;

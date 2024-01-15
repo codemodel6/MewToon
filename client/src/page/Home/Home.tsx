@@ -1,15 +1,15 @@
-import { GlobalBody } from "../../components/CSS/Global/GlobalBody";
+import { GlobalWrapper } from "../../components/CSS/Global/GlobalWrapper";
 import HmCarousel from "./Area/HmCarousel";
 import HmInfo from "./Area/HmInfo";
 import HmMove from "./Area/HmMove";
 
 const Home = () => {
   return (
-    <GlobalBody>
+    <GlobalWrapper heightData={"4000px"}>
       <HmCarousel />
       <HmMove />
       <HmInfo />
-    </GlobalBody>
+    </GlobalWrapper>
   );
 };
 

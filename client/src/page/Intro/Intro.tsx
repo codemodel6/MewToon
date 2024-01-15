@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import { GlobalWrapper } from "../../components/CSS/Global/GlobalWrapper";
+import { GlobalBlock } from "../../components/CSS/Global/GlobalBlock";
 import { useNavigate } from "react-router-dom";
 
 const IntroWrapper = styled.div`
@@ -133,7 +133,7 @@ const Intro = () => {
   }, []);
 
   return (
-    <GlobalWrapper>
+    <GlobalBlock>
       <IntroWrapper>
         <div className="AnimationDiv">
           <div className="text">
@@ -148,7 +148,7 @@ const Intro = () => {
         </div>
         <div className="welcomeDiv">WELCOME</div>
       </IntroWrapper>
-    </GlobalWrapper>
+    </GlobalBlock>
   );
 };
 

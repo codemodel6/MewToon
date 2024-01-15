@@ -4,7 +4,6 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { aroundRow, betweenRow } from "../CSS/Global/GlobalDisplay";
 import onion from "../CSS/image/onion.png";
-import cat from "../CSS/image/cat.jpg";
 
 const MyHeader = styled.header<{ scrolling: boolean }>`
   display: flex;

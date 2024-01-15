@@ -1,14 +1,11 @@
 import styled from "styled-components";
-import { GlobalWrapper } from "../../components/CSS/Global/GlobalWrapper";
-import {
-  aroundRow,
-  centerColumn,
-} from "../../components/CSS/Global/GlobalDisplay";
+import { aroundRow } from "../../components/CSS/Global/GlobalDisplay";
 import { useEffect } from "react";
 import { MainColor } from "../../components/CSS/Color/ColorNote";
 import { SubmitButton } from "../../components/CSS/Global/GlobalItem";
 import dog from "../../components/CSS/image/dog.jpg";
 import GlobalTitle from "../../components/CSS/Global/GlobalTitle";
+import { GlobalWrapper } from "../../components/CSS/Global/GlobalWrapper";
 
 declare global {
   interface Window {
@@ -68,7 +65,7 @@ const Map = () => {
   }, []);
 
   return (
-    <GlobalWrapper>
+    <GlobalWrapper heightData="2000px">
       <GlobalTitle
         imageUrl={dog}
         mainText="카카오 지도를 이용해서 만들어보자"

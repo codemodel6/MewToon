@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import { GlobalWrapper } from "../../../components/CSS/Global/GlobalWrapper";
+import { GlobalBlock } from "../../../components/CSS/Global/GlobalBlock";
 import cogwheel from "../../../components/CSS/image/cogwheel.jpg";
 
-const GlobalInfoWrapper = styled(GlobalWrapper)`
+const GlobalInfoWrapper = styled(GlobalBlock)`
   height: 100vh;
 `;
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { GlobalWrapper } from "../../../components/CSS/Global/GlobalWrapper";
+import { GlobalBlock } from "../../../components/CSS/Global/GlobalBlock";
 import styled from "styled-components";
 
 const MoveWrapper = styled.section`
@@ -88,7 +88,7 @@ const HmMove = () => {
   }, [nowAnimation, animationCheck]);
 
   return (
-    <GlobalWrapper>
+    <GlobalBlock>
       <MoveWrapper>
         <h1 style={{ animation: `${nowAnimation} 1s ease-out forwards` }}>
           PICK YOUR FAVORITE
@@ -98,7 +98,7 @@ const HmMove = () => {
           className="photo"
         />
       </MoveWrapper>
-    </GlobalWrapper>
+    </GlobalBlock>
   );
 };
 
