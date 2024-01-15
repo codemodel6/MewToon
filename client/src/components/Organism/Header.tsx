@@ -63,10 +63,13 @@ const MyHeader = styled.header<{ scrolling: boolean }>`
 interface HedaerProps {}
 
 const Header: React.FC<HedaerProps> = () => {
+  // 스크롤이 진행중인지 확인
   const [scrolling, setScrolling] = useState<boolean>(false);
+  // 스크롤 위치 값
   const [scrollData, setScrollData] = useState<number>(0);
   const navigate = useNavigate();
   const location = useLocation();
+  const skillPage = location.pathname.startsWith("/skill");
   const mapPage = location.pathname.startsWith("/map");
   const boardPage = location.pathname.startsWith("/board");
 
@@ -89,7 +92,7 @@ const Header: React.FC<HedaerProps> = () => {
     };
   }, [scrollData]);
 
-  // 로그인 화면일 경우 보여주지 않음
+  // 인트로 화면일 경우 보여주지 않음
   if (location.pathname === "/") {
     return null;
   }
@@ -103,6 +106,14 @@ const Header: React.FC<HedaerProps> = () => {
             navigate("/home");
           }}
         ></div>
+        <button
+          className={`menuButton ${skillPage ? "here" : ""}`}
+          onClick={() => {
+            navigate("/skill");
+          }}
+        >
+          Skill
+        </button>
         <button
           className={`menuButton ${boardPage ? "here" : ""}`}
           onClick={() => {

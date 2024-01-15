@@ -3,7 +3,7 @@ import { aroundRow } from "../../components/CSS/Global/GlobalDisplay";
 import { useEffect } from "react";
 import { MainColor } from "../../components/CSS/Color/ColorNote";
 import { SubmitButton } from "../../components/CSS/Global/GlobalItem";
-import dog from "../../components/CSS/image/dog.jpg";
+import car from "../../components/CSS/image/car.jpg";
 import GlobalTitle from "../../components/CSS/Global/GlobalTitle";
 import { GlobalWrapper } from "../../components/CSS/Global/GlobalWrapper";
 
@@ -67,7 +67,7 @@ const Map = () => {
   return (
     <GlobalWrapper heightData="2000px">
       <GlobalTitle
-        imageUrl={dog}
+        imageUrl={car}
         mainText="카카오 지도를 이용해서 만들어보자"
         subText="Map"
       />

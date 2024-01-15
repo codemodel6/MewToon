@@ -1,18 +1,18 @@
 import styled from "styled-components";
-import door from "../../components/CSS/image/door.jpg";
+import building from "../../components/CSS/image/building.jpg";
 import GlobalTitle from "../../components/CSS/Global/GlobalTitle";
 import { GlobalWrapper } from "../../components/CSS/Global/GlobalWrapper";
 
-const Board = () => {
+const Skill = () => {
   return (
     <GlobalWrapper heightData="2000px">
       <GlobalTitle
-        imageUrl={door}
-        mainText="게시판을 만들껍니다"
-        subText="Board"
+        imageUrl={building}
+        mainText="기술을 자랑해봐요"
+        subText="Skill"
       />
     </GlobalWrapper>
   );
 };
 
-export default Board;
+export default Skill;
