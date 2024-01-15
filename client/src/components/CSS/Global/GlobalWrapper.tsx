@@ -4,7 +4,7 @@
 
 import styled from "styled-components";
 
-export const GlobalWrapper = styled.div<{ heightData: string }>`
+export const GlobalWrapper = styled.body<{ heightData: string }>`
   display: flex;
   flex-direction: column;
   align-items: center;

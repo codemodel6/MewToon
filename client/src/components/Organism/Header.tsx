@@ -26,7 +26,7 @@ const MyHeader = styled.header<{ scrolling: boolean; hoverData: boolean }>`
     height: 100%;
 
     .menuButton {
-      height: 40px;
+      height: 100%;
       font-size: ${FontSize.xxlarge};
       color: ${(props) => (props.hoverData ? "black" : "white")};
       background-color: transparent;
