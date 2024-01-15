@@ -3,11 +3,12 @@
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
 
 import styled from "styled-components";
-import { centerColumn } from "./GlobalDisplay";
 
 export const GlobalWrapper = styled.div`
-  ${centerColumn}
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100vw;
-  height: 100vh;
+  height: 200vh;
   background-color: green;
 `;

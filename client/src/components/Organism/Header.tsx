@@ -1,17 +1,17 @@
 import styled from "styled-components";
 import { MainColor, FontSize, BlackColor } from "../CSS/Color/ColorNote";
 import { useNavigate, useLocation } from "react-router-dom";
-import * as moment from "moment";
+import { useEffect, useState } from "react";
 
 const MyHeader = styled.header`
   display: flex;
   flex-direction: row;
-  background-color: ${BlackColor.Black100};
+  background-color: rgba(0, 0, 0, 0.2);
   height: 80px;
-  border-bottom: 3px solid ${MainColor.Main100};
   width: 100%;
   position: fixed;
   z-index: 999;
+  transition: transform 0.8s ease; // 속성, 지속시간, 타이밍함수
 
   .ImageDiv {
     display: flex;
@@ -51,7 +51,6 @@ const MyHeader = styled.header`
     height: 100%;
 
     .MenuButton {
-      background-color: ${BlackColor.Black100};
       width: 300px;
       height: 40px;
       font-size: ${FontSize.large};
@@ -66,9 +65,34 @@ const MyHeader = styled.header`
   }
 `;
 
-const Header = () => {
+interface HedaerProps {}
+
+const Header: React.FC<HedaerProps> = () => {
+  const [scrolling, setScrolling] = useState<boolean>(false);
+  const [scrollData, setScrollData] = useState<number>(0);
   const navigate = useNavigate();
   const location = useLocation();
+  const mapPage = location.pathname.startsWith("/map");
+  const boardPage = location.pathname.startsWith("/board");
+
+  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - 훅 기능 : 스크롤이 위, 아래로 이동함에 따라 헤더를 숨기고 보여줌
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > scrollData) {
+        setScrolling(true);
+      } else {
+        setScrolling(false);
+      }
+
+      setScrollData(window.scrollY);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [scrollData]);
 
   // 로그인 화면일 경우 보여주지 않음
   if (location.pathname === "/") {
@@ -76,7 +100,7 @@ const Header = () => {
   }
 
   return (
-    <MyHeader>
+    <MyHeader style={{ transform: `translateY(${scrolling ? "-100%" : "0"})` }}>
       <div className="ImageDiv">
         {/* <img
           src={Logo}
@@ -86,50 +110,23 @@ const Header = () => {
           }}
         /> */}
       </div>
-
       <div className="MenuDiv">
-        {/* <button
-          className={`MenuButton ${createPage ? "here" : ""}`}
+        <button
+          className={`MenuButton ${boardPage ? "here" : ""}`}
           onClick={() => {
-            navigate("/create");
+            navigate("/board");
           }}
         >
-          Create
+          Board
         </button>
         <button
-          className={`MenuButton ${influencePage ? "here" : ""}`}
+          className={`MenuButton ${mapPage ? "here" : ""}`}
           onClick={() => {
-            navigate("/influence");
+            navigate("/map");
           }}
         >
-          Sensitivity Analysis
+          Map
         </button>
-        <button
-          className={`MenuButton ${optimalPage ? "here" : ""}`}
-          onClick={() => {
-            navigate("/optimal");
-          }}
-        >
-          Optimal Parameter Estimation
-        </button>
-        <button
-          className={`MenuButton ${simulationPage ? "here" : ""}`}
-          onClick={() => {
-            navigate("/simulation");
-          }}
-        >
-          Simulation
-        </button>
-        <button
-          className={`MenuButton ${historyPage ? "here" : ""}`}
-          onClick={() => {
-            navigate("/history?page=1");
-          }}
-        >
-          History
-        </button>
-      </div>
-      <div className="timeDiv"> */}
       </div>
     </MyHeader>
   );

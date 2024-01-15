@@ -15,3 +15,17 @@ export const centerColumn = {
   "justify-content": "center",
   "align-items": "center",
 };
+
+export const betweenRow = {
+  display: "flex",
+  "flex-direction": "row",
+  "justify-content": "space-between",
+  "align-items": "center",
+};
+
+export const aroundRow = {
+  display: "flex",
+  "flex-direction": "row",
+  "justify-content": "space-around",
+  "align-items": "center",
+};

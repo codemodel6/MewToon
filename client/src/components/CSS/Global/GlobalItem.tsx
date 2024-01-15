@@ -9,23 +9,25 @@ import {
   GrayColor,
   FontSize,
   BlackColor,
+  WhiteColor,
 } from "../Color/ColorNote";
 
 /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-- Button : 기본적인 버튼
+- Button : 기본적인 글로벌 버튼
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
 export const SubmitButton = styled.button`
-  width: 200px;
-  height: 35px;
-  border: 2px solid ${MainColor.Main100};
+  width: 20%;
+  height: 50%;
+  border: 2px solid ${MainColor.Main200};
   border-radius: 5px;
   font-size: ${FontSize.medium};
   background-color: ${BlackColor.Black100};
-  color: white;
+  color: ${WhiteColor.White100};
+  font-weight: bold;
 
   &:hover {
     background-color: ${MainColor.Main200};
-    color: white;
+    color: ${WhiteColor.White100};
     border: none;
   }
 `;
@@ -39,7 +41,7 @@ export const CancleButton = styled(SubmitButton)`
   &:hover {
     background-color: ${SubColor.Sub200};
     border: none;
-    color: white;
+    color: ${WhiteColor.White100};
   }
 `;
 
@@ -141,23 +143,4 @@ export const GraphInputCSS = styled.label`
   &:hover {
     background-color: yellow;
   }
-`;
-
-// 사용 불가 컴포넌트
-export const AccessBlock = styled.div`
-  z-index: 3; /* 다른 컴포넌트보다 위에 나타나도록 설정 */
-  position: absolute; /* 화면에 고정 */
-  width: 100%;
-  height: 100%;
-  background-color: rgba(255, 0, 0, 0.2);
-`;
-
-// 안정기 전용 사용 불가 컴포넌트
-export const StablizerBlock = styled.div`
-  z-index: 2;
-  position: absolute;
-  width: 50%;
-  height: 50%;
-  background-color: rgba(255, 255, 0, 0.2);
-  /* 다른 스타일 추가 가능 */
 `;
