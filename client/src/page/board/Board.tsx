@@ -6,7 +6,11 @@ import GlobalTitle from "../../components/CSS/Global/GlobalTitle";
 const Board = () => {
   return (
     <GlobalWrapper>
-      <GlobalTitle imageUrl={cat} mainText="안농" subText="할루" />
+      <GlobalTitle
+        imageUrl={cat}
+        mainText="게시판을 만들껍니다"
+        subText="Board"
+      />
     </GlobalWrapper>
   );
 };

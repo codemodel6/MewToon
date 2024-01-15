@@ -8,6 +8,7 @@ interface TitleProps {
 }
 
 const GlobalTitleWrapper = styled.div`
+  position: relative;
   width: 100%;
   height: 600px;
   background-size: cover; // 이미지가 배경을 다 채운다
@@ -19,6 +20,14 @@ const GlobalTitleWrapper = styled.div`
     bottom: 10%;
     left: 100px;
     color: ${WhiteColor.White100};
+
+    p {
+      font-size: 25px;
+    }
+
+    h1 {
+      font-size: 50px;
+    }
   }
 `;
 

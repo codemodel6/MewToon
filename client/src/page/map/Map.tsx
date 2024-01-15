@@ -69,7 +69,11 @@ const Map = () => {
 
   return (
     <GlobalWrapper>
-      <GlobalTitle imageUrl={dog} mainText="안농" subText="할루" />
+      <GlobalTitle
+        imageUrl={dog}
+        mainText="카카오 지도를 이용해서 만들어보자"
+        subText="Map"
+      />
       <MapWrapper>
         <div className="mapDiv" id="map"></div>
         <div className="mapToolDiv">

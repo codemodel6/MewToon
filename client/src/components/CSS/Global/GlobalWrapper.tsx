@@ -9,6 +9,6 @@ export const GlobalWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100vw;
-  height: 200vh;
+  height: 100vh;
   background-color: green;
 `;
