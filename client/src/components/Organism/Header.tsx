@@ -26,26 +26,23 @@ const MyHeader = styled.header<{ scrolling: boolean; hoverData: boolean }>`
     height: 100%;
 
     .menuButton {
-      width: 200px;
       height: 40px;
-      font-size: ${FontSize.large};
-      color: ${MainColor.Main100};
-      border-radius: 10px;
+      font-size: ${FontSize.xxlarge};
+      color: ${(props) => (props.hoverData ? "black" : "white")};
+      background-color: transparent;
       font-weight: bold;
       transform: translateY(${(props) => (props.scrolling ? "-100%" : "0")});
       transition: transform 1s ease; // 속성, 지속시간, 타이밍함수
     }
 
     & .here {
-      background-color: ${MainColor.Main100};
-      color: white;
+      color: ${MainColor.Main100};
     }
 
     .imgDiv {
       width: 100px;
       height: 100%;
       font-weight: bold;
-      border: 1px solid black;
       background-image: url(${onion});
       background-size: contain; // 이미지를 배경에 꽉 채움
       background-position: center; // 배경의 초기값을 가운데로
