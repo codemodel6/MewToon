@@ -97,7 +97,7 @@ const MyCarousel = () => {
             <div className="contents">공부해라</div>
           </div>
           <div className="gifWrapper">
-            <img src={solution} alt="솔류션" />
+            <img src={solution} alt="솔루션" />
           </div>
         </Slider>
       </div>

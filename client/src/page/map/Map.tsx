@@ -10,12 +10,8 @@ import { SubmitButton } from "../../components/CSS/Global/GlobalItem";
 import car from "../../components/CSS/image/car.jpg";
 import GlobalTitle from "../../components/CSS/Global/GlobalTitle";
 import { GlobalWrapper } from "../../components/CSS/Global/GlobalWrapper";
-
-declare global {
-  interface Window {
-    kakao: any;
-  }
-}
+import { mapTabArr } from "../../components/dummy/TabArr";
+import GlobalTab from "../../components/CSS/Global/GlobalTab";
 
 const MapWrapper = styled.div`
   display: flex;
@@ -48,6 +44,12 @@ const MapWrapper = styled.div`
   }
 `;
 
+declare global {
+  interface Window {
+    kakao: any;
+  }
+}
+
 const Map = () => {
   useEffect(() => {
     let mapContainer = document.getElementById("map"), // 지도를 표시할 div
@@ -75,6 +77,7 @@ const Map = () => {
         mainText="카카오 지도를 이용해서 만들어보자"
         subText="Map"
       />
+      <GlobalTab tabArr={mapTabArr} />
       <MapWrapper>
         <div className="mapDiv" id="map"></div>
         <div className="mapToolDiv">

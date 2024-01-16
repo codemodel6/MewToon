@@ -2,13 +2,11 @@
 
 export const MainColor = {
   // 메인
-  Main100: "#80ce87",
-  // 서브1"
-  Main200: "#36BF4A",
+  Main100: "#4169E1",
+  // 서브1"c6e2ff
+  Main200: "#c6e2ff",
   // 서브2
-  Main300: "#12732A",
-  // 서브4
-  Main400: "#01260A",
+  Main300: "#0A0EAE",
 };
 
 export const SubColor = {
