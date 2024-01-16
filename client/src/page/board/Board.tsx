@@ -1,9 +1,9 @@
-import styled from "styled-components";
 import door from "../../components/CSS/image/door.jpg";
 import GlobalTitle from "../../components/CSS/Global/GlobalTitle";
 import { GlobalWrapper } from "../../components/CSS/Global/GlobalWrapper";
 import { boardTabArr } from "../../components/dummy/TabArr";
 import GlobalTab from "../../components/CSS/Global/GlobalTab";
+import BoardList from "./Area/BoardList";
 
 const Board = () => {
   return (
@@ -14,6 +14,7 @@ const Board = () => {
         subText="Board"
       />
       <GlobalTab tabArr={boardTabArr} />
+      <BoardList />
     </GlobalWrapper>
   );
 };
