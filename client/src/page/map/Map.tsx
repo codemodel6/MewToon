@@ -65,7 +65,7 @@ const Map = () => {
   }, []);
 
   return (
-    <GlobalWrapper heightData="2000px">
+    <GlobalWrapper height="2000px">
       <GlobalTitle
         imageUrl={car}
         mainText="카카오 지도를 이용해서 만들어보자"

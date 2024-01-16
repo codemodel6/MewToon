@@ -4,11 +4,11 @@
 
 import styled from "styled-components";
 
-export const GlobalWrapper = styled.body<{ heightData: string }>`
+export const GlobalWrapper = styled.div<{ height: string }>`
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: ${(props) => props.heightData};
+  height: ${(props) => props.height};
   background-color: orange;
 `;

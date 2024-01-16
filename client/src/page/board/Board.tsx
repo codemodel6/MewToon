@@ -5,7 +5,7 @@ import { GlobalWrapper } from "../../components/CSS/Global/GlobalWrapper";
 
 const Board = () => {
   return (
-    <GlobalWrapper heightData="2000px">
+    <GlobalWrapper height="2000px">
       <GlobalTitle
         imageUrl={door}
         mainText="게시판을 만들껍니다"

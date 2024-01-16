@@ -5,7 +5,7 @@ import HmMove from "./Area/HmMove";
 
 const Home = () => {
   return (
-    <GlobalWrapper heightData={"4000px"}>
+    <GlobalWrapper height={"4000px"}>
       <HmCarousel />
       <HmMove />
       <HmInfo />

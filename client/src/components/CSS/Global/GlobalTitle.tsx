@@ -2,12 +2,6 @@ import styled from "styled-components";
 import { MainColor, WhiteColor } from "../Color/ColorNote";
 import { aroundRow, centerColumn } from "./GlobalDisplay";
 
-interface TitleProps {
-  imageUrl: string;
-  mainText: string;
-  subText: string;
-}
-
 const GlobalTitleWrapper = styled.div`
   width: 100%;
   background-color: royalblue;
@@ -62,6 +56,13 @@ const GlobalTitleWrapper = styled.div`
     }
   }
 `;
+
+// 인터페이스 : 프롭스
+interface TitleProps {
+  imageUrl: string;
+  mainText: string;
+  subText: string;
+}
 
 const GlobalTitle: React.FC<TitleProps> = ({ imageUrl, mainText, subText }) => {
   return (

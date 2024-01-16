@@ -5,7 +5,7 @@ import { GlobalWrapper } from "../../components/CSS/Global/GlobalWrapper";
 
 const Skill = () => {
   return (
-    <GlobalWrapper heightData="2000px">
+    <GlobalWrapper height="2000px">
       <GlobalTitle
         imageUrl={building}
         mainText="기술을 자랑해봐요"
