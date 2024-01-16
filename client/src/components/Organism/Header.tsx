@@ -62,8 +62,13 @@ const MyHeader = styled.header<{
 
     .loginDiv {
       width: 300px;
-      height: 100%;
+      height: 70%;
       background-color: ${MainColor.Main100};
+      border-radius: 10px;
+      transform: translateY(
+        ${(props) => (props.scrollBoolean ? "-100%" : "0")}
+      );
+      transition: transform 1s ease; // 속성, 지속시간, 타이밍함수
     }
   }
 `;

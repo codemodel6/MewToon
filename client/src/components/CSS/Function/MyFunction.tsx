@@ -13,12 +13,12 @@ interface ScrollFunction {
 export const handleScroll: ScrollFunction = (
   scrollData,
   setScrollData,
-  setScrolling
+  setScrollBoolean
 ) => {
   if (window.scrollY > scrollData) {
-    setScrolling(true);
+    setScrollBoolean(true);
   } else {
-    setScrolling(false);
+    setScrollBoolean(false);
   }
 
   setScrollData(window.scrollY);
