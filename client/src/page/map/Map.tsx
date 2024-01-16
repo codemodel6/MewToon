@@ -1,3 +1,7 @@
+/** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+- /map 컴포넌트
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+
 import styled from "styled-components";
 import { aroundRow } from "../../components/CSS/Global/GlobalDisplay";
 import { useEffect } from "react";

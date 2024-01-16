@@ -1,3 +1,7 @@
+/** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+- /skill 컴포넌트
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+
 import styled from "styled-components";
 import building from "../../components/CSS/image/building.jpg";
 import GlobalTitle from "../../components/CSS/Global/GlobalTitle";

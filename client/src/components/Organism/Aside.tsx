@@ -1,3 +1,7 @@
+/** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+- 어사이드 컴포넌트
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+
 import styled from "styled-components";
 import { FontSize, MainColor } from "../CSS/Color/ColorNote";
 

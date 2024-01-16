@@ -1,3 +1,7 @@
+/** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+- 헤더 컴포넌트
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+
 import styled from "styled-components";
 import { MainColor, FontSize, BlackColor } from "../CSS/Color/ColorNote";
 import { useNavigate, useLocation } from "react-router-dom";

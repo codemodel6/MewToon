@@ -1,3 +1,7 @@
+/** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+- 모든 컴포넌트의 시작 - 이미지와 탭 div가 있는 컴포넌트
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+
 import styled from "styled-components";
 import { MainColor, WhiteColor } from "../Color/ColorNote";
 import { aroundRow, centerColumn } from "./GlobalDisplay";
@@ -41,7 +45,6 @@ const GlobalTitleWrapper = styled.div<{ scrollBoolean: boolean }>`
     position: sticky;
     // 스크롤에 따라 위치 변경
     top: ${(props) => (props.scrollBoolean ? "0" : "80px")};
-
     transition: top 0.8s ease; // 속성, 지속시간, 타이밍함수
 
     ul {
@@ -62,7 +65,9 @@ const GlobalTitleWrapper = styled.div<{ scrollBoolean: boolean }>`
   }
 `;
 
-// 인터페이스 : 프롭스
+/** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+- 인터페이스 : 해당 컴포넌트의 props
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
 interface TitleProps {
   imageUrl: string;
   mainText: string;

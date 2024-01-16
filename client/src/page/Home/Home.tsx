@@ -1,3 +1,7 @@
+/** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+- /home 컴포넌트
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+
 import { GlobalWrapper } from "../../components/CSS/Global/GlobalWrapper";
 import HmCarousel from "./Area/HmCarousel";
 import HmInfo from "./Area/HmInfo";
