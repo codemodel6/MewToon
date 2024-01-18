@@ -18,17 +18,17 @@ import {
   centerRow,
 } from "../../../components/CSS/Global/GlobalDisplay";
 
-const HistoryWrapper = styled.div`
+const BoardListBlock = styled.div`
   height: 100%;
-  width: 100%;
+  width: 50%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding-top: 70px;
+  align-items: flex-end;
+  background-color: pink;
 
   .boardTitleLine {
     ${centerRow}
-    width: 80%;
+    width: 90%;
     height: 60px;
     background-color: ${MainColor.Main100};
     color: ${WhiteColor.White100};
@@ -51,7 +51,7 @@ const HistoryWrapper = styled.div`
     flex-direction: column;
     align-items: center;
     background-color: ${WhiteColor.White100};
-    width: 80%;
+    width: 90%;
     height: 550px;
 
     .boardContents {
@@ -103,7 +103,7 @@ const DatePcikerWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  width: 80%;
+  width: 90%;
   height: 40px;
   margin-bottom: 2px;
   font-weight: bold;
@@ -135,7 +135,7 @@ const DatePcikerWrapper = styled.div`
 
     .searchButton {
       text-align: center;
-      width: 80%;
+      width: 90%;
       height: 30px;
       background-color: ${WhiteColor.White100};
       border: 2px solid ${MainColor.Main200};
@@ -152,7 +152,7 @@ const DatePcikerWrapper = styled.div`
 
 const EmptyWrapper = styled.div`
   ${centerColumn}
-  width: 80%;
+  width: 90%;
   height: 500px;
   color: ${MainColor.Main200};
   font-size: 30px;
@@ -178,51 +178,50 @@ const BoardList = () => {
   const navigate = useNavigate();
 
   return (
-    <GlobalBlock>
-      <HistoryWrapper>
-        <DatePcikerWrapper>
-          <div className="datePickerDiv">
-            <div className="pickerArea">
-              {/* <MyPicker setMyDate={setStartDate} type={"S"} /> */}
-            </div>
-            ~
-            <div className="pickerArea">
-              {/* <MyPicker setMyDate={setEndDate} type={"E"} /> */}
-            </div>
-            <div className="searchArea">
-              <button className="searchButton">검색</button>
-            </div>
+    <BoardListBlock>
+      <DatePcikerWrapper>
+        <div className="datePickerDiv">
+          <div className="pickerArea">
+            {/* <MyPicker setMyDate={setStartDate} type={"S"} /> */}
           </div>
-        </DatePcikerWrapper>
-        <div className="boardTitleLine">
-          <div className="common">글번호</div>
-          <div className="title">제목</div>
-          <div className="common">작성자</div>
-          <div className="common">날짜</div>
+          ~
+          <div className="pickerArea">
+            {/* <MyPicker setMyDate={setEndDate} type={"E"} /> */}
+          </div>
+          <div className="searchArea">
+            <button className="searchButton">검색</button>
+          </div>
         </div>
+      </DatePcikerWrapper>
+      <div className="boardTitleLine">
+        <div className="common">글번호</div>
+        <div className="title">제목</div>
+        <div className="common">작성자</div>
+        <div className="common">날짜</div>
+      </div>
+      {totalPage === 0 ? (
+        <EmptyWrapper>검색된 결과는 존재하지 않습니다.</EmptyWrapper>
+      ) : (
+        <div className="boardWrapper">
+          {boardList.map((it, idx) => (
+            <div className="boardContents" key={idx}>
+              <div className="common">번호</div>
+              <div className="title">제목</div>
+              <div className="author">작성자</div>
+              <div className="common">날짜</div>
+            </div>
+          ))}
+        </div>
+      )}
+      <div className="pagiNationDiv">
         {totalPage === 0 ? (
-          <EmptyWrapper>검색된 결과는 존재하지 않습니다.</EmptyWrapper>
+          ""
         ) : (
-          <div className="boardWrapper">
-            {boardList.map((it, idx) => (
-              <div className="boardContents" key={idx}>
-                <div className="common">번호</div>
-                <div className="title">제목</div>
-                <div className="author">작성자</div>
-                <div className="common">날짜</div>
-              </div>
-            ))}
-          </div>
+          <div></div>
+          //   <PagiNation location={location} totalPage={totalPage} page={page} />
         )}
-        <div className="pagiNationDiv">
-          {totalPage === 0 ? (
-            ""
-          ) : (
-            <div></div>
-            //   <PagiNation location={location} totalPage={totalPage} page={page} />
-          )}
-        </div>
-        {/* <SearchBar
+      </div>
+      {/* <SearchBar
         setBoardList={setBoardList}
         setTotalPage={setTotalPage}
         page={page}
@@ -230,8 +229,7 @@ const BoardList = () => {
         setSearchValue={setSearchValue}
         pageData={pageData}
       /> */}
-      </HistoryWrapper>
-    </GlobalBlock>
+    </BoardListBlock>
   );
 };
 

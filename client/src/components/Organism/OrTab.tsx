@@ -52,12 +52,12 @@ const GlobalTab: React.FC<GlobalTabInter> = ({ tabArr }) => {
   const nowPage = location.pathname;
   let moveTab = location.state;
 
-  useEffect(() => {
-    window.scrollTo({
-      top: 599.8079833984375,
-      behavior: "smooth",
-    });
-  }, [nowPage]);
+  // useEffect(() => {
+  //   window.scrollTo({
+  //     top: 599.8079833984375,
+  //     behavior: "smooth",
+  //   });
+  // }, [nowPage]);
 
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   - 훅 기능 : 스크롤이 위, 아래로 이동함에 따라  tabDiv 위치 변경
@@ -78,14 +78,7 @@ const GlobalTab: React.FC<GlobalTabInter> = ({ tabArr }) => {
     <GlobalTabWrapper scrollBoolean={scrollBoolean}>
       <ul>
         {tabArr.map((it, idx) => (
-          <li
-            key={idx}
-            // className={nowPage ? "here" : ""}
-            className={nowPage === it.url ? "here" : ""}
-            onClick={() => navigate(`${it.url}`, { state: "moveTab" })}
-          >
-            {it.title}
-          </li>
+          <li key={idx}>{it.title}</li>
         ))}
       </ul>
     </GlobalTabWrapper>

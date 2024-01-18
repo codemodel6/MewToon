@@ -11,3 +11,11 @@ export const GlobalWrapper = styled.div<{ height: string }>`
   width: 100%;
   height: ${(props) => props.height};
 `;
+
+export const GlobalAsideWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  background-color: royalblue;
+`;

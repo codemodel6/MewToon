@@ -4,29 +4,21 @@
 
 import styled from "styled-components";
 import { FontSize, MainColor } from "../CSS/Color/ColorNote";
+import { centerColumn } from "../CSS/Global/GlobalDisplay";
 
 const MyAside = styled.aside`
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-top: 3px solid ${MainColor.Main100};
-  border-right: 3px solid ${MainColor.Main100};
-  border-bottom: 3px solid ${MainColor.Main100};
-  padding-top: 20px;
-  height: 750px;
-  width: 10%;
-  color: white;
-  font-size: ${FontSize.medium};
-  font-weight: bold;
+  width: 15%;
+  height: 100%;
+  background-color: orange;
 
   ul {
+    ${centerColumn}
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 5px;
     margin: 0;
+    background-color: green;
 
     li {
       width: 100%;
@@ -39,7 +31,9 @@ const Aside = () => {
   return (
     <MyAside>
       <ul>
-        <li></li>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
       </ul>
     </MyAside>
   );
