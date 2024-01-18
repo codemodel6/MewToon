@@ -23,7 +23,8 @@ const BoardListBlock = styled.div`
   width: 50%;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
+  justify-content: center;
   background-color: pink;
 
   .boardTitleLine {

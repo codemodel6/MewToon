@@ -17,15 +17,19 @@ import {
 import BoardComment from "./BoardComment";
 
 const BoardContentWrapper = styled.div`
-  padding-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 50%;
   height: 100%;
   background-color: white;
 
   .boardContentBlock {
-    border: 2px solid ${MainColor.Main100};
+    border-bottom: 2px solid ${MainColor.Main100};
+    border-left: 2px solid ${MainColor.Main100};
+    border-right: 2px solid ${MainColor.Main100};
     width: 90%;
-    height: 610px;
+    height: 750px;
     overflow: scroll;
 
     .boardInfo {
@@ -42,7 +46,8 @@ const BoardContentWrapper = styled.div`
 
     .boardContent {
       width: 100%;
-      height: 385px;
+      height: 450px;
+      padding: 20px;
     }
 
     .boardUpdateDiv {
@@ -131,7 +136,7 @@ const BoardContent = () => {
           <p>게시판 제목</p>
           <p>글쓴이 || 생성날짜</p>
         </div>
-        <div className="boardContent"></div>
+        <div className="boardContent">게시판 내용 입니다</div>
         <div className="boardUpdateDiv">
           <button className="updateButton">수정</button>
           <button className="deleteButton">삭제</button>

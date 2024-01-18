@@ -18,7 +18,6 @@ import BoardContent from "./Area/BoardContent";
 const BoardListWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  padding-top: 70px;
   height: 100vh;
   width: 85%;
   background-color: red;
