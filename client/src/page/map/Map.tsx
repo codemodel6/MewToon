@@ -8,10 +8,10 @@ import { useEffect } from "react";
 import { MainColor } from "../../components/CSS/Color/ColorNote";
 import { SubmitButton } from "../../components/CSS/Global/GlobalItem";
 import car from "../../components/CSS/image/car.jpg";
-import GlobalTitle from "../../components/CSS/Global/GlobalTitle";
+import OrTitle from "../../components/Organism/OrTitle";
 import { GlobalWrapper } from "../../components/CSS/Global/GlobalWrapper";
 import { mapTabArr } from "../../components/dummy/TabArr";
-import GlobalTab from "../../components/CSS/Global/GlobalTab";
+import OrTab from "../../components/Organism/OrTab";
 
 const MapWrapper = styled.div`
   display: flex;
@@ -19,7 +19,6 @@ const MapWrapper = styled.div`
   align-items: center;
   width: 100%;
   height: 50%;
-  background-color: orange;
 
   .mapDiv {
     width: 50%;
@@ -72,12 +71,12 @@ const Map = () => {
 
   return (
     <GlobalWrapper height="2000px">
-      <GlobalTitle
+      <OrTitle
         imageUrl={car}
         mainText="카카오 지도를 이용해서 만들어보자"
         subText="Map"
       />
-      <GlobalTab tabArr={mapTabArr} />
+      <OrTab tabArr={mapTabArr} />
       <MapWrapper>
         <div className="mapDiv" id="map"></div>
         <div className="mapToolDiv">

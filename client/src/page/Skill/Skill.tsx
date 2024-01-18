@@ -4,20 +4,20 @@
 
 import styled from "styled-components";
 import building from "../../components/CSS/image/building.jpg";
-import GlobalTitle from "../../components/CSS/Global/GlobalTitle";
+import OrTitle from "../../components/Organism/OrTitle";
 import { GlobalWrapper } from "../../components/CSS/Global/GlobalWrapper";
 import { skillTabArr } from "../../components/dummy/TabArr";
-import GlobalTab from "../../components/CSS/Global/GlobalTab";
+import OrTab from "../../components/Organism/OrTab";
 
 const Skill = () => {
   return (
     <GlobalWrapper height="2000px">
-      <GlobalTitle
+      <OrTitle
         imageUrl={building}
         mainText="기술을 자랑해봐요"
         subText="Skill"
       />
-      <GlobalTab tabArr={skillTabArr} />
+      <OrTab tabArr={skillTabArr} />
     </GlobalWrapper>
   );
 };

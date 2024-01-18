@@ -8,7 +8,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { aroundRow, betweenRow } from "../CSS/Global/GlobalDisplay";
 import onion from "../CSS/image/onion.png";
-import { handleScroll } from "../CSS/Function/MyFunction";
+import { handleScroll } from "../Function/MyFunction";
 
 const MyHeader = styled.header<{
   scrollBoolean: boolean;
@@ -129,7 +129,7 @@ const Header: React.FC<HedaerProps> = () => {
         <button
           className={`menuButton ${skillPage ? "here" : ""}`}
           onClick={() => {
-            navigate("/skill");
+            navigate("/skill/teacher");
           }}
         >
           Skill
@@ -137,7 +137,7 @@ const Header: React.FC<HedaerProps> = () => {
         <button
           className={`menuButton ${boardPage ? "here" : ""}`}
           onClick={() => {
-            navigate("/board");
+            navigate("/board/free");
           }}
         >
           Board
@@ -145,7 +145,7 @@ const Header: React.FC<HedaerProps> = () => {
         <button
           className={`menuButton ${mapPage ? "here" : ""}`}
           onClick={() => {
-            navigate("/map");
+            navigate("/map/information");
           }}
         >
           Map

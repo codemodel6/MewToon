@@ -1,7 +1,10 @@
-import { useEffect, useState } from "react";
-import styled from "styled-components";
+/** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+- 게시판 리스트 컴포넌트
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+
+import { useState } from "react";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
-import axios from "axios";
+import styled from "styled-components";
 import {
   BlackColor,
   FontSize,
@@ -55,7 +58,7 @@ const HistoryWrapper = styled.div`
       ${centerRow}
       width: 100%;
       height: 33px;
-      border-bottom: 2px solid ${MainColor.Main100};
+      border-bottom: 2px solid ${GrayColor.Gray000};
       cursor: pointer;
       font-size: ${FontSize.medium};
       color: ${GrayColor.Gray100};
@@ -112,15 +115,12 @@ const DatePcikerWrapper = styled.div`
     justify-content: space-between;
     width: 30%;
     height: 100%;
-    color: white;
+    color: ${WhiteColor.White100};
     font-size: ${FontSize.medium};
   }
 
   .pickerArea {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    ${centerColumn}
     height: 100%;
     width: 30%;
   }
@@ -137,9 +137,9 @@ const DatePcikerWrapper = styled.div`
       text-align: center;
       width: 80%;
       height: 30px;
-      background-color: ${BlackColor.Black100};
+      background-color: ${WhiteColor.White100};
       border: 2px solid ${MainColor.Main200};
-      color: white;
+      color: ${GrayColor.Gray100};
       border-radius: 5px;
       font-weight: bold;
 
@@ -151,12 +151,9 @@ const DatePcikerWrapper = styled.div`
 `;
 
 const EmptyWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  ${centerColumn}
   width: 80%;
-  height: 495px;
+  height: 500px;
   color: ${MainColor.Main200};
   font-size: 30px;
   border-bottom: 3px solid ${MainColor.Main100};
@@ -164,13 +161,13 @@ const EmptyWrapper = styled.div`
 
 const BoardList = () => {
   // 페이지에 보여줄 게시글 state
-  const [boardList, setBoardList] = useState([{}, {}]);
+  const [boardList, setBoardList] = useState<object[]>([{}, {}]);
   // 총 페이지 수 state
-  const [totalPage, setTotalPage] = useState();
+  const [totalPage, setTotalPage] = useState<number>();
   // url의 페이지를 가져오는 state
   const [searchParams, setSearchParams] = useSearchParams();
   // searchBar의 입력한 값 state
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState<string>("");
   // 시작 날짜 state
   const [startDate, setStartDate] = useState("");
   // 끝 날짜 state
@@ -198,7 +195,7 @@ const BoardList = () => {
           </div>
         </DatePcikerWrapper>
         <div className="boardTitleLine">
-          <div className="common">번호</div>
+          <div className="common">글번호</div>
           <div className="title">제목</div>
           <div className="common">작성자</div>
           <div className="common">날짜</div>

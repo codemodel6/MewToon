@@ -10,5 +10,4 @@ export const GlobalWrapper = styled.div<{ height: string }>`
   align-items: center;
   width: 100%;
   height: ${(props) => props.height};
-  background-color: orange;
 `;
