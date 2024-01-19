@@ -17,5 +17,5 @@ export const GlobalAsideWrapper = styled.div`
   flex-direction: row;
   width: 100%;
   height: 100%;
-  background-color: royalblue;
+  background-color: pink;
 `;

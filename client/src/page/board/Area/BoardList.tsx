@@ -25,8 +25,9 @@ const BoardListBlock = styled.div<{ toggle: boolean }>`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: pink;
-  transition: width 0.5s ease;
+  transition: width 0.8s ease;
+  position: relative;
+  z-index: 1;
 
   .boardTitleLine {
     ${centerRow}

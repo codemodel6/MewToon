@@ -27,7 +27,6 @@ function App() {
             <Route path="/skill/student" element={<Skill />}></Route>
             {/* Board */}
             <Route path="/board/free" element={<Board />}></Route>
-            <Route path="/board/free/1" element={<BoardContent />}></Route>
             <Route path="/board/information" element={<Board />}></Route>
             <Route path="/board/review" element={<Board />}></Route>
             {/* Map */}

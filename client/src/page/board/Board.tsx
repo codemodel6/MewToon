@@ -20,7 +20,8 @@ const BoardListWrapper = styled.div`
   display: flex;
   flex-direction: row;
   height: 100vh;
-  width: 85%;
+  width: 100%;
+  position: relative;
 `;
 
 interface ToggleFun {
@@ -49,6 +50,7 @@ const Board = () => {
         <Aside />
         <BoardListWrapper>
           <BoardList toggle={toggle} handleToggle={handleToggle} />
+          <BoardContent toggle={toggle} />
           {/* {toggle ? <BoardContent /> : ""} */}
         </BoardListWrapper>
       </GlobalAsideWrapper>

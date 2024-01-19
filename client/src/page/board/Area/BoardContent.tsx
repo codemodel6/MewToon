@@ -16,13 +16,17 @@ import {
 } from "../../../components/CSS/Global/GlobalDisplay";
 import BoardComment from "./BoardComment";
 
-const BoardContentWrapper = styled.div`
+const BoardContentWrapper = styled.div<{ toggle: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 50%;
   height: 100%;
   background-color: white;
+  position: absolute;
+  transform: translate(${(props) => (props.toggle ? "100%" : "0%")});
+  opacity: ${(props) => (props.toggle ? "1" : "0")};
+  transition: transform 0.8s ease-in-out, opacity 1.8s ease;
 
   .boardContentBlock {
     border: 2px solid ${MainColor.Main100};
@@ -131,9 +135,13 @@ const BoardContentWrapper = styled.div`
   }
 `;
 
-const BoardContent = () => {
+interface ContentProps {
+  toggle: boolean;
+}
+
+const BoardContent: React.FC<ContentProps> = ({ toggle }) => {
   return (
-    <BoardContentWrapper>
+    <BoardContentWrapper toggle={toggle}>
       <div className="boardContentBlock">
         <div className="boardInfo">
           <p>게시판 제목</p>
