@@ -18,14 +18,15 @@ import {
   centerRow,
 } from "../../../components/CSS/Global/GlobalDisplay";
 
-const BoardListBlock = styled.div`
+const BoardListBlock = styled.div<{ toggle: boolean }>`
   height: 100%;
-  width: 50%;
+  width: ${(props) => (props.toggle ? "50%" : "100%")};
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: pink;
+  transition: width 0.5s ease;
 
   .boardTitleLine {
     ${centerRow}
@@ -160,7 +161,12 @@ const EmptyWrapper = styled.div`
   border-bottom: 3px solid ${MainColor.Main100};
 `;
 
-const BoardList = () => {
+interface ListProps {
+  toggle: boolean;
+  handleToggle: () => void;
+}
+
+const BoardList: React.FC<ListProps> = ({ toggle, handleToggle }) => {
   // 페이지에 보여줄 게시글 state
   const [boardList, setBoardList] = useState<object[]>([{}, {}]);
   // 총 페이지 수 state
@@ -179,7 +185,7 @@ const BoardList = () => {
   const navigate = useNavigate();
 
   return (
-    <BoardListBlock>
+    <BoardListBlock toggle={toggle}>
       <DatePcikerWrapper>
         <div className="datePickerDiv">
           <div className="pickerArea">
@@ -205,7 +211,7 @@ const BoardList = () => {
       ) : (
         <div className="boardWrapper">
           {boardList.map((it, idx) => (
-            <div className="boardContents" key={idx}>
+            <div className="boardContents" key={idx} onClick={handleToggle}>
               <div className="common">번호</div>
               <div className="title">제목</div>
               <div className="author">작성자</div>
