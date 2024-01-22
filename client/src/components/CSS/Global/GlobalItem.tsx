@@ -15,14 +15,14 @@ import {
 /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 - Button : 기본적인 글로벌 버튼
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-export const SubmitButton = styled.button`
-  width: 20%;
-  height: 50%;
-  border: 2px solid ${MainColor.Main200};
+export const GlobalButton = styled.button`
+  width: 30%;
+  height: 100%;
+  border: 2px solid ${MainColor.Main100};
   border-radius: 5px;
   font-size: ${FontSize.medium};
-  background-color: ${BlackColor.Black100};
-  color: ${WhiteColor.White100};
+  background-color: ${WhiteColor.White100};
+  color: ${BlackColor.Black100};
   font-weight: bold;
 
   &:hover {
@@ -35,9 +35,7 @@ export const SubmitButton = styled.button`
 /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 - Button : 취소 버튼
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-export const CancleButton = styled(SubmitButton)`
-  background-color: ${BlackColor.Black100};
-
+export const CancleButton = styled(GlobalButton)`
   &:hover {
     background-color: ${SubColor.Sub200};
     border: none;

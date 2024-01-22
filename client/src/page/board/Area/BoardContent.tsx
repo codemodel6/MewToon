@@ -26,7 +26,7 @@ const BoardContentWrapper = styled.div<{ toggle: boolean }>`
   position: absolute;
   transform: translate(${(props) => (props.toggle ? "100%" : "0%")});
   opacity: ${(props) => (props.toggle ? "1" : "0")};
-  transition: transform 0.8s ease-in-out, opacity 1.8s ease;
+  transition: transform 0.8s ease-in-out, opacity 1s ease;
 
   .boardContentBlock {
     border: 2px solid ${MainColor.Main100};

@@ -6,17 +6,16 @@ import { useState } from "react";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import styled from "styled-components";
 import {
-  BlackColor,
   FontSize,
   GrayColor,
   MainColor,
   WhiteColor,
 } from "../../../components/CSS/Color/ColorNote";
-import { GlobalBlock } from "../../../components/CSS/Global/GlobalBlock";
 import {
   centerColumn,
   centerRow,
 } from "../../../components/CSS/Global/GlobalDisplay";
+import { GlobalButton } from "../../../components/CSS/Global/GlobalItem";
 
 const BoardListBlock = styled.div<{ toggle: boolean }>`
   height: 100%;
@@ -28,10 +27,11 @@ const BoardListBlock = styled.div<{ toggle: boolean }>`
   transition: width 0.8s ease;
   position: relative;
   z-index: 1;
+  background-color: rgba(198, 226, 255, 0.3);
 
   .boardTitleLine {
     ${centerRow}
-    width: 90%;
+    width: 80%;
     height: 60px;
     background-color: ${MainColor.Main100};
     color: ${WhiteColor.White100};
@@ -54,7 +54,7 @@ const BoardListBlock = styled.div<{ toggle: boolean }>`
     flex-direction: column;
     align-items: center;
     background-color: ${WhiteColor.White100};
-    width: 90%;
+    width: 80%;
     height: 550px;
 
     .boardContents {
@@ -96,9 +96,18 @@ const BoardListBlock = styled.div<{ toggle: boolean }>`
     }
   }
 
-  .pagiNationDiv {
-    width: 16%;
+  .writeDiv {
+    display: flex;
+    justify-content: flex-end;
     height: 60px;
+    width: 80%;
+    background-color: red;
+  }
+
+  .pagiNationDiv {
+    width: 30%;
+    height: 60px;
+    background-color: orange;
   }
 `;
 
@@ -106,7 +115,7 @@ const DatePcikerWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  width: 90%;
+  width: 80%;
   height: 40px;
   margin-bottom: 2px;
   font-weight: bold;
@@ -138,7 +147,7 @@ const DatePcikerWrapper = styled.div`
 
     .searchButton {
       text-align: center;
-      width: 90%;
+      width: 80%;
       height: 30px;
       background-color: ${WhiteColor.White100};
       border: 2px solid ${MainColor.Main200};
@@ -155,7 +164,7 @@ const DatePcikerWrapper = styled.div`
 
 const EmptyWrapper = styled.div`
   ${centerColumn}
-  width: 90%;
+  width: 80%;
   height: 500px;
   color: ${MainColor.Main200};
   font-size: 30px;
@@ -166,6 +175,33 @@ interface ListProps {
   toggle: boolean;
   handleToggle: () => void;
 }
+
+const myList = {
+  listInfo: [
+    {
+      id: 1,
+      title: "hi",
+      author: "경배",
+      day: "흠 뭐로 하지",
+    },
+    {
+      id: 2,
+      title: "hello",
+      author: "경배",
+      day: "흠 뭐로 하지",
+    },
+    {
+      id: 3,
+      title: "world",
+      author: "경배",
+      day: "흠 뭐로 하지",
+    },
+  ],
+  pageInfo: {
+    page: 1,
+    totalPage: 10,
+  },
+};
 
 const BoardList: React.FC<ListProps> = ({ toggle, handleToggle }) => {
   // 페이지에 보여줄 게시글 state
@@ -211,16 +247,19 @@ const BoardList: React.FC<ListProps> = ({ toggle, handleToggle }) => {
         <EmptyWrapper>검색된 결과는 존재하지 않습니다.</EmptyWrapper>
       ) : (
         <div className="boardWrapper">
-          {boardList.map((it, idx) => (
-            <div className="boardContents" key={idx} onClick={handleToggle}>
-              <div className="common">번호</div>
-              <div className="title">제목</div>
-              <div className="author">작성자</div>
-              <div className="common">날짜</div>
+          {myList.listInfo.map((it, idx) => (
+            <div className="boardContents" key={it.id} onClick={handleToggle}>
+              <div className="common">{it.id}</div>
+              <div className="title">{it.title}</div>
+              <div className="author">{it.author}</div>
+              <div className="common">{it.day}</div>
             </div>
           ))}
         </div>
       )}
+      <div className="writeDiv">
+        <GlobalButton>글 쓰기</GlobalButton>
+      </div>
       <div className="pagiNationDiv">
         {totalPage === 0 ? (
           ""

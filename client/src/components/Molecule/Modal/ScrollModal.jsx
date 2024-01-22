@@ -5,7 +5,7 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { MainColor, FontSize, BlackColor } from "../../GlobalCss/ColorNote";
-import { CancleButton, SubmitButton } from "../../GlobalCss/GlobalItem";
+import { CancleButton, GlobalButton } from "../../GlobalCss/GlobalItem";
 
 export const ModalWrapper = styled.div`
   display: none;
@@ -161,7 +161,7 @@ const ScrollModal = ({
           ))}
         </div>
         <div className="ButtonDiv">
-          <SubmitButton onClick={handleModalData}>등록</SubmitButton>
+          <GlobalButton onClick={handleModalData}>등록</GlobalButton>
           <CancleButton onClick={handleCancle}>취소</CancleButton>
         </div>
       </ModalWrapper>

@@ -12,3 +12,7 @@ export const GlobalBlock = styled.div`
   height: 100vh;
   background-color: purple;
 `;
+
+export const GlobalCenterBlock = styled(GlobalBlock)`
+  justify-content: center;
+`;

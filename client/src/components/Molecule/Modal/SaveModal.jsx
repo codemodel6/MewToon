@@ -3,7 +3,7 @@
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
 
 import { useState } from "react";
-import { CancleButton, SubmitButton } from "../../GlobalCss/GlobalItem";
+import { CancleButton, GlobalButton } from "../../GlobalCss/GlobalItem";
 import { Overlay } from "./ScrollModal";
 import styled from "styled-components";
 import { BlackColor, MainColor, SubColor } from "../../GlobalCss/ColorNote";
@@ -205,7 +205,7 @@ const SaveModal = ({ modalstate, handleOnOff, saveData, setSaveData }) => {
           </div>
         </div>
         <div className="buttonDiv">
-          <SubmitButton onClick={handleSave}>저장</SubmitButton>
+          <GlobalButton onClick={handleSave}>저장</GlobalButton>
           <CancleButton onClick={handleCancle}>취소</CancleButton>
         </div>
       </SaveModalWrapper>

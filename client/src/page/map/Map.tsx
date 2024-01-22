@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { aroundRow } from "../../components/CSS/Global/GlobalDisplay";
 import { useEffect } from "react";
 import { MainColor } from "../../components/CSS/Color/ColorNote";
-import { SubmitButton } from "../../components/CSS/Global/GlobalItem";
+import { GlobalButton } from "../../components/CSS/Global/GlobalItem";
 import car from "../../components/CSS/image/car.jpg";
 import OrTitle from "../../components/Organism/OrTitle";
 import { GlobalWrapper } from "../../components/CSS/Global/GlobalWrapper";
@@ -80,8 +80,8 @@ const Map = () => {
       <MapWrapper>
         <div className="mapDiv" id="map"></div>
         <div className="mapToolDiv">
-          <SubmitButton></SubmitButton>
-          <SubmitButton></SubmitButton>
+          <GlobalButton></GlobalButton>
+          <GlobalButton></GlobalButton>
         </div>
       </MapWrapper>
     </GlobalWrapper>

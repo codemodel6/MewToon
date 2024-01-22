@@ -2,26 +2,35 @@
 - /board 컴포넌트
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
 
-import door from "../../components/CSS/image/door.jpg";
-import OrTitle from "../../components/Organism/OrTitle";
+import { useState } from "react";
+import styled from "styled-components";
 import {
-  GlobalAsideWrapper,
+  AsideWrapper,
   GlobalWrapper,
 } from "../../components/CSS/Global/GlobalWrapper";
-import { boardTabArr } from "../../components/dummy/TabArr";
-import OrTab from "../../components/Organism/OrTab";
-import BoardList from "./Area/BoardList";
+import door from "../../components/CSS/image/door.jpg";
 import Aside from "../../components/Organism/Aside";
-import styled from "styled-components";
+import OrTab from "../../components/Organism/OrTab";
+import OrTitle from "../../components/Organism/OrTitle";
+import { boardTabArr } from "../../components/dummy/TabArr";
 import BoardContent from "./Area/BoardContent";
-import { useState } from "react";
+import BoardList from "./Area/BoardList";
+import BoardWrite from "./Area/BoardWrite";
 
-const BoardListWrapper = styled.div`
+const BoardWrapper = styled.div`
   display: flex;
-  flex-direction: row;
-  height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
   width: 100%;
-  position: relative;
+
+  .boardListWrapper {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    width: 90%;
+    position: relative;
+  }
 `;
 
 interface ToggleFun {
@@ -31,6 +40,7 @@ interface ToggleFun {
 const Board = () => {
   // 게시판을 보여주는 state
   const [toggle, setToggle] = useState<boolean>(false);
+  const [myContent, setMyContent] = useState<{}>({});
 
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   - 함수 기능 : 게시판을 불러오는 기능
@@ -43,17 +53,16 @@ const Board = () => {
   console.log("토글", toggle);
 
   return (
-    <GlobalWrapper height="2000px">
+    <GlobalWrapper height="3000px">
       <OrTitle imageUrl={door} mainText="게시판을 만들껍니다" subText="Board" />
       <OrTab tabArr={boardTabArr} />
-      <GlobalAsideWrapper>
-        <Aside />
-        <BoardListWrapper>
+      <BoardWrapper>
+        <div className="boardListWrapper">
           <BoardList toggle={toggle} handleToggle={handleToggle} />
           <BoardContent toggle={toggle} />
-          {/* {toggle ? <BoardContent /> : ""} */}
-        </BoardListWrapper>
-      </GlobalAsideWrapper>
+        </div>
+        <BoardWrite />
+      </BoardWrapper>
     </GlobalWrapper>
   );
 };
