@@ -6,14 +6,16 @@ export const MainColor = {
   // 서브1"c6e2ff
   Main200: "#c6e2ff",
   // 서브2
-  Main300: "#0A0EAE",
+  Main300: "#8080FF",
 };
 
 export const SubColor = {
   // 보색
-  Sub100: "#feff86",
-  // 보색 호버
+  Sub100: "#FFD9E5",
+  // 경고
   Sub200: "#BF1B1B",
+  // 진한 보색
+  Sub300: "#FFA6C2",
 };
 
 export const GrayColor = {

@@ -16,6 +16,7 @@ import {
   centerRow,
 } from "../../../components/CSS/Global/GlobalDisplay";
 import { GlobalButton } from "../../../components/CSS/Global/GlobalItem";
+import WriteModal from "../../../components/Molecule/Modal/WriteModal";
 
 const BoardListBlock = styled.div<{ toggle: boolean }>`
   height: 100%;
@@ -98,10 +99,10 @@ const BoardListBlock = styled.div<{ toggle: boolean }>`
 
   .writeDiv {
     display: flex;
+    align-items: center;
     justify-content: flex-end;
-    height: 60px;
+    height: 40px;
     width: 80%;
-    background-color: red;
   }
 
   .pagiNationDiv {
@@ -174,6 +175,7 @@ const EmptyWrapper = styled.div`
 interface ListProps {
   toggle: boolean;
   handleToggle: () => void;
+  handleModal: () => void;
 }
 
 const myList = {
@@ -203,7 +205,11 @@ const myList = {
   },
 };
 
-const BoardList: React.FC<ListProps> = ({ toggle, handleToggle }) => {
+const BoardList: React.FC<ListProps> = ({
+  toggle,
+  handleToggle,
+  handleModal,
+}) => {
   // 페이지에 보여줄 게시글 state
   const [boardList, setBoardList] = useState<object[]>([{}, {}]);
   // 총 페이지 수 state
@@ -258,7 +264,9 @@ const BoardList: React.FC<ListProps> = ({ toggle, handleToggle }) => {
         </div>
       )}
       <div className="writeDiv">
-        <GlobalButton>글 쓰기</GlobalButton>
+        <GlobalButton width="120px" height="30px" onClick={handleModal}>
+          글 쓰기
+        </GlobalButton>
       </div>
       <div className="pagiNationDiv">
         {totalPage === 0 ? (

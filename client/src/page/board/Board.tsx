@@ -16,6 +16,7 @@ import { boardTabArr } from "../../components/dummy/TabArr";
 import BoardContent from "./Area/BoardContent";
 import BoardList from "./Area/BoardList";
 import BoardWrite from "./Area/BoardWrite";
+import WriteModal from "../../components/Molecule/Modal/WriteModal";
 
 const BoardWrapper = styled.div`
   display: flex;
@@ -40,7 +41,10 @@ interface ToggleFun {
 const Board = () => {
   // 게시판을 보여주는 state
   const [toggle, setToggle] = useState<boolean>(false);
+  // DB에서 가져온 BoardList State
   const [myContent, setMyContent] = useState<{}>({});
+  // 모달 state
+  const [modalState, setModalState] = useState<boolean>(false);
 
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   - 함수 기능 : 게시판을 불러오는 기능
@@ -50,7 +54,12 @@ const Board = () => {
     // 데이터 불러오면 될듯?
   };
 
-  console.log("토글", toggle);
+  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - 함수 기능 : 글쓰기 모달을 키고 끄는 함수
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+  const handleModal = (): void => {
+    setModalState(!modalState);
+  };
 
   return (
     <GlobalWrapper height="3000px">
@@ -58,11 +67,16 @@ const Board = () => {
       <OrTab tabArr={boardTabArr} />
       <BoardWrapper>
         <div className="boardListWrapper">
-          <BoardList toggle={toggle} handleToggle={handleToggle} />
-          <BoardContent toggle={toggle} />
+          <BoardList
+            toggle={toggle}
+            handleToggle={handleToggle}
+            handleModal={handleModal}
+          />
+          <BoardContent toggle={toggle} setToggle={setToggle} />
         </div>
         <BoardWrite />
       </BoardWrapper>
+      <WriteModal modalState={modalState} handleModal={handleModal} />
     </GlobalWrapper>
   );
 };

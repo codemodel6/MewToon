@@ -79,10 +79,7 @@ const Map = () => {
       <OrTab tabArr={mapTabArr} />
       <MapWrapper>
         <div className="mapDiv" id="map"></div>
-        <div className="mapToolDiv">
-          <GlobalButton></GlobalButton>
-          <GlobalButton></GlobalButton>
-        </div>
+        <div className="mapToolDiv"></div>
       </MapWrapper>
     </GlobalWrapper>
   );

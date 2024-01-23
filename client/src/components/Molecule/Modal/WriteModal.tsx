@@ -3,42 +3,47 @@
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
 
 import { useState } from "react";
-import { CancleButton, GlobalButton } from "../../GlobalCss/GlobalItem";
-import { Overlay } from "./ScrollModal";
 import styled from "styled-components";
-import { BlackColor, MainColor, SubColor } from "../../GlobalCss/ColorNote";
-import { useDispatch } from "react-redux";
-import { URL } from "../../URL/URL";
-import axios from "axios";
+import {
+  BlackColor,
+  FontSize,
+  GrayColor,
+  MainColor,
+  SubColor,
+  WhiteColor,
+} from "../../CSS/Color/ColorNote";
+import { CancleButton, GlobalButton } from "../../CSS/Global/GlobalItem";
+import { centerColumn } from "../../CSS/Global/GlobalDisplay";
 
-const SaveModalWrapper = styled.div`
+const WriteModalWrapper = styled.div`
   display: none;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 99;
 
   &.open {
     display: block;
   }
 
   .modalDataDiv {
-    background-color: ${BlackColor.Black100};
+    background-color: ${WhiteColor.White100};
     width: 800px;
-    height: 500px;
+    height: 600px;
     margin-bottom: 40px;
     border: 3px solid ${MainColor.Main200};
-    overflow: scroll;
     border-radius: 10px;
+    font-weight: bold;
+    color: ${BlackColor.Black100};
 
     .modalTitle {
-      text-align: center;
-      padding-top: 10px;
+      ${centerColumn}
       height: 15%;
       width: 100%;
-      color: white;
       font-size: xx-large;
-      border-bottom: 2px solid ${MainColor.Main200};
+      border-bottom: 3px solid ${MainColor.Main200};
+      font-weight: bold;
     }
 
     .modalContents {
@@ -51,23 +56,17 @@ const SaveModalWrapper = styled.div`
         width: 25%;
         height: 100%;
         font-size: x-large;
-        border-right: 2px solid ${MainColor.Main200};
+        border-right: 3px solid ${MainColor.Main200};
 
         .myTitle {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
+          ${centerColumn}
           width: 100%;
           height: 17%;
-          border-bottom: 2px solid ${MainColor.Main200};
+          border-bottom: 3px solid ${MainColor.Main200};
         }
 
         .noLineTitle {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
+          ${centerColumn}
           width: 100%;
           height: 17%;
         }
@@ -78,25 +77,24 @@ const SaveModalWrapper = styled.div`
         height: 100%;
 
         .modalInputDiv {
+          ${centerColumn}
           height: 17%;
           width: 100%;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          border-bottom: 2px solid ${MainColor.Main200};
+          border-bottom: 3px solid ${MainColor.Main200};
 
           input {
             width: 90%;
             height: 45px;
             border: 3px solid ${SubColor.Sub100};
             padding-left: 20px;
-            background-color: ${BlackColor.Black100};
-            color: white;
+            background-color: ${WhiteColor.White100};
+            color: ${GrayColor.Gray100};
+            font-size: ${FontSize.medium};
           }
+
           input:focus {
             outline: none;
-            border: 3px solid white;
+            border: 3px solid ${SubColor.Sub300};
           }
         }
 
@@ -112,14 +110,16 @@ const SaveModalWrapper = styled.div`
             width: 90%;
             height: 90%;
             border: 3px solid ${SubColor.Sub100};
-            padding-left: 20px;
-            background-color: ${BlackColor.Black100};
-            color: white;
+            padding: 10px 20px 10px 20px;
+            background-color: ${WhiteColor.White100};
             resize: none;
+            color: ${GrayColor.Gray100};
+            font-size: ${FontSize.medium};
           }
+
           textArea:focus {
             outline: none;
-            border: 3px solid white;
+            border: 3px solid ${SubColor.Sub300};
           }
         }
       }
@@ -135,53 +135,47 @@ const SaveModalWrapper = styled.div`
   }
 `;
 
-const SaveModal = ({ modalstate, handleOnOff, saveData, setSaveData }) => {
+/** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - CSS 기능 : 모달이 열렸을 경우 배경 설정
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+export const Overlay = styled.div<{ modalState: boolean }>`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: ${({ modalState }) => (modalState ? "block" : "none")};
+  z-index: 999;
+`;
+
+interface WriteProps {
+  modalState: boolean;
+  handleModal: () => void;
+}
+
+const WriteModal: React.FC<WriteProps> = ({ modalState, handleModal }) => {
   // 저장할 이름 state
-  const [myName, setMyName] = useState("");
-  const [myContents, setMyContents] = useState("");
-  const dispatch = useDispatch();
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
 
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  - 함수 기능 : 저장 버튼을 눌렀을 때 그래프 csv 주소, 이름, 파람을 DB에 저장하는 함수
+  - 함수 기능 : 저장하는 함수
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-  const handleSave = async () => {
-    const mySaveData = {
-      ...saveData,
-      myName,
-      myContents,
-    };
-
-    if (window.confirm("저장 하시겠습니까?")) {
-      const saveMyData = await axios.post(
-        `${URL}/save/saveOptData`,
-        mySaveData
-      );
-
-      // 성공시 창을 닫는다
-      if (saveMyData.status === 200) {
-        handleCancle();
-        alert("저장 성공");
-      }
-    }
-
-    // 리덕스인데 나중에 쓸지도
-    // dispatch(saveOptimalData(saveData));
-  };
+  const handleSave = async () => {};
 
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   - 함수 기능 : 취소 버튼을 눌렀을 때 모달을 닫는 함수
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
   const handleCancle = () => {
-    setMyName("");
-    setMyContents("");
-    handleOnOff();
+    handleModal();
   };
 
   return (
-    <Overlay modalstate={modalstate}>
-      <SaveModalWrapper className={`${modalstate ? "open" : ""}`}>
+    <Overlay modalState={modalState}>
+      <WriteModalWrapper className={`${modalState ? "open" : ""}`}>
         <div className="modalDataDiv">
-          <div className="modalTitle">결과 저장</div>
+          <div className="modalTitle">글 쓰기</div>
           <div className="modalContents">
             <div className="titleDiv">
               <div className="myTitle">제목</div>
@@ -189,28 +183,26 @@ const SaveModal = ({ modalstate, handleOnOff, saveData, setSaveData }) => {
             </div>
             <div className="contentsDiv">
               <div className="modalInputDiv">
-                <input
-                  value={myName}
-                  onChange={(e) => setMyName(e.target.value)}
-                />
+                <input />
               </div>
 
               <div className="modalTextDiv">
-                <textarea
-                  value={myContents}
-                  onChange={(e) => setMyContents(e.target.value)}
-                />
+                <textarea />
               </div>
             </div>
           </div>
         </div>
         <div className="buttonDiv">
-          <GlobalButton onClick={handleSave}>저장</GlobalButton>
-          <CancleButton onClick={handleCancle}>취소</CancleButton>
+          <GlobalButton width="200px" height="40px" onClick={handleSave}>
+            저장
+          </GlobalButton>
+          <CancleButton width="200px" height="40px" onClick={handleCancle}>
+            취소
+          </CancleButton>
         </div>
-      </SaveModalWrapper>
+      </WriteModalWrapper>
     </Overlay>
   );
 };
 
-export default SaveModal;
+export default WriteModal;

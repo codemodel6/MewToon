@@ -5,8 +5,8 @@ interface TabTitleInter {
 
 // skill 탭
 export const skillTabArr: TabTitleInter[] = [
-  { title: "Teacher", url: "/skill/teacher" },
-  { title: "Student", url: "/skill/student" },
+  { title: "선생님", url: "/skill/teacher" },
+  { title: "학생", url: "/skill/student" },
 ];
 // Map 탭
 export const mapTabArr: TabTitleInter[] = [

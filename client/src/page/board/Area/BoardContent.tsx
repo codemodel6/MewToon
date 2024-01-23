@@ -4,6 +4,7 @@
 
 import styled from "styled-components";
 import {
+  BlackColor,
   FontSize,
   GrayColor,
   MainColor,
@@ -18,8 +19,9 @@ import BoardComment from "./BoardComment";
 
 const BoardContentWrapper = styled.div<{ toggle: boolean }>`
   display: flex;
-  justify-content: center;
+  flex-direction: row;
   align-items: center;
+  justify-content: center;
   width: 50%;
   height: 100%;
   background-color: white;
@@ -30,8 +32,9 @@ const BoardContentWrapper = styled.div<{ toggle: boolean }>`
 
   .boardContentBlock {
     border: 2px solid ${MainColor.Main100};
-    width: 90%;
+    width: 80%;
     height: 750px;
+    margin-left: 100px;
 
     .boardInfo {
       display: flex;
@@ -133,13 +136,29 @@ const BoardContentWrapper = styled.div<{ toggle: boolean }>`
       }
     }
   }
+
+  .boardClose {
+    display: flex;
+    justify-content: flex-end;
+    width: 40px;
+    height: 200px;
+
+    button {
+      background-color: ${MainColor.Main100};
+      border-radius: 5px;
+      color: white;
+      width: 80%;
+      height: 100%;
+    }
+  }
 `;
 
 interface ContentProps {
   toggle: boolean;
+  setToggle: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const BoardContent: React.FC<ContentProps> = ({ toggle }) => {
+const BoardContent: React.FC<ContentProps> = ({ toggle, setToggle }) => {
   return (
     <BoardContentWrapper toggle={toggle}>
       <div className="boardContentBlock">
@@ -164,6 +183,9 @@ const BoardContent: React.FC<ContentProps> = ({ toggle }) => {
           </div>
           <BoardComment />
         </div>
+      </div>
+      <div className="boardClose">
+        <button onClick={() => setToggle(false)}>◀</button>
       </div>
     </BoardContentWrapper>
   );

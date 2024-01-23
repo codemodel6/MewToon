@@ -15,9 +15,9 @@ import {
 /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 - Button : 기본적인 글로벌 버튼
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-export const GlobalButton = styled.button`
-  width: 30%;
-  height: 100%;
+export const GlobalButton = styled.button<{ width: string; height: string }>`
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
   border: 2px solid ${MainColor.Main100};
   border-radius: 5px;
   font-size: ${FontSize.medium};
@@ -26,7 +26,7 @@ export const GlobalButton = styled.button`
   font-weight: bold;
 
   &:hover {
-    background-color: ${MainColor.Main200};
+    background-color: ${MainColor.Main100};
     color: ${WhiteColor.White100};
     border: none;
   }
@@ -36,6 +36,7 @@ export const GlobalButton = styled.button`
 - Button : 취소 버튼
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
 export const CancleButton = styled(GlobalButton)`
+  border: 2px solid ${SubColor.Sub200};
   &:hover {
     background-color: ${SubColor.Sub200};
     border: none;
