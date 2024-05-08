@@ -23,11 +23,7 @@ const ProjectWrapper = styled.div`
 const Skill = () => {
   return (
     <GlobalWrapper height="2000px">
-      <OrTitle
-        imageUrl={building}
-        mainText="기술을 자랑해봐요"
-        subText="Skill"
-      />
+      <OrTitle imageUrl={building} mainText="프로젝트 소개" subText="Project" />
       <OrTab tabArr={skillTabArr} />
       <ProjectList />
       <ProjectWrapper>

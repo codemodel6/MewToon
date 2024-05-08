@@ -73,8 +73,8 @@ const Map = () => {
     <GlobalWrapper height="2000px">
       <OrTitle
         imageUrl={car}
-        mainText="카카오 지도를 이용해서 만들어보자"
-        subText="Map"
+        mainText="인적사항과 경력"
+        subText="Information"
       />
       <OrTab tabArr={mapTabArr} />
       <MapWrapper>
