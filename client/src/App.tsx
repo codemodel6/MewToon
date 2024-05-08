@@ -4,11 +4,11 @@ import "./App.css";
 import ScrollTop from "./ScrollTop";
 import Footer from "./components/Organism/Footer";
 import Header from "./components/Organism/Header";
-import Home from "./page/Home/Home";
-import Intro from "./page/Intro/Intro";
-import Map from "./page/information/Map";
-import Skill from "./page/project/Skill";
-import Question from "./page/question/Board";
+import Home from "./page/home/Home";
+import Intro from "./page/intro/Intro";
+import Information from "./page/information/Map";
+import Project from "./page/project/Project";
+import Question from "./page/question/Question";
 import store from "./page/redux/store";
 
 function App() {
@@ -19,11 +19,11 @@ function App() {
         <div className="App">
           <Header />
           <Routes>
-            <Route path="/" element={<Intro />} /> {/* Intro */}
-            <Route path="/home" element={<Home />} /> {/* Home */}
-            <Route path="/project" element={<Skill />} /> {/* Skill */}
-            <Route path="/questions" element={<Question />} /> {/* Board */}
-            <Route path="/information" element={<Map />} /> {/* Map */}
+            <Route path="/" element={<Intro />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/project" element={<Project />} />
+            <Route path="/questions" element={<Question />} />
+            <Route path="/information" element={<Information />} />
           </Routes>
           <Footer />
         </div>

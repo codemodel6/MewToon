@@ -3,9 +3,9 @@
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
 
 import { GlobalWrapper } from "../../components/CSS/Global/GlobalWrapper";
-import HmCarousel from "./Area/HmCarousel";
-import HmInfo from "./Area/HmInfo";
-import HmMove from "./Area/HmMove";
+import HmCarousel from "./area/HmCarousel";
+import HmInfo from "./area/HmInfo";
+import HmMove from "./area/HmMove";
 
 const Home = () => {
   return (
