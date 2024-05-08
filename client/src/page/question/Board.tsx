@@ -4,19 +4,15 @@
 
 import { useState } from "react";
 import styled from "styled-components";
-import {
-  AsideWrapper,
-  GlobalWrapper,
-} from "../../components/CSS/Global/GlobalWrapper";
+import { GlobalWrapper } from "../../components/CSS/Global/GlobalWrapper";
 import door from "../../components/CSS/image/door.jpg";
-import Aside from "../../components/Organism/Aside";
+import WriteModal from "../../components/Molecule/Modal/WriteModal";
 import OrTab from "../../components/Organism/OrTab";
 import OrTitle from "../../components/Organism/OrTitle";
 import { boardTabArr } from "../../components/dummy/TabArr";
-import BoardContent from "./Area/BoardContent";
-import BoardList from "./Area/BoardList";
-import BoardWrite from "./Area/BoardWrite";
-import WriteModal from "../../components/Molecule/Modal/WriteModal";
+import BoardContent from "./area/BoardContent";
+import BoardList from "./area/BoardList";
+import BoardWrite from "./area/BoardWrite";
 
 const BoardWrapper = styled.div`
   display: flex;
@@ -47,16 +43,16 @@ const Board = () => {
   const [modalState, setModalState] = useState<boolean>(false);
 
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  - 함수 기능 : 게시판을 불러오는 기능
-  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+ - 함수 기능 : 게시판을 불러오는 기능
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
   const handleToggle: ToggleFun = () => {
     setToggle(true);
     // 데이터 불러오면 될듯?
   };
 
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  - 함수 기능 : 글쓰기 모달을 키고 끄는 함수
-  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+ - 함수 기능 : 글쓰기 모달을 키고 끄는 함수
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
   const handleModal = (): void => {
     setModalState(!modalState);
   };

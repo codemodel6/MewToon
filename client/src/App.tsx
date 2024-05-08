@@ -1,15 +1,14 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Provider } from "react-redux";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
+import ScrollTop from "./ScrollTop";
+import Footer from "./components/Organism/Footer";
 import Header from "./components/Organism/Header";
 import Home from "./page/Home/Home";
-import Footer from "./components/Organism/Footer";
 import Intro from "./page/Intro/Intro";
-import Map from "./page/Map/Map";
-import Board from "./page/Board/Board";
-import Skill from "./page/Skill/Skill";
-import ScrollTop from "./ScrollTop";
-import BoardContent from "./page/Board/Area/BoardContent";
-import { Provider } from "react-redux";
+import Map from "./page/information/Map";
+import Skill from "./page/project/Skill";
+import Question from "./page/question/Board";
 import store from "./page/redux/store";
 
 function App() {
@@ -20,18 +19,11 @@ function App() {
         <div className="App">
           <Header />
           <Routes>
-            <Route path="/" element={<Intro />}></Route>
-            <Route path="/home" element={<Home />}></Route>
-            {/* Skill */}
-            <Route path="/skill/teacher" element={<Skill />}></Route>
-            <Route path="/skill/student" element={<Skill />}></Route>
-            {/* Board */}
-            <Route path="/board/free" element={<Board />}></Route>
-            <Route path="/board/information" element={<Board />}></Route>
-            <Route path="/board/review" element={<Board />}></Route>
-            {/* Map */}
-            <Route path="/map/information" element={<Map />}></Route>
-            <Route path="/map/map" element={<Map />}></Route>
+            <Route path="/" element={<Intro />} /> {/* Intro */}
+            <Route path="/home" element={<Home />} /> {/* Home */}
+            <Route path="/project" element={<Skill />} /> {/* Skill */}
+            <Route path="/questions" element={<Question />} /> {/* Board */}
+            <Route path="/information" element={<Map />} /> {/* Map */}
           </Routes>
           <Footer />
         </div>

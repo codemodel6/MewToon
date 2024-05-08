@@ -3,7 +3,7 @@
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
 
 import { useState } from "react";
-import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import styled from "styled-components";
 import {
   FontSize,
@@ -17,6 +17,8 @@ import {
 } from "../../../components/CSS/Global/GlobalDisplay";
 import { GlobalButton } from "../../../components/CSS/Global/GlobalItem";
 import WriteModal from "../../../components/Molecule/Modal/WriteModal";
+import PagiNation from "../../../components/Molecule/PagiNation/PagiNation";
+import SearchBar from "../../../components/Molecule/SearchBar/SearchBar";
 
 const BoardListBlock = styled.div<{ toggle: boolean }>`
   height: 100%;
@@ -178,6 +180,13 @@ interface ListProps {
   handleModal: () => void;
 }
 
+interface PageDataProps {
+  title: string;
+  startDT: string;
+  endDT: string;
+  pageNum: number;
+}
+
 const myList = {
   listInfo: [
     {
@@ -213,7 +222,7 @@ const BoardList: React.FC<ListProps> = ({
   // 페이지에 보여줄 게시글 state
   const [boardList, setBoardList] = useState<object[]>([{}, {}]);
   // 총 페이지 수 state
-  const [totalPage, setTotalPage] = useState<number>();
+  const [totalPage, setTotalPage] = useState<number>(10);
   // url의 페이지를 가져오는 state
   const [searchParams, setSearchParams] = useSearchParams();
   // searchBar의 입력한 값 state
@@ -223,9 +232,19 @@ const BoardList: React.FC<ListProps> = ({
   // 끝 날짜 state
   const [endDate, setEndDate] = useState("");
 
-  const location = useLocation();
-  const page = searchParams.get("page");
+  // 현재 page 쪽 정보
+  const searchPage = searchParams.get("page");
+  const page = Number(searchPage);
   const navigate = useNavigate();
+  console.log(page);
+
+  // 현재 페이지의 정보
+  const pageData: PageDataProps = {
+    title: searchValue,
+    startDT: startDate,
+    endDT: endDate,
+    pageNum: page,
+  };
 
   return (
     <BoardListBlock toggle={toggle}>
@@ -272,18 +291,18 @@ const BoardList: React.FC<ListProps> = ({
         {totalPage === 0 ? (
           ""
         ) : (
-          <div></div>
-          //   <PagiNation location={location} totalPage={totalPage} page={page} />
+          // <div></div>
+          <PagiNation totalPage={totalPage} page={page} />
         )}
       </div>
       {/* <SearchBar
-        setBoardList={setBoardList}
-        setTotalPage={setTotalPage}
-        page={page}
-        searchValue={searchValue}
-        setSearchValue={setSearchValue}
-        pageData={pageData}
-      /> */}
+    setBoardList={setBoardList}
+    setTotalPage={setTotalPage}
+    page={page}
+    searchValue={searchValue}
+    setSearchValue={setSearchValue}
+    pageData={pageData}
+   /> */}
     </BoardListBlock>
   );
 };

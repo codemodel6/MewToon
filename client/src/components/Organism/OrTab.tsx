@@ -14,7 +14,7 @@ const GlobalTabWrapper = styled.div<{ scrollBoolean: boolean }>`
   top: ${(props) => (props.scrollBoolean ? "0" : "80px")};
   transition: top 0.8s ease; // 속성, 지속시간, 타이밍함수
   background-color: ${WhiteColor.White100};
-  z-index: 2;
+  z-index: 99;
   border-bottom: 1px solid ${GrayColor.Gray000};
 
   ul {

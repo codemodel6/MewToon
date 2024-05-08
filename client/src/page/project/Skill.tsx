@@ -8,6 +8,17 @@ import OrTitle from "../../components/Organism/OrTitle";
 import { GlobalWrapper } from "../../components/CSS/Global/GlobalWrapper";
 import { skillTabArr } from "../../components/dummy/TabArr";
 import OrTab from "../../components/Organism/OrTab";
+import ProjectList from "./area/ProjectList";
+import ProjectIntro from "./area/ProjectIntro";
+
+const ProjectWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background-color: orange;
+`;
 
 const Skill = () => {
   return (
@@ -18,6 +29,10 @@ const Skill = () => {
         subText="Skill"
       />
       <OrTab tabArr={skillTabArr} />
+      <ProjectList />
+      <ProjectWrapper>
+        <ProjectIntro />
+      </ProjectWrapper>
     </GlobalWrapper>
   );
 };

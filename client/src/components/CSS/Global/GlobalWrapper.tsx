@@ -7,6 +7,7 @@ import styled from "styled-components";
 export const GlobalWrapper = styled.div<{ height: string }>`
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 100%;
   height: ${(props) => props.height};
 `;

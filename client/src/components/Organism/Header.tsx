@@ -1,6 +1,6 @@
 /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-- 헤더 컴포넌트
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+ * 헤더 컴포넌트
+ * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
 
 import styled from "styled-components";
 import { MainColor, FontSize, BlackColor } from "../CSS/Color/ColorNote";
@@ -77,9 +77,9 @@ const MyHeader = styled.header<{
   }
 `;
 
-interface HedaerProps {}
+interface HeaderProps {}
 
-const Header: React.FC<HedaerProps> = () => {
+const Header: React.FC<HeaderProps> = () => {
   // 스크롤 위치 값
   const [scrollData, setScrollData] = useState<number>(0);
   // 스크롤이 진행중인지 확인
@@ -91,13 +91,13 @@ const Header: React.FC<HedaerProps> = () => {
   const location = useLocation();
 
   // 현재 페이지인지 확인
-  const skillPage = location.pathname.startsWith("/skill");
-  const mapPage = location.pathname.startsWith("/map");
-  const boardPage = location.pathname.startsWith("/board");
+  const projectPage = location.pathname.startsWith("/project");
+  const questionsPage = location.pathname.startsWith("/questions");
+  const informationPage = location.pathname.startsWith("/information");
 
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  - 훅 기능 : 스크롤이 위, 아래로 이동함에 따라 헤더를 숨기고 보여줌
-  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+   * 훅 기능 : 스크롤이 위, 아래로 이동함에 따라 헤더를 숨기고 보여줌
+   * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
   useEffect(() => {
     const scrollCallback = () => {
       handleScroll(scrollData, setScrollData, setScrollBoolean);
@@ -127,28 +127,28 @@ const Header: React.FC<HedaerProps> = () => {
           }}
         ></div>
         <button
-          className={`menuButton ${skillPage ? "here" : ""}`}
+          className={`menuButton ${projectPage ? "here" : ""}`}
           onClick={() => {
-            navigate("/skill/teacher");
+            navigate("/project?name=KBCompany");
           }}
         >
-          Skill
+          Project
         </button>
         <button
-          className={`menuButton ${boardPage ? "here" : ""}`}
+          className={`menuButton ${questionsPage ? "here" : ""}`}
           onClick={() => {
-            navigate("/board/free");
+            navigate("/questions?page=1");
           }}
         >
-          Board
+          Questions
         </button>
         <button
-          className={`menuButton ${mapPage ? "here" : ""}`}
+          className={`menuButton ${informationPage ? "here" : ""}`}
           onClick={() => {
-            navigate("/map/information");
+            navigate("/information");
           }}
         >
-          Map
+          Information
         </button>
         <div className="loginDiv"></div>
       </div>
