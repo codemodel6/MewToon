@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import { GrayColor } from "../../../components/CSS/Color/ColorNote";
-import { centerRow } from "../../../components/CSS/Global/GlobalDisplay";
 import { useState } from "react";
 import Dropdown from "../../../components/Molecule/Dropdown/Dropdown";
 
@@ -8,12 +6,10 @@ const ProjectListWrapper = styled.div<{ toggle: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 90%;
+  width: 50%;
+  margin-top: 15px;
+  margin-bottom: 30px;
 `;
-
-interface ToggleFunction {
-  (): void;
-}
 
 const itemArr = [
   { name: "몰루", url: "" },
@@ -26,17 +22,18 @@ const itemArr = [
 const ProjectList = () => {
   // 프로젝트 리스트 on/off
   const [toggle, setToggle] = useState<boolean>(false);
-
-  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  - 함수 기능 : 프로젝트 리스트를 열고 닫는 함수
-  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-  const handleToggle: ToggleFunction = () => {
-    setToggle(!toggle);
-  };
+  // 드롭다운 값
+  const [value, setValue] = useState<string>("프로젝트 리스트 ▼");
 
   return (
     <ProjectListWrapper toggle={toggle}>
-      <Dropdown itemArr={itemArr} />
+      <Dropdown
+        itemArr={itemArr}
+        toggle={toggle}
+        setToggle={setToggle}
+        value={value}
+        setValue={setValue}
+      />
     </ProjectListWrapper>
   );
 };

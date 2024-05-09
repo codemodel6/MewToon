@@ -5,19 +5,21 @@ import {
   GrayColor,
   MainColor,
 } from "../../../components/CSS/Color/ColorNote";
+import { ProjectObj } from "./IntroObj";
+import { useSearchParams } from "react-router-dom";
 
 const ProjectIntroWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  height: 90vh;
+  justify-content: space-between;
+  height: 80vh;
   width: 90%;
-  background-color: red;
+  box-shadow: 10px 10px 20px 0px ${GrayColor.Gray300};
+  padding: 40px;
 
   .introImgDiv {
     height: 100%;
-    width: 50%;
-    background-color: blue;
-    padding: 40px;
+    width: 48%;
 
     img {
       width: 100%;
@@ -27,15 +29,13 @@ const ProjectIntroWrapper = styled.div`
 
   .introInfo {
     height: 100%;
-    width: 50%;
-    background-color: yellowgreen;
+    width: 48%;
     padding: 40px;
 
     .title {
       display: flex;
       flex-direction: row;
       align-items: center;
-      background-color: red;
       color: black;
       font-size: 38px;
       font-weight: bold;
@@ -47,7 +47,6 @@ const ProjectIntroWrapper = styled.div`
       display: flex;
       flex-direction: row;
       align-items: center;
-      background-color: yellow;
       font-size: ${FontSize.xxlarge};
       width: 100%;
       color: ${GrayColor.Gray100};
@@ -63,7 +62,6 @@ const ProjectIntroWrapper = styled.div`
       display: flex;
       flex-direction: row;
       align-items: center;
-      background-color: brown;
       font-size: ${FontSize.xlarge};
       height: 5%;
       width: 100%;
@@ -76,7 +74,7 @@ const ProjectIntroWrapper = styled.div`
         height: 100%;
         margin-right: 20px;
       }
-      .siteBtn {
+      .outBtn {
         color: ${MainColor.Main300};
         border-bottom: 2px solid ${MainColor.Main300};
       }
@@ -84,7 +82,7 @@ const ProjectIntroWrapper = styled.div`
         color: black;
         border-bottom: 2px solid black;
       }
-      .velogBtn {
+      .vlgBtn {
         color: #3fbe3f;
         border-bottom: 2px solid #3fbe3f;
       }
@@ -93,7 +91,6 @@ const ProjectIntroWrapper = styled.div`
     .contents {
       height: 70%;
       width: 100%;
-      background-color: thistle;
       font-size: ${FontSize.xxlarge};
       color: ${GrayColor.Gray100};
     }
@@ -104,9 +101,6 @@ interface LinkFunction {
   (url: string): void;
 }
 
-const url1 =
-  "https://github.com/codemodel6/OracleDictionary/tree/main/client/src/image";
-
 /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 - 함수 기능 : url의 새로운 탭을 여는 함수
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
@@ -115,32 +109,42 @@ const handleLink: LinkFunction = (url) => {
 };
 
 const ProjectIntro = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  // const name = searchParams.get("name") GPT물어보기
+  const name = "KBCompany";
+  console.log(name);
   return (
     <ProjectIntroWrapper>
       <div className="introImgDiv">
-        <img src={car} alt="프로젝트 메인" />
+        <img src={ProjectObj[name].mainImage} alt="프로젝트 메인" />
       </div>
       <div className="introInfo">
-        <div className="title">제목이에요</div>
-        <div className="sub">이거에 대한 간단한 설명이에요</div>
+        <div className="title">{ProjectObj[name].title}</div>
+        <div className="sub">{ProjectObj[name].sub}</div>
         <img src={car} alt="심플아이콘" />
         <div className="link">
-          <button className="siteBtn" onClick={() => handleLink(url1)}>
+          <button
+            className="outBtn"
+            onClick={() => handleLink(ProjectObj[name].outURL)}
+          >
             배포
           </button>
-          <button className="gitBtn" onClick={() => handleLink(url1)}>
+          <button
+            className="gitBtn"
+            onClick={() => handleLink(ProjectObj[name].gitURL)}
+          >
             Github
           </button>
-          <button className="velogBtn" onClick={() => handleLink(url1)}>
+          <button
+            className="vlgBtn"
+            onClick={() => handleLink(ProjectObj[name].vlgURL)}
+          >
             Velog
           </button>
         </div>
-        <div className="contents">
-          자세한 정보
-          <br />
-          <br />
-          어떻게되나
-        </div>
+        <textarea readOnly className="contents">
+          {ProjectObj[name].contents}
+        </textarea>
       </div>
     </ProjectIntroWrapper>
   );

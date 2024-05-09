@@ -23,11 +23,14 @@ const SelectButton = styled.button`
   cursor: pointer;
   font-size: ${FontSize.medium};
   font-weight: bold;
+  /* border-radius: 20px; */
 `;
 
 const DropdownContainer = styled.div`
   width: 100%;
   background-color: white;
+  border: 1px solid ${GrayColor.Gray500};
+  border-top: none;
   color: ${GrayColor.Gray100};
   position: absolute;
   left: 0;
@@ -73,21 +76,33 @@ interface PropsObj {
 
 interface DropdownProps {
   itemArr: PropsObj[];
+  toggle: boolean;
+  setToggle: React.Dispatch<React.SetStateAction<boolean>>;
+  value: string;
+  setValue: React.Dispatch<React.SetStateAction<string>>;
 }
 
 interface DropdownFunction {
   (props: string): void;
 }
 
-const Dropdown: React.FC<DropdownProps> = ({ itemArr }) => {
-  // ON/OFF
-  const [toggle, setToggle] = useState<boolean>(false); // 드롭다운 값
-  const [value, setValue] = useState<string>("프로젝트 리스트 ▼");
-  const [searchParams, setSearchParams] = useSearchParams(); // url의 이름을 가져온다
+const Dropdown: React.FC<DropdownProps> = ({
+  itemArr,
+  toggle,
+  setToggle,
+  value,
+  setValue,
+}) => {
+  const [searchParams, setSearchParams] = useSearchParams();
 
+  // url의 이름을 가져온다
   const name = searchParams.get("name");
+
   const navigate = useNavigate();
 
+  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ - 함수 기능 : 토글을 선택한 값으로 변경 후 주소 변경
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
   const handleDropdown: DropdownFunction = (props) => {
     setToggle(!toggle);
     setValue(props);
@@ -103,7 +118,6 @@ const Dropdown: React.FC<DropdownProps> = ({ itemArr }) => {
         <ul>
           {itemArr.map((it, idx) => (
             <li
-              key={idx}
               role="presentation"
               onClick={() => {
                 handleDropdown(it.name);

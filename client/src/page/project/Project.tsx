@@ -8,8 +8,12 @@ import OrTitle from "../../components/Organism/OrTitle";
 import { GlobalWrapper } from "../../components/CSS/Global/GlobalWrapper";
 import { skillTabArr } from "../../components/dummy/TabArr";
 import OrTab from "../../components/Organism/OrTab";
-import ProjectList from "./area/ProjectList";
 import ProjectIntro from "./area/ProjectIntro";
+import { centerColumn } from "../../components/CSS/Global/GlobalDisplay";
+import { FontSize } from "../../components/CSS/Color/ColorNote";
+import ProjectList from "./area/ProjectList";
+import { useState } from "react";
+import GameContents from "./contents/GameContents";
 
 const ProjectWrapper = styled.div`
   display: flex;
@@ -17,16 +21,33 @@ const ProjectWrapper = styled.div`
   align-items: center;
   height: 100%;
   width: 100%;
-  background-color: orange;
+`;
+
+const ProjectTitle = styled.div`
+  ${centerColumn}
+  border-radius: 20px;
+  background-color: black;
+  color: white;
+  width: 25%;
+  height: 50px;
+  margin-bottom: 50px;
+  font-size: ${FontSize.xxlarge};
+  font-weight: bold;
 `;
 
 const Skill = () => {
   return (
-    <GlobalWrapper height="2000px">
-      <OrTitle imageUrl={building} mainText="프로젝트 소개" subText="Project" />
+    <GlobalWrapper height="3000px">
+      <OrTitle
+        imageUrl={building}
+        mainText="기술을 자랑해봐요"
+        subText="Skill"
+      />
       <OrTab tabArr={skillTabArr} />
       <ProjectList />
       <ProjectWrapper>
+        <GameContents />
+        <ProjectTitle>소개</ProjectTitle>
         <ProjectIntro />
       </ProjectWrapper>
     </GlobalWrapper>
