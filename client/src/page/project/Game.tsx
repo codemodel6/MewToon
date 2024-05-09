@@ -8,11 +8,10 @@ import OrTitle from "../../components/Organism/OrTitle";
 import { GlobalWrapper } from "../../components/CSS/Global/GlobalWrapper";
 import { skillTabArr } from "../../components/dummy/TabArr";
 import OrTab from "../../components/Organism/OrTab";
-import ProjectIntro from "./area/ProjectIntro";
+import ProjectIntro from "./area/GameIntro";
 import { centerColumn } from "../../components/CSS/Global/GlobalDisplay";
 import { FontSize } from "../../components/CSS/Color/ColorNote";
-import ProjectList from "./area/ProjectList";
-import { useState } from "react";
+import ProjectList from "./area/GameList";
 import GameContents from "./contents/GameContents";
 
 const ProjectWrapper = styled.div`

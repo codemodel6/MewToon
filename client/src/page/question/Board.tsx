@@ -10,9 +10,9 @@ import WriteModal from "../../components/Molecule/Modal/WriteModal";
 import OrTab from "../../components/Organism/OrTab";
 import OrTitle from "../../components/Organism/OrTitle";
 import { boardTabArr } from "../../components/dummy/TabArr";
-import QuestionContent from "./area/QuestionContent";
-import QuestionList from "./area/QuestionList";
-import QuestionWrite from "./area/QuestionWrite";
+import QuestionContent from "./area/BoardContent";
+import QuestionList from "./area/BoardList";
+import QuestionWrite from "./area/BoardWrite";
 
 const BoardWrapper = styled.div`
   display: flex;

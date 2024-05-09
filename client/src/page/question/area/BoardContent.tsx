@@ -15,7 +15,7 @@ import {
   betweenRow,
   centerColumn,
 } from "../../../components/CSS/Global/GlobalDisplay";
-import BoardComment from "./QuestionComment";
+import BoardComment from "./BoardComment";
 
 const BoardContentWrapper = styled.div<{ toggle: boolean }>`
   display: flex;

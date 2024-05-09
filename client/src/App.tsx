@@ -7,8 +7,8 @@ import Header from "./components/Organism/Header";
 import Home from "./page/home/Home";
 import Intro from "./page/intro/Intro";
 import Information from "./page/information/Map";
-import Project from "./page/project/Project";
-import Question from "./page/question/Question";
+import Project from "./page/project/Game";
+import Question from "./page/question/Board";
 import store from "./page/redux/store";
 
 function App() {
