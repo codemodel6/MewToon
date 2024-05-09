@@ -8,13 +8,13 @@ import OrTitle from "../../components/Organism/OrTitle";
 import { GlobalWrapper } from "../../components/CSS/Global/GlobalWrapper";
 import { skillTabArr } from "../../components/dummy/TabArr";
 import OrTab from "../../components/Organism/OrTab";
-import ProjectIntro from "./area/GameIntro";
+import GameIntro from "./area/GameIntro";
 import { centerColumn } from "../../components/CSS/Global/GlobalDisplay";
 import { FontSize } from "../../components/CSS/Color/ColorNote";
-import ProjectList from "./area/GameList";
+import GameList from "./area/GameList";
 import GameContents from "./contents/GameContents";
 
-const ProjectWrapper = styled.div`
+const GameWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,7 +22,7 @@ const ProjectWrapper = styled.div`
   width: 100%;
 `;
 
-const ProjectTitle = styled.div`
+const GameTitle = styled.div`
   ${centerColumn}
   border-radius: 20px;
   background-color: black;
@@ -34,7 +34,7 @@ const ProjectTitle = styled.div`
   font-weight: bold;
 `;
 
-const Skill = () => {
+const Game = () => {
   return (
     <GlobalWrapper height="3000px">
       <OrTitle
@@ -43,14 +43,14 @@ const Skill = () => {
         subText="Skill"
       />
       <OrTab tabArr={skillTabArr} />
-      <ProjectList />
-      <ProjectWrapper>
+      <GameList />
+      <GameWrapper>
         <GameContents />
-        <ProjectTitle>소개</ProjectTitle>
-        <ProjectIntro />
-      </ProjectWrapper>
+        <GameTitle>소개</GameTitle>
+        <GameIntro />
+      </GameWrapper>
     </GlobalWrapper>
   );
 };
 
-export default Skill;
+export default Game;

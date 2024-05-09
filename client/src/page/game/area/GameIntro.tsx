@@ -5,10 +5,10 @@ import {
   GrayColor,
   MainColor,
 } from "../../../components/CSS/Color/ColorNote";
-import { ProjectObj } from "./IntroObj";
+import { IntroObj } from "./IntroObj";
 import { useSearchParams } from "react-router-dom";
 
-const ProjectIntroWrapper = styled.div`
+const GameIntroWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -108,46 +108,46 @@ const handleLink: LinkFunction = (url) => {
   window.open(url);
 };
 
-const ProjectIntro = () => {
+const GameIntro = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   // const name = searchParams.get("name") GPT물어보기
   const name = "KBCompany";
   console.log(name);
   return (
-    <ProjectIntroWrapper>
+    <GameIntroWrapper>
       <div className="introImgDiv">
-        <img src={ProjectObj[name].mainImage} alt="프로젝트 메인" />
+        <img src={IntroObj[name].mainImage} alt="프로젝트 메인" />
       </div>
       <div className="introInfo">
-        <div className="title">{ProjectObj[name].title}</div>
-        <div className="sub">{ProjectObj[name].sub}</div>
+        <div className="title">{IntroObj[name].title}</div>
+        <div className="sub">{IntroObj[name].sub}</div>
         <img src={car} alt="심플아이콘" />
         <div className="link">
           <button
             className="outBtn"
-            onClick={() => handleLink(ProjectObj[name].outURL)}
+            onClick={() => handleLink(IntroObj[name].outURL)}
           >
             배포
           </button>
           <button
             className="gitBtn"
-            onClick={() => handleLink(ProjectObj[name].gitURL)}
+            onClick={() => handleLink(IntroObj[name].gitURL)}
           >
             Github
           </button>
           <button
             className="vlgBtn"
-            onClick={() => handleLink(ProjectObj[name].vlgURL)}
+            onClick={() => handleLink(IntroObj[name].vlgURL)}
           >
             Velog
           </button>
         </div>
         <textarea readOnly className="contents">
-          {ProjectObj[name].contents}
+          {IntroObj[name].contents}
         </textarea>
       </div>
-    </ProjectIntroWrapper>
+    </GameIntroWrapper>
   );
 };
 
-export default ProjectIntro;
+export default GameIntro;

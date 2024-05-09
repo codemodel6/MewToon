@@ -1,6 +1,6 @@
 import Car from "../../../components/CSS/image/car.jpg";
 
-export const ProjectObj = {
+export const IntroObj = {
   KBCompany: {
     mainImage: Car,
     title: "제목이에요",

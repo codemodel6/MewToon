@@ -7,8 +7,8 @@ import Header from "./components/Organism/Header";
 import Home from "./page/home/Home";
 import Intro from "./page/intro/Intro";
 import Information from "./page/information/Map";
-import Project from "./page/game/Game";
-import Question from "./page/board/Board";
+import Game from "./page/game/Game";
+import Board from "./page/board/Board";
 import store from "./page/redux/store";
 
 function App() {
@@ -21,8 +21,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Intro />} />
             <Route path="/home" element={<Home />} />
-            <Route path="/project" element={<Project />} />
-            <Route path="/questions" element={<Question />} />
+            <Route path="/project" element={<Game />} />
+            <Route path="/questions" element={<Board />} />
             <Route path="/information" element={<Information />} />
           </Routes>
           <Footer />
