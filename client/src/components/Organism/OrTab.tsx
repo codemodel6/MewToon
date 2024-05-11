@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { aroundRow, centerColumn } from "../CSS/Global/GlobalDisplay";
 import { GrayColor, MainColor, WhiteColor } from "../CSS/Color/ColorNote";
 import { useEffect, useState } from "react";
-import { handleScroll } from "../Function/MyFunction";
+import { handleScroll, handleScrollMove } from "../Function/MyFunction";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const GlobalTabWrapper = styled.div<{ scrollBoolean: boolean }>`
@@ -39,7 +39,7 @@ const GlobalTabWrapper = styled.div<{ scrollBoolean: boolean }>`
 `;
 
 interface GlobalTabInter {
-  tabArr: { title: string; url: string }[];
+  tabArr: { title: string; move: number }[];
 }
 
 const GlobalTab: React.FC<GlobalTabInter> = ({ tabArr }) => {
@@ -52,16 +52,9 @@ const GlobalTab: React.FC<GlobalTabInter> = ({ tabArr }) => {
   const nowPage = location.pathname;
   let moveTab = location.state;
 
-  // useEffect(() => {
-  //   window.scrollTo({
-  //     top: 599.8079833984375,
-  //     behavior: "smooth",
-  //   });
-  // }, [nowPage]);
-
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  - 훅 기능 : 스크롤이 위, 아래로 이동함에 따라  tabDiv 위치 변경
-  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+ - 훅 기능 : 스크롤이 위, 아래로 이동함에 따라 tabDiv 위치 변경
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
   useEffect(() => {
     const scrollCallback = () => {
       handleScroll(scrollData, setScrollData, setScrollBoolean);
@@ -78,7 +71,9 @@ const GlobalTab: React.FC<GlobalTabInter> = ({ tabArr }) => {
     <GlobalTabWrapper scrollBoolean={scrollBoolean}>
       <ul>
         {tabArr.map((it, idx) => (
-          <li key={idx}>{it.title}</li>
+          <li key={idx} onClick={() => handleScrollMove(it.move)}>
+            {it.title}
+          </li>
         ))}
       </ul>
     </GlobalTabWrapper>

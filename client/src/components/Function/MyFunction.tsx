@@ -26,3 +26,22 @@ export const handleScroll: ScrollFunction = (
 
   setScrollData(window.scrollY);
 };
+
+/** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - 함수 기능 : 스크롤을 원하는 위치로 이동시키는 함수
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+export const handleScrollMove = (move: number) => {
+  window.scrollTo({
+    top: move,
+    behavior: "smooth",
+  });
+
+  handleTest(move);
+};
+
+const handleTest = (move: number) => {
+  window.scrollTo({
+    top: move + 1,
+    behavior: "smooth",
+  });
+};

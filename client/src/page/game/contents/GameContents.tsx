@@ -1,17 +1,22 @@
 import styled from "styled-components";
 import { MainColor } from "../../../components/CSS/Color/ColorNote";
+import Canvas from "./Canvas";
 
-const GameContentsWrapper = styled.div`
+const GameContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  border: 2px solid ${MainColor.Main100};
+  box-shadow: 0px 0px 20px 0px ${MainColor.Main200};
   width: 90%;
   height: 80vh;
   margin-bottom: 80px;
 `;
 
-const GameContents = () => {
-  return <GameContentsWrapper></GameContentsWrapper>;
+const GameContent = () => {
+  return (
+    <GameContentWrapper>
+      <Canvas />
+    </GameContentWrapper>
+  );
 };
 
-export default GameContents;
+export default GameContent;

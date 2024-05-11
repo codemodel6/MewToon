@@ -1,21 +1,21 @@
 interface TabTitleInter {
   title: string;
-  url: string;
+  move: number;
 }
 
 // skill 탭
 export const skillTabArr: TabTitleInter[] = [
-  { title: "선생님", url: "/skill/teacher" },
-  { title: "학생", url: "/skill/student" },
+  { title: "프로젝트", move: 700 },
+  { title: "소개", move: 1500 },
 ];
 // Map 탭
 export const mapTabArr: TabTitleInter[] = [
-  { title: "정보", url: "/map/information" },
-  { title: "오시는 길", url: "/map/map" },
+  { title: "정보", move: 700 },
+  { title: "오시는 길", move: 1500 },
 ];
 // Board 탭
 export const boardTabArr: TabTitleInter[] = [
-  { title: "자유게시판", url: "/board/free" },
-  { title: "정보게시판", url: "/board/information" },
-  { title: "후기게시판", url: "/board/review" },
+  { title: "자유게시판", move: 700 },
+  { title: "정보게시판", move: 1500 },
+  { title: "후기게시판", move: 1500 },
 ];
