@@ -64,7 +64,7 @@ const Canvas = () => {
     canvas.height = window.innerHeight * 0.6;
 
     context.lineCap = "round"; // 끝을 둥글게
-    context.strokeStyle = myRef.current; // 선 색깔
+    context.strokeStyle = lineColor; // 선 색깔
     context.lineWidth = 5; // 선 굵기
 
     contextRef.current = context; // 그림을 그리는 기준
@@ -98,6 +98,11 @@ const Canvas = () => {
     if (ctx) {
       // 그리는 중 이라면
       if (!isDrawing) {
+        // 그릴 때 ref를 다시 가져와서 canvas와 관련된 설정을 다시 해준다 - 리렌더링이 안되며 적용이 된다
+        const canvas = canvasRef.current;
+        const context = canvas.getContext("2d");
+        context.strokeStyle = lineColor; // 선 색깔 설정
+
         ctx.beginPath();
         ctx.moveTo(offsetX, offsetY);
       } else {
