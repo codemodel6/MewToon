@@ -5,7 +5,7 @@
 // import { useState, useEffect } from "react";
 // import styled from "styled-components";
 // import { MainColor, FontSize, BlackColor } from "../../GlobalCss/ColorNote";
-// import { CancleButton, GlobalButton } from "../../GlobalCss/GlobalItem";
+// import { CancelButton, GlobalButton } from "../../GlobalCss/GlobalItem";
 
 // export const ModalWrapper = styled.div`
 //   display: none;
@@ -148,7 +148,7 @@
 //         </div>
 //         <div className="ButtonDiv">
 //           <GlobalButton onClick={handleModalData}>등록</GlobalButton>
-//           <CancleButton onClick={handleCancle}>취소</CancleButton>
+//           <CancelButton onClick={handleCancle}>취소</CancelButton>
 //         </div>
 //       </ModalWrapper>
 //     </Overlay>

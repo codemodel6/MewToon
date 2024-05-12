@@ -5,7 +5,7 @@ import {
   betweenRow,
 } from "../../../components/CSS/Global/GlobalDisplay";
 import {
-  CancleButton,
+  CancelButton,
   GlobalButton,
 } from "../../../components/CSS/Global/GlobalItem";
 
@@ -101,9 +101,9 @@ const Canvas = () => {
         <GlobalButton width="20%" height="70%">
           저장
         </GlobalButton>
-        <CancleButton width="20%" height="70%">
+        <CancelButton width="20%" height="70%">
           초기화
-        </CancleButton>
+        </CancelButton>
       </div>
     </CanvasWrapper>
   );

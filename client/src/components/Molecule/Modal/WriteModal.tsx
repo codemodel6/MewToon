@@ -12,7 +12,7 @@ import {
   SubColor,
   WhiteColor,
 } from "../../CSS/Color/ColorNote";
-import { CancleButton, GlobalButton } from "../../CSS/Global/GlobalItem";
+import { CancelButton, GlobalButton } from "../../CSS/Global/GlobalItem";
 import { centerColumn } from "../../CSS/Global/GlobalDisplay";
 
 const WriteModalWrapper = styled.div`
@@ -196,9 +196,9 @@ const WriteModal: React.FC<WriteProps> = ({ modalState, handleModal }) => {
           <GlobalButton width="200px" height="40px" onClick={handleSave}>
             저장
           </GlobalButton>
-          <CancleButton width="200px" height="40px" onClick={handleCancle}>
+          <CancelButton width="200px" height="40px" onClick={handleCancle}>
             취소
-          </CancleButton>
+          </CancelButton>
         </div>
       </WriteModalWrapper>
     </Overlay>

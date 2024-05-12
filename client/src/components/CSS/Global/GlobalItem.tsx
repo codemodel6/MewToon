@@ -35,7 +35,7 @@ export const GlobalButton = styled.button<{ width: string; height: string }>`
 /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 - Button : 취소 버튼
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-export const CancleButton = styled(GlobalButton)`
+export const CancelButton = styled(GlobalButton)`
   border: 2px solid ${SubColor.Sub200};
   &:hover {
     background-color: ${SubColor.Sub200};
