@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { MainColor } from "../../../components/CSS/Color/ColorNote";
-import Canvas from "./Canvas";
+import Canvas from "./Canvas/Canvas";
 
 const GameContentWrapper = styled.div`
   display: flex;
