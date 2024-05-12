@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { MainColor } from "../../../../components/CSS/Color/ColorNote";
 import React from "react";
+import eraser from "../../../../components/CSS/image/eraser.png";
 
 const PaletteWrapper = styled.div`
   display: flex;
@@ -13,12 +14,19 @@ const PaletteWrapper = styled.div`
   border-radius: 10px;
   padding: 50px 30px 180px 30px;
   margin-right: 30px;
+
+  img {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+  }
 `;
 
 const ColorButton = styled.div<{ color: string }>`
   width: 30px;
   height: 30px;
   background-color: ${(props) => props.color};
+  border: 1px solid black;
   cursor: pointer;
 `;
 
@@ -44,6 +52,11 @@ const Palette: React.FC<PaletteProps> = ({ setLineColor }) => {
       {colorList.map((it, idx) => (
         <ColorButton color={it.color} onClick={() => setLineColor(it.color)} />
       ))}
+      <img
+        src={eraser}
+        alt="지우개"
+        onClick={() => setLineColor("white")}
+      ></img>
     </PaletteWrapper>
   );
 };

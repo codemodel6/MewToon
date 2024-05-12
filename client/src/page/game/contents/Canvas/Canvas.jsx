@@ -19,7 +19,6 @@ const CanvasWrapper = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    background-color: orange;
     width: 100%;
     height: 100%;
 
@@ -53,8 +52,6 @@ const Canvas = () => {
   // 선 색깔
   const [lineColor, setLineColor] = useState("black");
 
-  const myRef = useRef("black");
-
   useEffect(() => {
     const canvas = canvasRef.current;
     // 2D 그래픽을 그리기 위한 객체
@@ -64,7 +61,7 @@ const Canvas = () => {
     canvas.height = window.innerHeight * 0.6;
 
     context.lineCap = "round"; // 끝을 둥글게
-    context.strokeStyle = lineColor; // 선 색깔
+    context.strokeStyle = "black"; // 선 색깔
     context.lineWidth = 5; // 선 굵기
 
     contextRef.current = context; // 그림을 그리는 기준
@@ -98,7 +95,7 @@ const Canvas = () => {
     if (ctx) {
       // 그리는 중 이라면
       if (!isDrawing) {
-        // 그릴 때 ref를 다시 가져와서 canvas와 관련된 설정을 다시 해준다 - 리렌더링이 안되며 적용이 된다
+        // 그릴 때 ref를 다시 가져와서 canvas와 관련된 설정을 다시 해준다 - 리렌더링을 하지 않고 적용이 된다
         const canvas = canvasRef.current;
         const context = canvas.getContext("2d");
         context.strokeStyle = lineColor; // 선 색깔 설정
@@ -112,9 +109,28 @@ const Canvas = () => {
     }
   };
 
-  const handleTest = (color) => {
-    myRef.current = color;
-    console.log(myRef.current);
+  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - 함수 기능 : 그린 그림을 초기화 하는 함수
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+  const handleClear = () => {
+    const canvas = canvasRef.current;
+    const context = canvas.getContext("2d");
+    context.clearRect(0, 0, canvas.width, canvas.height);
+  };
+
+  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - 함수 기능 : 그린 그림을 저장 하는 함수
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+  const handleSave = () => {
+    const canvas = canvasRef.current;
+    // 이미지 데이터 URL을 가져온다
+    const imgURL = canvas.toDataURL();
+
+    // 가상의 링크를 생성하고 클릭하여 이미지를 다운로드 한다
+    const link = document.createElement("a");
+    link.href = imgURL;
+    link.download = "그림.png";
+    link.click();
   };
 
   return (
@@ -130,14 +146,10 @@ const Canvas = () => {
         <Palette setLineColor={setLineColor} />
       </div>
       <div className="buttonDiv">
-        <GlobalButton width="20%" height="70%">
+        <GlobalButton width="20%" height="70%" onClick={handleSave}>
           저장
         </GlobalButton>
-        <CancelButton
-          width="20%"
-          height="70%"
-          onClick={() => handleTest("pink")}
-        >
+        <CancelButton width="20%" height="70%" onClick={handleClear}>
           초기화
         </CancelButton>
       </div>
