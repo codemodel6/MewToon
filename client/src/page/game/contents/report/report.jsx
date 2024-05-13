@@ -12,6 +12,7 @@ import {
 import {
   handleCancel,
   GlobalButton,
+  CancelButton,
 } from "../../../../components/CSS/Global/GlobalItem";
 
 const ReportWrapper = styled.div`
@@ -62,7 +63,7 @@ const ReportForm = styled.div`
   }
 `;
 
-const RepotResult = styled.div`
+const ReportResult = styled.div`
   ${centerColumn}
   width: 35%;
   height: 90%;
@@ -153,17 +154,17 @@ const Report = () => {
           <GlobalButton width="40%" height="50px" onClick={handleSubmit}>
             작성
           </GlobalButton>
-          <handleCancel width="40%" height="50px" onClick={handleClear}>
+          <CancelButton width="40%" height="50px" onClick={handleClear}>
             초기화
-          </handleCancel>
+          </CancelButton>
         </div>
       </ReportForm>
-      <RepotResult>
+      <ReportResult>
         <textarea readOnly="true" value={final} />
         <GlobalButton width="80%" height="50px" onClick={handleCopy}>
           전체 복사
         </GlobalButton>
-      </RepotResult>
+      </ReportResult>
     </ReportWrapper>
   );
 };
