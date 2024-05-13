@@ -103,7 +103,7 @@
 //   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 //   - 함수 기능 : 취소 버튼을 눌렀을 때 모달을 닫는 함수
 //   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-//   const handleCancle = () => {
+//   const handleCancel = () => {
 //     setMultiData([...modalData]);
 //     handleOnOff();
 //   };
@@ -148,7 +148,7 @@
 //         </div>
 //         <div className="ButtonDiv">
 //           <GlobalButton onClick={handleModalData}>등록</GlobalButton>
-//           <CancelButton onClick={handleCancle}>취소</CancelButton>
+//           <CancelButton onClick={handleCancel}>취소</CancelButton>
 //         </div>
 //       </ModalWrapper>
 //     </Overlay>

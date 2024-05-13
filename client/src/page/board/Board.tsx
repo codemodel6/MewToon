@@ -10,22 +10,22 @@ import WriteModal from "../../components/Molecule/Modal/WriteModal";
 import OrTab from "../../components/Organism/OrTab";
 import OrTitle from "../../components/Organism/OrTitle";
 import { boardTabArr } from "../../components/dummy/TabArr";
-import QuestionContent from "./area/BoardContent";
-import QuestionList from "./area/BoardList";
-import QuestionWrite from "./area/BoardWrite";
+import BoardContent from "./area/BoardContent";
+import BoardList from "./area/BoardList";
+import BoardWrite from "./area/BoardWrite";
 
 const BoardWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   height: 100%;
-  width: 100%;
+  width: 90%;
 
-  .QuestionListWrapper {
+  .boardListWrapper {
     display: flex;
     flex-direction: row;
     height: 100vh;
-    width: 90%;
+    width: 100%;
     position: relative;
   }
 `;
@@ -37,7 +37,7 @@ interface ToggleFun {
 const Board = () => {
   // 게시판을 보여주는 state
   const [toggle, setToggle] = useState<boolean>(false);
-  // DB에서 가져온 QuestionList State
+  // DB에서 가져온 BoardList State
   const [myContent, setMyContent] = useState<{}>({});
   // 모달 state
   const [modalState, setModalState] = useState<boolean>(false);
@@ -62,15 +62,17 @@ const Board = () => {
       <OrTitle imageUrl={door} mainText="게시판을 만들껍니다" subText="Board" />
       <OrTab tabArr={boardTabArr} />
       <BoardWrapper>
-        <div className="QuestionListWrapper">
-          <QuestionList
+        <div className="boardListWrapper">
+          <BoardList
             toggle={toggle}
             handleToggle={handleToggle}
             handleModal={handleModal}
           />
-          <QuestionContent toggle={toggle} setToggle={setToggle} />
+          <BoardContent toggle={toggle} setToggle={setToggle} />
         </div>
-        <QuestionWrite />
+        <div className="boardListWrapper">
+          <BoardWrite />
+        </div>
       </BoardWrapper>
       <WriteModal modalState={modalState} handleModal={handleModal} />
     </GlobalWrapper>

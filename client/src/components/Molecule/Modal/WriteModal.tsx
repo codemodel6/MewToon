@@ -167,7 +167,7 @@ const WriteModal: React.FC<WriteProps> = ({ modalState, handleModal }) => {
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   - 함수 기능 : 취소 버튼을 눌렀을 때 모달을 닫는 함수
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-  const handleCancle = () => {
+  const handleCancel = () => {
     handleModal();
   };
 
@@ -196,7 +196,7 @@ const WriteModal: React.FC<WriteProps> = ({ modalState, handleModal }) => {
           <GlobalButton width="200px" height="40px" onClick={handleSave}>
             저장
           </GlobalButton>
-          <CancelButton width="200px" height="40px" onClick={handleCancle}>
+          <CancelButton width="200px" height="40px" onClick={handleCancel}>
             취소
           </CancelButton>
         </div>

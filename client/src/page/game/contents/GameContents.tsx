@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { MainColor } from "../../../components/CSS/Color/ColorNote";
 import Canvas from "./Canvas/Canvas";
+import Report from "./report/report";
 
 const GameContentWrapper = styled.div`
   display: flex;
@@ -14,7 +15,7 @@ const GameContentWrapper = styled.div`
 const GameContent = () => {
   return (
     <GameContentWrapper>
-      <Canvas />
+      <Report />
     </GameContentWrapper>
   );
 };
