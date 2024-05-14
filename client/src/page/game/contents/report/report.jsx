@@ -10,7 +10,6 @@ import {
   centerColumn,
 } from "../../../../components/CSS/Global/GlobalDisplay";
 import {
-  handleCancel,
   GlobalButton,
   CancelButton,
 } from "../../../../components/CSS/Global/GlobalItem";
@@ -93,14 +92,8 @@ const Report = () => {
   // 완성된 글
   const [final, setFinal] = useState("");
   // 합칠 글
-  const combi = `<이번주 진행사항>
-  ${thisWeek}
-  <다음주 진행사항>
-  ${nextWeek}
-  <기타사항>
-  ${other}
-  <개인 만족도>
-  ${value}`;
+  let combi = `<이번주 진행사항>\n${thisWeek}\n<다음주 진행사항>\n${nextWeek}\n`;
+  combi += `<기타사항>\n${other}\n<개인 만족도>\n${value}`;
 
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   - 함수 기능 : 주간보고서 작성하는 함수
