@@ -13,6 +13,7 @@ import { boardTabArr } from "../../components/dummy/TabArr";
 import BoardContent from "./area/BoardContent";
 import BoardList from "./area/BoardList";
 import BoardWrite from "./area/BoardWrite";
+import BoardTopic from "./area/BoardTopic";
 
 const BoardWrapper = styled.div`
   display: flex;
@@ -71,7 +72,7 @@ const Board = () => {
           <BoardContent toggle={toggle} setToggle={setToggle} />
         </div>
         <div className="boardListWrapper">
-          <BoardWrite />
+          <BoardTopic />
         </div>
       </BoardWrapper>
       <WriteModal modalState={modalState} handleModal={handleModal} />
