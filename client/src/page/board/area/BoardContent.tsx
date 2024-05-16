@@ -14,6 +14,7 @@ import {
 import {
   betweenRow,
   centerColumn,
+  centerRow,
 } from "../../../components/CSS/Global/GlobalDisplay";
 import BoardComment from "./BoardComment";
 
@@ -56,8 +57,30 @@ const BoardContentWrapper = styled.div<{ toggle: boolean }>`
 
     .boardContent {
       width: 100%;
-      height: 450px;
+      height: 400px;
       padding: 20px;
+    }
+
+    .heartWrapper {
+      ${centerColumn}
+      width: 100%;
+      height: 80px;
+
+      button {
+        background-color: white;
+        ${centerRow}
+        width: 40px;
+        height: 50px;
+        color: ${MainColor.Main100};
+        font-size: 35px;
+      }
+
+      .heartDiv {
+        ${centerColumn}
+        width: 100%;
+        height: 30px;
+        font-size: 20px;
+      }
     }
 
     .boardUpdateDiv {
@@ -168,6 +191,10 @@ const BoardContent: React.FC<ContentProps> = ({ toggle, setToggle }) => {
         </div>
         <div className="scrollBoard">
           <div className="boardContent">게시판 내용 입니다</div>
+          <div className="heartWrapper">
+            <button>♥</button>
+            <div className="heartDiv">1</div>
+          </div>
           <div className="boardUpdateDiv">
             <button className="updateButton">수정</button>
             <button className="deleteButton">삭제</button>

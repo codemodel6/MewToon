@@ -3,6 +3,7 @@ import {
   centerColumn,
   centerRow,
 } from "../../../../components/CSS/Global/GlobalDisplay";
+import MusicList from "./MusicList";
 
 const MusicBoxWrapper = styled.div`
   display: flex;
@@ -10,7 +11,6 @@ const MusicBoxWrapper = styled.div`
   align-items: center;
   width: 100%;
   height: 100%;
-  background-color: orange;
 `;
 
 const MusicPlayerWrapper = styled.div`
@@ -28,6 +28,7 @@ const MusicPlayerWrapper = styled.div`
     width: 650px;
     background-color: red; // 이미지로 변경
     padding-top: 50px;
+    border-radius: 20px;
 
     .imgDiv {
       background-color: orange;
@@ -66,12 +67,6 @@ const MusicPlayerWrapper = styled.div`
   }
 `;
 
-const MusicListWrapper = styled.div`
-  height: 80%;
-  width: 15%;
-  background-color: purple;
-`;
-
 const MusicBox = () => {
   return (
     <MusicBoxWrapper>
@@ -87,7 +82,7 @@ const MusicBox = () => {
           </div>
         </div>
       </MusicPlayerWrapper>
-      <MusicListWrapper></MusicListWrapper>
+      <MusicList />
     </MusicBoxWrapper>
   );
 };

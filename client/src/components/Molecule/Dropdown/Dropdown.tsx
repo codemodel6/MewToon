@@ -106,7 +106,8 @@ const Dropdown: React.FC<DropdownProps> = ({
   const handleDropdown: DropdownFunction = (props) => {
     setToggle(!toggle);
     setValue(props);
-    setSearchParams({ name: props });
+    // setSearchParams({name:props})
+    navigate(`/project?name=${props}`);
   };
 
   return (
