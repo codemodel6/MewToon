@@ -2,30 +2,39 @@
 - /map 컴포넌트
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
 
-import styled from "styled-components";
-import { aroundRow } from "../../components/CSS/Global/GlobalDisplay";
 import { useEffect } from "react";
+import styled from "styled-components";
 import { MainColor } from "../../components/CSS/Color/ColorNote";
-import { GlobalButton } from "../../components/CSS/Global/GlobalItem";
-import car from "../../components/CSS/image/car.jpg";
-import OrTitle from "../../components/Organism/OrTitle";
+import {
+  aroundRow,
+  centerColumn,
+} from "../../components/CSS/Global/GlobalDisplay";
 import { GlobalWrapper } from "../../components/CSS/Global/GlobalWrapper";
-import { mapTabArr } from "../../components/dummy/TabArr";
+import car from "../../components/CSS/image/car.jpg";
 import OrTab from "../../components/Organism/OrTab";
+import OrTitle from "../../components/Organism/OrTitle";
+import { mapTabArr } from "../../components/dummy/TabArr";
+import InfoQuestion from "./area/InfoQuestion";
 
-const MapWrapper = styled.div`
+const InfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 90%;
+  height: 100%;
+  background-color: rosybrown;
+`;
+
+const MapWrapper = styled.div`
+  ${centerColumn}
   width: 100%;
-  height: 50%;
+  height: 90vh;
 
   .mapDiv {
     width: 50%;
-    height: 50%;
+    height: 80%;
     background-color: white;
     border: 2px solid ${MainColor.Main100};
-    margin-top: 100px;
   }
 
   .mapToolDiv {
@@ -49,40 +58,43 @@ declare global {
   }
 }
 
-const Map = () => {
-  useEffect(() => {
-    let mapContainer = document.getElementById("map"), // 지도를 표시할 div
-      mapOption = {
-        center: new window.kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-        level: 3, // 지도의 확대 레벨
-      };
+const Info = () => {
+  // useEffect(() => {
+  //  let mapContainer = document.getElementById("map"), // 지도를 표시할 div
+  //   mapOption = {
+  //    center: new window.kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+  //    level: 3, // 지도의 확대 레벨
+  //   };
 
-    let map = new window.kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+  //  let map = new window.kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
-    const panTo = () => {
-      // 이동할 위도 경도 위치를 생성합니다
-      var moveLatLon = new window.kakao.maps.LatLng(33.45058, 126.574942);
+  //  const panTo = () => {
+  //   // 이동할 위도 경도 위치를 생성합니다
+  //   var moveLatLon = new window.kakao.maps.LatLng(33.45058, 126.574942);
 
-      // 지도 중심을 부드럽게 이동시킵니다
-      // 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
-      map.panTo(moveLatLon);
-    };
-  }, []);
+  //   // 지도 중심을 부드럽게 이동시킵니다
+  //   // 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
+  //   map.panTo(moveLatLon);
+  //  };
+  // }, []);
 
   return (
-    <GlobalWrapper height="2000px">
+    <GlobalWrapper height="3000px">
       <OrTitle
         imageUrl={car}
-        mainText="인적사항과 경력"
-        subText="Information"
+        mainText="카카오 지도를 이용해서 만들어보자"
+        subText="Map"
       />
       <OrTab tabArr={mapTabArr} />
-      <MapWrapper>
-        <div className="mapDiv" id="map"></div>
-        <div className="mapToolDiv"></div>
-      </MapWrapper>
+      <InfoWrapper>
+        <MapWrapper>
+          <div className="mapDiv" id="map"></div>
+          <div className="mapToolDiv"></div>
+        </MapWrapper>
+        <InfoQuestion />
+      </InfoWrapper>
     </GlobalWrapper>
   );
 };
 
-export default Map;
+export default Info;

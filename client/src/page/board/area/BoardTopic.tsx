@@ -9,7 +9,6 @@ const BoardTopicWrapper = styled.div`
   align-items: center;
   width: 100%;
   height: 100%;
-  background-color: ${GrayColor.Gray400};
   padding-top: 5%;
 
   .title {
@@ -17,7 +16,7 @@ const BoardTopicWrapper = styled.div`
     font-size: 30px;
     font-weight: bold;
     color: "black";
-    margin-bottom: 5%;
+    margin-bottom: 8%;
     width: 50%;
   }
 `;
@@ -25,17 +24,16 @@ const BoardTopicWrapper = styled.div`
 const BoardCarouselDiv = styled.div`
   ${centerColumn}
   width: 100%;
-  height: 60%;
-  background-color: orange;
+  height: 65%;
 `;
 
 const BoardTopic = () => {
   return (
     <BoardTopicWrapper>
       <div className="title">
-        가장 인기가
+        좋아요를 많이 받은
         <br />
-        많았던 화제의 게시글!
+        가장 인기있는 게시물 Top10
       </div>
       <BoardCarouselDiv>
         <BoardCarousel />
