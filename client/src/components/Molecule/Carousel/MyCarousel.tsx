@@ -18,7 +18,7 @@ const CarouselWrapper = styled.div`
   width: 100%;
   height: 100%;
   font-size: 50px;
-  font-weight: bold;
+
   color: white;
 
   .slick-slider {
@@ -42,10 +42,14 @@ const CarouselWrapper = styled.div`
 
   .textWrapper {
     .title {
-      font-size: 100px;
+      font-size: 60px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      font-style: oblique;
     }
     .contents {
-      font-size: 50px;
+      /* padding-left: 1px; */
+      font-size: 20px;
     }
   }
 
@@ -79,22 +83,34 @@ const MyCarousel = () => {
       <div className="carousel">
         <Slider {...settings}>
           <div className="textWrapper">
-            <div className="title">Molru</div>
-            <div className="contents">모르겠나요?</div>
+            <div className="title">CodeLand</div>
+            <div className="contents">
+              코드랜드는 좋은 아이디어를 표현하는 사이트로
+              <br />
+              상상하는 모든걸 개발할 수 있습니다.
+            </div>
           </div>
           <div className="gifWrapper">
             <img src={smoke} alt="연기" />
           </div>
           <div className="textWrapper">
-            <div className="title">Nado</div>
-            <div className="contents">나도에요!</div>
+            <div className="title">Experience</div>
+            <div className="contents">
+              유용한 기능들을 편리하게 사용함으로써
+              <br />
+              좋은 경험을 선사합니다.
+            </div>
           </div>
           <div className="gifWrapper">
             <img src={box} alt="박스" />
           </div>
           <div className="textWrapper">
-            <div className="title">Study</div>
-            <div className="contents">공부해라</div>
+            <div className="title">Design</div>
+            <div className="contents">
+              화려한 애니메이션과 깔끔한 디자인으로
+              <br />
+              경험하지 못한 UI/UX를 느껴 볼 수 있습니다
+            </div>
           </div>
           <div className="gifWrapper">
             <img src={solution} alt="솔루션" />

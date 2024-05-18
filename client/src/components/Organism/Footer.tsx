@@ -6,7 +6,11 @@ import styled from "styled-components";
 import { BlackColor, WhiteColor } from "../CSS/Color/ColorNote";
 import { useLocation } from "react-router-dom";
 import { centerColumn, centerRow } from "../CSS/Global/GlobalDisplay";
-import car from "../CSS/image/car.jpg";
+import github from "../CSS/image/footerImg/github.png";
+import facebook from "../CSS/image/footerImg/facebook.png";
+import instagram from "../CSS/image/footerImg/instagram.png";
+import twitter from "../CSS/image/footerImg/twitter.png";
+import { handleLink } from "../Function/MyFunction";
 
 const MyFooter = styled.footer`
   ${centerColumn}
@@ -19,15 +23,16 @@ const MyFooter = styled.footer`
     ${centerRow}
     width: 50%;
     height: 40px;
-    /* background-color: orange; */
     margin-bottom: 10px;
 
     img {
       width: 40px;
       height: 100%;
-      border-radius: 10px;
+      border-radius: 50%;
       margin-right: 10px;
       cursor: pointer;
+      background-color: white;
+      object-fit: cover;
     }
   }
 
@@ -52,14 +57,31 @@ const Footer = () => {
   return (
     <MyFooter>
       <div className="snsDiv">
-        <img src={car}></img>
-        <img src={car}></img>
-        <img src={car}></img>
-        <img src={car}></img>
+        <img
+          src={github}
+          alt="깃허브"
+          onClick={() => handleLink("https://github.com/codemodel6")}
+        />
+        <img
+          src={facebook}
+          alt="페이스북"
+          onClick={() => handleLink("https://www.facebook.com/")}
+        />
+        <img
+          src={instagram}
+          alt="인스타그램"
+          onClick={() => handleLink("https://www.instagram.com/")}
+        />
+        <img
+          src={twitter}
+          alt="트위터"
+          onClick={() => handleLink("https://x.com/?lang=ko&mx=2")}
+        />
       </div>
-      <div className="infoDiv">상호: (주)코드링딩딩 | 대표자명: 김하눌</div>
+      <div className="infoDiv">상호: (주)코드랜드 | 대표자명: 김경배</div>
       <div className="infoDiv">
-        연락처: 010-1234-5678 | 이메일: asdf@gmail.com | 제작: React, Typescript
+        연락처: 010-6625-0937 | 이메일: codemodel6@gmail.com | 제작: React,
+        Typescript
       </div>
       <br />
       <div className="infoDiv">

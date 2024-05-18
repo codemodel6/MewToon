@@ -7,6 +7,7 @@ import {
 } from "../../../components/CSS/Color/ColorNote";
 import { IntroObj } from "./IntroObj";
 import { useSearchParams } from "react-router-dom";
+import { handleLink } from "../../../components/Function/MyFunction";
 
 const GameIntroWrapper = styled.div`
   display: flex;
@@ -96,17 +97,6 @@ const GameIntroWrapper = styled.div`
     }
   }
 `;
-
-interface LinkFunction {
-  (url: string): void;
-}
-
-/** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-- 함수 기능 : url의 새로운 탭을 여는 함수
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-const handleLink: LinkFunction = (url) => {
-  window.open(url);
-};
 
 const GameIntro = () => {
   const [searchParams, setSearchParams] = useSearchParams();
