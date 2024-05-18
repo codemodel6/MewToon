@@ -4,26 +4,17 @@
 
 import { useEffect } from "react";
 import styled from "styled-components";
-import { MainColor } from "../../components/CSS/Color/ColorNote";
+import { MainColor } from "../../../components/CSS/Color/ColorNote";
 import {
   aroundRow,
   centerColumn,
-} from "../../components/CSS/Global/GlobalDisplay";
-import { GlobalWrapper } from "../../components/CSS/Global/GlobalWrapper";
+} from "../../../components/CSS/Global/GlobalDisplay";
+import { GlobalWrapper } from "../../../components/CSS/Global/GlobalWrapper";
 import car from "../../components/CSS/image/car.jpg";
-import OrTab from "../../components/Organism/OrTab";
-import OrTitle from "../../components/Organism/OrTitle";
-import { mapTabArr } from "../../components/dummy/TabArr";
-import InfoQuestion from "./area/InfoQuestion";
-
-const InfoWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 90%;
-  height: 100%;
-  background-color: rosybrown;
-`;
+import OrTab from "../../../components/Organism/OrTab";
+import OrTitle from "../../../components/Organism/OrTitle";
+import { mapTabArr } from "../../../components/dummy/TabArr";
+import InfoQuestion from "./InfoQuestion";
 
 const MapWrapper = styled.div`
   ${centerColumn}
@@ -58,7 +49,7 @@ declare global {
   }
 }
 
-const Info = () => {
+const Map = () => {
   // useEffect(() => {
   //  let mapContainer = document.getElementById("map"), // 지도를 표시할 div
   //   mapOption = {
@@ -79,22 +70,11 @@ const Info = () => {
   // }, []);
 
   return (
-    <GlobalWrapper height="3000px">
-      <OrTitle
-        imageUrl={car}
-        mainText="카카오 지도를 이용해서 만들어보자"
-        subText="Map"
-      />
-      <OrTab tabArr={mapTabArr} />
-      <InfoWrapper>
-        <MapWrapper>
-          <div className="mapDiv" id="map"></div>
-          <div className="mapToolDiv"></div>
-        </MapWrapper>
-        <InfoQuestion />
-      </InfoWrapper>
-    </GlobalWrapper>
+    <MapWrapper>
+      <div className="mapDiv" id="map"></div>
+      <div className="mapToolDiv"></div>
+    </MapWrapper>
   );
 };
 
-export default Info;
+export default Map;
