@@ -6,6 +6,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import Canvas from "./canvas/Canvas";
 import Report from "./report/report";
 import { useEffect } from "react";
+import YouTube from "react-youtube";
 
 const GameContentWrapper = styled.div`
   display: flex;
@@ -41,7 +42,11 @@ const GameContent = () => {
     }
   }, [name]);
 
-  return <GameContentWrapper>{nowComponent}</GameContentWrapper>;
+  return (
+    <GameContentWrapper>
+      <Report />
+    </GameContentWrapper>
+  );
 };
 
 export default GameContent;
