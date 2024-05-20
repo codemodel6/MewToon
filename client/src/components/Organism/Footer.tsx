@@ -6,10 +6,10 @@ import styled from "styled-components";
 import { BlackColor, WhiteColor } from "../CSS/Color/ColorNote";
 import { useLocation } from "react-router-dom";
 import { centerColumn, centerRow } from "../CSS/Global/GlobalDisplay";
-import github from "../CSS/image/footerImg/github.png";
-import facebook from "../CSS/image/footerImg/facebook.png";
-import instagram from "../CSS/image/footerImg/instagram.png";
-import twitter from "../CSS/image/footerImg/twitter.png";
+import github from "../CSS/image/FooterImg/github.png";
+import facebook from "../CSS/image/FooterImg/facebook.png";
+import instagram from "../CSS/image/FooterImg/instagram.png";
+import twitter from "../CSS/image/FooterImg/twitter.png";
 import { handleLink } from "../Function/MyFunction";
 
 const MyFooter = styled.footer`
