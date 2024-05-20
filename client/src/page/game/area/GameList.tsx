@@ -12,11 +12,10 @@ const GameListWrapper = styled.div<{ toggle: boolean }>`
 `;
 
 const itemArr = [
-  { name: "몰루", url: "" },
-  { name: "KBCompany", url: "" },
-  { name: "GyulBox", url: "" },
-  { name: "Indiego", url: "" },
-  { name: "Stackoverflow", url: "" },
+  { name: "musicBox", url: "" },
+  { name: "drawing", url: "" },
+  { name: "youtube", url: "" },
+  { name: "report", url: "" },
 ];
 
 const GameList = () => {

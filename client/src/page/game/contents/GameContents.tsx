@@ -1,12 +1,11 @@
+import { ReactElement, useEffect, useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import styled from "styled-components";
 import { MainColor } from "../../../components/CSS/Color/ColorNote";
-import MyYoutube from "./youtube/MyYoutube";
-import MusicBox from "./musicBox/MusicBox";
-import { useNavigate, useSearchParams } from "react-router-dom";
 import Canvas from "./canvas/Canvas";
+import MusicBox from "./musicBox/MusicBox";
 import Report from "./report/report";
-import { useEffect } from "react";
-import YouTube from "react-youtube";
+import MyYoutube from "./youtube/MyYoutube";
 
 const GameContentWrapper = styled.div`
   display: flex;
@@ -18,7 +17,9 @@ const GameContentWrapper = styled.div`
 `;
 
 const GameContent = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
+  // url에 따라서 보여줄 컴포넌트
+  const [nowComponent, setNowComponent] = useState<ReactElement | null>(null);
 
   // url의 이름을 가져온다
   const name = searchParams.get("name");
@@ -26,27 +27,23 @@ const GameContent = () => {
 
   const navigate = useNavigate();
 
-  let nowComponent;
-
-  const nameList = ["musicBox", "drawing", "youtube", "report"];
-  const componentList = [<MusicBox />, <Canvas />, <MyYoutube />, <Report />];
+  const nameList: string[] = ["musicBox", "drawing", "youtube", "report"];
+  const componentList: ReactElement[] = [
+    <MusicBox />,
+    <Canvas />,
+    <MyYoutube />,
+    <Report />,
+  ];
 
   useEffect(() => {
     for (let i = 0; i < nameList.length; i++) {
-      console.log("--->", name, nameList[i], i);
       if (name === nameList[i]) {
-        console.log("입장~~~~!");
-        nowComponent = componentList[i];
-        console.log("이거", componentList[i]);
+        setNowComponent(componentList[i]);
       }
     }
   }, [name]);
 
-  return (
-    <GameContentWrapper>
-      <Report />
-    </GameContentWrapper>
-  );
+  return <GameContentWrapper>{nowComponent}</GameContentWrapper>;
 };
 
 export default GameContent;
