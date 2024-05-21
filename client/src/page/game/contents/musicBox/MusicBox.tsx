@@ -72,36 +72,73 @@ const MusicPlayerWrapper = styled.div`
 const MusicBox = () => {
   const [audioState, setAudioState] = useState<boolean>(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  // 노래의 현재 시간
+  // 노래 현재 시간
   const [currentTime, setCurrentTime] = useState<number>(0);
-  // 노래가 끝나는 시간
+  // 노래 전체 길이
   const [duration, setDuration] = useState<number>(0);
 
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   - 훅 기능 : 오디오와 관련된 설정
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
   useEffect(() => {
+    const audio = audioRef.current;
+
     const updateTime = () => {
-      if (audioRef.current) {
-        setCurrentTime(audioRef.current.currentTime);
-        setDuration(audioRef.current.duration);
+      if (audio) {
+        setCurrentTime(audio.currentTime);
+        setDuration(audio.duration);
       }
     };
 
-    const intervalId = setInterval(updateTime, 1000);
+    // const intervalId = setInterval(updateTime, 1000);
 
-    return () => clearInterval(intervalId);
+    // return () => clearInterval(intervalId);
+    if (audio) {
+      // timeupdate는 오디오의 변경될 때 마다 실행
+      audio.addEventListener("timeupdate", updateTime);
+    }
+
+    return () => {
+      if (audio) {
+        audio.removeEventListener("timeupdate", updateTime);
+      }
+    };
   }, []);
 
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   - 함수 기능 : 노래 시작 or 멈춤
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
   const handlePlay = () => {
+    setAudioState((prevState) => !prevState);
     if (audioRef.current) {
       if (audioState) audioRef.current.play(); // 노래 시작
       else audioRef.current.pause(); // 노래 일시정지
     }
-    setAudioState(!audioState);
+    console.log(audioState);
+  };
+
+  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - 함수 기능 : 노래의 진행도를 표시해주는 함수
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newTime = parseFloat(e.target.value);
+    setCurrentTime(newTime);
+    if (audioRef.current) {
+      audioRef.current.currentTime = newTime;
+    }
+  };
+
+  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - 함수 기능 : 노래를 처음으로 되돌리는 함수
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+  const handleReset = () => {
+    const audio = audioRef.current;
+    if (audio) {
+      audio.currentTime = 0; // 오디오 처음으로
+      setCurrentTime(0); // 진행도 초기화
+      audio.pause();
+      setAudioState(false); // 재생 상태를 초기화
+    }
   };
 
   // const formatTime = (time: number): string => {
@@ -123,10 +160,12 @@ const MusicBox = () => {
             min="0"
             max={duration}
             step={0.1}
+            onChange={handleChange}
           />
           <div className="bar"></div>
           <div className="tool">
             <button onClick={handlePlay}>dd</button>
+            <button onClick={handleReset}>ㄴㄴ</button>
           </div>
         </div>
       </MusicPlayerWrapper>
