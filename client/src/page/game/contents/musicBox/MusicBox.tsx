@@ -6,6 +6,9 @@ import {
 import MusicList from "./MusicList";
 import { useEffect, useRef, useState } from "react";
 import QWER from "../../../../components/Music/QWER 고민중독.mp3";
+import pause from "../../../../components/CSS/image/MusicImg/pause.png";
+import play from "../../../../components/CSS/image/MusicImg/play.png";
+import reStart from "../../../../components/CSS/image/MusicImg/restart.png";
 
 const MusicBoxWrapper = styled.div`
   display: flex;
@@ -52,11 +55,9 @@ const MusicPlayerWrapper = styled.div`
       margin-bottom: 10px;
     }
 
-    .bar {
-      background-color: blue;
+    input {
       width: 70%;
       height: 30px;
-      border-radius: 20px;
       margin-bottom: 10px;
     }
 
@@ -64,18 +65,31 @@ const MusicPlayerWrapper = styled.div`
       ${centerRow}
       background-color: gray;
       width: 100%;
-      height: 40px;
+      height: 60px;
+
+      button {
+        width: 30px;
+        height: 30px;
+        background-color: transparent;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
     }
   }
 `;
 
 const MusicBox = () => {
+  // 노래 재생 상태
   const [audioState, setAudioState] = useState<boolean>(false);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
   // 노래 현재 시간
   const [currentTime, setCurrentTime] = useState<number>(0);
   // 노래 전체 길이
   const [duration, setDuration] = useState<number>(0);
+  // 노래 ref
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   - 훅 기능 : 오디오와 관련된 설정
@@ -109,12 +123,18 @@ const MusicBox = () => {
   - 함수 기능 : 노래 시작 or 멈춤
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
   const handlePlay = () => {
-    setAudioState((prevState) => !prevState);
-    if (audioRef.current) {
-      if (audioState) audioRef.current.play(); // 노래 시작
-      else audioRef.current.pause(); // 노래 일시정지
-    }
-    console.log(audioState);
+    // state가 반영이 느린 문제점을 해결
+    setAudioState((prevState) => {
+      const nowState = !prevState;
+      if (audioRef.current) {
+        if (nowState) {
+          audioRef.current.play(); // 노래 시작
+        } else {
+          audioRef.current.pause(); // 노래 일시정지
+        }
+      }
+      return nowState;
+    });
   };
 
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -162,10 +182,13 @@ const MusicBox = () => {
             step={0.1}
             onChange={handleChange}
           />
-          <div className="bar"></div>
           <div className="tool">
-            <button onClick={handlePlay}>dd</button>
-            <button onClick={handleReset}>ㄴㄴ</button>
+            <button onClick={handlePlay}>
+              <img src={audioState ? pause : play} alt="다시시작" />
+            </button>
+            <button onClick={handleReset}>
+              <img src={reStart} alt="다시시작" />
+            </button>
           </div>
         </div>
       </MusicPlayerWrapper>
