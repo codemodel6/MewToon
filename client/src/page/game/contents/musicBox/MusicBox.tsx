@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import {
+  betweenRow,
   centerColumn,
   centerRow,
 } from "../../../../components/CSS/Global/GlobalDisplay";
@@ -55,9 +56,17 @@ const MusicPlayerWrapper = styled.div`
       margin-bottom: 10px;
     }
 
+    .time {
+      ${betweenRow}
+      width: 70%;
+      background-color: blue;
+      font-size: 15px;
+      font-weight: bold;
+      margin-bottom: 1px;
+    }
+
     input {
       width: 70%;
-      height: 30px;
       margin-bottom: 10px;
     }
 
@@ -100,24 +109,45 @@ const MusicBox = () => {
     const updateTime = () => {
       if (audio) {
         setCurrentTime(audio.currentTime);
+        // setDuration(audio.duration);
+      }
+    };
+
+    const metadataLoad = () => {
+      if (audio) {
         setDuration(audio.duration);
       }
     };
 
-    // const intervalId = setInterval(updateTime, 1000);
-
-    // return () => clearInterval(intervalId);
     if (audio) {
       // timeupdate는 오디오의 변경될 때 마다 실행
       audio.addEventListener("timeupdate", updateTime);
+      audio.addEventListener("loadedmetadata", metadataLoad);
     }
+
+    // 1초에 한번씩 현재 시간 반영
+    const timeInterval = setInterval(() => {
+      if (audio) {
+        setCurrentTime(audio.currentTime);
+      }
+    }, 1000);
 
     return () => {
       if (audio) {
         audio.removeEventListener("timeupdate", updateTime);
+        audio.removeEventListener("loadedmetadata", metadataLoad);
       }
+
+      clearInterval(timeInterval);
     };
   }, []);
+
+  const formatTime = (time: number): string => {
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60);
+
+    return `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
+  };
 
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   - 함수 기능 : 노래 시작 or 멈춤
@@ -161,11 +191,6 @@ const MusicBox = () => {
     }
   };
 
-  // const formatTime = (time: number): string => {
-  //   const minutes = Math.floor(time / 60);
-  //   const seconds = Math.floor(time % 60);
-  // };
-
   return (
     <MusicBoxWrapper>
       <MusicPlayerWrapper>
@@ -174,6 +199,10 @@ const MusicBox = () => {
           <div className="imgDiv"></div>
           <div className="title">제목입니다</div>
           <div className="author">가수입니다</div>
+          <div className="time">
+            <span>{formatTime(currentTime)}</span>
+            <span>{formatTime(duration)}</span>
+          </div>
           <input
             type="range"
             value={currentTime}
