@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import {
+  aroundRow,
   betweenRow,
   centerColumn,
   centerRow,
@@ -10,6 +11,7 @@ import QWER from "../../../../components/Music/QWER 고민중독.mp3";
 import pause from "../../../../components/CSS/image/MusicImg/pause.png";
 import play from "../../../../components/CSS/image/MusicImg/play.png";
 import reStart from "../../../../components/CSS/image/MusicImg/restart.png";
+import next from "../../../../components/CSS/image/MusicImg/next.png";
 
 const MusicBoxWrapper = styled.div`
   display: flex;
@@ -71,9 +73,9 @@ const MusicPlayerWrapper = styled.div`
     }
 
     .tool {
-      ${centerRow}
+      ${aroundRow}
       background-color: gray;
-      width: 100%;
+      width: 70%;
       height: 60px;
 
       button {
@@ -85,6 +87,12 @@ const MusicPlayerWrapper = styled.div`
       img {
         width: 100%;
         height: 100%;
+      }
+
+      .rotateImg {
+        width: 100%;
+        height: 100%;
+        transform: rotate(180deg);
       }
     }
   }
@@ -212,12 +220,19 @@ const MusicBox = () => {
             onChange={handleChange}
           />
           <div className="tool">
-            <button onClick={handlePlay}>
-              <img src={audioState ? pause : play} alt="다시시작" />
-            </button>
             <button onClick={handleReset}>
               <img src={reStart} alt="다시시작" />
             </button>
+            <button onClick={handleReset}>
+              <img className="rotateImg" src={next} alt="이전곡" />
+            </button>
+            <button onClick={handlePlay}>
+              <img src={audioState ? pause : play} alt="다시시작" />
+            </button>
+            <button>
+              <img src={next} alt="다음곡" />
+            </button>
+            <button>흠냐</button>
           </div>
         </div>
       </MusicPlayerWrapper>
