@@ -83,7 +83,15 @@ const MusicListWrapper = styled.div`
   }
 `;
 
-const MusicList = () => {
+const MusicList = ({ setPlayMusic, handlePlay }) => {
+  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - 함수 기능 : 리스트에서 노래 선택 후 실행시키는 함수
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+  const handleClick = (playMusic) => {
+    setPlayMusic(playMusic);
+    handlePlay();
+  };
+
   return (
     <MusicListWrapper>
       <div className="top">
@@ -93,7 +101,13 @@ const MusicList = () => {
       </div>
       <div className="list">
         {musicArr.map((it, idx) => (
-          <div className="musicInfo">{it.name}</div>
+          <div
+            className="musicInfo"
+            key={idx}
+            onClick={() => handleClick(it.play)}
+          >
+            {it.name}
+          </div>
         ))}
       </div>
       <div className="bottom" />

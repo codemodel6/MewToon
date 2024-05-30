@@ -99,6 +99,8 @@ const MusicPlayerWrapper = styled.div`
 `;
 
 const MusicBox = () => {
+  // 작동시킬 노래
+  const [playMusic, setPlayMusic] = useState<string>(QWER);
   // 노래 재생 상태
   const [audioState, setAudioState] = useState<boolean>(false);
   // 노래 현재 시간
@@ -158,9 +160,36 @@ const MusicBox = () => {
   };
 
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  - 함수 기능 : 노래 시작 or 멈춤
+  - 함수 기능 : 노래 시작
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
   const handlePlay = () => {
+    // state가 반영이 느린 문제점을 해결
+    setAudioState((prevState) => {
+      const nowState = true;
+      if (audioRef.current) {
+        audioRef.current.play(); // 노래 시작
+      }
+      return nowState;
+    });
+  };
+
+  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - 함수 기능 : 노래 멈춤
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+  const handleStop = () => {
+    // state가 반영이 느린 문제점을 해결
+    setAudioState((prevState) => {
+      // 현재 상태를 false 로 변경
+      const nowState = false;
+      if (audioRef.current) {
+        audioRef.current.pause(); // 노래 일시정지
+      }
+      return nowState;
+    });
+  };
+
+  // 기존
+  const handlePlay222 = () => {
     // state가 반영이 느린 문제점을 해결
     setAudioState((prevState) => {
       const nowState = !prevState;
@@ -203,7 +232,7 @@ const MusicBox = () => {
     <MusicBoxWrapper>
       <MusicPlayerWrapper>
         <div className="player">
-          <audio ref={audioRef} src={QWER} />
+          <audio ref={audioRef} src={playMusic} />
           <div className="imgDiv"></div>
           <div className="title">제목입니다</div>
           <div className="author">가수입니다</div>
@@ -226,7 +255,7 @@ const MusicBox = () => {
             <button onClick={handleReset}>
               <img className="rotateImg" src={next} alt="이전곡" />
             </button>
-            <button onClick={handlePlay}>
+            <button onClick={audioState ? handleStop : handlePlay}>
               <img src={audioState ? pause : play} alt="다시시작" />
             </button>
             <button>
@@ -236,7 +265,7 @@ const MusicBox = () => {
           </div>
         </div>
       </MusicPlayerWrapper>
-      <MusicList />
+      <MusicList setPlayMusic={setPlayMusic} handlePlay={handlePlay} />
     </MusicBoxWrapper>
   );
 };

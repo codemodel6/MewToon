@@ -8,10 +8,10 @@ const handleName = (music) => {
 export const musicArr = [
   {
     name: handleName(QWER),
-    title: QWER,
+    play: QWER,
   },
   {
     name: handleName(TTL),
-    title: TTL,
+    play: TTL,
   },
 ];
