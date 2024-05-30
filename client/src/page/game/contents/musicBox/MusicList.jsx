@@ -7,7 +7,7 @@ import {
   SubColor,
   WhiteColor,
 } from "../../../../components/CSS/Color/ColorNote";
-import { musicArr } from "./musicArr";
+import { handleMusic, musicArr } from "./musicArr";
 import {
   aroundRow,
   centerRow,
@@ -93,9 +93,7 @@ const MusicList = () => {
       </div>
       <div className="list">
         {musicArr.map((it, idx) => (
-          <div className="musicInfo">
-            {it.title} - {it.author}
-          </div>
+          <div className="musicInfo">{it.name}</div>
         ))}
       </div>
       <div className="bottom" />
