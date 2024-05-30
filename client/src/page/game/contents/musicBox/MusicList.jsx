@@ -12,6 +12,7 @@ import {
   aroundRow,
   centerRow,
 } from "../../../../components/CSS/Global/GlobalDisplay";
+import { useState } from "react";
 
 const MusicListWrapper = styled.div`
   display: flex;
@@ -80,16 +81,28 @@ const MusicListWrapper = styled.div`
         transform: translateY(-5px); /* 약간 위로 이동 */
       }
     }
+
+    & .here {
+      // 아름다운 색깔 설정
+      background: linear-gradient(
+        0.25turn,
+        ${MainColor.Main300},
+        ${MainColor.Main200},
+        ${SubColor.Sub100}
+      );
+    }
   }
 `;
 
 const MusicList = ({ setPlayMusic, handlePlay }) => {
+  const [musicId, setMusicId] = useState();
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   - 함수 기능 : 리스트에서 노래 선택 후 실행시키는 함수
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-  const handleClick = (playMusic) => {
-    setPlayMusic(playMusic);
-    handlePlay(playMusic);
+  const handleClick = (it) => {
+    setMusicId(it.id);
+    setPlayMusic(it.play);
+    handlePlay(it.play);
   };
 
   return (
@@ -102,9 +115,9 @@ const MusicList = ({ setPlayMusic, handlePlay }) => {
       <div className="list">
         {musicArr.map((it, idx) => (
           <div
-            className="musicInfo"
+            className={`musicInfo ${it.id === musicId ? "here" : ""}`}
             key={idx}
-            onClick={() => handleClick(it.play)}
+            onClick={() => handleClick(it)}
           >
             {it.name}
           </div>

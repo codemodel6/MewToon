@@ -152,6 +152,9 @@ const MusicBox = () => {
     };
   }, []);
 
+  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - 함수 기능 : 노래의 시간을 00:00 형식으로 바꿔주는 함수
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
   const formatTime = (time: number): string => {
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
@@ -191,22 +194,6 @@ const MusicBox = () => {
       const nowState = false;
       if (audioRef.current) {
         audioRef.current.pause(); // 노래 일시정지
-      }
-      return nowState;
-    });
-  };
-
-  // 기존
-  const handlePlay222 = () => {
-    // state가 반영이 느린 문제점을 해결
-    setAudioState((prevState) => {
-      const nowState = !prevState;
-      if (audioRef.current) {
-        if (nowState) {
-          audioRef.current.play(); // 노래 시작
-        } else {
-          audioRef.current.pause(); // 노래 일시정지
-        }
       }
       return nowState;
     });

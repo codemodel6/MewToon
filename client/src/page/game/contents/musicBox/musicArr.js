@@ -7,10 +7,32 @@ const handleName = (music) => {
 
 export const musicArr = [
   {
+    id: 1,
     name: handleName(QWER),
     play: QWER,
   },
   {
+    id: 2,
+    name: handleName(TTL),
+    play: TTL,
+  },
+  {
+    id: 3,
+    name: handleName(QWER),
+    play: QWER,
+  },
+  {
+    id: 4,
+    name: handleName(TTL),
+    play: TTL,
+  },
+  {
+    id: 5,
+    name: handleName(QWER),
+    play: QWER,
+  },
+  {
+    id: 6,
     name: handleName(TTL),
     play: TTL,
   },
