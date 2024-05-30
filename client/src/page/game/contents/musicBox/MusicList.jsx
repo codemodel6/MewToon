@@ -89,7 +89,7 @@ const MusicList = ({ setPlayMusic, handlePlay }) => {
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
   const handleClick = (playMusic) => {
     setPlayMusic(playMusic);
-    handlePlay();
+    handlePlay(playMusic);
   };
 
   return (

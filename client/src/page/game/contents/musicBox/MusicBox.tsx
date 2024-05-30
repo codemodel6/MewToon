@@ -163,12 +163,20 @@ const MusicBox = () => {
   - 함수 기능 : 노래 시작
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
   const handlePlay = () => {
-    // state가 반영이 느린 문제점을 해결
+    // state가 반영이 느린 문제점을 해결 : prevState는 변하기 전 상태 ex) true -> false면 true
     setAudioState((prevState) => {
       const nowState = true;
-      if (audioRef.current) {
-        audioRef.current.play(); // 노래 시작
-      }
+      /** 함수 : setTimeout 0
+       *  비동기적으로 현재 실행중인 모든 코드가 실행되어서 호출 스택이 비워진 후
+       *  즉시 실행하도록 하는 함수이다. 이후 setPlayMusic이 완벽하게 동작한 후 음악을 실행시킨다.
+       *  함수를 나누지 않은 이유는 브라우저 정책에 의해 노래를 실행시키는 것은
+       *  오직 Click 이벤트 등에 의해 실행해야 하기 때문이다.
+       */
+      setTimeout(() => {
+        if (audioRef.current) {
+          audioRef.current.play(); // 노래 시작
+        }
+      }, 0);
       return nowState;
     });
   };
