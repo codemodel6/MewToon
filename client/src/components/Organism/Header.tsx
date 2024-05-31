@@ -92,7 +92,7 @@ const Header: React.FC<HeaderProps> = () => {
 
   // 현재 페이지인지 확인
   const projectPage = location.pathname.startsWith("/project");
-  const questionsPage = location.pathname.startsWith("/questions");
+  const boardPage = location.pathname.startsWith("/board");
   const informationPage = location.pathname.startsWith("/information");
 
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -135,12 +135,12 @@ const Header: React.FC<HeaderProps> = () => {
           Project
         </button>
         <button
-          className={`menuButton ${questionsPage ? "here" : ""}`}
+          className={`menuButton ${boardPage ? "here" : ""}`}
           onClick={() => {
-            navigate("/questions?page=1");
+            navigate("/board?page=1");
           }}
         >
-          Questions
+          Board
         </button>
         <button
           className={`menuButton ${informationPage ? "here" : ""}`}
