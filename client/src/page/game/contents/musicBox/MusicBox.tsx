@@ -12,6 +12,7 @@ import pause from "../../../../components/CSS/image/MusicImg/pause.png";
 import play from "../../../../components/CSS/image/MusicImg/play.png";
 import reStart from "../../../../components/CSS/image/MusicImg/restart.png";
 import next from "../../../../components/CSS/image/MusicImg/next.png";
+import { musicArr } from "./musicArr";
 
 const MusicBoxWrapper = styled.div`
   display: flex;
@@ -109,6 +110,8 @@ const MusicBox = () => {
   const [duration, setDuration] = useState<number>(0);
   // 노래 ref
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  // 재생되는 노래 id
+  const [musicId, setMusicId] = useState<number | null>(null);
 
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   - 훅 기능 : 오디오와 관련된 설정
@@ -119,7 +122,6 @@ const MusicBox = () => {
     const updateTime = () => {
       if (audio) {
         setCurrentTime(audio.currentTime);
-        // setDuration(audio.duration);
       }
     };
 
@@ -223,6 +225,58 @@ const MusicBox = () => {
     }
   };
 
+  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - 함수 기능 : 이전 노래를 실행하는 함수
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+  const handlePrev = () => {
+    // 리스트의 길이가 0일 경우 return
+    if (musicArr.length === 0) return;
+    // 1번째 곡일 경우 return
+    if (musicArr[0].play === playMusic) return;
+
+    // 현재 음악의 배열값을 찾은 후 전단계로 이동
+    for (let i = 0; i < musicArr.length; i++) {
+      if (musicArr[i].play === playMusic) {
+        // 현재 노래의 전 단계의 음악을 리스트에서 가져온다
+        const prevMusic = musicArr[i - 1].play;
+        const prevId = musicArr[i - 1].id;
+        // 이후 음악 설정
+        setPlayMusic(prevMusic);
+        setMusicId(prevId);
+        break;
+      }
+    }
+
+    // 음악 플레이 함수 실행
+    handlePlay();
+  };
+
+  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - 함수 기능 : 이전 노래를 실행하는 함수
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+  const handleNext = () => {
+    // 리스트의 길이가 0일 경우 return
+    if (musicArr.length === 0) return;
+    // 마지막 곡일 경우 return
+    if (musicArr[musicArr.length - 1].play === playMusic) return;
+
+    // 현재 음악의 배열값을 찾은 후 전단계로 이동
+    for (let i = 0; i < musicArr.length; i++) {
+      if (musicArr[i].play === playMusic) {
+        // 현재 노래의 전 단계의 음악을 리스트에서 가져온다
+        const prevMusic = musicArr[i + 1].play;
+        const prevId = musicArr[i + 1].id;
+        // 이후 음악 설정
+        setPlayMusic(prevMusic);
+        setMusicId(prevId);
+        break;
+      }
+    }
+
+    // 음악 플레이 함수 실행
+    handlePlay();
+  };
+
   return (
     <MusicBoxWrapper>
       <MusicPlayerWrapper>
@@ -247,20 +301,25 @@ const MusicBox = () => {
             <button onClick={handleReset}>
               <img src={reStart} alt="다시시작" />
             </button>
-            <button onClick={handleReset}>
+            <button onClick={handlePrev}>
               <img className="rotateImg" src={next} alt="이전곡" />
             </button>
             <button onClick={audioState ? handleStop : handlePlay}>
-              <img src={audioState ? pause : play} alt="다시시작" />
+              <img src={audioState ? pause : play} alt="재생도구" />
             </button>
-            <button>
+            <button onClick={handleNext}>
               <img src={next} alt="다음곡" />
             </button>
             <button>흠냐</button>
           </div>
         </div>
       </MusicPlayerWrapper>
-      <MusicList setPlayMusic={setPlayMusic} handlePlay={handlePlay} />
+      <MusicList
+        setPlayMusic={setPlayMusic}
+        handlePlay={handlePlay}
+        musicId={musicId}
+        setMusicId={setMusicId}
+      />
     </MusicBoxWrapper>
   );
 };

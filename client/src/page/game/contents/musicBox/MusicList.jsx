@@ -12,7 +12,7 @@ import {
   aroundRow,
   centerRow,
 } from "../../../../components/CSS/Global/GlobalDisplay";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const MusicListWrapper = styled.div`
   display: flex;
@@ -94,8 +94,7 @@ const MusicListWrapper = styled.div`
   }
 `;
 
-const MusicList = ({ setPlayMusic, handlePlay }) => {
-  const [musicId, setMusicId] = useState();
+const MusicList = ({ setPlayMusic, handlePlay, musicId, setMusicId }) => {
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   - 함수 기능 : 리스트에서 노래 선택 후 실행시키는 함수
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
