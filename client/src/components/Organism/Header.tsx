@@ -129,7 +129,7 @@ const Header: React.FC<HeaderProps> = () => {
         <button
           className={`menuButton ${projectPage ? "here" : ""}`}
           onClick={() => {
-            navigate("/project?name=KBCompany");
+            navigate("/project?name=musicBox");
           }}
         >
           Project

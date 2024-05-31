@@ -39,8 +39,8 @@ const Game = () => {
     <GlobalWrapper height="3000px">
       <OrTitle
         imageUrl={building}
-        mainText="기술을 자랑해봐요"
-        subText="Skill"
+        mainText="재미있는 프로젝트를 만들어요"
+        subText="Project"
       />
       <OrTab tabArr={skillTabArr} />
       <GameList />

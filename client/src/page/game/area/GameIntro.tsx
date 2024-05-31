@@ -100,7 +100,6 @@ const GameIntroWrapper = styled.div`
 
 const GameIntro = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  // const name = searchParams.get("name") GPT물어보기
   const name = "KBCompany";
   console.log(name);
   return (
