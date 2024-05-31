@@ -6,7 +6,7 @@ import {
 } from "../../../components/CSS/Global/GlobalDisplay";
 import { FontSize } from "../../../components/CSS/Color/ColorNote";
 
-const SkillContentsWrapper = styled.div`
+const ProjectContentsWrapper = styled.div`
   ${centerColumn}
   width: 23%;
   height: 45%;
@@ -14,7 +14,7 @@ const SkillContentsWrapper = styled.div`
   border-radius: 5%;
   padding: 5px;
 
-  .skillImgDiv {
+  .projectImgDiv {
     height: 50%;
     width: 100%;
     border-radius: 5%;
@@ -22,7 +22,7 @@ const SkillContentsWrapper = styled.div`
     margin-bottom: 10px;
   }
 
-  .skillAuthor {
+  .projectAuthor {
     ${betweenRow};
     height: 10%;
     width: 100%;
@@ -31,7 +31,7 @@ const SkillContentsWrapper = styled.div`
     font-size: ${FontSize.medium};
   }
 
-  .skillTitle {
+  .projectTitle {
     display: flex;
     flex-direction: column;
     height: 20%;
@@ -42,7 +42,7 @@ const SkillContentsWrapper = styled.div`
     font-size: ${FontSize.large};
   }
 
-  .skillPrice {
+  .projectPrice {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -57,15 +57,15 @@ const SkillContentsWrapper = styled.div`
   }
 `;
 
-const SkillContents = () => {
+const ProjectContents = () => {
   return (
-    <SkillContentsWrapper>
-      <div className="skillImgDiv"></div>
-      <div className="skillAuthor">작성자</div>
-      <div className="skillTitle">제목</div>
-      <div className="skillPrice">1000원</div>
-    </SkillContentsWrapper>
+    <ProjectContentsWrapper>
+      <div className="projectImgDiv"></div>
+      <div className="projectAuthor">작성자</div>
+      <div className="projectTitle">제목</div>
+      <div className="projectPrice">1000원</div>
+    </ProjectContentsWrapper>
   );
 };
 
-export default SkillContents;
+export default ProjectContents;

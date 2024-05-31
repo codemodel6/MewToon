@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useState } from "react";
 import Dropdown from "../../../components/Molecule/Dropdown/Dropdown";
 
-const GameListWrapper = styled.div<{ toggle: boolean }>`
+const ProjectListWrapper = styled.div<{ toggle: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,14 +18,14 @@ const itemArr = [
   { name: "report", url: "" },
 ];
 
-const GameList = () => {
+const ProjectList = () => {
   // 프로젝트 리스트 on/off
   const [toggle, setToggle] = useState<boolean>(false);
   // 드롭다운 값
   const [value, setValue] = useState<string>("프로젝트 리스트 ▼");
 
   return (
-    <GameListWrapper toggle={toggle}>
+    <ProjectListWrapper toggle={toggle}>
       <Dropdown
         itemArr={itemArr}
         toggle={toggle}
@@ -33,8 +33,8 @@ const GameList = () => {
         value={value}
         setValue={setValue}
       />
-    </GameListWrapper>
+    </ProjectListWrapper>
   );
 };
 
-export default GameList;
+export default ProjectList;

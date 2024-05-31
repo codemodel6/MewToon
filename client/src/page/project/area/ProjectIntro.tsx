@@ -9,7 +9,7 @@ import { IntroObj } from "./IntroObj";
 import { useSearchParams } from "react-router-dom";
 import { handleLink } from "../../../components/Function/MyFunction";
 
-const GameIntroWrapper = styled.div`
+const ProjectIntroWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -98,12 +98,12 @@ const GameIntroWrapper = styled.div`
   }
 `;
 
-const GameIntro = () => {
+const ProjectIntro = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const name = "KBCompany";
   console.log(name);
   return (
-    <GameIntroWrapper>
+    <ProjectIntroWrapper>
       <div className="introImgDiv">
         <img src={IntroObj[name].mainImage} alt="프로젝트 메인" />
       </div>
@@ -135,8 +135,8 @@ const GameIntro = () => {
           {IntroObj[name].contents}
         </textarea>
       </div>
-    </GameIntroWrapper>
+    </ProjectIntroWrapper>
   );
 };
 
-export default GameIntro;
+export default ProjectIntro;

@@ -7,7 +7,7 @@ import Header from "./components/Organism/Header";
 import Home from "./page/home/Home";
 import Intro from "./page/intro/Intro";
 import Information from "./page/information/Information";
-import Game from "./page/game/Game";
+import Game from "./page/project/Project";
 import Board from "./page/board/Board";
 import store from "./page/redux/store";
 
