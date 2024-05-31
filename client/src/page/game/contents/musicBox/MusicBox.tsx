@@ -3,11 +3,9 @@ import {
   aroundRow,
   betweenRow,
   centerColumn,
-  centerRow,
 } from "../../../../components/CSS/Global/GlobalDisplay";
 import MusicList from "./MusicList";
 import { useEffect, useRef, useState } from "react";
-import QWER from "../../../../components/Music/QWER 고민중독.mp3";
 import pause from "../../../../components/CSS/image/MusicImg/pause.png";
 import play from "../../../../components/CSS/image/MusicImg/play.png";
 import reStart from "../../../../components/CSS/image/MusicImg/restart.png";
@@ -101,7 +99,9 @@ const MusicPlayerWrapper = styled.div`
 
 const MusicBox = () => {
   // 작동시킬 노래
-  const [playMusic, setPlayMusic] = useState<string>(QWER);
+  const [playMusic, setPlayMusic] = useState<string | undefined>(
+    musicArr[0].play
+  );
   // 노래 재생 상태
   const [audioState, setAudioState] = useState<boolean>(false);
   // 노래 현재 시간
@@ -111,7 +111,7 @@ const MusicBox = () => {
   // 노래 ref
   const audioRef = useRef<HTMLAudioElement | null>(null);
   // 재생되는 노래 id
-  const [musicId, setMusicId] = useState<number | null>(null);
+  const [musicId, setMusicId] = useState<number | undefined>(musicArr[0].id);
 
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   - 훅 기능 : 오디오와 관련된 설정
@@ -231,15 +231,24 @@ const MusicBox = () => {
   const handlePrev = () => {
     // 리스트의 길이가 0일 경우 return
     if (musicArr.length === 0) return;
-    // 1번째 곡일 경우 return
-    if (musicArr[0].play === playMusic) return;
+
+    // 노래, 노래 아이디
+    let prevMusic: string;
+    let prevId: number;
 
     // 현재 음악의 배열값을 찾은 후 전단계로 이동
     for (let i = 0; i < musicArr.length; i++) {
       if (musicArr[i].play === playMusic) {
-        // 현재 노래의 전 단계의 음악을 리스트에서 가져온다
-        const prevMusic = musicArr[i - 1].play;
-        const prevId = musicArr[i - 1].id;
+        if (i === 0) {
+          // 처음 노래라면 마지막 노래로 간다
+          prevMusic = musicArr[musicArr.length - 1].play;
+          prevId = musicArr[musicArr.length - 1].id;
+        } else {
+          // 현재 노래의 전 단계의 음악을 리스트에서 가져온다
+          prevMusic = musicArr[i - 1].play;
+          prevId = musicArr[i - 1].id;
+        }
+
         // 이후 음악 설정
         setPlayMusic(prevMusic);
         setMusicId(prevId);
@@ -257,18 +266,27 @@ const MusicBox = () => {
   const handleNext = () => {
     // 리스트의 길이가 0일 경우 return
     if (musicArr.length === 0) return;
-    // 마지막 곡일 경우 return
-    if (musicArr[musicArr.length - 1].play === playMusic) return;
+
+    // 노래, 노래 아이디
+    let nextMusic: string;
+    let nextId: number;
 
     // 현재 음악의 배열값을 찾은 후 전단계로 이동
     for (let i = 0; i < musicArr.length; i++) {
       if (musicArr[i].play === playMusic) {
-        // 현재 노래의 전 단계의 음악을 리스트에서 가져온다
-        const prevMusic = musicArr[i + 1].play;
-        const prevId = musicArr[i + 1].id;
+        if (i === musicArr.length - 1) {
+          // 마지막 노래라면 0번째로 이동
+          nextMusic = musicArr[0].play;
+          nextId = musicArr[0].id;
+        } else {
+          // 현재 노래의 전 단계의 음악을 리스트에서 가져온다
+          nextMusic = musicArr[i + 1].play;
+          nextId = musicArr[i + 1].id;
+        }
+
         // 이후 음악 설정
-        setPlayMusic(prevMusic);
-        setMusicId(prevId);
+        setPlayMusic(nextMusic);
+        setMusicId(nextId);
         break;
       }
     }
