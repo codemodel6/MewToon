@@ -10,7 +10,12 @@ import pause from "../../../../components/CSS/image/MusicImg/pause.png";
 import play from "../../../../components/CSS/image/MusicImg/play.png";
 import reStart from "../../../../components/CSS/image/MusicImg/restart.png";
 import next from "../../../../components/CSS/image/MusicImg/next.png";
+import random from "../../../../components/CSS/image/MusicImg/random.png";
 import { musicArr } from "./musicArr";
+import {
+  GrayColor,
+  SubColor,
+} from "../../../../components/CSS/Color/ColorNote";
 
 const MusicBoxWrapper = styled.div`
   display: flex;
@@ -24,35 +29,42 @@ const MusicPlayerWrapper = styled.div`
   ${centerColumn}
   height: 100%;
   width: 80%;
-  background-color: pink;
   padding-left: 350px;
 
   .player {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background: linear-gradient(
+      0.4turn,
+      ${SubColor.Sub300},
+      ${GrayColor.Gray000},
+      ${SubColor.Sub100}
+    );
     height: 90%;
     width: 650px;
-    background-color: red; // 이미지로 변경
     padding-top: 50px;
     border-radius: 20px;
 
     .imgDiv {
-      background-color: orange;
       width: 70%;
       height: 400px;
       margin-bottom: 30px;
+
+      img {
+        border-radius: 20px;
+        width: 100%;
+        height: 100%;
+      }
     }
 
     .title {
-      background-color: yellow;
       font-size: 30px;
       font-weight: bold;
       margin-bottom: 10px;
     }
 
     .author {
-      background-color: green;
       font-size: 20px;
       margin-bottom: 10px;
     }
@@ -60,7 +72,6 @@ const MusicPlayerWrapper = styled.div`
     .time {
       ${betweenRow}
       width: 70%;
-      background-color: blue;
       font-size: 15px;
       font-weight: bold;
       margin-bottom: 1px;
@@ -73,9 +84,8 @@ const MusicPlayerWrapper = styled.div`
 
     .tool {
       ${aroundRow}
-      background-color: gray;
       width: 70%;
-      height: 60px;
+      height: 50px;
 
       button {
         width: 30px;
@@ -111,7 +121,7 @@ const MusicBox = () => {
   // 노래 ref
   const audioRef = useRef<HTMLAudioElement | null>(null);
   // 재생되는 노래 id
-  const [musicId, setMusicId] = useState<number | undefined>(musicArr[0].id);
+  const [musicId, setMusicId] = useState<number>(musicArr[0].id);
 
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   - 훅 기능 : 오디오와 관련된 설정
@@ -295,14 +305,39 @@ const MusicBox = () => {
     handlePlay();
   };
 
+  const handleRandom = () => {
+    // 랜덤으로 생성 될 아이디
+    let myRandomId;
+
+    // 똑같은 아이디가 나오지 않을 때 까지 랜덤 아이디를 찾는다
+    do {
+      myRandomId = Math.floor(Math.random() * musicArr.length);
+    } while (myRandomId === musicId - 1);
+
+    console.log(myRandomId);
+    // 현재 음악의 배열값을 찾은 후 전단계로 이동
+    // 마지막 노래라면 0번째로 이동
+    const randomMusic = musicArr[myRandomId].play;
+    const randomId = musicArr[myRandomId].id;
+
+    // 이후 음악 설정
+    setPlayMusic(randomMusic);
+    setMusicId(randomId);
+
+    // 음악 플레이 함수 실행
+    handlePlay();
+  };
+
   return (
     <MusicBoxWrapper>
       <MusicPlayerWrapper>
         <div className="player">
           <audio ref={audioRef} src={playMusic} />
-          <div className="imgDiv"></div>
-          <div className="title">제목입니다</div>
-          <div className="author">가수입니다</div>
+          <div className="imgDiv">
+            <img src={musicArr[musicId - 1].img} alt="음악이미지" />
+          </div>
+          <div className="title">{musicArr[musicId - 1].name}</div>
+          <div className="author">{musicArr[musicId - 1].author}</div>
           <div className="time">
             <span>{formatTime(currentTime)}</span>
             <span>{formatTime(duration)}</span>
@@ -328,7 +363,9 @@ const MusicBox = () => {
             <button onClick={handleNext}>
               <img src={next} alt="다음곡" />
             </button>
-            <button>흠냐</button>
+            <button onClick={handleRandom}>
+              <img src={random} alt="다음곡" />
+            </button>
           </div>
         </div>
       </MusicPlayerWrapper>
