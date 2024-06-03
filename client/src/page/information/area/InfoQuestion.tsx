@@ -15,9 +15,7 @@ const InfoQuestionWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 50%;
-  /* background-color: ${GrayColor.Gray400}; */
-  background-color: white;
+  height: 90vh;
   padding-top: 5%;
 
   .title {
@@ -32,7 +30,7 @@ const InfoWriteContents = styled.div`
   display: flex;
   flex-direction: column;
   width: 60%;
-  height: 75%;
+  height: 95%;
   padding: 40px;
   box-shadow: 10px 10px 20px 0px ${GrayColor.Gray300};
   border-radius: 10px;

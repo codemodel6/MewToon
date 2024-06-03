@@ -36,7 +36,7 @@ const ProjectTitle = styled.div`
 
 const Project = () => {
   return (
-    <GlobalWrapper height="3000px">
+    <GlobalWrapper height="2700px">
       <OrTitle
         imageUrl={building}
         mainText="재미있는 프로젝트를 만들어요"

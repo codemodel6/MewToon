@@ -13,12 +13,12 @@ const InfoWrapper = styled.div`
   align-items: center;
   width: 90%;
   height: 100%;
-  background-color: rosybrown;
+  /* background-color: rosybrown; */
 `;
 
 const Information = () => {
   return (
-    <GlobalWrapper height="3000px">
+    <GlobalWrapper height="2700px">
       <OrTitle
         imageUrl={car}
         mainText="카카오 지도를 이용해서 만들어보자"

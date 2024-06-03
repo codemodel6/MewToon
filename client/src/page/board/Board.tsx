@@ -59,7 +59,7 @@ const Board = () => {
   };
 
   return (
-    <GlobalWrapper height="3000px">
+    <GlobalWrapper height="2700px">
       <OrTitle imageUrl={door} mainText="게시판을 만들껍니다" subText="Board" />
       <OrTab tabArr={boardTabArr} />
       <BoardWrapper>
