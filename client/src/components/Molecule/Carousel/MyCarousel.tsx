@@ -10,6 +10,7 @@ import { centerColumn, centerRow } from "../../CSS/Global/GlobalDisplay";
 import smoke from "../../CSS/image/smoke.gif";
 import box from "../../CSS/image/box.gif";
 import solution from "../../CSS/image/solution.gif";
+import { GrayColor, MainColor } from "../../CSS/Color/ColorNote";
 
 const CarouselWrapper = styled.div`
   display: flex;
@@ -18,8 +19,14 @@ const CarouselWrapper = styled.div`
   width: 100%;
   height: 100%;
   font-size: 50px;
-
-  color: white;
+  background: linear-gradient(
+    0.4turn,
+    #8ec5fc,
+    #ffffff,
+    #eef1f2,
+    #348afd,
+    #ffffff
+  );
 
   .slick-slider {
     height: 90vh;
@@ -46,6 +53,8 @@ const CarouselWrapper = styled.div`
       font-weight: bold;
       margin-bottom: 10px;
       font-style: oblique;
+      color: black;
+      text-shadow: 2px 2px 5px ${MainColor.Main300};
     }
     .contents {
       /* padding-left: 1px; */
