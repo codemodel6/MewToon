@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { GlobalBlock } from "../../../components/CSS/Global/GlobalBlock";
 import styled from "styled-components";
 import codeLand from "../../../components/CSS/image/FooterImg/github.png";
+import { handleScrollAnimation } from "../../../components/Function/MyFunction";
 
 const MoveWrapper = styled.section<{
   topAnimation: string;
@@ -134,32 +135,6 @@ const MoveWrapper = styled.section<{
   }
 `;
 
-/** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  * 인터페이스 : 스크롤에 따라 애니메이션을 보여주는 함수의 인터페이스
-  * Param     :
-  *   first: 화면이 처음으로 나타날 때의 스크롤 값
-  *   second: 화면이 처음으로 나타나고 사라질 때의 스크롤 값
-  *   last: 화면의 스크롤을 위로 올릴 때 사라지게 할 때의 스크롤 값
-  *   myAppear: 나타날때의 애니메이션 이름,
-  *   myDisAppear: 사라질때의 애니메이션 이름
-  *   animationCheck: 애니메이션 on/off 값
-  *   setAnimationCheck: 애니메이션 on/off 상태 변화
-  *   setAnimation: 적용시킬 애니메이션을 고르는 상태 변화
-
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-interface ScrollFunction {
-  (
-    first: number,
-    second: number,
-    last: number,
-    myAppear: string,
-    myDisAppear: string,
-    animationCheck: string,
-    setAnimationCheck: React.Dispatch<React.SetStateAction<string>>,
-    setAnimation: React.Dispatch<React.SetStateAction<string>>
-  ): void;
-}
-
 const HmMove = () => {
   const [topAnimation, setTopAnimation] = useState<string>("");
   const [topCheck, setTopCheck] = useState<string>("");
@@ -226,129 +201,6 @@ const HmMove = () => {
     imgAnimation,
     imgCheck,
   ]);
-
-  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  - 함수 기능 : 애니메이션 효과
-  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-  const handleScrollAnimation: ScrollFunction = (
-    first,
-    second,
-    last,
-    myAppear,
-    myDisAppear,
-    animationCheck,
-    setAnimationCheck,
-    setAnimation
-  ) => {
-    // 스크롤 값을 갖는 변수
-    const scrollValue = window.scrollY;
-    console.log(scrollValue);
-
-    // 스크롤 first 이상일 때 글자가 생기는 애니메이션
-    if (
-      scrollValue >= first &&
-      scrollValue < second &&
-      animationCheck !== "A"
-    ) {
-      setAnimation(myAppear);
-      setTimeout(() => {
-        setAnimationCheck("A");
-      }, 1000);
-
-      // 스크롤이 second 이상일 때 글자가 사라지는 애니메이션
-    } else if (scrollValue >= second && animationCheck !== "D") {
-      setAnimation(myDisAppear);
-      setTimeout(() => {
-        setAnimationCheck("D");
-      }, 1000);
-
-      // 스크롤을 위로 올릴 시 last 이상일 때 글자가 사라지는 애니메이션
-    } else if (scrollValue <= last && animationCheck !== "D") {
-      setAnimation(myDisAppear);
-      setAnimationCheck("D");
-    }
-  };
-
-  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  - 함수 기능 : 상단 글자 애니메이션 효과
-  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-  const handleTopScroll = () => {
-    // 스크롤 값을 갖는 변수
-    const scrollValue = window.scrollY;
-    console.log(scrollValue);
-
-    // 스크롤 300 이상일 때 글자가 생기는 애니메이션
-    if (scrollValue >= 300 && scrollValue < 1000 && topCheck !== "A") {
-      setTopAnimation("topAppear");
-      setTimeout(() => {
-        setTopCheck("A");
-      }, 1000);
-      // 스크롤 1000 이상일 때 글자가 사라지는 애니메이션
-    } else if (scrollValue >= 1000 && topCheck !== "D") {
-      setTopAnimation("topDisAppear");
-      setTimeout(() => {
-        setTopCheck("D");
-      }, 1000);
-      // 스크롤을 위로 올릴 시 150 이상일 때 글자가 사라지는 애니메이션
-    } else if (scrollValue <= 150 && topCheck !== "D") {
-      setTopAnimation("topDisAppear");
-      setTopCheck("D");
-    }
-  };
-
-  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  - 함수 기능 : 하단 글자 애니메이션 효과
-  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-  const handleBottomScroll = () => {
-    // 스크롤 값을 갖는 변수
-    const scrollValue = window.scrollY;
-    console.log(scrollValue);
-
-    // 스크롤 700 이상일 때 글자가 생기는 애니메이션
-    if (scrollValue >= 700 && scrollValue < 1400 && bottomCheck !== "A") {
-      setBottomAnimation("bottomAppear");
-      setTimeout(() => {
-        setBottomCheck("A");
-      }, 1000);
-      // 스크롤 1400 이상일 때 글자가 사라지는 애니메이션
-    } else if (scrollValue >= 1400 && bottomCheck !== "D") {
-      setBottomAnimation("bottomDisAppear");
-      setTimeout(() => {
-        setBottomCheck("D");
-      }, 1000);
-      // 스크롤을 위로 올릴 시 550 이상일 때 글자가 사라지는 애니메이션
-    } else if (scrollValue <= 550 && bottomCheck !== "D") {
-      setBottomAnimation("bottomDisAppear");
-      setBottomCheck("D");
-    }
-  };
-
-  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  - 함수 기능 : 중앙 이미지 애니메이션 효과
-  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-  const handleImgScroll = () => {
-    // 스크롤 값을 갖는 변수
-    const scrollValue = window.scrollY;
-    console.log(scrollValue);
-
-    // 스크롤 500 이상일 때 글자가 생기는 애니메이션
-    if (scrollValue >= 500 && scrollValue < 1200 && imgCheck !== "A") {
-      setImgAnimation("imgAppear");
-      setTimeout(() => {
-        setImgCheck("A");
-      }, 1000);
-      // 스크롤 1400 이상일 때 글자가 사라지는 애니메이션
-    } else if (scrollValue >= 1200 && imgCheck !== "D") {
-      setImgAnimation("imgDisAppear");
-      setTimeout(() => {
-        setImgCheck("D");
-      }, 1000);
-      // 스크롤을 위로 올릴 시 550 이상일 때 글자가 사라지는 애니메이션
-    } else if (scrollValue <= 350 && imgCheck !== "D") {
-      setImgAnimation("imgDisAppear");
-      setImgCheck("D");
-    }
-  };
 
   return (
     <GlobalBlock>
