@@ -162,60 +162,70 @@ interface ScrollFunction {
 
 const HmMove = () => {
   const [topAnimation, setTopAnimation] = useState<string>("");
-  const [topAnimationCheck, setTopAnimationCheck] = useState<string>("");
+  const [topCheck, setTopCheck] = useState<string>("");
 
   const [bottomAnimation, setBottomAnimation] = useState<string>("");
-  const [bottomAnimationCheck, setBottomAnimationCheck] = useState<string>("");
+  const [bottomCheck, setBottomCheck] = useState<string>("");
 
   const [imgAnimation, setImgAnimation] = useState<string>("");
-  const [imgAnimationCheck, setImgAnimationCheck] = useState<string>("");
+  const [imgCheck, setImgCheck] = useState<string>("");
 
-  useEffect(
-    () => {
-      // 스크롤 이벤트 발생 시 실행
-      window.addEventListener("scroll", () =>
-        handleScrollAnimation(
-          300,
-          1000,
-          550,
-          "topAppear",
-          "topDisAppear",
-          topAnimationCheck,
-          setTopAnimationCheck,
-          setTopAnimation
-        )
+  useEffect(() => {
+    // top 관련 함수 정의
+    const topFn = () =>
+      handleScrollAnimation(
+        300,
+        1000,
+        150,
+        "topAppear",
+        "topDisAppear",
+        topCheck,
+        setTopCheck,
+        setTopAnimation
+      );
+    // bottom 관련 함수 정의
+    const bottomFn = () =>
+      handleScrollAnimation(
+        700,
+        1400,
+        150,
+        "bottomAppear",
+        "bottomDisAppear",
+        bottomCheck,
+        setBottomCheck,
+        setBottomAnimation
       );
 
-      // window.addEventListener("scroll", handleTopScroll);
-      // window.addEventListener("scroll", handleBottomScroll);
-      // window.addEventListener("scroll", handleImgScroll);
+    const imgFn = () =>
+      handleScrollAnimation(
+        500,
+        1200,
+        350,
+        "imgAppear",
+        "imgDisAppear",
+        imgCheck,
+        setImgCheck,
+        setImgAnimation
+      );
 
-      return () => {
-        // window.removeEventListener("scroll", () =>
-        //   handleScrollAnimation(
-        //     300,
-        //     1000,
-        //     150,
-        //     setTopAnimation,
-        //     setTopAnimationCheck,
-        //     topAnimationCheck,
-        //     "topAppear",
-        //     "topDisAppear"
-        //   )
-        // );
-        // window.removeEventListener("scroll", handleBottomScroll);
-        // window.removeEventListener("scroll", handleImgScroll);
-      };
-    },
-    [
-      // topAnimation,
-      // topAnimationCheck,
-      // bottomAnimation,
-      // bottomAnimationCheck,
-      // imgAnimation,
-      // imgAnimationCheck,
-    ]
-  );
+    // 스크롤 이벤트 발생 시 실행
+    window.addEventListener("scroll", topFn);
+    window.addEventListener("scroll", bottomFn);
+    window.addEventListener("scroll", imgFn);
+
+    return () => {
+      window.removeEventListener("scroll", topFn);
+      window.removeEventListener("scroll", bottomFn);
+      window.removeEventListener("scroll", imgFn);
+    };
+  }, [
+    topAnimation,
+    topCheck,
+    bottomAnimation,
+    bottomCheck,
+    imgAnimation,
+    imgCheck,
+  ]);
 
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   - 함수 기능 : 애니메이션 효과
@@ -242,7 +252,7 @@ const HmMove = () => {
     ) {
       setAnimation(myAppear);
       setTimeout(() => {
-        setAnimation("A");
+        setAnimationCheck("A");
       }, 1000);
 
       // 스크롤이 second 이상일 때 글자가 사라지는 애니메이션
@@ -268,21 +278,21 @@ const HmMove = () => {
     console.log(scrollValue);
 
     // 스크롤 300 이상일 때 글자가 생기는 애니메이션
-    if (scrollValue >= 300 && scrollValue < 1000 && topAnimationCheck !== "A") {
+    if (scrollValue >= 300 && scrollValue < 1000 && topCheck !== "A") {
       setTopAnimation("topAppear");
       setTimeout(() => {
-        setTopAnimationCheck("A");
+        setTopCheck("A");
       }, 1000);
       // 스크롤 1000 이상일 때 글자가 사라지는 애니메이션
-    } else if (scrollValue >= 1000 && topAnimationCheck !== "D") {
+    } else if (scrollValue >= 1000 && topCheck !== "D") {
       setTopAnimation("topDisAppear");
       setTimeout(() => {
-        setTopAnimationCheck("D");
+        setTopCheck("D");
       }, 1000);
       // 스크롤을 위로 올릴 시 150 이상일 때 글자가 사라지는 애니메이션
-    } else if (scrollValue <= 150 && topAnimationCheck !== "D") {
+    } else if (scrollValue <= 150 && topCheck !== "D") {
       setTopAnimation("topDisAppear");
-      setTopAnimationCheck("D");
+      setTopCheck("D");
     }
   };
 
@@ -295,25 +305,21 @@ const HmMove = () => {
     console.log(scrollValue);
 
     // 스크롤 700 이상일 때 글자가 생기는 애니메이션
-    if (
-      scrollValue >= 700 &&
-      scrollValue < 1400 &&
-      bottomAnimationCheck !== "A"
-    ) {
+    if (scrollValue >= 700 && scrollValue < 1400 && bottomCheck !== "A") {
       setBottomAnimation("bottomAppear");
       setTimeout(() => {
-        setBottomAnimationCheck("A");
+        setBottomCheck("A");
       }, 1000);
       // 스크롤 1400 이상일 때 글자가 사라지는 애니메이션
-    } else if (scrollValue >= 1400 && bottomAnimationCheck !== "D") {
+    } else if (scrollValue >= 1400 && bottomCheck !== "D") {
       setBottomAnimation("bottomDisAppear");
       setTimeout(() => {
-        setBottomAnimationCheck("D");
+        setBottomCheck("D");
       }, 1000);
       // 스크롤을 위로 올릴 시 550 이상일 때 글자가 사라지는 애니메이션
-    } else if (scrollValue <= 550 && bottomAnimationCheck !== "D") {
+    } else if (scrollValue <= 550 && bottomCheck !== "D") {
       setBottomAnimation("bottomDisAppear");
-      setBottomAnimationCheck("D");
+      setBottomCheck("D");
     }
   };
 
@@ -326,21 +332,21 @@ const HmMove = () => {
     console.log(scrollValue);
 
     // 스크롤 500 이상일 때 글자가 생기는 애니메이션
-    if (scrollValue >= 500 && scrollValue < 1200 && imgAnimationCheck !== "A") {
+    if (scrollValue >= 500 && scrollValue < 1200 && imgCheck !== "A") {
       setImgAnimation("imgAppear");
       setTimeout(() => {
-        setImgAnimationCheck("A");
+        setImgCheck("A");
       }, 1000);
       // 스크롤 1400 이상일 때 글자가 사라지는 애니메이션
-    } else if (scrollValue >= 1200 && imgAnimationCheck !== "D") {
+    } else if (scrollValue >= 1200 && imgCheck !== "D") {
       setImgAnimation("imgDisAppear");
       setTimeout(() => {
-        setImgAnimationCheck("D");
+        setImgCheck("D");
       }, 1000);
       // 스크롤을 위로 올릴 시 550 이상일 때 글자가 사라지는 애니메이션
-    } else if (scrollValue <= 350 && imgAnimationCheck !== "D") {
+    } else if (scrollValue <= 350 && imgCheck !== "D") {
       setImgAnimation("imgDisAppear");
-      setImgAnimationCheck("D");
+      setImgCheck("D");
     }
   };
 
