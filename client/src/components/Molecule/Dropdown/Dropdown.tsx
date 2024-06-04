@@ -101,8 +101,8 @@ const Dropdown: React.FC<DropdownProps> = ({
   const navigate = useNavigate();
 
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
- - 함수 기능 : 토글을 선택한 값으로 변경 후 주소 변경
- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+  - 함수 기능 : 토글을 선택한 값으로 변경 후 주소 변경
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
   const handleDropdown: DropdownFunction = (props) => {
     setToggle(!toggle);
     setValue(props);
