@@ -4,7 +4,7 @@
 
 import { GlobalWrapper } from "../../components/CSS/Global/GlobalWrapper";
 import HmCarousel from "./area/HmCarousel";
-import HmInfo from "./area/HmInfo";
+import HmDream from "./area/HmDream";
 import HmMove from "./area/HmMove";
 
 const Home = () => {
@@ -12,7 +12,8 @@ const Home = () => {
     <GlobalWrapper height={"4000px"}>
       <HmCarousel />
       <HmMove />
-      <HmInfo />
+      {/* <HmMove /> */}
+      {/* <HmDream /> */}
     </GlobalWrapper>
   );
 };
