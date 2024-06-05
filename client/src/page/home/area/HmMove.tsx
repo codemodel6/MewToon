@@ -175,7 +175,7 @@ const HmMove = () => {
       handleScrollAnimation(
         500,
         1200,
-        350,
+        150,
         "imgAppear",
         "imgDisAppear",
         imgCheck,
@@ -209,7 +209,7 @@ const HmMove = () => {
         bottomAnimation={bottomAnimation}
         imgAnimation={imgAnimation}
       >
-        <h1 className="topText">상상하는 모든것!</h1>
+        <h1 className="topText">개발자의 낙원</h1>
         <img className="codelandImg" src={codeLand} alt="메인화면이미지" />
         <h1 className="bottomText">
           코드랜드에 오신걸
