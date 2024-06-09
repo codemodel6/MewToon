@@ -21,13 +21,12 @@ const BookTitle = styled.div<{
   subAnimation: string;
   clickAnimation: string;
 }>`
-  display: flex;
-  flex-direction: column;
   width: 50%;
   height: 80%;
   background-color: blue;
   padding-left: 50px;
   padding-top: 30px;
+  position: relative;
 
   .main {
     position: relative;
@@ -42,11 +41,11 @@ const BookTitle = styled.div<{
   }
 
   .click {
-    position: relative;
+    position: absolute;
     font-size: 60px;
     font-weight: bold;
-    top: 60%;
-    animation: ${(props) => props.clickAnimation} 1.5s ease-out forwards;
+    bottom: 20px;
+    animation: ${(props) => props.clickAnimation} 1s ease-out forwards;
 
     img {
       width: 60px;
@@ -105,24 +104,24 @@ const BookTitle = styled.div<{
   //--- 책 애니메이션 ---
   @keyframes clickAppear {
     0% {
-      left: -50px;
+      right: -50px;
       opacity: 0;
     }
 
     100% {
-      left: 550px;
+      right: 20px;
       opacity: 1;
     }
   }
 
   @keyframes clickDisAppear {
     0% {
-      left: 550px;
+      right: 20px;
       opacity: 1;
     }
 
     100% {
-      left: -50px;
+      right: -50px;
       opacity: 0;
     }
   }
@@ -295,7 +294,7 @@ const HmBook = () => {
       handleScrollAnimation(
         1400,
         2200,
-        1200,
+        1300,
         "subAppear",
         "subDisAppear",
         subCheck,
@@ -306,9 +305,9 @@ const HmBook = () => {
     // book 관련 함수 정의
     const clickFn = () =>
       handleScrollAnimation(
-        1400,
-        2200,
-        1200,
+        1500,
+        2500,
+        1100,
         "clickAppear",
         "clickDisAppear",
         clickCheck,
