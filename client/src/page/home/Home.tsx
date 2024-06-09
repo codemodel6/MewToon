@@ -14,8 +14,8 @@ const Home = () => {
     <GlobalWrapper height={"4000px"}>
       <HmCarousel />
       <HmMove />
-      <HmPreview />
       <HmBook />
+      <HmPreview />
     </GlobalWrapper>
   );
 };

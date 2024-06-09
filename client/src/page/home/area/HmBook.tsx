@@ -4,8 +4,10 @@ import Img1 from "../../../components/CSS/image/BookImg/book_2.jpg";
 import Img2 from "../../../components/CSS/image/BookImg/book_3.jpg";
 import Img3 from "../../../components/CSS/image/BookImg/book_4.jpg";
 import Img4 from "../../../components/CSS/image/BookImg/book_5.jpg";
-import { useState } from "react";
+import homeRight from "../../../components/CSS/image/homeRight.png";
+import { useEffect, useState } from "react";
 import { aroundRow } from "../../../components/CSS/Global/GlobalDisplay";
+import { handleScrollAnimation } from "../../../components/Function/MyFunction";
 
 const BookWrapper = styled.div`
   ${aroundRow}
@@ -14,10 +16,13 @@ const BookWrapper = styled.div`
   background-color: rebeccapurple;
 `;
 
-const BookTitle = styled.div`
+const BookTitle = styled.div<{
+  mainAnimation: string;
+  subAnimation: string;
+  clickAnimation: string;
+}>`
   display: flex;
   flex-direction: column;
-
   width: 50%;
   height: 80%;
   background-color: blue;
@@ -25,10 +30,101 @@ const BookTitle = styled.div`
   padding-top: 30px;
 
   .main {
+    position: relative;
     font-size: 50px;
+    animation: ${(props) => props.mainAnimation} 1s ease-out forwards;
   }
   .sub {
+    position: relative;
     font-size: 40px;
+    top: 50px;
+    animation: ${(props) => props.subAnimation} 1s ease-out forwards;
+  }
+
+  .click {
+    position: relative;
+    font-size: 60px;
+    font-weight: bold;
+    top: 60%;
+    animation: ${(props) => props.clickAnimation} 1.5s ease-out forwards;
+
+    img {
+      width: 60px;
+      height: 50px;
+    }
+  }
+
+  //--- 메인 글자 애니메이션 ---
+  @keyframes mainAppear {
+    0% {
+      top: -50px;
+      opacity: 0;
+    }
+    100% {
+      top: 30px;
+      opacity: 1;
+    }
+  }
+
+  @keyframes mainDisAppear {
+    0% {
+      top: 30px;
+      opacity: 1;
+    }
+
+    100% {
+      top: -50px;
+      opacity: 0;
+    }
+  }
+
+  //--- 서브 글자 애니메이션 ---
+  @keyframes subAppear {
+    0% {
+      left: -100px;
+      opacity: 0;
+    }
+    100% {
+      left: 0px;
+      opacity: 1;
+    }
+  }
+
+  @keyframes subDisAppear {
+    0% {
+      left: 0px;
+      opacity: 1;
+    }
+
+    100% {
+      left: -100px;
+      opacity: 0;
+    }
+  }
+
+  //--- 책 애니메이션 ---
+  @keyframes clickAppear {
+    0% {
+      left: -50px;
+      opacity: 0;
+    }
+
+    100% {
+      left: 550px;
+      opacity: 1;
+    }
+  }
+
+  @keyframes clickDisAppear {
+    0% {
+      left: 550px;
+      opacity: 1;
+    }
+
+    100% {
+      left: -50px;
+      opacity: 0;
+    }
   }
 `;
 
@@ -169,6 +265,76 @@ const HmBook = () => {
   // 캐러셀 진행도
   const [dot, setDot] = useState(0);
 
+  // 메인 글자 애니메이션
+  const [mainAnimation, setMainAnimation] = useState<string>("");
+  const [mainCheck, setMainCheck] = useState<string>("");
+
+  // 서브 글자 애니메이션
+  const [subAnimation, setSubAnimation] = useState<string>("");
+  const [subCheck, setSubCheck] = useState<string>("");
+
+  // 책 애니메이션
+  const [clickAnimation, setClickAnimation] = useState<string>("");
+  const [clickCheck, setClickCheck] = useState<string>("");
+
+  useEffect(() => {
+    // top 관련 함수 정의
+    const mainFn = () =>
+      handleScrollAnimation(
+        1200,
+        1900,
+        1000,
+        "mainAppear",
+        "mainDisAppear",
+        mainCheck,
+        setMainCheck,
+        setMainAnimation
+      );
+    // bottom 관련 함수 정의
+    const subFn = () =>
+      handleScrollAnimation(
+        1400,
+        2200,
+        1200,
+        "subAppear",
+        "subDisAppear",
+        subCheck,
+        setSubCheck,
+        setSubAnimation
+      );
+
+    // book 관련 함수 정의
+    const clickFn = () =>
+      handleScrollAnimation(
+        1400,
+        2200,
+        1200,
+        "clickAppear",
+        "clickDisAppear",
+        clickCheck,
+        setClickCheck,
+        setClickAnimation
+      );
+
+    // 스크롤 이벤트 발생 시 실행
+    window.addEventListener("scroll", mainFn);
+    window.addEventListener("scroll", subFn);
+    window.addEventListener("scroll", clickFn);
+
+    return () => {
+      window.removeEventListener("scroll", mainFn);
+      window.removeEventListener("scroll", subFn);
+      window.removeEventListener("scroll", clickFn);
+    };
+  }, [
+    mainAnimation,
+    mainCheck,
+    subAnimation,
+    subCheck,
+    clickAnimation,
+    clickCheck,
+  ]);
+
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   - 함수 기능 : 원하는 책으로 인덱스를 변경하는 함수
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
@@ -203,9 +369,16 @@ const HmBook = () => {
 
   return (
     <BookWrapper>
-      <BookTitle>
+      <BookTitle
+        mainAnimation={mainAnimation}
+        subAnimation={subAnimation}
+        clickAnimation={clickAnimation}
+      >
         <p className="main">독서는 마음의 양식</p>
         <p className="sub">책을 읽도록 합시다</p>
+        <p className="click">
+          CLICK <img src={homeRight} alt="오른쪽 화살표"></img>
+        </p>
       </BookTitle>
       <BookListWrapper>
         <div className="bookCarouse">

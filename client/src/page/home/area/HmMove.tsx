@@ -105,7 +105,7 @@ const MoveWrapper = styled.section<{
     }
   }
 
-  //--- 상단 글자 애니메이션 ---
+  //--- 중앙 이미지 애니메이션 ---
   @keyframes imgAppear {
     0% {
       width: 1px;
