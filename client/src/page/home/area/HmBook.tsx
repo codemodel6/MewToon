@@ -8,12 +8,13 @@ import homeRight from "../../../components/CSS/image/homeRight.png";
 import { useEffect, useState } from "react";
 import { aroundRow } from "../../../components/CSS/Global/GlobalDisplay";
 import { handleScrollAnimation } from "../../../components/Function/MyFunction";
+import { GrayColor, MainColor } from "../../../components/CSS/Color/ColorNote";
 
 const BookWrapper = styled.div`
   ${aroundRow}
   width: 90%;
   height: 90vh;
-  background-color: rebeccapurple;
+  background-color: ${MainColor.Main400};
 `;
 
 const BookTitle = styled.div<{
@@ -23,7 +24,6 @@ const BookTitle = styled.div<{
 }>`
   width: 50%;
   height: 80%;
-  background-color: blue;
   padding-left: 50px;
   padding-top: 30px;
   position: relative;
@@ -134,7 +134,6 @@ const BookListWrapper = styled.div`
   justify-content: center;
   width: 50%;
   height: 80%;
-  background-color: green;
 
   // 책들을 담는 캐러셀 div
   .bookCarouse {
@@ -144,7 +143,6 @@ const BookListWrapper = styled.div`
     align-items: flex-end;
     width: 700px;
     height: 90%;
-    background-color: orange;
     position: relative;
     margin-bottom: 10px;
 
@@ -201,11 +199,11 @@ const BookListWrapper = styled.div`
       border-radius: 50%;
       height: 8px;
       width: 8px;
-      background-color: gray;
+      background-color: ${GrayColor.Gray300};
     }
 
     & .now {
-      background-color: blue;
+      background-color: ${MainColor.Main100};
     }
   }
 `;
@@ -277,7 +275,7 @@ const HmBook = () => {
   const [clickCheck, setClickCheck] = useState<string>("");
 
   useEffect(() => {
-    // top 관련 함수 정의
+    // main 관련 함수 정의
     const mainFn = () =>
       handleScrollAnimation(
         1200,
@@ -289,7 +287,7 @@ const HmBook = () => {
         setMainCheck,
         setMainAnimation
       );
-    // bottom 관련 함수 정의
+    // sub 관련 함수 정의
     const subFn = () =>
       handleScrollAnimation(
         1400,
@@ -302,7 +300,7 @@ const HmBook = () => {
         setSubAnimation
       );
 
-    // book 관련 함수 정의
+    // click 관련 함수 정의
     const clickFn = () =>
       handleScrollAnimation(
         1500,

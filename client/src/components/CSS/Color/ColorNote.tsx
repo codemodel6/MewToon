@@ -7,6 +7,8 @@ export const MainColor = {
   Main200: "#c6e2ff",
   // 서브2
   Main300: "#8080FF",
+  // 서브3
+  Main400: "rgba(198, 226, 255, 0.3)",
 };
 
 export const SubColor = {

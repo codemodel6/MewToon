@@ -30,7 +30,7 @@ const BoardListBlock = styled.div<{ toggle: boolean }>`
   transition: width 0.8s ease;
   position: relative;
   z-index: 1;
-  background-color: rgba(198, 226, 255, 0.3);
+  background-color: ${MainColor.Main400};
 
   .boardTitleLine {
     ${centerRow}
