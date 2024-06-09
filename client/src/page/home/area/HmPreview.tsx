@@ -4,135 +4,170 @@ import {
   centerRow,
 } from "../../../components/CSS/Global/GlobalDisplay";
 import { FontSize, GrayColor } from "../../../components/CSS/Color/ColorNote";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { handleScrollAnimation } from "../../../components/Function/MyFunction";
 
-const SampleWrapper = styled.div`
+const PreviewWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  height: 40vh;
-  background-color: orange;
-  padding-top: 40px;
+  height: 60vh;
+  padding-top: 100px;
+  margin-bottom: 50px;
 
   .title {
     display: flex;
     height: 30%;
-    font-size: 30px;
+    font-size: 40px;
     color: ${GrayColor.Gray100};
+    font-weight: bold;
   }
 `;
 
-const ContentsWrapper = styled.div`
+const ContentsWrapper = styled.div<{
+  upAnimation: string;
+  downAnimation: string;
+}>`
   ${aroundRow}
-  background-color: red;
-  width: 100%;
+  width: 90%;
   height: 70%;
+  position: relative;
+  padding: 0 5% 0 5%;
 
-  .codelandImg {
-    height: 300px;
-    width: 300px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 1;
+  .upImg {
+    height: 190px;
+    width: 190px;
+    position: relative;
+    border-radius: 50%;
+    opacity: 0;
+    background-color: black;
+    animation: ${(props) => props.upAnimation} 1s ease-out forwards;
   }
 
-  //--- 상단 글자 애니메이션 ---
-  @keyframes topAppear {
+  & .one {
+    animation-delay: 0.8s;
+  }
+
+  .downImg {
+    height: 190px;
+    width: 190px;
+    position: relative;
+    border-radius: 50%;
+    opacity: 0;
+    background-color: black;
+    animation: ${(props) => props.downAnimation} 1s ease-out forwards;
+    animation-delay: 0.4s;
+  }
+
+  & .two {
+    animation-delay: 1.2s;
+  }
+
+  //--- 위 -> 중간 애니메이션 ---
+  @keyframes upAppear {
     0% {
-      left: -100px;
+      top: -100px;
       opacity: 0;
     }
     100% {
-      left: 200px;
+      top: 0;
       opacity: 1;
     }
   }
 
-  @keyframes topDisAppear {
+  @keyframes upDisAppear {
     0% {
-      left: 200px;
+      left: 0;
       opacity: 1;
     }
 
     100% {
-      left: -100px;
-      opacity: 0;
-    }
-  }
-
-  //--- 하단 글자 애니메이션 ---
-  @keyframes bottomAppear {
-    0% {
-      right: -100px;
-      opacity: 0;
-    }
-    100% {
-      right: 100px;
-      opacity: 1;
-    }
-  }
-
-  @keyframes bottomDisAppear {
-    0% {
-      right: 100px;
-      opacity: 1;
-    }
-
-    100% {
-      right: -100px;
+      top: -100px;
       opacity: 0;
     }
   }
 
-  //--- 상단 글자 애니메이션 ---
-  @keyframes imgAppear {
+  //--- 아래 -> 중간 애니메이션 ---
+  @keyframes downAppear {
     0% {
-      width: 1px;
-      height: 1px;
+      bottom: -50px;
       opacity: 0;
     }
-
     100% {
-      width: 300px;
-      height: 300px;
+      bottom: 0;
       opacity: 1;
     }
   }
 
-  @keyframes imgDisAppear {
+  @keyframes downDisAppear {
     0% {
-      width: 300px;
-      height: 300px;
+      bottom: 0;
       opacity: 1;
     }
 
     100% {
-      width: 1px;
-      height: 1px;
+      bottom: -50px;
       opacity: 0;
     }
   }
 `;
 
 const HmSample = () => {
-  // const [topAnimation, setTopAnimation] = useState<string>("");
-  // const [topCheck, setTopCheck] = useState<string>("");
+  // 위 -> 중간
+  const [upAnimation, setUpAnimation] = useState<string>("");
+  const [upCheck, setUpCheck] = useState<string>("");
 
-  // const [bottomAnimation, setBottomAnimation] = useState<string>("");
-  // const [bottomCheck, setBottomCheck] = useState<string>("");
+  // 아래 -> 중간
+  const [downAnimation, setDownAnimation] = useState<string>("");
+  const [downCheck, setDownCheck] = useState<string>("");
 
-  // const [imgAnimation, setImgAnimation] = useState<string>("");
-  // const [imgCheck, setImgCheck] = useState<string>("");
+  useEffect(() => {
+    // main 관련 함수 정의
+    const upFn = () =>
+      handleScrollAnimation(
+        2100,
+        3000,
+        1800,
+        "upAppear",
+        "upDisAppear",
+        upCheck,
+        setUpCheck,
+        setUpAnimation
+      );
+    // sub 관련 함수 정의
+    const downFn = () =>
+      handleScrollAnimation(
+        2100,
+        3000,
+        1800,
+        "downAppear",
+        "downDisAppear",
+        downCheck,
+        setDownCheck,
+        setDownAnimation
+      );
+
+    // 스크롤 이벤트 발생 시 실행
+    window.addEventListener("scroll", upFn);
+    window.addEventListener("scroll", downFn);
+    return () => {
+      window.removeEventListener("scroll", upFn);
+      window.removeEventListener("scroll", downFn);
+    };
+  }, [upAnimation, upCheck, downAnimation, downCheck]);
 
   return (
-    <SampleWrapper>
+    <PreviewWrapper>
       <div className="title">여러 프로젝트를 구경</div>
-      <ContentsWrapper></ContentsWrapper>
-    </SampleWrapper>
+      <ContentsWrapper upAnimation={upAnimation} downAnimation={downAnimation}>
+        <div className="upImg"></div>
+        <div className="downImg"></div>
+        <div className="upImg one"></div>
+        <div className="downImg two"></div>
+      </ContentsWrapper>
+    </PreviewWrapper>
   );
 };
 
