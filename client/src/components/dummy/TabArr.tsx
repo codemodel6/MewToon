@@ -16,5 +16,5 @@ export const mapTabArr: TabTitleInter[] = [
 // Board 탭
 export const boardTabArr: TabTitleInter[] = [
   { title: "자유게시판", move: 600 },
-  { title: "인기게시글", move: 1500 },
+  { title: "인기게시글", move: 1600 },
 ];
