@@ -6,6 +6,10 @@ import {
 import { FontSize, GrayColor } from "../../../components/CSS/Color/ColorNote";
 import { useEffect, useState } from "react";
 import { handleScrollAnimation } from "../../../components/Function/MyFunction";
+import musicImg from "../../../components/CSS/image/HomeImg/music.png";
+import pencilImg from "../../../components/CSS/image/HomeImg/pencil.png";
+import mapImg from "../../../components/CSS/image/HomeImg/map.png";
+import boardImg from "../../../components/CSS/image/HomeImg/board.png";
 
 const PreviewWrapper = styled.div`
   display: flex;
@@ -13,16 +17,17 @@ const PreviewWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  height: 60vh;
+  height: 70vh;
   padding-top: 100px;
   margin-bottom: 50px;
 
   .title {
     display: flex;
     height: 30%;
-    font-size: 40px;
+    font-size: 30px;
     color: ${GrayColor.Gray100};
     font-weight: bold;
+    text-align: center;
   }
 `;
 
@@ -37,12 +42,13 @@ const ContentsWrapper = styled.div<{
   padding: 0 5% 0 5%;
 
   .upImg {
+    ${centerRow}
     height: 190px;
     width: 190px;
     position: relative;
     border-radius: 50%;
     opacity: 0;
-    background-color: black;
+    border: 4px solid black;
     animation: ${(props) => props.upAnimation} 1s ease-out forwards;
   }
 
@@ -51,18 +57,25 @@ const ContentsWrapper = styled.div<{
   }
 
   .downImg {
+    ${centerRow}
     height: 190px;
     width: 190px;
     position: relative;
     border-radius: 50%;
     opacity: 0;
-    background-color: black;
     animation: ${(props) => props.downAnimation} 1s ease-out forwards;
     animation-delay: 0.2s;
+    border: 4px solid black;
   }
 
   & .two {
     animation-delay: 0.6s;
+  }
+
+  img {
+    width: 60%;
+    height: 60%;
+    /* border-radius: 50%; */
   }
 
   //--- 위 -> 중간 애니메이션 ---
@@ -127,9 +140,9 @@ const HmSample = () => {
     // main 관련 함수 정의
     const upFn = () =>
       handleScrollAnimation(
-        2100,
-        3200,
-        1800,
+        2300,
+        3400,
+        2000,
         "upAppear",
         "upDisAppear",
         upCheck,
@@ -139,9 +152,9 @@ const HmSample = () => {
     // sub 관련 함수 정의
     const downFn = () =>
       handleScrollAnimation(
-        2100,
-        3200,
-        1800,
+        2300,
+        3400,
+        2000,
         "downAppear",
         "downDisAppear",
         downCheck,
@@ -160,12 +173,24 @@ const HmSample = () => {
 
   return (
     <PreviewWrapper>
-      <div className="title">여러 프로젝트를 구경</div>
+      <div className="title">
+        특색있고 다양한 프로젝트들을
+        <br />
+        경험할 수 있습니다
+      </div>
       <ContentsWrapper upAnimation={upAnimation} downAnimation={downAnimation}>
-        <div className="upImg"></div>
-        <div className="downImg"></div>
-        <div className="upImg one"></div>
-        <div className="downImg two"></div>
+        <div className="upImg">
+          <img src={musicImg} alt="유튜브" />
+        </div>
+        <div className="downImg">
+          <img src={pencilImg} alt="그림" />
+        </div>
+        <div className="upImg one">
+          <img src={boardImg} alt="게시판" />
+        </div>
+        <div className="downImg two">
+          <img src={mapImg} alt="지도" />
+        </div>
       </ContentsWrapper>
     </PreviewWrapper>
   );

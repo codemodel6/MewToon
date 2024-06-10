@@ -11,7 +11,7 @@ import HmPreview from "./area/HmPreview";
 
 const Home = () => {
   return (
-    <GlobalWrapper height={"4200px"}>
+    <GlobalWrapper height={"4463px"}>
       <HmCarousel />
       <HmMove />
       <HmBook />
