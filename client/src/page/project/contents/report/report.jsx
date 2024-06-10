@@ -53,6 +53,20 @@ const ReportForm = styled.div`
     border-radius: 5px;
   }
 
+  input {
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    font-size: ${FontSize.medium};
+    margin-bottom: 5px;
+    border: 3px ridge ${SubColor.Sub300};
+    border-radius: 5px;
+  }
+
+  input:focus {
+    outline: none;
+  }
+
   .buttonDiv {
     margin-top: 20px;
     ${aroundRow}
@@ -142,6 +156,11 @@ const Report = () => {
         <div className="title">기타사항</div>
         <textarea value={other} onChange={(e) => setOther(e.target.value)} />
         <div className="title">개인 만족도</div>
+        <input
+          type="number"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+        ></input>
         {/* <MySlider value={value} setValue={setValue} max={5} /> */}
         <div className="buttonDiv">
           <GlobalButton width="40%" height="50px" onClick={handleSubmit}>

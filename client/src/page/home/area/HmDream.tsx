@@ -59,7 +59,7 @@ const DreamWrapper = styled.section<{
   }
 
   .handImg {
-    top: 25%;
+    bottom: 10%;
     height: 500px;
     width: 300px;
     position: absolute;
@@ -115,22 +115,22 @@ const DreamWrapper = styled.section<{
   //--- 이미지 애니메이션 ---
   @keyframes handAppear {
     0% {
-      right: 8%;
+      right: 14%;
       opacity: 0;
     }
 
     100% {
-      right: 10%;
+      right: 20%;
       opacity: 1;
     }
   }
   @keyframes handDisAppear {
     0% {
-      right: 10%;
+      right: 20%;
       opacity: 1;
     }
     100% {
-      right: 8%;
+      right: 14%;
       opacity: 0;
     }
   }
@@ -150,9 +150,9 @@ const HmDream = () => {
     // 1번 함수
     const upFn = () =>
       handleScrollAnimation(
-        2700,
+        3000,
         4000,
-        2400,
+        2700,
         "firstAppear",
         "firstDisAppear",
         firstCheck,
@@ -162,9 +162,9 @@ const HmDream = () => {
     // 2번 함수
     const downFn = () =>
       handleScrollAnimation(
-        2800,
-        4000,
-        2500,
+        3200,
+        4200,
+        2900,
         "secondAppear",
         "secondDisAppear",
         secondCheck,
@@ -175,9 +175,9 @@ const HmDream = () => {
     // img 함수
     const handFn = () =>
       handleScrollAnimation(
+        3200,
+        4200,
         2900,
-        4000,
-        2500,
         "handAppear",
         "handDisAppear",
         handCheck,

@@ -64,13 +64,12 @@ const CarouselWrapper = styled.div`
   }
 
   .gifWrapper {
-    width: 1000px;
     height: 50vh;
     text-align: center;
     margin: 0 auto;
-    background-color: orange;
 
     img {
+      border-radius: 10%;
       width: 100%;
       height: 100%;
     }
@@ -103,7 +102,7 @@ const MyCarousel = () => {
             </div>
           </div>
           <div className="gifWrapper">
-            <img src={habugerCat} alt="코드랜드" />
+            <img src={masicCat} alt="코드랜드" />
           </div>
           <div className="textWrapper">
             <div className="title">Design</div>
@@ -114,7 +113,7 @@ const MyCarousel = () => {
             </div>
           </div>
           <div className="gifWrapper">
-            <img src={masicCat} alt="디자인" />
+            <img src={habugerCat} alt="디자인" />
           </div>
           <div className="textWrapper">
             <div className="title">Experience</div>
