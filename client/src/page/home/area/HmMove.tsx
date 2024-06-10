@@ -3,6 +3,7 @@ import { GlobalBlock } from "../../../components/CSS/Global/GlobalBlock";
 import styled from "styled-components";
 import codeLand from "../../../components/CSS/image/FooterImg/github.png";
 import { handleScrollAnimation } from "../../../components/Function/MyFunction";
+import jersey from "../../../components/CSS/image/HomeImg/jersey.jpg";
 
 const MoveWrapper = styled.section<{
   topAnimation: string;
@@ -10,8 +11,11 @@ const MoveWrapper = styled.section<{
   imgAnimation: string;
 }>`
   position: relative;
-  background: url(https://www.starbucks.co.kr/common/img/main/fav_prod_bg_new.jpg)
-    fixed; // 스크롤에 따라 움직임 없이 고정
+  background-image: url(${jersey}); // 스크롤에 따라 움직임 없이 고정
+  background-size: cover; /* 이미지를 배경에 꽉 채움 */
+  background-position: center; /* 배경의 초기값을 가운데로 */
+  background-repeat: no-repeat; /* 배경보다 이미지가 작아도 반복하지 않음 */
+  background-attachment: fixed; /* 스크롤에 따라 움직임 없이 고정 */
   width: 100%;
   height: 100%;
 
@@ -216,10 +220,6 @@ const HmMove = () => {
           <br />
           환영합니다!
         </h1>
-        <img
-          src="https://image.istarbucks.co.kr/upload/common/img/main/2022/2022_NewYear_pick_img.png"
-          className="photo"
-        />
       </MoveWrapper>
     </GlobalBlock>
   );

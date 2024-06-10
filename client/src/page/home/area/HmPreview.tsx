@@ -47,7 +47,7 @@ const ContentsWrapper = styled.div<{
   }
 
   & .one {
-    animation-delay: 0.8s;
+    animation-delay: 0.4s;
   }
 
   .downImg {
@@ -58,17 +58,17 @@ const ContentsWrapper = styled.div<{
     opacity: 0;
     background-color: black;
     animation: ${(props) => props.downAnimation} 1s ease-out forwards;
-    animation-delay: 0.4s;
+    animation-delay: 0.2s;
   }
 
   & .two {
-    animation-delay: 1.2s;
+    animation-delay: 0.6s;
   }
 
   //--- 위 -> 중간 애니메이션 ---
   @keyframes upAppear {
     0% {
-      top: -100px;
+      top: -50px;
       opacity: 0;
     }
     100% {
@@ -84,7 +84,7 @@ const ContentsWrapper = styled.div<{
     }
 
     100% {
-      top: -100px;
+      top: -50px;
       opacity: 0;
     }
   }
@@ -128,7 +128,7 @@ const HmSample = () => {
     const upFn = () =>
       handleScrollAnimation(
         2100,
-        3000,
+        3200,
         1800,
         "upAppear",
         "upDisAppear",
@@ -140,7 +140,7 @@ const HmSample = () => {
     const downFn = () =>
       handleScrollAnimation(
         2100,
-        3000,
+        3200,
         1800,
         "downAppear",
         "downDisAppear",

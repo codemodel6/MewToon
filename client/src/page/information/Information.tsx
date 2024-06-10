@@ -3,7 +3,7 @@ import InfoQuestion from "./area/InfoQuestion";
 import { GlobalWrapper } from "../../components/CSS/Global/GlobalWrapper";
 import OrTab from "../../components/Organism/OrTab";
 import OrTitle from "../../components/Organism/OrTitle";
-import car from "../../components/CSS/image/car.jpg";
+import macao from "../../components/CSS/image/macao.jpg";
 import { mapTabArr } from "../../components/dummy/TabArr";
 import Map from "./area/Map";
 
@@ -13,14 +13,13 @@ const InfoWrapper = styled.div`
   align-items: center;
   width: 90%;
   height: 100%;
-  /* background-color: rosybrown; */
 `;
 
 const Information = () => {
   return (
     <GlobalWrapper height="2700px">
       <OrTitle
-        imageUrl={car}
+        imageUrl={macao}
         mainText="카카오 지도를 이용해서 만들어보자"
         subText="Map"
       />

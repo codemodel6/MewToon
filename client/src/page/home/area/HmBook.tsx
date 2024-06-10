@@ -4,17 +4,29 @@ import Img1 from "../../../components/CSS/image/BookImg/book_2.jpg";
 import Img2 from "../../../components/CSS/image/BookImg/book_3.jpg";
 import Img3 from "../../../components/CSS/image/BookImg/book_4.jpg";
 import Img4 from "../../../components/CSS/image/BookImg/book_5.jpg";
-import homeRight from "../../../components/CSS/image/homeRight.png";
+import homeRight from "../../../components/CSS/image/HomeImg/homeRight.png";
 import { useEffect, useState } from "react";
 import { aroundRow } from "../../../components/CSS/Global/GlobalDisplay";
 import { handleScrollAnimation } from "../../../components/Function/MyFunction";
-import { GrayColor, MainColor } from "../../../components/CSS/Color/ColorNote";
+import {
+  GrayColor,
+  MainColor,
+  SubColor,
+} from "../../../components/CSS/Color/ColorNote";
 
 const BookWrapper = styled.div`
   ${aroundRow}
-  width: 90%;
+  width: 100%;
   height: 90vh;
-  background-color: ${MainColor.Main400};
+  background: linear-gradient(
+    0.4turn,
+    #b3b3ff,
+    #8080ff,
+    #ffffff,
+    #8080ff,
+    #eef1f2,
+    #ffffff
+  );
 `;
 
 const BookTitle = styled.div<{
@@ -24,9 +36,13 @@ const BookTitle = styled.div<{
 }>`
   width: 50%;
   height: 80%;
-  padding-left: 50px;
+  padding-left: 150px;
   padding-top: 30px;
+  padding: 30px 0 0 150px;
   position: relative;
+  color: white;
+  font-weight: bold;
+  text-shadow: 5px 7px 3px black;
 
   .main {
     position: relative;
@@ -44,8 +60,9 @@ const BookTitle = styled.div<{
     position: absolute;
     font-size: 60px;
     font-weight: bold;
-    bottom: 20px;
+    bottom: 40px;
     animation: ${(props) => props.clickAnimation} 1s ease-out forwards;
+    text-shadow: 1px 5px 3px black;
 
     img {
       width: 60px;
@@ -134,6 +151,7 @@ const BookListWrapper = styled.div`
   justify-content: center;
   width: 50%;
   height: 80%;
+  padding-right: 100px;
 
   // 책들을 담는 캐러셀 div
   .bookCarouse {
@@ -279,7 +297,7 @@ const HmBook = () => {
     const mainFn = () =>
       handleScrollAnimation(
         1200,
-        1900,
+        2100,
         1000,
         "mainAppear",
         "mainDisAppear",

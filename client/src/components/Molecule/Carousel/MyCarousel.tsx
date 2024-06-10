@@ -54,7 +54,7 @@ const CarouselWrapper = styled.div`
       margin-bottom: 10px;
       font-style: oblique;
       color: black;
-      text-shadow: 2px 2px 5px ${MainColor.Main300};
+      text-shadow: 2px 2px 5px ${MainColor.Main100};
     }
     .contents {
       /* padding-left: 1px; */

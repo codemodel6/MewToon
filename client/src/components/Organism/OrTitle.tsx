@@ -16,8 +16,8 @@ const GlobalTitleWrapper = styled.div`
     position: relative;
     width: 100%;
     height: 600px;
-    background-size: cover; // 이미지가 배경을 다 채운다
-    background-position: center; // 배경의 초기값을 가운데로
+    background-size: 100% auto;
+    background-position: center 80%; // 배경의 초기값을 80%
     background-repeat: no-repeat; // 배경보다 이미지가 작아도 반복하지 않음
 
     .textDiv {

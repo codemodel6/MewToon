@@ -1,9 +1,8 @@
-import React, { SetStateAction, useEffect, useRef, useState } from "react";
-import { GlobalBlock } from "../../../components/CSS/Global/GlobalBlock";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
-import codeLand from "../../../components/CSS/image/FooterImg/github.png";
+import handshake from "../../../components/CSS/image/HomeImg/handshake.png";
+import central from "../../../components/CSS/image/HomeImg/central.jpg";
 import { handleScrollAnimation } from "../../../components/Function/MyFunction";
-// import { handleScroll } from "../../../components/Function/MyFunction";
 
 const DreamWrapper = styled.section<{
   firstAnimation: string;
@@ -13,15 +12,22 @@ const DreamWrapper = styled.section<{
   position: relative;
   width: 100%;
   height: 90vh;
-  background-color: royalblue;
+  background-image: url(${central});
+  background-size: cover; // 이미지를 배경에 꽉 채움
+  background-position: center; // 배경의 초기값을 가운데로
+  background-repeat: no-repeat; // 배경보다 이미지가 작아도 반복하지 않음
+  opacity: 1;
+  z-index: 1;
+  color: white;
+  text-rendering: optimizeLegibility;
+  text-shadow: 1px 3px 5px black;
 
   .firstText {
     width: 100px;
     position: absolute;
     font-size: 30px;
     width: 1000px;
-    color: white;
-    top: 50px;
+    top: 120px;
     left: 150px;
     opacity: 0;
     animation: ${(props) => props.firstAnimation} 1s ease-out forwards;
@@ -32,8 +38,7 @@ const DreamWrapper = styled.section<{
     position: absolute;
     font-size: 30px;
     width: 1000px;
-    color: white;
-    top: 180px;
+    top: 250px;
     left: 150px;
     opacity: 0;
     font-weight: bold;
@@ -45,8 +50,7 @@ const DreamWrapper = styled.section<{
     position: absolute;
     font-size: 30px;
     width: 1000px;
-    color: white;
-    top: 350px;
+    top: 420px;
     left: 150px;
     opacity: 0;
     font-weight: bold;
@@ -54,14 +58,13 @@ const DreamWrapper = styled.section<{
     animation-delay: 0.5s;
   }
 
-  img {
+  .handImg {
+    top: 25%;
     height: 500px;
-    width: 500px;
+    width: 300px;
     position: absolute;
-    top: 20%;
-    right: 5%;
-    opacity: 1;
-    animation: ${(props) => props.handAnimation} 1s ease-out forwards;
+    opacity: 0;
+    animation: ${(props) => props.handAnimation} 1.5s ease-out forwards;
   }
 
   //--- 1번째 애니메이션 ---
@@ -71,14 +74,14 @@ const DreamWrapper = styled.section<{
       opacity: 0;
     }
     100% {
-      top: 50px;
+      top: 120px;
       opacity: 1;
     }
   }
 
   @keyframes firstDisAppear {
     0% {
-      top: 50px;
+      top: 120px;
       opacity: 1;
     }
     100% {
@@ -110,24 +113,24 @@ const DreamWrapper = styled.section<{
   }
 
   //--- 이미지 애니메이션 ---
-  @keyframes imgAppear {
+  @keyframes handAppear {
     0% {
-      right: 0;
+      right: 8%;
       opacity: 0;
     }
 
     100% {
-      right: 7%;
+      right: 10%;
       opacity: 1;
     }
   }
-  @keyframes imgDisAppear {
+  @keyframes handDisAppear {
     0% {
-      right: 7%;
+      right: 10%;
       opacity: 1;
     }
     100% {
-      right: 0;
+      right: 8%;
       opacity: 0;
     }
   }
@@ -140,14 +143,14 @@ const HmDream = () => {
   const [secondAnimation, setSecondAnimation] = useState<string>("");
   const [secondCheck, setSecondCheck] = useState<string>("");
 
-  const [imgAnimation, setImgAnimation] = useState<string>("");
-  const [imgCheck, setImgCheck] = useState<string>("");
+  const [handAnimation, setHandAnimation] = useState<string>("");
+  const [handCheck, setHandCheck] = useState<string>("");
 
   useEffect(() => {
     // 1번 함수
     const upFn = () =>
       handleScrollAnimation(
-        2500,
+        2700,
         4000,
         2400,
         "firstAppear",
@@ -159,7 +162,7 @@ const HmDream = () => {
     // 2번 함수
     const downFn = () =>
       handleScrollAnimation(
-        2600,
+        2800,
         4000,
         2500,
         "secondAppear",
@@ -170,42 +173,42 @@ const HmDream = () => {
       );
 
     // img 함수
-    const imgFn = () =>
+    const handFn = () =>
       handleScrollAnimation(
-        2600,
+        2900,
         4000,
         2500,
-        "imgAppear",
-        "imgDisAppear",
-        imgCheck,
-        setImgCheck,
-        setImgAnimation
+        "handAppear",
+        "handDisAppear",
+        handCheck,
+        setHandCheck,
+        setHandAnimation
       );
 
     // 스크롤 이벤트 발생 시 실행
     window.addEventListener("scroll", upFn);
     window.addEventListener("scroll", downFn);
-    window.addEventListener("scroll", imgFn);
+    window.addEventListener("scroll", handFn);
 
     return () => {
       window.removeEventListener("scroll", upFn);
       window.removeEventListener("scroll", downFn);
-      window.removeEventListener("scroll", imgFn);
+      window.removeEventListener("scroll", handFn);
     };
   }, [
     firstAnimation,
     firstCheck,
     secondAnimation,
     secondCheck,
-    imgAnimation,
-    imgCheck,
+    handAnimation,
+    handCheck,
   ]);
 
   return (
     <DreamWrapper
       firstAnimation={firstAnimation}
       secondAnimation={secondAnimation}
-      handAnimation={imgAnimation}
+      handAnimation={handAnimation}
     >
       <h1 className="firstText">
         가장 많은 것을 이루는 자들은 아마 가장 많은 꿈을 꾸는 자들이다.
@@ -219,7 +222,7 @@ const HmDream = () => {
         <br />그 여정을 코드랜드에서 시작하겠습니다.
       </h1>
       <h1 className="thirdText">당신의 꿈을. 저의 꿈을 함께 이뤄봐요!</h1>
-      <img src={codeLand} alt="악수이미지" />
+      <img className="handImg" src={handshake} alt="악수이미지" />
     </DreamWrapper>
   );
 };

@@ -5,7 +5,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { GlobalWrapper } from "../../components/CSS/Global/GlobalWrapper";
-import door from "../../components/CSS/image/door.jpg";
+import towers from "../../components/CSS/image/towers.jpg";
 import WriteModal from "../../components/Molecule/Modal/WriteModal";
 import OrTab from "../../components/Organism/OrTab";
 import OrTitle from "../../components/Organism/OrTitle";
@@ -60,7 +60,11 @@ const Board = () => {
 
   return (
     <GlobalWrapper height="2700px">
-      <OrTitle imageUrl={door} mainText="게시판을 만들껍니다" subText="Board" />
+      <OrTitle
+        imageUrl={towers}
+        mainText="게시판을 만들껍니다"
+        subText="Board"
+      />
       <OrTab tabArr={boardTabArr} />
       <BoardWrapper>
         <div className="boardListWrapper">
