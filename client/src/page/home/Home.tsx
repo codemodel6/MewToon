@@ -11,12 +11,12 @@ import HmPreview from "./area/HmPreview";
 
 const Home = () => {
   return (
-    <GlobalWrapper height={"4000px"}>
+    <GlobalWrapper height={"4200px"}>
       <HmCarousel />
       <HmMove />
       <HmBook />
       <HmPreview />
-      {/* <HmDream /> */}
+      <HmDream />
     </GlobalWrapper>
   );
 };

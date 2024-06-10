@@ -2,7 +2,8 @@ import React, { SetStateAction, useEffect, useRef, useState } from "react";
 import { GlobalBlock } from "../../../components/CSS/Global/GlobalBlock";
 import styled from "styled-components";
 import codeLand from "../../../components/CSS/image/FooterImg/github.png";
-import { Dispatch } from "@reduxjs/toolkit";
+import { handleScrollAnimation } from "../../../components/Function/MyFunction";
+// import { handleScroll } from "../../../components/Function/MyFunction";
 
 const DreamWrapper = styled.section<{
   firstAnimation: string;
@@ -11,23 +12,17 @@ const DreamWrapper = styled.section<{
 }>`
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 90vh;
   background-color: royalblue;
-
-  .photo {
-    position: absolute;
-    top: 100px;
-    right: 200px;
-  }
 
   .firstText {
     width: 100px;
     position: absolute;
-    font-size: 50px;
-    width: 500px;
+    font-size: 30px;
+    width: 1000px;
     color: white;
-    top: 150px;
-    left: 200px;
+    top: 50px;
+    left: 150px;
     opacity: 0;
     animation: ${(props) => props.firstAnimation} 1s ease-out forwards;
   }
@@ -35,204 +30,197 @@ const DreamWrapper = styled.section<{
   .secondText {
     width: 200px;
     position: absolute;
-    font-size: 50px;
-    width: 500px;
+    font-size: 30px;
+    width: 1000px;
     color: white;
-    bottom: 200px;
-    right: 100px;
-    opacity: 1;
+    top: 180px;
+    left: 150px;
+    opacity: 0;
     font-weight: bold;
-    animation: ${(props) => props.secondAnimation} 1s ease-out forwards;
+    animation: ${(props) => props.secondAnimation} 1.5s ease-out forwards;
   }
 
-  .handImg {
-    height: 300px;
-    width: 300px;
+  .thirdText {
+    width: 200px;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    font-size: 30px;
+    width: 1000px;
+    color: white;
+    top: 350px;
+    left: 150px;
+    opacity: 0;
+    font-weight: bold;
+    animation: ${(props) => props.secondAnimation} 1s ease-out forwards;
+    animation-delay: 0.5s;
+  }
+
+  img {
+    height: 500px;
+    width: 500px;
+    position: absolute;
+    top: 20%;
+    right: 5%;
     opacity: 1;
     animation: ${(props) => props.handAnimation} 1s ease-out forwards;
   }
 
-  //--- 상단 글자 애니메이션 ---
+  //--- 1번째 애니메이션 ---
   @keyframes firstAppear {
     0% {
-      left: -100px;
+      top: 0px;
       opacity: 0;
     }
     100% {
-      left: 200px;
+      top: 50px;
       opacity: 1;
     }
   }
 
   @keyframes firstDisAppear {
     0% {
-      left: 200px;
+      top: 50px;
       opacity: 1;
     }
     100% {
-      left: -100px;
+      top: 0;
       opacity: 0;
     }
   }
 
-  //--- 하단 글자 애니메이션 ---
+  //--- 2번째 애니메이션 ---
   @keyframes secondAppear {
     0% {
-      right: -100px;
+      left: 0px;
       opacity: 0;
     }
     100% {
-      right: 100px;
+      left: 150px;
       opacity: 1;
     }
   }
   @keyframes secondDisAppear {
     0% {
-      right: 100px;
+      left: 150px;
       opacity: 1;
     }
     100% {
-      right: -100px;
+      left: 0px;
       opacity: 0;
     }
   }
 
-  //--- 상단 글자 애니메이션 ---
-  @keyframes handAppear {
+  //--- 이미지 애니메이션 ---
+  @keyframes imgAppear {
     0% {
-      width: 1px;
-      height: 1px;
+      right: 0;
       opacity: 0;
     }
 
     100% {
-      width: 300px;
-      height: 300px;
+      right: 7%;
       opacity: 1;
+    }
+  }
+  @keyframes imgDisAppear {
+    0% {
+      right: 7%;
+      opacity: 1;
+    }
+    100% {
+      right: 0;
+      opacity: 0;
     }
   }
 `;
 
-/** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-- 인터페이스 : 스크롤에 따라 애니메이션을 보여주는 함수의 인터페이스
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-interface ScrollFunction {
-  (
-    first: number,
-    second: number,
-    mySetState: React.Dispatch<React.SetStateAction<string>>,
-    myAppear: string,
-    myDisAppear: string
-  ): void;
-}
-
 const HmDream = () => {
   const [firstAnimation, setFirstAnimation] = useState<string>("");
+  const [firstCheck, setFirstCheck] = useState<string>("");
+
   const [secondAnimation, setSecondAnimation] = useState<string>("");
-  const [thirdAnimation, setThirdAnimation] = useState<string>("");
-  const [handAnimation, setHandAnimation] = useState<string>("");
+  const [secondCheck, setSecondCheck] = useState<string>("");
+
+  const [imgAnimation, setImgAnimation] = useState<string>("");
+  const [imgCheck, setImgCheck] = useState<string>("");
 
   useEffect(() => {
-    // 스크롤 이벤트 발생 시 실행
-    window.addEventListener("scroll", () =>
-      handleScroll(100, 200, setFirstAnimation, "firstAppear", "firstDisAppear")
-    );
-    window.addEventListener("scroll", () =>
-      handleScroll(
-        200,
-        500,
-        setSecondAnimation,
+    // 1번 함수
+    const upFn = () =>
+      handleScrollAnimation(
+        2500,
+        4000,
+        2400,
+        "firstAppear",
+        "firstDisAppear",
+        firstCheck,
+        setFirstCheck,
+        setFirstAnimation
+      );
+    // 2번 함수
+    const downFn = () =>
+      handleScrollAnimation(
+        2600,
+        4000,
+        2500,
         "secondAppear",
-        "secondDisAppear"
-      )
-    );
+        "secondDisAppear",
+        secondCheck,
+        setSecondCheck,
+        setSecondAnimation
+      );
+
+    // img 함수
+    const imgFn = () =>
+      handleScrollAnimation(
+        2600,
+        4000,
+        2500,
+        "imgAppear",
+        "imgDisAppear",
+        imgCheck,
+        setImgCheck,
+        setImgAnimation
+      );
+
+    // 스크롤 이벤트 발생 시 실행
+    window.addEventListener("scroll", upFn);
+    window.addEventListener("scroll", downFn);
+    window.addEventListener("scroll", imgFn);
 
     return () => {
-      window.removeEventListener("scroll", () =>
-        handleScroll(
-          2000,
-          2400,
-          setFirstAnimation,
-          "firstAppear",
-          "firstDisAppear"
-        )
-      );
-      window.removeEventListener("scroll", () =>
-        handleScroll(
-          2600,
-          2900,
-          setSecondAnimation,
-          "secondAppear",
-          "secondDisAppear"
-        )
-      );
+      window.removeEventListener("scroll", upFn);
+      window.removeEventListener("scroll", downFn);
+      window.removeEventListener("scroll", imgFn);
     };
-  }, [firstAnimation, secondAnimation, thirdAnimation, handAnimation]);
-
-  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  - 함수 기능 : 첫번째 글자 애니메이션 효과
-  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-  const handleScroll: ScrollFunction = (
-    first,
-    second,
-    mySetState,
-    myAppear,
-    myDisAppear
-  ) => {
-    // 스크롤 값을 갖는 변수
-    const scrollValue = window.scrollY;
-
-    // 스크롤 300 이상일 때 글자가 생기는 애니메이션
-    if (scrollValue >= first && scrollValue < second) {
-      mySetState(myAppear);
-      // 스크롤 1000 이상일 때 글자가 사라지는 애니메이션
-    } else if (scrollValue >= second) {
-      mySetState(myDisAppear);
-    }
-  };
-
-  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  - 함수 기능 : 중앙 이미지 애니메이션 효과
-  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-  const handleImgScroll = () => {
-    // 스크롤 값을 갖는 변수
-    const scrollValue = window.scrollY;
-    console.log(scrollValue);
-
-    // 스크롤 500 이상일 때 글자가 생기는 애니메이션
-    if (scrollValue >= 500 && scrollValue < 1200) {
-      setHandAnimation("handAppear");
-
-      // 스크롤 1400 이상일 때 글자가 사라지는 애니메이션
-    } else if (scrollValue >= 1200) {
-      setHandAnimation("imgDisAppear");
-    }
-  };
+  }, [
+    firstAnimation,
+    firstCheck,
+    secondAnimation,
+    secondCheck,
+    imgAnimation,
+    imgCheck,
+  ]);
 
   return (
-    <GlobalBlock>
-      <DreamWrapper
-        firstAnimation={firstAnimation}
-        secondAnimation={secondAnimation}
-        handAnimation={handAnimation}
-      >
-        <h1 className="firstText">상상하는 모든것!</h1>
-        <img className="handImg" src={codeLand} alt="메인화면이미지" />
-        <h1 className="secondText">
-          코드랜드에 오신걸
-          <br />
-          환영합니다!
-        </h1>
-        <img
-          src="https://image.istarbucks.co.kr/upload/common/img/main/2022/2022_NewYear_pick_img.png"
-          className="photo"
-        />
-      </DreamWrapper>
-    </GlobalBlock>
+    <DreamWrapper
+      firstAnimation={firstAnimation}
+      secondAnimation={secondAnimation}
+      handAnimation={imgAnimation}
+    >
+      <h1 className="firstText">
+        가장 많은 것을 이루는 자들은 아마 가장 많은 꿈을 꾸는 자들이다.
+        <br />
+        -Stephen Leacock
+      </h1>
+      <h1 className="secondText">
+        코드랜드는 꿈꾸고 만들어 보고 싶은 것을 개발하는 페이지 입니다.
+        <br />
+        높은 곳을 바라보며 꿈꾸는 것은 성공을 위한 필수 사상입니다.
+        <br />그 여정을 코드랜드에서 시작하겠습니다.
+      </h1>
+      <h1 className="thirdText">당신의 꿈을. 저의 꿈을 함께 이뤄봐요!</h1>
+      <img src={codeLand} alt="악수이미지" />
+    </DreamWrapper>
   );
 };
 
