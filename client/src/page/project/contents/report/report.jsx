@@ -68,11 +68,10 @@ const ReportForm = styled.div`
   }
 
   .buttonDiv {
-    margin-top: 20px;
+    margin-top: 40px;
     ${aroundRow}
     width: 100%;
     height: 50px;
-    background-color: green;
   }
 `;
 
