@@ -7,9 +7,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styled from "styled-components";
 import { centerColumn, centerRow } from "../../CSS/Global/GlobalDisplay";
-import smoke from "../../CSS/image/smoke.gif";
-import box from "../../CSS/image/box.gif";
-import solution from "../../CSS/image/solution.gif";
+import computerCat from "../../CSS/image/HomeImg/gif/computerCat.gif";
+import pizzaCat from "../../CSS/image/HomeImg/gif/pizzaCat.gif";
+import masicCat from "../../CSS/image/HomeImg/gif/masicCat.gif";
+import habugerCat from "../../CSS/image/HomeImg/gif/habugerCat.gif";
 import { GrayColor, MainColor } from "../../CSS/Color/ColorNote";
 
 const CarouselWrapper = styled.div`
@@ -63,9 +64,11 @@ const CarouselWrapper = styled.div`
   }
 
   .gifWrapper {
+    width: 1000px;
     height: 50vh;
     text-align: center;
     margin: 0 auto;
+    background-color: orange;
 
     img {
       width: 100%;
@@ -100,18 +103,7 @@ const MyCarousel = () => {
             </div>
           </div>
           <div className="gifWrapper">
-            <img src={smoke} alt="연기" />
-          </div>
-          <div className="textWrapper">
-            <div className="title">Experience</div>
-            <div className="contents">
-              유용한 기능들을 편리하게 사용함으로써
-              <br />
-              좋은 경험을 선사합니다.
-            </div>
-          </div>
-          <div className="gifWrapper">
-            <img src={box} alt="박스" />
+            <img src={habugerCat} alt="코드랜드" />
           </div>
           <div className="textWrapper">
             <div className="title">Design</div>
@@ -122,7 +114,18 @@ const MyCarousel = () => {
             </div>
           </div>
           <div className="gifWrapper">
-            <img src={solution} alt="솔루션" />
+            <img src={masicCat} alt="디자인" />
+          </div>
+          <div className="textWrapper">
+            <div className="title">Experience</div>
+            <div className="contents">
+              유용한 기능들을 편리하게 사용함으로써
+              <br />
+              좋은 경험을 선사합니다.
+            </div>
+          </div>
+          <div className="gifWrapper">
+            <img src={pizzaCat} alt="경험" />
           </div>
         </Slider>
       </div>
