@@ -1,9 +1,8 @@
 import styled from "styled-components";
 
 const BoardCommentWrapper = styled.div`
-  height: 200px;
+  height: 100px;
   width: 100%;
-  background-color: orange;
 `;
 
 const BoardComment = () => {
