@@ -1,15 +1,20 @@
 import styled from "styled-components";
 import {
   aroundRow,
+  centerColumn,
   centerRow,
 } from "../../../components/CSS/Global/GlobalDisplay";
-import { FontSize, GrayColor } from "../../../components/CSS/Color/ColorNote";
+import {
+  FontSize,
+  GrayColor,
+  MainColor,
+} from "../../../components/CSS/Color/ColorNote";
 import { useEffect, useState } from "react";
 import { handleScrollAnimation } from "../../../components/Function/MyFunction";
 import musicImg from "../../../components/CSS/image/HomeImg/music.png";
-import pencilImg from "../../../components/CSS/image/HomeImg/pencil.png";
-import mapImg from "../../../components/CSS/image/HomeImg/map.png";
-import boardImg from "../../../components/CSS/image/HomeImg/board.png";
+import pencilImg from "../../../components/CSS/image/HomeImg/pencil.jpg";
+import mapImg from "../../../components/CSS/image/HomeImg/map.jpg";
+import boardImg from "../../../components/CSS/image/HomeImg/board.jpg";
 
 const PreviewWrapper = styled.div`
   display: flex;
@@ -42,14 +47,14 @@ const ContentsWrapper = styled.div<{
   padding: 0 5% 0 5%;
 
   .upImg {
-    ${centerRow}
-    height: 190px;
-    width: 190px;
+    ${centerColumn}
+    height: 300px;
+    width: 200px;
     position: relative;
-    border-radius: 50%;
     opacity: 0;
-    border: 4px solid black;
     animation: ${(props) => props.upAnimation} 1s ease-out forwards;
+    font-size: 25px;
+    color: ${GrayColor.Gray100};
   }
 
   & .one {
@@ -57,15 +62,15 @@ const ContentsWrapper = styled.div<{
   }
 
   .downImg {
-    ${centerRow}
-    height: 190px;
-    width: 190px;
+    ${centerColumn}
+    height: 300px;
+    width: 200px;
     position: relative;
-    border-radius: 50%;
     opacity: 0;
     animation: ${(props) => props.downAnimation} 1s ease-out forwards;
     animation-delay: 0.2s;
-    border: 4px solid black;
+    font-size: 25px;
+    color: ${GrayColor.Gray100};
   }
 
   & .two {
@@ -73,9 +78,11 @@ const ContentsWrapper = styled.div<{
   }
 
   img {
-    width: 60%;
-    height: 60%;
-    /* border-radius: 50%; */
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 2px solid black;
+    margin-bottom: 20px;
   }
 
   //--- 위 -> 중간 애니메이션 ---
@@ -181,15 +188,19 @@ const HmSample = () => {
       <ContentsWrapper upAnimation={upAnimation} downAnimation={downAnimation}>
         <div className="upImg">
           <img src={musicImg} alt="유튜브" />
+          뮤직 플레이
         </div>
         <div className="downImg">
           <img src={pencilImg} alt="그림" />
+          그림판
         </div>
         <div className="upImg one">
           <img src={boardImg} alt="게시판" />
+          움직이는 게시판
         </div>
         <div className="downImg two">
           <img src={mapImg} alt="지도" />
+          카카오 맵
         </div>
       </ContentsWrapper>
     </PreviewWrapper>
