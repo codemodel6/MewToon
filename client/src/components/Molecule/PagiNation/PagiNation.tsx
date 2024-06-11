@@ -7,7 +7,12 @@ import { useEffect, useState } from "react";
 import left from "../../../components/CSS/image/left.png";
 import right from "../../../components/CSS/image/right.png";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { BlackColor, FontSize, MainColor } from "../../CSS/Color/ColorNote";
+import {
+  BlackColor,
+  FontSize,
+  GrayColor,
+  MainColor,
+} from "../../CSS/Color/ColorNote";
 
 const PageNationWrapper = styled.div`
   margin-top: 20px;
@@ -39,14 +44,14 @@ const PageNationWrapper = styled.div`
       font-weight: bold;
 
       a {
-        color: white;
+        color: ${GrayColor.Gray100};
         border: none;
         padding: 0;
         text-decoration: none;
       }
 
       &.on a {
-        color: ${MainColor.Main200};
+        color: ${MainColor.Main100};
       }
     }
   }
@@ -58,12 +63,14 @@ const PageNationWrapper = styled.div`
     justify-content: center;
     width: 30px;
     height: 100%;
-    background-color: ${BlackColor.Black100};
+    background-color: transparent;
 
     img {
       width: 70%;
       height: 50%;
       cursor: pointer;
+      background-color: ${GrayColor.Gray100};
+      border-radius: 50%;
     }
   }
 `;

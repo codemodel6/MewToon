@@ -2,8 +2,8 @@
 - 게시판 리스트 컴포넌트
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
 
-import { useState } from "react";
-import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import styled from "styled-components";
 import {
   FontSize,
@@ -16,9 +16,8 @@ import {
   centerRow,
 } from "../../../components/CSS/Global/GlobalDisplay";
 import { GlobalButton } from "../../../components/CSS/Global/GlobalItem";
-import WriteModal from "../../../components/Molecule/Modal/WriteModal";
 import PagiNation from "../../../components/Molecule/PagiNation/PagiNation";
-import SearchBar from "../../../components/Molecule/SearchBar/SearchBar";
+import { serverBoardObj1, serverBoardObj2 } from "./serverBoardObj";
 
 const BoardListBlock = styled.div<{ toggle: boolean }>`
   height: 100%;
@@ -63,7 +62,7 @@ const BoardListBlock = styled.div<{ toggle: boolean }>`
     .boardContents {
       ${centerRow}
       width: 100%;
-      height: 33px;
+      height: 37px;
       border-bottom: 2px solid ${GrayColor.Gray000};
       cursor: pointer;
       font-size: ${FontSize.medium};
@@ -110,7 +109,6 @@ const BoardListBlock = styled.div<{ toggle: boolean }>`
   .pagiNationDiv {
     width: 30%;
     height: 60px;
-    background-color: orange;
   }
 `;
 
@@ -187,32 +185,24 @@ interface PageDataProps {
   pageNum: number;
 }
 
-const myList = {
-  listInfo: [
-    {
-      id: 1,
-      title: "hi",
-      author: "경배",
-      day: "흠 뭐로 하지",
-    },
-    {
-      id: 2,
-      title: "hello",
-      author: "경배",
-      day: "흠 뭐로 하지",
-    },
-    {
-      id: 3,
-      title: "world",
-      author: "경배",
-      day: "흠 뭐로 하지",
-    },
-  ],
-  pageInfo: {
-    page: 1,
-    totalPage: 10,
-  },
-};
+interface Board {
+  id: number;
+  title: string;
+  author: string;
+  date: string;
+  contents: string;
+  like: number;
+}
+
+interface PageInfo {
+  page: number;
+  totalPage: number;
+}
+
+interface BoardInterface {
+  listInfo: Board[];
+  pageInfo: PageInfo;
+}
 
 const BoardList: React.FC<ListProps> = ({
   toggle,
@@ -220,7 +210,7 @@ const BoardList: React.FC<ListProps> = ({
   handleModal,
 }) => {
   // 페이지에 보여줄 게시글 state
-  const [boardList, setBoardList] = useState<object[]>([{}, {}]);
+  const [boardList, setBoardList] = useState<BoardInterface>(serverBoardObj1);
   // 총 페이지 수 state
   const [totalPage, setTotalPage] = useState<number>(10);
   // url의 페이지를 가져오는 state
@@ -235,16 +225,15 @@ const BoardList: React.FC<ListProps> = ({
   // 현재 page 쪽 정보
   const searchPage = searchParams.get("page");
   const page = Number(searchPage);
-  const navigate = useNavigate();
   console.log(page);
 
-  // 현재 페이지의 정보
-  const pageData: PageDataProps = {
-    title: searchValue,
-    startDT: startDate,
-    endDT: endDate,
-    pageNum: page,
-  };
+  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - 훅 기능 : 페이지 변경 시 데이터 변경.. 서버 없이 더미데이터 이기 때문에 임시 설정
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+  useEffect(() => {
+    if (page === 1) setBoardList(serverBoardObj1);
+    else setBoardList(serverBoardObj2);
+  }, [page]);
 
   return (
     <BoardListBlock toggle={toggle}>
@@ -272,12 +261,12 @@ const BoardList: React.FC<ListProps> = ({
         <EmptyWrapper>검색된 결과는 존재하지 않습니다.</EmptyWrapper>
       ) : (
         <div className="boardWrapper">
-          {myList.listInfo.map((it, idx) => (
+          {boardList.listInfo.map((it, idx) => (
             <div className="boardContents" key={it.id} onClick={handleToggle}>
               <div className="common">{it.id}</div>
               <div className="title">{it.title}</div>
               <div className="author">{it.author}</div>
-              <div className="common">{it.day}</div>
+              <div className="common">{it.date}</div>
             </div>
           ))}
         </div>
@@ -291,7 +280,6 @@ const BoardList: React.FC<ListProps> = ({
         {totalPage === 0 ? (
           ""
         ) : (
-          // <div></div>
           <PagiNation totalPage={totalPage} page={page} />
         )}
       </div>
