@@ -65,6 +65,9 @@ const IntroWrapper = styled.div`
       span:nth-child(7) {
         animation-delay: 3.2s;
       }
+      span:nth-child(8) {
+        animation-delay: 3.4s;
+      }
 
       @keyframes spin {
         0% {
@@ -131,7 +134,7 @@ const Intro = () => {
   useEffect(() => {
     const endIntro = setTimeout(() => {
       navigate("/home");
-    }, 6500);
+    }, 5800);
 
     return () => clearTimeout(endIntro);
   }, []);
@@ -141,13 +144,14 @@ const Intro = () => {
       <IntroWrapper>
         <div className="AnimationDiv">
           <div className="text">
-            <span>M</span>
+            <span>C</span>
             <span>O</span>
+            <span>D</span>
+            <span>E</span>
             <span>L</span>
-            <span>R</span>
-            <span>U</span>
-            <span>R</span>
-            <span>U</span>
+            <span>A</span>
+            <span>N</span>
+            <span>D</span>
           </div>
         </div>
         <div className="welcomeDiv">WELCOME</div>

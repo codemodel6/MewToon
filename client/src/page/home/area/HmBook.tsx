@@ -321,9 +321,9 @@ const HmBook = () => {
     // click 관련 함수 정의
     const clickFn = () =>
       handleScrollAnimation(
-        1500,
-        2500,
-        1100,
+        1800,
+        2700,
+        1400,
         "clickAppear",
         "clickDisAppear",
         clickCheck,

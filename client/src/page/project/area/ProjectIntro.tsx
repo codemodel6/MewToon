@@ -1,13 +1,16 @@
+import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import styled from "styled-components";
-import car from "../../../components/CSS/image/car.jpg";
 import {
   FontSize,
   GrayColor,
   MainColor,
 } from "../../../components/CSS/Color/ColorNote";
-import { IntroObj } from "./IntroObj";
-import { useSearchParams } from "react-router-dom";
-import { handleLink } from "../../../components/Function/MyFunction";
+import {
+  handleLink,
+  handleScrollMove,
+} from "../../../components/Function/MyFunction";
+import { introObj } from "./IntroObj";
 
 const ProjectIntroWrapper = styled.div`
   display: flex;
@@ -66,7 +69,7 @@ const ProjectIntroWrapper = styled.div`
       font-size: ${FontSize.xlarge};
       height: 5%;
       width: 100%;
-      margin-bottom: 20px;
+      margin-bottom: 50px;
 
       button {
         background-color: white;
@@ -75,7 +78,7 @@ const ProjectIntroWrapper = styled.div`
         height: 100%;
         margin-right: 20px;
       }
-      .outBtn {
+      .playBtn {
         color: ${MainColor.Main300};
         border-bottom: 2px solid ${MainColor.Main300};
       }
@@ -99,41 +102,55 @@ const ProjectIntroWrapper = styled.div`
 `;
 
 const ProjectIntro = () => {
+  const [urlName, setUrlName] = useState<string | null>("musicBox");
   const [searchParams, setSearchParams] = useSearchParams();
-  const name = "KBCompany";
-  console.log(name);
+
+  useEffect(() => {
+    // ulr 경로의 name으로 설정
+    const name = searchParams.get("name");
+    setUrlName(name);
+  }, [searchParams]);
+
+  // 타입 가드 및 오류 페이지
+  // urlName이 null인지 확인 || urlName이 introObj에 있는지 확인
+  if (!urlName || !(urlName in introObj)) {
+    return (
+      <ProjectIntroWrapper>
+        <div>오류페이지</div>
+      </ProjectIntroWrapper>
+    );
+  }
+
   return (
     <ProjectIntroWrapper>
       <div className="introImgDiv">
-        <img src={IntroObj[name].mainImage} alt="프로젝트 메인" />
+        <img src={introObj[urlName].mainImage} alt="프로젝트 메인" />
       </div>
       <div className="introInfo">
-        <div className="title">{IntroObj[name].title}</div>
-        <div className="sub">{IntroObj[name].sub}</div>
-        <img src={car} alt="심플아이콘" />
+        <div className="title">{introObj[urlName].title}</div>
+        <div className="sub">{introObj[urlName].sub}</div>
         <div className="link">
           <button
-            className="outBtn"
-            onClick={() => handleLink(IntroObj[name].outURL)}
-          >
-            배포
-          </button>
-          <button
             className="gitBtn"
-            onClick={() => handleLink(IntroObj[name].gitURL)}
+            onClick={() => handleLink(introObj[urlName].gitURL)}
           >
             Github
           </button>
           <button
             className="vlgBtn"
-            onClick={() => handleLink(IntroObj[name].vlgURL)}
+            onClick={() => handleLink(introObj[urlName].vlgURL)}
           >
             Velog
           </button>
+          <button className="playBtn" onClick={() => handleScrollMove(600)}>
+            Play
+          </button>
         </div>
-        <textarea readOnly className="contents">
-          {IntroObj[name].contents}
-        </textarea>
+        <textarea
+          readOnly
+          className="contents"
+          value={introObj[urlName].contents}
+        />
       </div>
     </ProjectIntroWrapper>
   );

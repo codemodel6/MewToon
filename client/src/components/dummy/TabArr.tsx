@@ -5,7 +5,7 @@ interface TabTitleInter {
 
 // skill 탭
 export const skillTabArr: TabTitleInter[] = [
-  { title: "프로젝트", move: 700 },
+  { title: "프로젝트", move: 600 },
   { title: "소개", move: 1500 },
 ];
 // Map 탭
