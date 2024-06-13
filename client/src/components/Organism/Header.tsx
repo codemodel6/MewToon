@@ -2,16 +2,16 @@
  * 헤더 컴포넌트
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
 
-import styled from "styled-components";
-import { MainColor, FontSize, BlackColor } from "../CSS/Color/ColorNote";
-import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { aroundRow, betweenRow } from "../CSS/Global/GlobalDisplay";
+import { useLocation, useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import { FontSize, MainColor } from "../CSS/Color/ColorNote";
+import { betweenRow } from "../CSS/Global/GlobalDisplay";
 import onion from "../CSS/image/onion.png";
 import { handleScroll } from "../Function/MyFunction";
 
 const MyHeader = styled.header<{
-  scrollBoolean: boolean;
+  scrollAction: boolean;
   hoverBoolean: boolean;
 }>`
   display: flex;
@@ -24,7 +24,7 @@ const MyHeader = styled.header<{
   position: fixed;
   z-index: 999;
   // 스크롤에 따라 보이고 안보임
-  transform: translateY(${(props) => (props.scrollBoolean ? "-100%" : "0")});
+  transform: translateY(${(props) => (props.scrollAction ? "-100%" : "0")});
   // 속도를 제어한다
   transition: background-color 0.5s ease, transform 0.8s ease; // 속성, 지속시간, 타이밍함수
 
@@ -39,9 +39,7 @@ const MyHeader = styled.header<{
       color: ${(props) => (props.hoverBoolean ? "black" : "white")};
       background-color: transparent;
       font-weight: bold;
-      transform: translateY(
-        ${(props) => (props.scrollBoolean ? "-100%" : "0")}
-      );
+      transform: translateY(${(props) => (props.scrollAction ? "-100%" : "0")});
       transition: transform 1s ease; // 속성, 지속시간, 타이밍함수
     }
 
@@ -58,9 +56,7 @@ const MyHeader = styled.header<{
       background-position: center; // 배경의 초기값을 가운데로
       background-repeat: no-repeat; // 배경보다 이미지가 작아도 반복하지 않음
       cursor: pointer;
-      transform: translateY(
-        ${(props) => (props.scrollBoolean ? "-100%" : "0")}
-      );
+      transform: translateY(${(props) => (props.scrollAction ? "-100%" : "0")});
       transition: transform 1s ease; // 속성, 지속시간, 타이밍함수
     }
 
@@ -69,9 +65,7 @@ const MyHeader = styled.header<{
       height: 70%;
       background-color: ${MainColor.Main100};
       border-radius: 10px;
-      transform: translateY(
-        ${(props) => (props.scrollBoolean ? "-100%" : "0")}
-      );
+      transform: translateY(${(props) => (props.scrollAction ? "-100%" : "0")});
       transition: transform 1s ease; // 속성, 지속시간, 타이밍함수
     }
   }
@@ -83,7 +77,7 @@ const Header: React.FC<HeaderProps> = () => {
   // 스크롤 위치 값
   const [scrollData, setScrollData] = useState<number>(0);
   // 스크롤이 진행중인지 확인
-  const [scrollBoolean, setScrollBoolean] = useState<boolean>(false);
+  const [scrollAction, setScrollAction] = useState<boolean>(false);
   // 호버 유무
   const [hoverBoolean, setHoverBoolean] = useState<boolean>(false);
 
@@ -100,7 +94,7 @@ const Header: React.FC<HeaderProps> = () => {
    * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
   useEffect(() => {
     const scrollCallback = () => {
-      handleScroll(scrollData, setScrollData, setScrollBoolean);
+      handleScroll(scrollData, setScrollData, setScrollAction);
     };
     window.addEventListener("scroll", scrollCallback);
     return () => {
@@ -114,7 +108,7 @@ const Header: React.FC<HeaderProps> = () => {
   }
 
   return (
-    <MyHeader scrollBoolean={scrollBoolean} hoverBoolean={hoverBoolean}>
+    <MyHeader scrollAction={scrollAction} hoverBoolean={hoverBoolean}>
       <div
         className="menuDiv"
         onMouseEnter={() => setHoverBoolean(true)}

@@ -7,7 +7,7 @@ interface ScrollFunction {
   (
     scrollData: number,
     setScrollData: React.Dispatch<React.SetStateAction<number>>,
-    setScrolling: React.Dispatch<React.SetStateAction<boolean>>
+    setScrolAction: React.Dispatch<React.SetStateAction<boolean>>
   ): void;
 }
 
@@ -17,12 +17,12 @@ interface ScrollFunction {
 export const handleScroll: ScrollFunction = (
   scrollData,
   setScrollData,
-  setScrollBoolean
+  setScrollAction
 ) => {
   if (window.scrollY > scrollData) {
-    setScrollBoolean(true);
+    setScrollAction(true);
   } else {
-    setScrollBoolean(false);
+    setScrollAction(false);
   }
 
   setScrollData(window.scrollY);
@@ -34,15 +34,6 @@ export const handleScroll: ScrollFunction = (
 export const handleScrollMove = (move: number) => {
   window.scrollTo({
     top: move,
-    behavior: "smooth",
-  });
-
-  handleTest(move);
-};
-
-const handleTest = (move: number) => {
-  window.scrollTo({
-    top: move + 1,
     behavior: "smooth",
   });
 };

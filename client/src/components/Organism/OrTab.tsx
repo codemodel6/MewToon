@@ -1,17 +1,16 @@
-import styled from "styled-components";
-import { aroundRow, centerColumn } from "../CSS/Global/GlobalDisplay";
-import { GrayColor, MainColor, WhiteColor } from "../CSS/Color/ColorNote";
 import { useEffect, useState } from "react";
+import styled from "styled-components";
+import { GrayColor, MainColor, WhiteColor } from "../CSS/Color/ColorNote";
+import { aroundRow, centerColumn } from "../CSS/Global/GlobalDisplay";
 import { handleScroll, handleScrollMove } from "../Function/MyFunction";
-import { useLocation, useNavigate } from "react-router-dom";
 
-const GlobalTabWrapper = styled.div<{ scrollBoolean: boolean }>`
+const GlobalTabWrapper = styled.div<{ $scrollAction: boolean }>`
   ${centerColumn}
   width: 100%;
   height: 80px;
   position: sticky;
   // 스크롤에 따라 위치 변경
-  top: ${(props) => (props.scrollBoolean ? "0" : "80px")};
+  top: ${(props) => (props.$scrollAction ? "0" : "80px")};
   transition: top 0.8s ease; // 속성, 지속시간, 타이밍함수
   background-color: ${WhiteColor.White100};
   z-index: 99;
@@ -46,19 +45,16 @@ const GlobalTab: React.FC<GlobalTabInter> = ({ tabArr }) => {
   // 스크롤 위치 값
   const [scrollData, setScrollData] = useState<number>(0);
   // 스크롤이 진행중인지 확인
-  const [scrollBoolean, setScrollBoolean] = useState<boolean>(false);
-  const navigate = useNavigate();
-  const location = useLocation();
-  const nowPage = location.pathname;
-  let moveTab = location.state;
+  const [scrollAction, setScrollAction] = useState<boolean>(false);
 
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
- - 훅 기능 : 스크롤이 위, 아래로 이동함에 따라 tabDiv 위치 변경
- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+  - 훅 기능 : 스크롤이 위, 아래로 이동함에 따라 tabDiv 위치 변경
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
   useEffect(() => {
     const scrollCallback = () => {
-      handleScroll(scrollData, setScrollData, setScrollBoolean);
+      handleScroll(scrollData, setScrollData, setScrollAction);
     };
+
     window.addEventListener("scroll", scrollCallback);
     console.log(scrollData);
 
@@ -68,7 +64,7 @@ const GlobalTab: React.FC<GlobalTabInter> = ({ tabArr }) => {
   }, [scrollData]);
 
   return (
-    <GlobalTabWrapper scrollBoolean={scrollBoolean}>
+    <GlobalTabWrapper $scrollAction={scrollAction}>
       <ul>
         {tabArr.map((it, idx) => (
           <li key={idx} onClick={() => handleScrollMove(it.move)}>

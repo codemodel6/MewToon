@@ -9,6 +9,8 @@ import {
   centerColumn,
 } from "../../../components/CSS/Global/GlobalDisplay";
 import { GlobalButton } from "../../../components/CSS/Global/GlobalItem";
+import { useEffect } from "react";
+import axios from "axios";
 
 const InfoQuestionWrapper = styled.div`
   display: flex;
@@ -79,6 +81,16 @@ const InfoQuestion = () => {
   const handleSubmit = () => {
     alert("시스템 오류 발생\ncodemodel6@gmail.com로 메일 부탁드립니다.");
   };
+
+  useEffect(() => {
+    const handleWebToon = async () => {
+      const webToonResponse = await axios.get(
+        "https://korea-webtoon-api.herokuapp.com/?&page=3&service=naver&updateDay=sun"
+      );
+      console.log(webToonResponse.data);
+    };
+    handleWebToon();
+  }, []);
 
   return (
     <InfoQuestionWrapper>

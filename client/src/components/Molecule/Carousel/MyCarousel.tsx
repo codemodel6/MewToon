@@ -85,8 +85,9 @@ const MyCarousel = () => {
     arrows: false,
     autoplay: true,
     speed: 1500,
-    autoplaySpeed: 4000,
+    autoplaySpeed: 3000,
     cssEase: "linear",
+    pauseOnHover: false, // 마우스 호버에도 자동으로 넘어감
   };
 
   return (
