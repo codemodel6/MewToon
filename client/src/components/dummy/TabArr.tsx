@@ -18,3 +18,8 @@ export const boardTabArr: TabTitleInter[] = [
   { title: "자유게시판", move: 600 },
   { title: "인기게시글", move: 1600 },
 ];
+// Board 탭
+export const webToonArr: TabTitleInter[] = [
+  { title: "웹툰", move: 600 },
+  { title: "검색", move: 1600 },
+];

@@ -10,6 +10,7 @@ import Information from "./page/information/Information";
 import Project from "./page/project/Project";
 import Board from "./page/board/Board";
 import store from "./page/redux/store";
+import WebToon from "./page/webToon/WebToon";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Intro />} />
             <Route path="/home" element={<Home />} />
+            <Route path="/webToon" element={<WebToon />} />
             <Route path="/project" element={<Project />} />
             <Route path="/board" element={<Board />} />
             <Route path="/information" element={<Information />} />

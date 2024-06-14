@@ -82,16 +82,6 @@ const InfoQuestion = () => {
     alert("시스템 오류 발생\ncodemodel6@gmail.com로 메일 부탁드립니다.");
   };
 
-  useEffect(() => {
-    const handleWebToon = async () => {
-      const webToonResponse = await axios.get(
-        "https://korea-webtoon-api.herokuapp.com/?&page=3&service=naver&updateDay=sun"
-      );
-      console.log(webToonResponse.data);
-    };
-    handleWebToon();
-  }, []);
-
   return (
     <InfoQuestionWrapper>
       <div className="title">문의사항이 있다면 언제든지 문의해주세요!</div>

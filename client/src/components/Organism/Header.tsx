@@ -1,7 +1,3 @@
-/** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
- * 헤더 컴포넌트
- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -9,6 +5,11 @@ import { FontSize, MainColor } from "../CSS/Color/ColorNote";
 import { betweenRow } from "../CSS/Global/GlobalDisplay";
 import onion from "../CSS/image/onion.png";
 import { handleScroll } from "../Function/MyFunction";
+
+interface TestInterface {
+  scrollAction: boolean;
+  hoverBoolean: boolean;
+}
 
 const MyHeader = styled.header<{
   scrollAction: boolean;
@@ -85,6 +86,7 @@ const Header: React.FC<HeaderProps> = () => {
   const location = useLocation();
 
   // 현재 페이지인지 확인
+  const webToonPage = location.pathname.startsWith("/webToon");
   const projectPage = location.pathname.startsWith("/project");
   const boardPage = location.pathname.startsWith("/board");
   const informationPage = location.pathname.startsWith("/information");
@@ -120,6 +122,14 @@ const Header: React.FC<HeaderProps> = () => {
             navigate("/home");
           }}
         ></div>
+        <button
+          className={`menuButton ${webToonPage ? "here" : ""}`}
+          onClick={() => {
+            navigate("/webToon");
+          }}
+        >
+          웹툰
+        </button>
         <button
           className={`menuButton ${projectPage ? "here" : ""}`}
           onClick={() => {
