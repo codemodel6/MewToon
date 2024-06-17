@@ -12,12 +12,12 @@ const WebToonWrapper = styled.div`
   align-items: center;
   height: 100%;
   width: 100%;
-  background-color: orange;
+  /* background-color: orange; */
 `;
 
 const WebToon = () => {
   return (
-    <GlobalWrapper height="2700px">
+    <GlobalWrapper height="2500px">
       <OrTitle
         imageUrl={building}
         mainText="웹툰을 선택해보아요"
