@@ -175,9 +175,9 @@ const EmptyWrapper = styled.div`
 
 interface ListInterface {
   modalState: boolean;
-  handleToggle: () => void;
-  toggle: boolean;
   setModalState: React.Dispatch<React.SetStateAction<boolean>>;
+  toggle: boolean;
+  handleToggle: () => void;
 }
 
 interface PageDataProps {
@@ -187,7 +187,7 @@ interface PageDataProps {
   pageNum: number;
 }
 
-interface Board {
+interface BoardProps {
   id: number;
   title: string;
   author: string;
@@ -196,14 +196,14 @@ interface Board {
   like: number;
 }
 
-interface PageInfo {
+interface PageInfoProps {
   page: number;
   totalPage: number;
 }
 
 interface BoardInterface {
-  listInfo: Board[];
-  pageInfo: PageInfo;
+  listInfo: BoardProps[];
+  pageInfo: PageInfoProps;
 }
 
 const BoardList: React.FC<ListInterface> = ({

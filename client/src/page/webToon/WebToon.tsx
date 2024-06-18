@@ -17,19 +17,8 @@ const WebToonWrapper = styled.div`
 `;
 
 const WebToon = () => {
-  // 웹툰을 보여주는 state
-  const [toggle, setToggle] = useState<boolean>(false);
-  // DB에서 가져온 BoardList State
-  const [myContent, setMyContent] = useState<{}>({});
   // 모달 state
   const [modalState, setModalState] = useState<boolean>(false);
-
-  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
- - 함수 기능 : 글쓰기 모달을 키고 끄는 함수
- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-  const handleModal = (): void => {
-    setModalState(!modalState);
-  };
 
   return (
     <GlobalWrapper height="2500px">
@@ -40,9 +29,12 @@ const WebToon = () => {
       />
       <OrTab tabArr={webToonArr} />
       <WebToonWrapper>
-        <WebToonList></WebToonList>
+        <WebToonList
+          modalState={modalState}
+          setModalState={setModalState}
+        ></WebToonList>
       </WebToonWrapper>
-      <WebToonModal modalState={modalState} handleModal={handleModal} />
+      <WebToonModal modalState={modalState} setModalState={setModalState} />
     </GlobalWrapper>
   );
 };

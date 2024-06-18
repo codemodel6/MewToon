@@ -1,14 +1,12 @@
 import styled from "styled-components";
-import { GlobalBlock } from "../../../components/CSS/Global/GlobalBlock";
+import { FontSize, GrayColor } from "../../../components/CSS/Color/ColorNote";
 import {
-  aroundRow,
   betweenRow,
   centerRow,
 } from "../../../components/CSS/Global/GlobalDisplay";
-import { useEffect } from "react";
-import axios from "axios";
-import { FontSize, GrayColor } from "../../../components/CSS/Color/ColorNote";
 import 화산귀환 from "../../../components/CSS/image/WebToonImg/화산귀환.png";
+import { handleModal } from "../../../components/Function/modal";
+import { useState } from "react";
 
 const WebToonListWrapper = styled.div`
   display: flex;
@@ -22,26 +20,41 @@ const WebToonListWrapper = styled.div`
   cursor: pointer;
 `;
 
-const WebToonWrapper = styled.div`
+const WebToonWrapper = styled.div<{ hoverState: boolean }>`
   border: 1px solid ${GrayColor.Gray300};
   width: 24%;
   height: 33%;
   padding: 20px;
-  transition: padding 0.5s ease;
   color: ${GrayColor.Gray100};
+  animation: ${(props) =>
+    props.hoverState ? "rotateLeft 1s forwards" : "rotateRevoke 1s forwards"};
 
-  &:hover {
-    padding: 10px;
-  }
+  /* &:hover {
+    animation: rotateLeft 1s forwards;
+    //opacity: 0.5;
+  } */
 
   .webtoon-block {
     width: 100%;
     height: 100%;
     /* background-color: orange; */
 
-    img {
+    .img-block {
       width: 100%;
       height: 82%;
+      background-image: url(${화산귀환});
+      background-size: cover; // 이미지를 배경에 꽉 채움
+      background-position: center; // 배경의 초기값을 가운데로
+      background-repeat: no-repeat; // 배경보다 이미지가 작아도 반복하지 않음
+    }
+
+    .img-block-click {
+      width: 100%;
+      height: 82%;
+      background-image: url(${화산귀환});
+      background-size: cover; // 이미지를 배경에 꽉 채움
+      background-position: center; // 배경의 초기값을 가운데로
+      background-repeat: no-repeat; // 배경보다 이미지가 작아도 반복하지 않음
     }
 
     .title {
@@ -61,6 +74,24 @@ const WebToonWrapper = styled.div`
       height: 8%;
     }
   }
+
+  @keyframes rotateLeft {
+    0% {
+      transform: rotateY(0deg);
+    }
+    100% {
+      transform: rotateY(-180deg);
+    }
+  }
+
+  @keyframes rotateRevoke {
+    0% {
+      transform: rotateY(-180deg);
+    }
+    100% {
+      transform: rotateY(0deg);
+    }
+  }
 `;
 
 const dummyList = [
@@ -78,7 +109,47 @@ const dummyList = [
   { id: 12, title: "히어로킬러", author: "작가", score: 9.32, img: 화산귀환 },
 ];
 
-const WebToonList = () => {
+interface WebToonListInterface {
+  modalState: boolean;
+  setModalState: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const WebToonList: React.FC<WebToonListInterface> = ({
+  modalState,
+  setModalState,
+}) => {
+  // 호버 상태 state
+  const [hoverState, setHoverState] = useState<{ [key: number]: boolean }>({});
+
+  const handleMouseEnter = (id: number) => {
+    console.log("실행");
+    setHoverState((prevState) => ({
+      ...prevState,
+      [id]: true,
+    }));
+
+    // const timer = setTimeout(() => {
+    //   console.log("입장");
+    //   setHoverState((prevState) => ({
+    //     ...prevState,
+    //     [id]: false,
+    //   }));
+    // }, 1000);
+
+    // return () => clearTimeout(timer);
+  };
+
+  const handleMouseLeave = (id: number) => {
+    const timer = setTimeout(() => {
+      console.log("입장");
+      setHoverState((prevState) => ({
+        ...prevState,
+        [id]: false,
+      }));
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  };
   // useEffect(() => {
   //   const handleWebToon = async () => {
   //     const webToonResponse = await axios.get(
@@ -93,9 +164,14 @@ const WebToonList = () => {
   return (
     <WebToonListWrapper>
       {dummyList.map((it, idx) => (
-        <WebToonWrapper>
+        <WebToonWrapper
+          hoverState={!!hoverState[it.id]}
+          onMouseEnter={() => handleMouseEnter(it.id)}
+          onMouseLeave={() => handleMouseLeave(it.id)}
+          onClick={() => handleModal(modalState, setModalState)}
+        >
           <div className="webtoon-block">
-            <img src={it.img} alt="웹툰이미지" />
+            <div className="img-block" />
             <div className="title">{it.title}</div>
             <div className="author">
               <p>{it.author}</p>
