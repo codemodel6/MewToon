@@ -18,6 +18,7 @@ import {
 import { GlobalButton } from "../../../components/CSS/Global/GlobalItem";
 import PagiNation from "../../../components/Molecule/PagiNation/PagiNation";
 import { serverBoardObj1, serverBoardObj2 } from "./serverBoardObj";
+import { handleModal } from "../../../components/Function/modal";
 
 const BoardListBlock = styled.div<{ toggle: boolean }>`
   height: 100%;
@@ -172,10 +173,11 @@ const EmptyWrapper = styled.div`
   border-bottom: 3px solid ${MainColor.Main100};
 `;
 
-interface ListProps {
-  toggle: boolean;
+interface ListInterface {
+  modalState: boolean;
   handleToggle: () => void;
-  handleModal: () => void;
+  toggle: boolean;
+  setModalState: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface PageDataProps {
@@ -204,10 +206,11 @@ interface BoardInterface {
   pageInfo: PageInfo;
 }
 
-const BoardList: React.FC<ListProps> = ({
+const BoardList: React.FC<ListInterface> = ({
+  modalState,
+  setModalState,
   toggle,
   handleToggle,
-  handleModal,
 }) => {
   // 페이지에 보여줄 게시글 state
   const [boardList, setBoardList] = useState<BoardInterface>(serverBoardObj1);
@@ -272,7 +275,11 @@ const BoardList: React.FC<ListProps> = ({
         </div>
       )}
       <div className="writeDiv">
-        <GlobalButton width="120px" height="30px" onClick={handleModal}>
+        <GlobalButton
+          width="120px"
+          height="30px"
+          onClick={() => handleModal(modalState, setModalState)}
+        >
           글 쓰기
         </GlobalButton>
       </div>

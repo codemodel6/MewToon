@@ -13,6 +13,7 @@ import { boardTabArr } from "../../components/dummy/TabArr";
 import BoardContent from "./area/BoardContent";
 import BoardList from "./area/BoardList";
 import BoardTopic from "./area/BoardTopic";
+import { handleModal } from "../../components/Function/modal";
 
 const BoardWrapper = styled.div`
   display: flex;
@@ -50,13 +51,6 @@ const Board = () => {
     // 데이터 불러오면 될듯?
   };
 
-  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
- - 함수 기능 : 글쓰기 모달을 키고 끄는 함수
- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-  const handleModal = (): void => {
-    setModalState(!modalState);
-  };
-
   return (
     <GlobalWrapper height="2700px">
       <OrTitle
@@ -68,9 +62,10 @@ const Board = () => {
       <BoardWrapper>
         <div className="boardListWrapper">
           <BoardList
+            modalState={modalState}
+            setModalState={setModalState}
             toggle={toggle}
             handleToggle={handleToggle}
-            handleModal={handleModal}
           />
           <BoardContent toggle={toggle} setToggle={setToggle} />
         </div>
@@ -78,7 +73,7 @@ const Board = () => {
           <BoardTopic />
         </div>
       </BoardWrapper>
-      <WriteModal modalState={modalState} handleModal={handleModal} />
+      <WriteModal modalState={modalState} setModalState={setModalState} />
     </GlobalWrapper>
   );
 };
