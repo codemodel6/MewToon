@@ -12,7 +12,7 @@ import {
 import { GlobalWrapper } from "../../../components/CSS/Global/GlobalWrapper";
 import car from "../../components/CSS/image/car.jpg";
 import OrTab from "../../../components/Organism/ScrollTab";
-import OrTitle from "../../../components/Organism/OrTitle";
+import GlobalTitle from "../../../components/Organism/GlobalTitle";
 import { mapTabArr } from "../../../components/dummy/TabArr";
 import InfoQuestion from "./InfoQuestion";
 

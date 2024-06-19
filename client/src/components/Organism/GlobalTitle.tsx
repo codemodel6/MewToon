@@ -3,10 +3,7 @@
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
 
 import styled from "styled-components";
-import { GrayColor, MainColor, WhiteColor } from "../CSS/Color/ColorNote";
-import { aroundRow, centerColumn } from "../CSS/Global/GlobalDisplay";
-import { useEffect, useState } from "react";
-import { handleScroll } from "../Function/MyFunction";
+import { WhiteColor } from "../CSS/Color/ColorNote";
 
 const GlobalTitleWrapper = styled.div`
   width: 100%;

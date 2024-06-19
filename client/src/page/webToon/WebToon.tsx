@@ -4,7 +4,7 @@ import { GlobalWrapper } from "../../components/CSS/Global/GlobalWrapper";
 import building from "../../components/CSS/image/building.jpg";
 import WebToonModal from "../../components/Molecule/Modal/WebToonModal";
 import OrTab from "../../components/Organism/ScrollTab";
-import OrTitle from "../../components/Organism/OrTitle";
+import GlobalTitle from "../../components/Organism/GlobalTitle";
 import { webToonArr } from "../../components/dummy/TabArr";
 import WebToonList from "./area/WebToonList";
 import axios from "axios";
@@ -33,7 +33,7 @@ const WebToon = () => {
 
   return (
     <GlobalWrapper height="2500px">
-      <OrTitle
+      <GlobalTitle
         imageUrl={building}
         mainText="웹툰을 선택해보아요"
         subText="WebToon"

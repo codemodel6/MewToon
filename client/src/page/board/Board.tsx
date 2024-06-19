@@ -8,7 +8,7 @@ import { GlobalWrapper } from "../../components/CSS/Global/GlobalWrapper";
 import towers from "../../components/CSS/image/towers.jpg";
 import WriteModal from "../../components/Molecule/Modal/WriteModal";
 import OrTab from "../../components/Organism/ScrollTab";
-import OrTitle from "../../components/Organism/OrTitle";
+import GlobalTitle from "../../components/Organism/GlobalTitle";
 import { boardTabArr } from "../../components/dummy/TabArr";
 import BoardContent from "./area/BoardContent";
 import BoardList from "./area/BoardList";
@@ -53,7 +53,7 @@ const Board = () => {
 
   return (
     <GlobalWrapper height="2700px">
-      <OrTitle
+      <GlobalTitle
         imageUrl={towers}
         mainText="게시판을 만들껍니다"
         subText="Board"

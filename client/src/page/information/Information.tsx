@@ -2,7 +2,7 @@ import styled from "styled-components";
 import InfoQuestion from "./area/InfoQuestion";
 import { GlobalWrapper } from "../../components/CSS/Global/GlobalWrapper";
 import OrTab from "../../components/Organism/ScrollTab";
-import OrTitle from "../../components/Organism/OrTitle";
+import GlobalTitle from "../../components/Organism/GlobalTitle";
 import macao from "../../components/CSS/image/macao.jpg";
 import { mapTabArr } from "../../components/dummy/TabArr";
 import Map from "./area/Map";
@@ -18,7 +18,7 @@ const InfoWrapper = styled.div`
 const Information = () => {
   return (
     <GlobalWrapper height="2700px">
-      <OrTitle
+      <GlobalTitle
         imageUrl={macao}
         mainText="카카오 지도를 이용해서 만들어보자"
         subText="Map"

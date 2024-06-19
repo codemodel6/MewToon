@@ -4,7 +4,7 @@
 
 import styled from "styled-components";
 import building from "../../components/CSS/image/building.jpg";
-import OrTitle from "../../components/Organism/OrTitle";
+import GlobalTitle from "../../components/Organism/GlobalTitle";
 import { GlobalWrapper } from "../../components/CSS/Global/GlobalWrapper";
 import { skillTabArr } from "../../components/dummy/TabArr";
 import OrTab from "../../components/Organism/ScrollTab";
@@ -37,7 +37,7 @@ const ProjectTitle = styled.div`
 const Project = () => {
   return (
     <GlobalWrapper height="2700px">
-      <OrTitle
+      <GlobalTitle
         imageUrl={building}
         mainText="재미있는 프로젝트를 만들어요"
         subText="Project"
