@@ -6,7 +6,8 @@ import {
 } from "../../../components/CSS/Global/GlobalDisplay";
 import 화산귀환 from "../../../components/CSS/image/WebToonImg/화산귀환.png";
 import { handleModal } from "../../../components/Function/modal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const WebToonListWrapper = styled.div`
   display: flex;
@@ -18,37 +19,24 @@ const WebToonListWrapper = styled.div`
   /* background-color: blue; */
   margin-top: 20px;
   cursor: pointer;
+  position: absolute;
 `;
 
 const WebToonWrapper = styled.div<{ hoverState: boolean }>`
   border: 1px solid ${GrayColor.Gray300};
   width: 24%;
   height: 33%;
-  padding: 20px;
+  padding: 1.1%;
   color: ${GrayColor.Gray100};
   animation: ${(props) =>
     props.hoverState ? "rotateLeft 1s forwards" : "rotateRevoke 1s forwards"};
 
-  /* &:hover {
-    animation: rotateLeft 1s forwards;
-    //opacity: 0.5;
-  } */
-
   .webtoon-block {
     width: 100%;
     height: 100%;
-    /* background-color: orange; */
+    position: relative;
 
     .img-block {
-      width: 100%;
-      height: 82%;
-      background-image: url(${화산귀환});
-      background-size: cover; // 이미지를 배경에 꽉 채움
-      background-position: center; // 배경의 초기값을 가운데로
-      background-repeat: no-repeat; // 배경보다 이미지가 작아도 반복하지 않음
-    }
-
-    .img-block-click {
       width: 100%;
       height: 82%;
       background-image: url(${화산귀환});
@@ -63,6 +51,8 @@ const WebToonWrapper = styled.div<{ hoverState: boolean }>`
       /* background-color: darkblue; */
       width: 100%;
       height: 10%;
+      transform: ${(props) =>
+        props.hoverState ? "rotateY(180deg);" : "rotateY(0);"};
     }
 
     .author {
@@ -72,6 +62,8 @@ const WebToonWrapper = styled.div<{ hoverState: boolean }>`
       /* background-color: darkcyan; */
       width: 100%;
       height: 8%;
+      transform: ${(props) =>
+        props.hoverState ? "rotateY(180deg);" : "rotateY(0);"};
     }
   }
 
@@ -92,6 +84,28 @@ const WebToonWrapper = styled.div<{ hoverState: boolean }>`
       transform: rotateY(0deg);
     }
   }
+`;
+
+const InnerWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  position: relative;
+`;
+
+const WebToonOverlay = styled.div<{ overLayState: boolean }>`
+  margin: -1.1%;
+  position: absolute;
+  padding: 20px;
+  width: 92%;
+  height: 94%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 10;
+  opacity: ${({ overLayState }) => (overLayState ? "1" : "0")};
+  transition: opacity 1.3s ease-in;
+  color: white;
+  font-weight: 20px;
+  font-size: ${FontSize.xlarge};
+  transform: rotateY(-180deg);
 `;
 
 const dummyList = [
@@ -121,39 +135,33 @@ const WebToonList: React.FC<WebToonListInterface> = ({
   // 호버 상태 state
   const [hoverState, setHoverState] = useState<{ [key: number]: boolean }>({});
 
+  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - 함수 기능 : 마우스가 웹툰 블록에 접근할 때 실행하는 함수
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
   const handleMouseEnter = (id: number) => {
-    console.log("실행");
     setHoverState((prevState) => ({
       ...prevState,
       [id]: true,
     }));
-
-    // const timer = setTimeout(() => {
-    //   console.log("입장");
-    //   setHoverState((prevState) => ({
-    //     ...prevState,
-    //     [id]: false,
-    //   }));
-    // }, 1000);
-
-    // return () => clearTimeout(timer);
   };
 
+  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - 함수 기능 : 마우스가 웹툰 블록에서 나갈때 실행하는 함수
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
   const handleMouseLeave = (id: number) => {
     const timer = setTimeout(() => {
-      console.log("입장");
       setHoverState((prevState) => ({
         ...prevState,
         [id]: false,
       }));
     }, 1000);
-
     return () => clearTimeout(timer);
   };
+
   // useEffect(() => {
   //   const handleWebToon = async () => {
   //     const webToonResponse = await axios.get(
-  //       "https://korea-webtoon-api.herokuapp.com/?&page=3&perPage=12&service=naver&updateDay=sun",
+  //       "https://korea-webtoon-api-cc7dda2f0d77.herokuapp.com/webtoons?page=1&perPage=12&sort=ASC",
   //       { withCredentials: true }
   //     );
   //     console.log(webToonResponse.data);
@@ -168,14 +176,17 @@ const WebToonList: React.FC<WebToonListInterface> = ({
           hoverState={!!hoverState[it.id]}
           onMouseEnter={() => handleMouseEnter(it.id)}
           onMouseLeave={() => handleMouseLeave(it.id)}
-          onClick={() => handleModal(modalState, setModalState)}
+          // onClick={() => handleModal(modalState, setModalState)}
         >
+          <WebToonOverlay overLayState={hoverState[it.id] === true}>
+            오버레이 텍스트
+          </WebToonOverlay>
           <div className="webtoon-block">
             <div className="img-block" />
             <div className="title">{it.title}</div>
             <div className="author">
-              <p>{it.author}</p>
               <p>★ {it.score}</p>
+              <p>{it.author}</p>
             </div>
           </div>
         </WebToonWrapper>
