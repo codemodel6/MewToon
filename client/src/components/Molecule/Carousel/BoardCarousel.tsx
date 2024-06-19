@@ -90,7 +90,7 @@ const BoardCarousel = () => {
       <div className="carousel">
         <Slider {...settings}>
           {topicList.map((it, idx) => (
-            <div className="boardWrapper">
+            <div className="boardWrapper" key={idx}>
               <div className="rankDiv">{it.rank}</div>
               <div className="boardContentBlock">
                 <div className="boardInfo">

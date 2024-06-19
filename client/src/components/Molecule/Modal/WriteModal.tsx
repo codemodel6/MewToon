@@ -139,14 +139,14 @@ const WriteModalWrapper = styled.div`
 /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   - CSS 기능 : 모달이 열렸을 경우 배경 설정
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-export const Overlay = styled.div<{ modalState: boolean }>`
+export const Overlay = styled.div<{ $modalState: boolean }>`
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
-  display: ${({ modalState }) => (modalState ? "block" : "none")};
+  display: ${({ $modalState }) => ($modalState ? "block" : "none")};
   z-index: 999;
 `;
 
@@ -173,7 +173,7 @@ const WriteModal: React.FC<WriteProps> = ({ modalState, setModalState }) => {
   };
 
   return (
-    <Overlay modalState={modalState}>
+    <Overlay $modalState={modalState}>
       <WriteModalWrapper className={`${modalState ? "open" : ""}`}>
         <div className="modalDataDiv">
           <div className="modalTitle">글 쓰기</div>

@@ -7,7 +7,7 @@ import styled from "styled-components";
 import { GlobalWrapper } from "../../components/CSS/Global/GlobalWrapper";
 import towers from "../../components/CSS/image/towers.jpg";
 import WriteModal from "../../components/Molecule/Modal/WriteModal";
-import OrTab from "../../components/Organism/OrTab";
+import OrTab from "../../components/Organism/ScrollTab";
 import OrTitle from "../../components/Organism/OrTitle";
 import { boardTabArr } from "../../components/dummy/TabArr";
 import BoardContent from "./area/BoardContent";

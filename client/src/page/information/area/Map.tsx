@@ -11,7 +11,7 @@ import {
 } from "../../../components/CSS/Global/GlobalDisplay";
 import { GlobalWrapper } from "../../../components/CSS/Global/GlobalWrapper";
 import car from "../../components/CSS/image/car.jpg";
-import OrTab from "../../../components/Organism/OrTab";
+import OrTab from "../../../components/Organism/ScrollTab";
 import OrTitle from "../../../components/Organism/OrTitle";
 import { mapTabArr } from "../../../components/dummy/TabArr";
 import InfoQuestion from "./InfoQuestion";

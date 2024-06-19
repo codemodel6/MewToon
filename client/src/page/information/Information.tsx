@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import InfoQuestion from "./area/InfoQuestion";
 import { GlobalWrapper } from "../../components/CSS/Global/GlobalWrapper";
-import OrTab from "../../components/Organism/OrTab";
+import OrTab from "../../components/Organism/ScrollTab";
 import OrTitle from "../../components/Organism/OrTitle";
 import macao from "../../components/CSS/image/macao.jpg";
 import { mapTabArr } from "../../components/dummy/TabArr";

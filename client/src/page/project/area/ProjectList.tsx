@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useState } from "react";
 import Dropdown from "../../../components/Molecule/Dropdown/Dropdown";
 
-const ProjectListWrapper = styled.div<{ toggle: boolean }>`
+const ProjectListWrapper = styled.div<{ $toggle: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,7 +25,7 @@ const ProjectList = () => {
   const [value, setValue] = useState<string>("프로젝트 리스트 ▼");
 
   return (
-    <ProjectListWrapper toggle={toggle}>
+    <ProjectListWrapper $toggle={toggle}>
       <Dropdown
         itemArr={itemArr}
         toggle={toggle}

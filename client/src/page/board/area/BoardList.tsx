@@ -20,9 +20,9 @@ import PagiNation from "../../../components/Molecule/PagiNation/PagiNation";
 import { serverBoardObj1, serverBoardObj2 } from "./serverBoardObj";
 import { handleModal } from "../../../components/Function/modal";
 
-const BoardListBlock = styled.div<{ toggle: boolean }>`
+const BoardListBlock = styled.div<{ $toggle: boolean }>`
   height: 100%;
-  width: ${(props) => (props.toggle ? "50%" : "100%")};
+  width: ${(props) => (props.$toggle ? "50%" : "100%")};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -239,7 +239,7 @@ const BoardList: React.FC<ListInterface> = ({
   }, [page]);
 
   return (
-    <BoardListBlock toggle={toggle}>
+    <BoardListBlock $toggle={toggle}>
       <DatePcikerWrapper>
         <div className="datePickerDiv">
           <div className="pickerArea">

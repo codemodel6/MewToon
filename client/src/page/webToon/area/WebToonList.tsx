@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 import { FontSize, GrayColor } from "../../../components/CSS/Color/ColorNote";
 import {
@@ -5,9 +6,6 @@ import {
   centerRow,
 } from "../../../components/CSS/Global/GlobalDisplay";
 import 화산귀환 from "../../../components/CSS/image/WebToonImg/화산귀환.png";
-import { handleModal } from "../../../components/Function/modal";
-import { useEffect, useState } from "react";
-import axios from "axios";
 
 const WebToonListWrapper = styled.div`
   display: flex;
@@ -22,14 +20,14 @@ const WebToonListWrapper = styled.div`
   position: absolute;
 `;
 
-const WebToonWrapper = styled.div<{ hoverState: boolean }>`
+const WebToonWrapper = styled.div<{ $hoverState: boolean }>`
   border: 1px solid ${GrayColor.Gray300};
   width: 24%;
   height: 33%;
   padding: 1.1%;
   color: ${GrayColor.Gray100};
   animation: ${(props) =>
-    props.hoverState ? "rotateLeft 1s forwards" : "rotateRevoke 1s forwards"};
+    props.$hoverState ? "rotateLeft 1s forwards" : "rotateRevoke 1s forwards"};
 
   .webtoon-block {
     width: 100%;
@@ -52,7 +50,7 @@ const WebToonWrapper = styled.div<{ hoverState: boolean }>`
       width: 100%;
       height: 10%;
       transform: ${(props) =>
-        props.hoverState ? "rotateY(180deg);" : "rotateY(0);"};
+        props.$hoverState ? "rotateY(180deg);" : "rotateY(0);"};
     }
 
     .author {
@@ -63,7 +61,7 @@ const WebToonWrapper = styled.div<{ hoverState: boolean }>`
       width: 100%;
       height: 8%;
       transform: ${(props) =>
-        props.hoverState ? "rotateY(180deg);" : "rotateY(0);"};
+        props.$hoverState ? "rotateY(180deg);" : "rotateY(0);"};
     }
   }
 
@@ -92,7 +90,7 @@ const InnerWrapper = styled.div`
   position: relative;
 `;
 
-const WebToonOverlay = styled.div<{ overLayState: boolean }>`
+const WebToonOverlay = styled.div<{ $overLayState: boolean }>`
   margin: -1.1%;
   position: absolute;
   padding: 20px;
@@ -100,7 +98,7 @@ const WebToonOverlay = styled.div<{ overLayState: boolean }>`
   height: 94%;
   background: rgba(0, 0, 0, 0.7);
   z-index: 10;
-  opacity: ${({ overLayState }) => (overLayState ? "1" : "0")};
+  opacity: ${({ $overLayState }) => ($overLayState ? "1" : "0")};
   transition: opacity 1.3s ease-in;
   color: white;
   font-weight: 20px;
@@ -158,27 +156,17 @@ const WebToonList: React.FC<WebToonListInterface> = ({
     return () => clearTimeout(timer);
   };
 
-  // useEffect(() => {
-  //   const handleWebToon = async () => {
-  //     const webToonResponse = await axios.get(
-  //       "https://korea-webtoon-api-cc7dda2f0d77.herokuapp.com/webtoons?page=1&perPage=12&sort=ASC",
-  //       { withCredentials: true }
-  //     );
-  //     console.log(webToonResponse.data);
-  //   };
-  //   handleWebToon();
-  // }, []);
-
   return (
     <WebToonListWrapper>
       {dummyList.map((it, idx) => (
         <WebToonWrapper
-          hoverState={!!hoverState[it.id]}
+          $hoverState={!!hoverState[it.id]}
           onMouseEnter={() => handleMouseEnter(it.id)}
           onMouseLeave={() => handleMouseLeave(it.id)}
+          key={it.id}
           // onClick={() => handleModal(modalState, setModalState)}
         >
-          <WebToonOverlay overLayState={hoverState[it.id] === true}>
+          <WebToonOverlay $overLayState={hoverState[it.id] === true}>
             오버레이 텍스트
           </WebToonOverlay>
           <div className="webtoon-block">

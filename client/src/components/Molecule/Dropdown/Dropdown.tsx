@@ -119,6 +119,7 @@ const Dropdown: React.FC<DropdownProps> = ({
         <ul>
           {itemArr.map((it, idx) => (
             <li
+              key={idx}
               role="presentation"
               onClick={() => {
                 handleDropdown(it.name);

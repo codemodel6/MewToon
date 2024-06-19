@@ -37,7 +37,7 @@ const WebToonModal: React.FC<WebToonModalProps> = ({
   };
 
   return (
-    <Overlay modalState={modalState}>
+    <Overlay $modalState={modalState}>
       <WebToonModalWrapper className={`${modalState ? "open" : ""}`}>
         <div className="modalDataDiv"></div>
       </WebToonModalWrapper>

@@ -7,7 +7,7 @@ import building from "../../components/CSS/image/building.jpg";
 import OrTitle from "../../components/Organism/OrTitle";
 import { GlobalWrapper } from "../../components/CSS/Global/GlobalWrapper";
 import { skillTabArr } from "../../components/dummy/TabArr";
-import OrTab from "../../components/Organism/OrTab";
+import OrTab from "../../components/Organism/ScrollTab";
 import ProjectIntro from "./area/ProjectIntro";
 import { centerColumn } from "../../components/CSS/Global/GlobalDisplay";
 import { FontSize } from "../../components/CSS/Color/ColorNote";

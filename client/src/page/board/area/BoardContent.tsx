@@ -18,7 +18,7 @@ import {
 } from "../../../components/CSS/Global/GlobalDisplay";
 import BoardComment from "./BoardComment";
 
-const BoardContentWrapper = styled.div<{ toggle: boolean }>`
+const BoardContentWrapper = styled.div<{ $toggle: boolean }>`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -27,8 +27,8 @@ const BoardContentWrapper = styled.div<{ toggle: boolean }>`
   height: 100%;
   background-color: white;
   position: absolute;
-  transform: translate(${(props) => (props.toggle ? "100%" : "0%")});
-  opacity: ${(props) => (props.toggle ? "1" : "0")};
+  transform: translate(${(props) => (props.$toggle ? "100%" : "0%")});
+  opacity: ${(props) => (props.$toggle ? "1" : "0")};
   transition: transform 0.8s ease-in-out, opacity 1s ease;
 
   .boardContentBlock {
@@ -183,7 +183,7 @@ interface ContentProps {
 
 const BoardContent: React.FC<ContentProps> = ({ toggle, setToggle }) => {
   return (
-    <BoardContentWrapper toggle={toggle}>
+    <BoardContentWrapper $toggle={toggle}>
       <div className="boardContentBlock">
         <div className="boardInfo">
           <p>게시판 제목</p>

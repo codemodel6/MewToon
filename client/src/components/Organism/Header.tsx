@@ -12,20 +12,20 @@ interface TestInterface {
 }
 
 const MyHeader = styled.header<{
-  scrollAction: boolean;
-  hoverBoolean: boolean;
+  $scrollAction: boolean;
+  $hoverBoolean: boolean;
 }>`
   display: flex;
   flex-direction: row;
   // 마우스 호버 시 색깔 변경
   background-color: ${(props) =>
-    props.hoverBoolean ? "white" : "rgba(0, 0, 0, 0.2)"};
+    props.$hoverBoolean ? "white" : "rgba(0, 0, 0, 0.2)"};
   height: 80px;
   width: 100%;
   position: fixed;
   z-index: 999;
   // 스크롤에 따라 보이고 안보임
-  transform: translateY(${(props) => (props.scrollAction ? "-100%" : "0")});
+  transform: translateY(${(props) => (props.$scrollAction ? "-100%" : "0")});
   // 속도를 제어한다
   transition: background-color 0.5s ease, transform 0.8s ease; // 속성, 지속시간, 타이밍함수
 
@@ -37,10 +37,12 @@ const MyHeader = styled.header<{
     .menuButton {
       height: 100%;
       font-size: ${FontSize.xxlarge};
-      color: ${(props) => (props.hoverBoolean ? "black" : "white")};
+      color: ${(props) => (props.$hoverBoolean ? "black" : "white")};
       background-color: transparent;
       font-weight: bold;
-      transform: translateY(${(props) => (props.scrollAction ? "-100%" : "0")});
+      transform: translateY(
+        ${(props) => (props.$scrollAction ? "-100%" : "0")}
+      );
       transition: transform 1s ease; // 속성, 지속시간, 타이밍함수
     }
 
@@ -57,7 +59,9 @@ const MyHeader = styled.header<{
       background-position: center; // 배경의 초기값을 가운데로
       background-repeat: no-repeat; // 배경보다 이미지가 작아도 반복하지 않음
       cursor: pointer;
-      transform: translateY(${(props) => (props.scrollAction ? "-100%" : "0")});
+      transform: translateY(
+        ${(props) => (props.$scrollAction ? "-100%" : "0")}
+      );
       transition: transform 1s ease; // 속성, 지속시간, 타이밍함수
     }
 
@@ -66,7 +70,9 @@ const MyHeader = styled.header<{
       height: 70%;
       background-color: ${MainColor.Main100};
       border-radius: 10px;
-      transform: translateY(${(props) => (props.scrollAction ? "-100%" : "0")});
+      transform: translateY(
+        ${(props) => (props.$scrollAction ? "-100%" : "0")}
+      );
       transition: transform 1s ease; // 속성, 지속시간, 타이밍함수
     }
   }
@@ -110,7 +116,7 @@ const Header: React.FC<HeaderProps> = () => {
   }
 
   return (
-    <MyHeader scrollAction={scrollAction} hoverBoolean={hoverBoolean}>
+    <MyHeader $scrollAction={scrollAction} $hoverBoolean={hoverBoolean}>
       <div
         className="menuDiv"
         onMouseEnter={() => setHoverBoolean(true)}

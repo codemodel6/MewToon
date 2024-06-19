@@ -171,7 +171,7 @@ const Report = () => {
         </div>
       </ReportForm>
       <ReportResult>
-        <textarea readOnly="true" value={final} />
+        <textarea readOnly={true} value={final} />
         <GlobalButton width="80%" height="50px" onClick={handleCopy}>
           전체 복사
         </GlobalButton>
