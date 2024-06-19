@@ -9,7 +9,7 @@ import {
 import {
   handleLink,
   handleScrollMove,
-} from "../../../components/Function/MyFunction";
+} from "../../../components/Function/scroll";
 import { introObj } from "./IntroObj";
 
 const ProjectIntroWrapper = styled.div`

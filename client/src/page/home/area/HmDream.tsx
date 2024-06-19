@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import handshake from "../../../components/CSS/image/HomeImg/handshake.png";
 import central from "../../../components/CSS/image/HomeImg/central.jpg";
-import { handleScrollAnimation } from "../../../components/Function/MyFunction";
+import { handleScrollAnimation } from "../../../components/Function/scroll";
 
 const DreamWrapper = styled.section<{
   firstAnimation: string;

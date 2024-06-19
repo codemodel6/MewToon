@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { FontSize, MainColor } from "../CSS/Color/ColorNote";
 import { betweenRow } from "../CSS/Global/GlobalDisplay";
 import onion from "../CSS/image/onion.png";
-import { handleScroll } from "../Function/MyFunction";
+import { handleScroll } from "../Function/scroll";
 
 interface TestInterface {
   scrollAction: boolean;
@@ -131,7 +131,7 @@ const Header: React.FC<HeaderProps> = () => {
         <button
           className={`menuButton ${webToonPage ? "here" : ""}`}
           onClick={() => {
-            navigate("/webToon");
+            navigate("/webToon?provider=NAVER&updateDay=MON&page=1");
           }}
         >
           웹툰

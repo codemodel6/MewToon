@@ -10,7 +10,7 @@ import {
   MainColor,
 } from "../../../components/CSS/Color/ColorNote";
 import { useEffect, useState } from "react";
-import { handleScrollAnimation } from "../../../components/Function/MyFunction";
+import { handleScrollAnimation } from "../../../components/Function/scroll";
 import musicImg from "../../../components/CSS/image/HomeImg/music.png";
 import pencilImg from "../../../components/CSS/image/HomeImg/pencil.jpg";
 import mapImg from "../../../components/CSS/image/HomeImg/map.jpg";

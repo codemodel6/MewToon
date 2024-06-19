@@ -10,7 +10,7 @@ import github from "../CSS/image/FooterImg/github.png";
 import facebook from "../CSS/image/FooterImg/facebook.png";
 import instagram from "../CSS/image/FooterImg/instagram.png";
 import twitter from "../CSS/image/FooterImg/twitter.png";
-import { handleLink } from "../Function/MyFunction";
+import { handleLink } from "../Function/scroll";
 
 const MyFooter = styled.footer`
   ${centerColumn}

@@ -7,7 +7,7 @@ import Img4 from "../../../components/CSS/image/BookImg/book_5.jpg";
 import homeRight from "../../../components/CSS/image/HomeImg/homeRight.png";
 import { useEffect, useState } from "react";
 import { aroundRow } from "../../../components/CSS/Global/GlobalDisplay";
-import { handleScrollAnimation } from "../../../components/Function/MyFunction";
+import { handleScrollAnimation } from "../../../components/Function/scroll";
 import {
   GrayColor,
   MainColor,

@@ -5,7 +5,7 @@ import codeLand from "../../../components/CSS/image/FooterImg/github.png";
 import computer from "../../../components/CSS/image/HomeImg/computer.png";
 import cat from "../../../components/CSS/image/HomeImg/cat.png";
 import dog from "../../../components/CSS/image/MusicImg/random.png";
-import { handleScrollAnimation } from "../../../components/Function/MyFunction";
+import { handleScrollAnimation } from "../../../components/Function/scroll";
 import jersey from "../../../components/CSS/image/HomeImg/jersey.jpg";
 import { GrayColor } from "../../../components/CSS/Color/ColorNote";
 

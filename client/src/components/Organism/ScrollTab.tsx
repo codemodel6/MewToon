@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { GlobalTabWrapper } from "../CSS/Global/GlobalWrapper";
-import { handleScroll, handleScrollMove } from "../Function/MyFunction";
+import { handleScroll, handleScrollMove } from "../Function/scroll";
 
-interface ScrollTabInter {
+export interface ScrollTabInterface {
   tabArr: { title: string; move: number }[];
 }
 
-const ScrollTab: React.FC<ScrollTabInter> = ({ tabArr }) => {
+const ScrollTab: React.FC<ScrollTabInterface> = ({ tabArr }) => {
   // 스크롤 위치 값
   const [scrollData, setScrollData] = useState<number>(0);
   // 스크롤이 진행중인지 확인

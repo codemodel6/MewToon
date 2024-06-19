@@ -41,15 +41,17 @@ export const GlobalTabWrapper = styled.div<{ $scrollAction: boolean }>`
 
     li {
       ${centerColumn}
-      width: 200px;
-      height: 100%;
+      width: 50px;
+      height: 80%;
       font-size: 20px;
       color: ${GrayColor.Gray100};
       font-weight: bold;
       cursor: pointer;
+      border-radius: 50%;
 
       &.here {
-        color: ${MainColor.Main100};
+        background-color: ${MainColor.Main100};
+        color: white;
       }
     }
   }

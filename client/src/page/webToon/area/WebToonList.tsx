@@ -6,6 +6,7 @@ import {
   centerRow,
 } from "../../../components/CSS/Global/GlobalDisplay";
 import 화산귀환 from "../../../components/CSS/image/WebToonImg/화산귀환.png";
+import { ToonProps } from "../WebToon";
 
 const WebToonListWrapper = styled.div`
   display: flex;
@@ -34,13 +35,9 @@ const WebToonWrapper = styled.div<{ $hoverState: boolean }>`
     height: 100%;
     position: relative;
 
-    .img-block {
+    img {
       width: 100%;
       height: 82%;
-      background-image: url(${화산귀환});
-      background-size: cover; // 이미지를 배경에 꽉 채움
-      background-position: center; // 배경의 초기값을 가운데로
-      background-repeat: no-repeat; // 배경보다 이미지가 작아도 반복하지 않음
     }
 
     .title {
@@ -84,12 +81,6 @@ const WebToonWrapper = styled.div<{ $hoverState: boolean }>`
   }
 `;
 
-const InnerWrapper = styled.div`
-  width: 100%;
-  height: 100%;
-  position: relative;
-`;
-
 const WebToonOverlay = styled.div<{ $overLayState: boolean }>`
   margin: -1.1%;
   position: absolute;
@@ -122,11 +113,13 @@ const dummyList = [
 ];
 
 interface WebToonListInterface {
+  webToonData: ToonProps[];
   modalState: boolean;
   setModalState: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const WebToonList: React.FC<WebToonListInterface> = ({
+  webToonData,
   modalState,
   setModalState,
 }) => {
@@ -158,7 +151,7 @@ const WebToonList: React.FC<WebToonListInterface> = ({
 
   return (
     <WebToonListWrapper>
-      {dummyList.map((it, idx) => (
+      {webToonData.map((it, idx) => (
         <WebToonWrapper
           $hoverState={!!hoverState[it.id]}
           onMouseEnter={() => handleMouseEnter(it.id)}
@@ -170,11 +163,11 @@ const WebToonList: React.FC<WebToonListInterface> = ({
             오버레이 텍스트
           </WebToonOverlay>
           <div className="webtoon-block">
-            <div className="img-block" />
+            <img src={it.thumbnail[0]} alt="썸네일" />
             <div className="title">{it.title}</div>
             <div className="author">
-              <p>★ {it.score}</p>
-              <p>{it.author}</p>
+              {/* <p>★ {it.score}</p> */}
+              <p>{it.authors}</p>
             </div>
           </div>
         </WebToonWrapper>
