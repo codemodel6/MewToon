@@ -25,8 +25,8 @@ const WebToonWrapper = styled.div<{ $hoverState: boolean }>`
   border: 1px solid ${GrayColor.Gray300};
   width: 24%;
   height: 33%;
-  padding: 1.1%;
-  color: ${GrayColor.Gray100};
+  padding: 20px;
+  color: black;
   animation: ${(props) =>
     props.$hoverState ? "rotateLeft 1s forwards" : "rotateRevoke 1s forwards"};
 
@@ -42,7 +42,7 @@ const WebToonWrapper = styled.div<{ $hoverState: boolean }>`
 
     .title {
       ${centerRow}
-      font-size: ${FontSize.large};
+      font-size: ${FontSize.xlarge};
       /* background-color: darkblue; */
       width: 100%;
       height: 10%;
@@ -51,10 +51,9 @@ const WebToonWrapper = styled.div<{ $hoverState: boolean }>`
     }
 
     .author {
-      ${betweenRow}
+      ${centerRow}
       font-size: ${FontSize.medium};
       padding: 0 10px 0 10px;
-      /* background-color: darkcyan; */
       width: 100%;
       height: 8%;
       transform: ${(props) =>
@@ -82,35 +81,27 @@ const WebToonWrapper = styled.div<{ $hoverState: boolean }>`
 `;
 
 const WebToonOverlay = styled.div<{ $overLayState: boolean }>`
-  margin: -1.1%;
+  display: flex;
+  flex-direction: column;
+  margin: -20px;
   position: absolute;
-  padding: 20px;
-  width: 92%;
-  height: 94%;
-  background: rgba(0, 0, 0, 0.7);
+  padding: 40px;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
   z-index: 10;
   opacity: ${({ $overLayState }) => ($overLayState ? "1" : "0")};
-  transition: opacity 1.3s ease-in;
+  transition: opacity 1s ease-in;
   color: white;
   font-weight: 20px;
   font-size: ${FontSize.xlarge};
   transform: rotateY(-180deg);
-`;
 
-const dummyList = [
-  { id: 1, title: "히어로킬러", author: "작가", score: 9.32, img: 화산귀환 },
-  { id: 2, title: "히어로킬러", author: "작가", score: 9.32, img: 화산귀환 },
-  { id: 3, title: "히어로킬러", author: "작가", score: 9.32, img: 화산귀환 },
-  { id: 4, title: "히어로킬러", author: "작가", score: 9.32, img: 화산귀환 },
-  { id: 5, title: "히어로킬러", author: "작가", score: 9.32, img: 화산귀환 },
-  { id: 6, title: "히어로킬러", author: "작가", score: 9.32, img: 화산귀환 },
-  { id: 7, title: "히어로킬러", author: "작가", score: 9.32, img: 화산귀환 },
-  { id: 8, title: "히어로킬러", author: "작가", score: 9.32, img: 화산귀환 },
-  { id: 9, title: "히어로킬러", author: "작가", score: 9.32, img: 화산귀환 },
-  { id: 10, title: "히어로킬러", author: "작가", score: 9.32, img: 화산귀환 },
-  { id: 11, title: "히어로킬러", author: "작가", score: 9.32, img: 화산귀환 },
-  { id: 12, title: "히어로킬러", author: "작가", score: 9.32, img: 화산귀환 },
-];
+  div {
+    height: 10%;
+    width: 100%;
+  }
+`;
 
 interface WebToonListInterface {
   webToonData: ToonProps[];
@@ -160,15 +151,17 @@ const WebToonList: React.FC<WebToonListInterface> = ({
           // onClick={() => handleModal(modalState, setModalState)}
         >
           <WebToonOverlay $overLayState={hoverState[it.id] === true}>
-            오버레이 텍스트
+            <div>제목 : {it.title}</div>
+            <div>작가 : {it.authors.join(" / ")}</div>
+            <div>
+              올해 고등학생 은우는 짝사랑하던 아린을 만난다 반가운 마음에
+              다가갔지만 아린은...
+            </div>
           </WebToonOverlay>
           <div className="webtoon-block">
             <img src={it.thumbnail[0]} alt="썸네일" />
             <div className="title">{it.title}</div>
-            <div className="author">
-              {/* <p>★ {it.score}</p> */}
-              <p>{it.authors}</p>
-            </div>
+            <div className="author">{it.authors.join(" / ")}</div>
           </div>
         </WebToonWrapper>
       ))}
