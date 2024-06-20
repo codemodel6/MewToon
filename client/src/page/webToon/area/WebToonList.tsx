@@ -7,6 +7,7 @@ import {
 } from "../../../components/CSS/Global/GlobalDisplay";
 import 화산귀환 from "../../../components/CSS/image/WebToonImg/화산귀환.png";
 import { ToonProps } from "../WebToon";
+import { handleModal } from "../../../components/Function/modal";
 
 const WebToonListWrapper = styled.div`
   display: flex;
@@ -140,6 +141,12 @@ const WebToonList: React.FC<WebToonListInterface> = ({
     return () => clearTimeout(timer);
   };
 
+  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - 함수 기능 : 마우스가 웹툰 블록에서 나갈때 실행하는 함수
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+  const handleToonModal = (id: number) => {
+    handleModal(modalState, setModalState);
+  };
   return (
     <WebToonListWrapper>
       {webToonData.map((it, idx) => (
@@ -148,7 +155,7 @@ const WebToonList: React.FC<WebToonListInterface> = ({
           onMouseEnter={() => handleMouseEnter(it.id)}
           onMouseLeave={() => handleMouseLeave(it.id)}
           key={it.id}
-          // onClick={() => handleModal(modalState, setModalState)}
+          onClick={() => handleToonModal(it.id)}
         >
           <WebToonOverlay $overLayState={hoverState[it.id] === true}>
             <div>제목 : {it.title}</div>
