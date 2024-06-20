@@ -41,7 +41,6 @@ export const GlobalTabWrapper = styled.div<{ $scrollAction: boolean }>`
 
     li {
       ${centerColumn}
-      width: 50px;
       height: 80%;
       font-size: 20px;
       color: ${GrayColor.Gray100};
@@ -53,6 +52,10 @@ export const GlobalTabWrapper = styled.div<{ $scrollAction: boolean }>`
         background-color: ${MainColor.Main100};
         color: white;
       }
+    }
+
+    .move {
+      width: 50px;
     }
   }
 `;

@@ -50,7 +50,7 @@ const NavigateTab: React.FC<NavigateTabInterface> = ({ tabArr }) => {
         {tabArr.map((it, idx) => (
           <li
             key={idx}
-            className={queryDay === it.moveURL ? "here" : ""}
+            className={"move" + (queryDay === it.moveURL ? " here" : "")}
             onClick={() => handleNavigate(it.moveURL)}
           >
             {it.title}
