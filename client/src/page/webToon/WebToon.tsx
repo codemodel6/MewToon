@@ -9,6 +9,8 @@ import { webToonArr } from "../../components/dummy/TabArr";
 import WebToonList from "./area/WebToonList";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
+import ScrollTab from "../../components/Organism/ScrollTab";
+import SearchTab from "../../components/Organism/SearchTab";
 
 const WebToonWrapper = styled.div`
   display: flex;
@@ -64,6 +66,7 @@ const WebToon = () => {
         subText="WebToon"
       />
       <NavigateTab tabArr={webToonArr} />
+      <SearchTab tabArr={webToonArr} />
       <WebToonWrapper>
         <WebToonList
           webToonData={webToonData}

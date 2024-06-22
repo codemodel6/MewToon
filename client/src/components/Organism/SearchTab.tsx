@@ -6,11 +6,11 @@ import {
 import { handleScroll } from "../Function/scroll";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 
-export interface NavigateTabInterface {
+export interface SearchTabInterface {
   tabArr: { title: string; moveURL: string }[];
 }
 
-const NavigateTab: React.FC<NavigateTabInterface> = ({ tabArr }) => {
+const SearchTab: React.FC<SearchTabInterface> = ({ tabArr }) => {
   const navigate = useNavigate();
   const location = useLocation();
   // url의 쿼리스트링을 가져온다
@@ -48,7 +48,7 @@ const NavigateTab: React.FC<NavigateTabInterface> = ({ tabArr }) => {
   };
 
   return (
-    <GlobalTabWrapper $scrollAction={scrollAction}>
+    <GlobalSecondTabWrapper $scrollAction={scrollAction}>
       <ul>
         {tabArr.map((it, idx) => (
           <li
@@ -60,8 +60,8 @@ const NavigateTab: React.FC<NavigateTabInterface> = ({ tabArr }) => {
           </li>
         ))}
       </ul>
-    </GlobalTabWrapper>
+    </GlobalSecondTabWrapper>
   );
 };
 
-export default NavigateTab;
+export default SearchTab;
