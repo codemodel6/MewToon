@@ -49,17 +49,7 @@ const SearchTab: React.FC<SearchTabInterface> = ({ tabArr }) => {
 
   return (
     <GlobalSecondTabWrapper $scrollAction={scrollAction}>
-      <ul>
-        {tabArr.map((it, idx) => (
-          <li
-            key={idx}
-            className={"move" + (queryDay === it.moveURL ? " here" : "")}
-            onClick={() => handleNavigate(it.moveURL)}
-          >
-            {it.title}
-          </li>
-        ))}
-      </ul>
+      <input></input>
     </GlobalSecondTabWrapper>
   );
 };

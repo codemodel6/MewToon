@@ -59,15 +59,23 @@ export const GlobalTabWrapper = styled.div<{ $scrollAction: boolean }>`
     }
   }
 `;
+
 // 수정 요망
-export const GlobalSecondTabWrapper = styled(GlobalTabWrapper)`
+export const GlobalSecondTabWrapper = styled.div<{ $scrollAction: boolean }>`
+  display: flex;
+  width: 100%;
+  height: 80px;
+  position: sticky;
+  background-color: ${WhiteColor.White100};
+  border-bottom: 1px solid ${GrayColor.Gray000};
+  transition: opacity 0.8s ease, top 0.8s ease; // 속성, 지속시간, 타이밍함수
+  transition-delay: ${(props) => (props.$scrollAction ? "0s" : "0.2s")};
   z-index: 98;
   top: ${(props) => (props.$scrollAction ? "0" : "137px")};
   opacity: ${(props) => (props.$scrollAction ? "0" : "1")};
-  transition-delay: ${(props) => (props.$scrollAction ? "0s" : "0.2s")};
-  transition: opacity 0.8s ease, top 0.8s ease; // 속성, 지속시간, 타이밍함수
 
   input {
-
+    width: 80%;
+    height: 100%;
   }
 `;

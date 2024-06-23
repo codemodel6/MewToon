@@ -12,7 +12,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import ScrollTab from "../../components/Organism/ScrollTab";
 import SearchTab from "../../components/Organism/SearchTab";
 import PageNation from "../../components/Molecule/PagiNation/PagiNation";
-import NewPageNation from "../../components/Molecule/PagiNation/NewPageNation";
 
 const WebToonWrapper = styled.div`
   display: flex;
