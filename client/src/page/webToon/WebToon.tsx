@@ -11,6 +11,8 @@ import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import ScrollTab from "../../components/Organism/ScrollTab";
 import SearchTab from "../../components/Organism/SearchTab";
+import PageNation from "../../components/Molecule/PagiNation/PagiNation";
+import NewPageNation from "../../components/Molecule/PagiNation/NewPageNation";
 
 const WebToonWrapper = styled.div`
   display: flex;
@@ -27,23 +29,35 @@ export interface ToonProps {
   thumbnail: string[];
 }
 
+interface WebToonResponse {
+  webtoons: ToonProps[];
+  total: number;
+}
+
 const WebToon = () => {
   // 모달 state
   const [modalState, setModalState] = useState<boolean>(false);
   // 웹툰 리스트
   const [webToonData, setWebToonData] = useState<ToonProps[]>([]);
+  // 웹툰 토탈 페이지
+  const [toonTotalPage, setToonTotalPage] = useState<number>(0);
 
+  // url의 쿼리스트링을 가져온다
   const location = useLocation();
+  const queryString = new URLSearchParams(location.search);
+  const queryPage = Number(queryString.get("page"));
 
   useEffect(() => {
     const handleWebToon = async () => {
-      const webToonResponse = await axios.get<{
-        webtoons: ToonProps[];
-      }>(
+      const webToonResponse = await axios.get<WebToonResponse>(
         `https://korea-webtoon-api-cc7dda2f0d77.herokuapp.com/webtoons${location.search}&perPage=12`
       );
-      console.log(location.search);
-      console.log(webToonResponse.data.webtoons);
+
+      // 페이지 총 개수
+      const totalPage = webToonResponse.data.total;
+      setToonTotalPage(Math.ceil(totalPage / 12));
+
+      // 웹툰 리스트
       const filterData = webToonResponse.data.webtoons.map(
         ({ id, title, authors, thumbnail }) => ({
           id,
@@ -52,8 +66,10 @@ const WebToon = () => {
           thumbnail,
         })
       );
-      console.log(filterData);
+
       setWebToonData([...filterData]);
+
+      console.log(filterData);
     };
     handleWebToon();
   }, [location.search]);
@@ -75,6 +91,7 @@ const WebToon = () => {
         ></WebToonList>
       </WebToonWrapper>
       <WebToonModal modalState={modalState} setModalState={setModalState} />
+      <PageNation totalPage={toonTotalPage} page={queryPage} />
     </GlobalWrapper>
   );
 };

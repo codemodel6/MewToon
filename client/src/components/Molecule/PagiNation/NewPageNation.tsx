@@ -44,7 +44,6 @@ const PageNationWrapper = styled.div`
       font-weight: bold;
 
       a {
-        cursor: pointer;
         color: ${GrayColor.Gray100};
         border: none;
         padding: 0;
@@ -81,8 +80,8 @@ interface PageNationProps {
   page: number;
 }
 
-const PageNation: React.FC<PageNationProps> = ({ totalPage, page }) => {
-  console.log("시작 : ", totalPage, page);
+const NewPageNation: React.FC<PageNationProps> = ({ totalPage, page }) => {
+  console.log("-------", totalPage, page);
   // 페이지네이션을 진행할 state
   const [pageNationArr, setPageNationArr] = useState<number[]>([]);
 
@@ -91,7 +90,8 @@ const PageNation: React.FC<PageNationProps> = ({ totalPage, page }) => {
   const navigate = useNavigate();
 
   const location = useLocation();
-  const queryString = new URLSearchParams(location.search);
+
+  console.log("주소", location.pathname);
 
   useEffect(() => {
     // 값이 안 온 상태를 막는다
@@ -108,7 +108,7 @@ const PageNation: React.FC<PageNationProps> = ({ totalPage, page }) => {
         const cutArr = totalArr.slice(i, i + 5);
         myArr.push(cutArr);
       }
-      console.log("--->", myArr);
+      console.log("------------>", myArr);
 
       // 만들어놓은 배열 저장
       setSaveArr([...myArr]);
@@ -116,6 +116,7 @@ const PageNation: React.FC<PageNationProps> = ({ totalPage, page }) => {
       // 5로 나누었을 때의 값으로 배열을 찾는다. 나머지가 0이라면 -1을 해주어 올바른 값을 찾는다.
       let cutNum = Math.floor(page / 5);
       if (page % 5 === 0) cutNum -= 1;
+      console.log("현재 배열 찾기", myArr[cutNum]);
       setPageNationArr(myArr[cutNum]);
     }
   }, [page, totalPage]);
@@ -127,10 +128,7 @@ const PageNation: React.FC<PageNationProps> = ({ totalPage, page }) => {
     let cutNum = Math.floor(page / 5);
     if (page % 5 === 0) cutNum -= 1;
     setPageNationArr([...saveArr[cutNum - 1]]);
-
-    // 페이지 설정
-    queryString.set("page", String(saveArr[cutNum - 1][0]));
-    navigate(`${location.pathname}?${queryString.toString()}`);
+    navigate(`${location.pathname}?page=${saveArr[cutNum - 1][0]}`);
   };
 
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -138,20 +136,10 @@ const PageNation: React.FC<PageNationProps> = ({ totalPage, page }) => {
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
   const handleNextPage = () => {
     let cutNum = Math.floor(page / 5);
+    console.log("cutNum", cutNum);
     if (page % 5 === 0) cutNum -= 1;
     setPageNationArr([...saveArr[cutNum + 1]]);
-
-    queryString.set("page", String(saveArr[cutNum + 1][0]));
-    navigate(`${location.pathname}?${queryString.toString()}`);
-  };
-
-  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  - 함수 기능 : 페이지 버튼 눌렀을 시 동작하는 함수
-  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-  const handleNumber = (pageNumber: number) => {
-    console.log(pageNumber);
-    queryString.set("page", String(pageNumber));
-    navigate(`${location.pathname}?${queryString.toString()}`);
+    navigate(`${location.pathname}?page=${saveArr[cutNum + 1][0]}`);
   };
 
   return (
@@ -166,12 +154,8 @@ const PageNation: React.FC<PageNationProps> = ({ totalPage, page }) => {
       </button>
       <ul>
         {pageNationArr.map((it, idx) => (
-          <li
-            key={idx}
-            className={page === it ? "on" : ""}
-            onClick={() => handleNumber(it)}
-          >
-            <a>{it}</a>
+          <li key={idx} className={page === it ? "on" : ""}>
+            <Link to={`${location.pathname}?page=${it}`}>{it}</Link>
           </li>
         ))}
       </ul>
@@ -187,4 +171,4 @@ const PageNation: React.FC<PageNationProps> = ({ totalPage, page }) => {
   );
 };
 
-export default PageNation;
+export default NewPageNation;
