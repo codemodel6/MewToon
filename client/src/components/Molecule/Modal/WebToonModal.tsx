@@ -18,6 +18,44 @@ const WebToonModalWrapper = styled.div`
   &.open {
     display: block;
   }
+
+  .modal-data-div {
+    width: 60vw;
+    height: 95vh;
+    background-color: orange;
+    border-radius: 5%;
+  }
+`;
+
+const WebToonModalBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+
+  .modal-close {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    height: 12%;
+    width: 100%;
+    /* background-color: rebeccapurple; */
+    padding-right: 3%;
+
+    button {
+      width: 5%;
+      height: 50%;
+      border-radius: 50%;
+      background-color: transparent;
+      background-color: rosybrown;
+      font-size: 20px;
+    }
+  }
+
+  .modal-intro {
+    .modal-contents {
+    }
+  }
 `;
 
 interface WebToonModalProps {
@@ -39,7 +77,13 @@ const WebToonModal: React.FC<WebToonModalProps> = ({
   return (
     <Overlay $modalState={modalState}>
       <WebToonModalWrapper className={`${modalState ? "open" : ""}`}>
-        <div className="modalDataDiv"></div>
+        <div className="modal-data-div">
+          <WebToonModalBlock>
+            <div className="modal-close">
+              <button>X</button>
+            </div>
+          </WebToonModalBlock>
+        </div>
       </WebToonModalWrapper>
     </Overlay>
   );
