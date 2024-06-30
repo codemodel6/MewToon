@@ -2,13 +2,19 @@
 - 그래프 결과를 저장 할 수 있는 모달
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
 
-import { useState } from "react";
 import styled from "styled-components";
-import { Overlay } from "./Overlay";
-import { handleModal } from "../../Function/modal";
 import { ToonProps } from "../../../page/webToon/WebToon";
-import { BlackColor, FontSize, MainColor } from "../../CSS/Color/ColorNote";
+import {
+  BlackColor,
+  FontSize,
+  GrayColor,
+  MainColor,
+  SubColor,
+} from "../../CSS/Color/ColorNote";
 import { centerColumn } from "../../CSS/Global/GlobalDisplay";
+import { handleModal } from "../../Function/modal";
+import { Overlay } from "./Overlay";
+import WebToonMusic from "../../../page/webToon/area/WebToonMusic";
 
 const WebToonModalWrapper = styled.div`
   display: none;
@@ -52,8 +58,9 @@ const WebToonModalBlock = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100%;
+  height: 80%;
   padding: 0 80px 0 80px;
+  overflow: auto;
 
   .modal-intro {
     display: flex;
@@ -105,11 +112,11 @@ const WebToonModalBlock = styled.div`
         }
 
         & .action {
-          background-color: blue;
+          background-color: ${MainColor.Main200};
         }
 
         & .romance {
-          background-color: pink;
+          background-color: ${SubColor.Sub100};
         }
       }
 
@@ -119,12 +126,14 @@ const WebToonModalBlock = styled.div`
         font-size: ${FontSize.large};
       }
     }
+  }
 
-    .modal-music-list {
-      width: 100%;
-      height: 100%;
-      background-color: royalblue;
-    }
+  .modal-music-list {
+    width: 100%;
+    height: 1000px;
+    margin-top: 50px;
+    border: 1px solid black;
+    border-bottom: none;
   }
 `;
 
@@ -170,6 +179,11 @@ const WebToonModal: React.FC<WebToonModalProps> = ({
                   다가갔지만 아린은...
                 </div>
               </div>
+            </div>
+            <div className="modal-music-list">
+              <WebToonMusic />
+              <WebToonMusic />
+              <WebToonMusic />
             </div>
           </WebToonModalBlock>
         </div>
