@@ -6,6 +6,9 @@ import { useState } from "react";
 import styled from "styled-components";
 import { Overlay } from "./Overlay";
 import { handleModal } from "../../Function/modal";
+import { ToonProps } from "../../../page/webToon/WebToon";
+import { BlackColor, FontSize, MainColor } from "../../CSS/Color/ColorNote";
+import { centerColumn } from "../../CSS/Global/GlobalDisplay";
 
 const WebToonModalWrapper = styled.div`
   display: none;
@@ -22,8 +25,26 @@ const WebToonModalWrapper = styled.div`
   .modal-data-div {
     width: 60vw;
     height: 95vh;
-    background-color: orange;
+    background-color: white;
     border-radius: 5%;
+  }
+`;
+
+const WebToonModalClose = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  height: 8%;
+  width: 100%;
+  padding-right: 30px;
+
+  button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: ${MainColor.Main100};
+    font-size: 15px;
+    font-weight: bold;
   }
 `;
 
@@ -32,28 +53,77 @@ const WebToonModalBlock = styled.div`
   flex-direction: column;
   width: 100%;
   height: 100%;
-
-  .modal-close {
-    display: flex;
-    align-items: center;
-    justify-content: end;
-    height: 12%;
-    width: 100%;
-    /* background-color: rebeccapurple; */
-    padding-right: 3%;
-
-    button {
-      width: 5%;
-      height: 50%;
-      border-radius: 50%;
-      background-color: transparent;
-      background-color: rosybrown;
-      font-size: 20px;
-    }
-  }
+  padding: 0 80px 0 80px;
 
   .modal-intro {
+    display: flex;
+    height: 500px;
+    width: 100%;
+
+    .img-area {
+      /* ${centerColumn} */
+      width: 45%;
+      height: 100%;
+
+      img {
+        width: 85%;
+        height: 100%;
+      }
+    }
+
     .modal-contents {
+      width: 55%;
+
+      .title {
+        width: 100%;
+        font-size: 30px;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+
+      .author {
+        width: 100%;
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+
+      .tag-area {
+        display: flex;
+        height: 10%;
+        width: 100%;
+        margin-bottom: 10px;
+
+        .tag-button {
+          ${centerColumn}
+          width: 120px;
+          height: 25px;
+          color: ${BlackColor.Black100};
+          border-radius: 10px;
+          font-size: ${FontSize.small};
+          margin-right: 10px;
+          font-weight: bold;
+        }
+
+        & .action {
+          background-color: blue;
+        }
+
+        & .romance {
+          background-color: pink;
+        }
+      }
+
+      .contents {
+        height: 70%;
+        width: 100%;
+        font-size: ${FontSize.large};
+      }
+    }
+
+    .modal-music-list {
+      width: 100%;
+      height: 100%;
+      background-color: royalblue;
     }
   }
 `;
@@ -61,11 +131,13 @@ const WebToonModalBlock = styled.div`
 interface WebToonModalProps {
   modalState: boolean;
   setModalState: React.Dispatch<React.SetStateAction<boolean>>;
+  webToonData: ToonProps;
 }
 
 const WebToonModal: React.FC<WebToonModalProps> = ({
   modalState,
   setModalState,
+  webToonData,
 }) => {
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   - 함수 기능 : 취소 버튼을 눌렀을 때 모달을 닫는 함수
@@ -78,9 +150,26 @@ const WebToonModal: React.FC<WebToonModalProps> = ({
     <Overlay $modalState={modalState}>
       <WebToonModalWrapper className={`${modalState ? "open" : ""}`}>
         <div className="modal-data-div">
+          <WebToonModalClose>
+            <button onClick={handleCancel}>X</button>
+          </WebToonModalClose>
           <WebToonModalBlock>
-            <div className="modal-close">
-              <button>X</button>
+            <div className="modal-intro">
+              <div className="img-area">
+                <img src={webToonData.thumbnail[0]} alt="웹툰이미지" />
+              </div>
+              <div className="modal-contents">
+                <div className="title">{webToonData.title}</div>
+                <div className="author">{webToonData.authors.join(" / ")}</div>
+                <div className="tag-area">
+                  <button className="tag-button action">액션</button>
+                  <button className="tag-button romance">로맨스</button>
+                </div>
+                <div className="contents">
+                  올해 고등학생 은우는 짝사랑하던 아린을 만난다 반가운 마음에
+                  다가갔지만 아린은...
+                </div>
+              </div>
             </div>
           </WebToonModalBlock>
         </div>

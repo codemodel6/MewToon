@@ -33,13 +33,18 @@ interface WebToonResponse {
   total: number;
 }
 
+// 웹툰 모달 데이터의 초기 값
+const initialToonObj = { id: 0, authors: [], title: "", thumbnail: [] };
+
 const WebToon = () => {
   // 모달 state
   const [modalState, setModalState] = useState<boolean>(false);
   // 웹툰 리스트
-  const [webToonData, setWebToonData] = useState<ToonProps[]>([]);
+  const [webToonList, setWebToonList] = useState<ToonProps[]>([]);
   // 웹툰 토탈 페이지
   const [toonTotalPage, setToonTotalPage] = useState<number>(0);
+  // 웹툰 모달 데이터
+  const [webToonData, setWebToonData] = useState<ToonProps>(initialToonObj);
 
   // url의 쿼리스트링을 가져온다
   const location = useLocation();
@@ -66,7 +71,7 @@ const WebToon = () => {
         })
       );
 
-      setWebToonData([...filterData]);
+      setWebToonList([...filterData]);
 
       console.log(filterData);
     };
@@ -84,12 +89,17 @@ const WebToon = () => {
       <SearchTab tabArr={webToonArr} />
       <WebToonWrapper>
         <WebToonList
-          webToonData={webToonData}
+          webToonList={webToonList}
           modalState={modalState}
           setModalState={setModalState}
+          setWebToonData={setWebToonData}
         ></WebToonList>
       </WebToonWrapper>
-      <WebToonModal modalState={modalState} setModalState={setModalState} />
+      <WebToonModal
+        modalState={modalState}
+        setModalState={setModalState}
+        webToonData={webToonData}
+      />
       <PageNation totalPage={toonTotalPage} page={queryPage} />
     </GlobalWrapper>
   );

@@ -105,15 +105,17 @@ const WebToonOverlay = styled.div<{ $overLayState: boolean }>`
 `;
 
 interface WebToonListInterface {
-  webToonData: ToonProps[];
+  webToonList: ToonProps[];
   modalState: boolean;
   setModalState: React.Dispatch<React.SetStateAction<boolean>>;
+  setWebToonData: React.Dispatch<React.SetStateAction<ToonProps>>;
 }
 
 const WebToonList: React.FC<WebToonListInterface> = ({
-  webToonData,
+  webToonList,
   modalState,
   setModalState,
+  setWebToonData,
 }) => {
   // 호버 상태 state
   const [hoverState, setHoverState] = useState<{ [key: number]: boolean }>({});
@@ -144,18 +146,29 @@ const WebToonList: React.FC<WebToonListInterface> = ({
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   - 함수 기능 : 마우스가 웹툰 블록에서 나갈때 실행하는 함수
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-  const handleToonModal = (id: number) => {
+  const handleToonModal = (it: ToonProps) => {
+    // 모달 키는 함수 실행
     handleModal(modalState, setModalState);
+
+    // 클릭한 데이터 전달
+    setWebToonData({
+      id: it.id,
+      authors: it.authors,
+      title: it.title,
+      thumbnail: it.thumbnail,
+    });
+    console.log(it);
   };
+
   return (
     <WebToonListWrapper>
-      {webToonData.map((it, idx) => (
+      {webToonList.map((it, idx) => (
         <WebToonWrapper
           $hoverState={!!hoverState[it.id]}
           onMouseEnter={() => handleMouseEnter(it.id)}
           onMouseLeave={() => handleMouseLeave(it.id)}
           key={it.id}
-          onClick={() => handleToonModal(it.id)}
+          onClick={() => handleToonModal(it)}
         >
           <WebToonOverlay $overLayState={hoverState[it.id] === true}>
             <div>제목 : {it.title}</div>
