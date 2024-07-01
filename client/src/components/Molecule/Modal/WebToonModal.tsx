@@ -15,6 +15,7 @@ import { centerColumn } from "../../CSS/Global/GlobalDisplay";
 import { handleModal } from "../../Function/modal";
 import { Overlay } from "./Overlay";
 import WebToonMusic from "../../../page/webToon/area/WebToonMusic";
+import { useRef, useState } from "react";
 
 const WebToonModalWrapper = styled.div`
   display: none;
@@ -48,9 +49,16 @@ const WebToonModalClose = styled.div`
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-color: ${MainColor.Main100};
+    border: 1px solid ${MainColor.Main100};
+    background-color: white;
     font-size: 15px;
     font-weight: bold;
+    color: ${MainColor.Main100};
+
+    &:hover {
+      background-color: ${MainColor.Main100};
+      color: white;
+    }
   }
 `;
 
@@ -155,6 +163,8 @@ const WebToonModal: React.FC<WebToonModalProps> = ({
     handleModal(modalState, setModalState);
   };
 
+  const dummy = [0, 1, 2];
+
   return (
     <Overlay $modalState={modalState}>
       <WebToonModalWrapper className={`${modalState ? "open" : ""}`}>
@@ -181,9 +191,9 @@ const WebToonModal: React.FC<WebToonModalProps> = ({
               </div>
             </div>
             <div className="modal-music-list">
-              <WebToonMusic />
-              <WebToonMusic />
-              <WebToonMusic />
+              {dummy.map((it, idx) => (
+                <WebToonMusic key={idx} />
+              ))}
             </div>
           </WebToonModalBlock>
         </div>
