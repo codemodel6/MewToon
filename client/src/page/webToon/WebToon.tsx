@@ -68,12 +68,13 @@ const WebToon = () => {
           title,
           authors,
           thumbnail,
+          episode: [],
         })
       );
 
       setWebToonList([...filterData]);
 
-      console.log(filterData);
+      console.log("filterData : ", filterData);
     };
     handleWebToon();
   }, [location.search]);
