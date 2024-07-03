@@ -16,6 +16,16 @@ import {
   GrayColor,
   SubColor,
 } from "../../../../components/CSS/Color/ColorNote";
+import {
+  handleNext,
+  handlePlay,
+  handlePrev,
+  handleRandom,
+  handleReset,
+  handleStop,
+  handleTimeChange,
+  handleTimeFormat,
+} from "../../../../components/Function/music";
 
 const MusicBoxWrapper = styled.div`
   display: flex;
@@ -164,170 +174,6 @@ const MusicBox = () => {
     };
   }, []);
 
-  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  - 함수 기능 : 노래의 시간을 00:00 형식으로 바꿔주는 함수
-  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-  const formatTime = (time: number): string => {
-    const minutes = Math.floor(time / 60);
-    const seconds = Math.floor(time % 60);
-
-    return `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
-  };
-
-  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  - 함수 기능 : 노래 시작
-  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-  const handlePlay = () => {
-    // state가 반영이 느린 문제점을 해결 : prevState는 변하기 전 상태 ex) true -> false면 true
-    setAudioState((prevState) => {
-      const nowState = true;
-      /** 함수 : setTimeout 0
-       *  비동기적으로 현재 실행중인 모든 코드가 실행되어서 호출 스택이 비워진 후
-       *  즉시 실행하도록 하는 함수이다. 이후 setPlayMusic이 완벽하게 동작한 후 음악을 실행시킨다.
-       *  함수를 나누지 않은 이유는 브라우저 정책에 의해 노래를 실행시키는 것은
-       *  오직 Click 이벤트 등에 의해 실행해야 하기 때문이다.
-       */
-      setTimeout(() => {
-        if (audioRef.current) {
-          audioRef.current.play(); // 노래 시작
-        }
-      }, 0);
-      return nowState;
-    });
-  };
-
-  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  - 함수 기능 : 노래 멈춤
-  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-  const handleStop = () => {
-    // state가 반영이 느린 문제점을 해결
-    setAudioState((prevState) => {
-      // 현재 상태를 false 로 변경
-      const nowState = false;
-      if (audioRef.current) {
-        audioRef.current.pause(); // 노래 일시정지
-      }
-      return nowState;
-    });
-  };
-
-  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  - 함수 기능 : 노래의 진행도를 표시해주는 함수
-  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newTime = parseFloat(e.target.value);
-    setCurrentTime(newTime);
-    if (audioRef.current) {
-      audioRef.current.currentTime = newTime;
-    }
-  };
-
-  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  - 함수 기능 : 노래를 처음으로 되돌리는 함수
-  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-  const handleReset = () => {
-    const audio = audioRef.current;
-    if (audio) {
-      audio.currentTime = 0; // 오디오 처음으로
-      setCurrentTime(0); // 진행도 초기화
-      audio.pause();
-      setAudioState(false); // 재생 상태를 초기화
-    }
-  };
-
-  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  - 함수 기능 : 이전 노래를 실행하는 함수
-  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-  const handlePrev = () => {
-    // 리스트의 길이가 0일 경우 return
-    if (musicArr.length === 0) return;
-
-    // 노래, 노래 아이디
-    let prevMusic: string;
-    let prevId: number;
-
-    // 현재 음악의 배열값을 찾은 후 전단계로 이동
-    for (let i = 0; i < musicArr.length; i++) {
-      if (musicArr[i].play === playMusic) {
-        if (i === 0) {
-          // 처음 노래라면 마지막 노래로 간다
-          prevMusic = musicArr[musicArr.length - 1].play;
-          prevId = musicArr[musicArr.length - 1].id;
-        } else {
-          // 현재 노래의 전 단계의 음악을 리스트에서 가져온다
-          prevMusic = musicArr[i - 1].play;
-          prevId = musicArr[i - 1].id;
-        }
-
-        // 이후 음악 설정
-        setPlayMusic(prevMusic);
-        setMusicId(prevId);
-        break;
-      }
-    }
-
-    // 음악 플레이 함수 실행
-    handlePlay();
-  };
-
-  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  - 함수 기능 : 이전 노래를 실행하는 함수
-  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-  const handleNext = () => {
-    // 리스트의 길이가 0일 경우 return
-    if (musicArr.length === 0) return;
-
-    // 노래, 노래 아이디
-    let nextMusic: string;
-    let nextId: number;
-
-    // 현재 음악의 배열값을 찾은 후 전단계로 이동
-    for (let i = 0; i < musicArr.length; i++) {
-      if (musicArr[i].play === playMusic) {
-        if (i === musicArr.length - 1) {
-          // 마지막 노래라면 0번째로 이동
-          nextMusic = musicArr[0].play;
-          nextId = musicArr[0].id;
-        } else {
-          // 현재 노래의 전 단계의 음악을 리스트에서 가져온다
-          nextMusic = musicArr[i + 1].play;
-          nextId = musicArr[i + 1].id;
-        }
-
-        // 이후 음악 설정
-        setPlayMusic(nextMusic);
-        setMusicId(nextId);
-        break;
-      }
-    }
-
-    // 음악 플레이 함수 실행
-    handlePlay();
-  };
-
-  const handleRandom = () => {
-    // 랜덤으로 생성 될 아이디
-    let myRandomId;
-
-    // 똑같은 아이디가 나오지 않을 때 까지 랜덤 아이디를 찾는다
-    do {
-      myRandomId = Math.floor(Math.random() * musicArr.length);
-    } while (myRandomId === musicId - 1);
-
-    console.log(myRandomId);
-    // 현재 음악의 배열값을 찾은 후 전단계로 이동
-    // 마지막 노래라면 0번째로 이동
-    const randomMusic = musicArr[myRandomId].play;
-    const randomId = musicArr[myRandomId].id;
-
-    // 이후 음악 설정
-    setPlayMusic(randomMusic);
-    setMusicId(randomId);
-
-    // 음악 플레이 함수 실행
-    handlePlay();
-  };
-
   return (
     <MusicBoxWrapper>
       <MusicPlayerWrapper>
@@ -339,8 +185,8 @@ const MusicBox = () => {
           <div className="title">{musicArr[musicId - 1].name}</div>
           <div className="author">{musicArr[musicId - 1].author}</div>
           <div className="time">
-            <span>{formatTime(currentTime)}</span>
-            <span>{formatTime(duration)}</span>
+            <span>{handleTimeFormat(currentTime)}</span>
+            <span>{handleTimeFormat(duration)}</span>
           </div>
           <input
             type="range"
@@ -348,22 +194,67 @@ const MusicBox = () => {
             min="0"
             max={duration}
             step={0.1}
-            onChange={handleChange}
+            onChange={(e) =>
+              handleTimeChange(e.target.value, setCurrentTime, audioRef)
+            }
           />
           <div className="tool">
-            <button onClick={handleReset}>
+            <button
+              onClick={() =>
+                handleReset(audioRef, setCurrentTime, setAudioState)
+              }
+            >
               <img src={reStart} alt="다시시작" />
             </button>
-            <button onClick={handlePrev}>
+            <button
+              onClick={() =>
+                handlePrev(
+                  musicArr,
+                  playMusic,
+                  setPlayMusic,
+                  setMusicId,
+                  setAudioState,
+                  audioRef
+                )
+              }
+            >
               <img className="rotateImg" src={next} alt="이전곡" />
             </button>
-            <button onClick={audioState ? handleStop : handlePlay}>
+            <button
+              onClick={() =>
+                audioState
+                  ? handleStop(setAudioState, audioRef)
+                  : handlePlay(setAudioState, audioRef)
+              }
+            >
               <img src={audioState ? pause : play} alt="재생도구" />
             </button>
-            <button onClick={handleNext}>
+            <button
+              onClick={() =>
+                handleNext(
+                  musicArr,
+                  playMusic,
+                  setPlayMusic,
+                  setMusicId,
+                  setAudioState,
+                  audioRef
+                )
+              }
+            >
               <img src={next} alt="다음곡" />
             </button>
-            <button onClick={handleRandom}>
+            <button
+              onClick={() =>
+                handleRandom(
+                  musicArr,
+                  musicId,
+                  setPlayMusic,
+                  setMusicId,
+                  setAudioState,
+                  audioRef
+                )
+              }
+            >
               <img src={random} alt="다음곡" />
             </button>
           </div>

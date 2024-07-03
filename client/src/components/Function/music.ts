@@ -5,7 +5,7 @@ import { MusicProps } from "../../page/project/contents/musicBox/musicArr";
 /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 - 함수 기능 : 노래의 시간을 00:00 형식으로 바꿔주는 함수
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-export const formatTime = (time: number): string => {
+export const handleTimeFormat = (time: number): string => {
   const minutes = Math.floor(time / 60);
   const seconds = Math.floor(time % 60);
 
@@ -70,9 +70,9 @@ interface ChagneProps {
   ): void;
 }
 /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-- 함수 기능 : 노래의 진행도를 표시해주는 함수
+- 함수 기능 : 노래의 시간 진행도를 변경해주는 함수
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-export const handleChange: ChagneProps = (eValue, setState, ref) => {
+export const handleTimeChange: ChagneProps = (eValue, setState, ref) => {
   const newTime = parseFloat(eValue);
   setState(newTime);
   if (ref.current) {
