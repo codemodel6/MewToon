@@ -110,8 +110,11 @@ const WebToonMusic = () => {
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   - 함수 기능 : 노래의 진행도를 표시해주는 함수
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newTime = parseFloat(e.target.value);
+  const handleChange = (value: string) => {
+    console.log("실행");
+    console.log("오이이", typeof value);
+
+    const newTime = parseFloat(value);
     setCurrentTime(newTime);
     if (tonnAudioRef.current) {
       tonnAudioRef.current.currentTime = newTime;
@@ -166,7 +169,7 @@ const WebToonMusic = () => {
           min="0"
           max={duration}
           step={0.1}
-          onChange={handleChange}
+          onChange={(e) => handleChange(e.target.value)}
         />
       </div>
       <div className="on-off-area">

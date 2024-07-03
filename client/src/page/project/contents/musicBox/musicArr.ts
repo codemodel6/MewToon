@@ -5,15 +5,23 @@ import FtIsalndImg from "../../../../components/CSS/image/MusicImg/ftisland.png"
 import QWERImg from "../../../../components/CSS/image/MusicImg/QWER.png";
 import TTLImg from "../../../../components/CSS/image/MusicImg/TTL.png";
 
-const handleName = (music) => {
+const handleName = (music: string) => {
   return music.replace("/static/media/", "").split("-")[0];
 };
 
-const handleAuthor = (music) => {
+const handleAuthor = (music: string) => {
   return music.replace("/static/media/", "").split("-")[1].split(".")[0];
 };
 
-export const musicArr = [
+export interface MusicProps {
+  id: number;
+  name: string;
+  author: string;
+  play: string;
+  img: string;
+}
+
+export const musicArr: MusicProps[] = [
   {
     id: 1,
     name: handleName(QWER),
