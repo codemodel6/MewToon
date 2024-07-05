@@ -10,6 +10,7 @@ import {
   handleStop,
   handleTimeChange,
 } from "../../../components/Function/music";
+import { episodProps } from "../WebToon";
 
 const WebToonMusicList = styled.div`
   display: flex;
@@ -55,12 +56,17 @@ const WebToonMusicList = styled.div`
   }
 `;
 
-const WebToonMusic = () => {
+interface WebToonMusicProps {
+  webToonStoryData: episodProps;
+}
+
+const WebToonMusic: React.FC<WebToonMusicProps> = ({ webToonStoryData }) => {
+  console.log("흠냐=-------------------", webToonStoryData);
   // 노래 ref
   const tonnAudioRef = useRef<HTMLAudioElement | null>(null);
   // 작동시킬 노래
   const [playMusic, setPlayMusic] = useState<string | undefined>(
-    musicArr[0].play
+    webToonStoryData.episodeMusic
   );
   // 노래 재생 상태
   const [audioState, setAudioState] = useState<boolean>(false);
@@ -68,8 +74,6 @@ const WebToonMusic = () => {
   const [currentTime, setCurrentTime] = useState<number>(0);
   // 노래 전체 길이
   const [duration, setDuration] = useState<number>(0);
-  // 재생되는 노래 id
-  const [musicId, setMusicId] = useState<number>(musicArr[0].id);
 
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   - 훅 기능 : 오디오와 관련된 설정
@@ -115,7 +119,7 @@ const WebToonMusic = () => {
   return (
     <WebToonMusicList>
       <audio ref={tonnAudioRef} src={playMusic} />
-      <div className="episode-area">1화</div>
+      <div className="episode-area">{webToonStoryData.episode}</div>
       <div className="music-area">
         <input
           type="range"

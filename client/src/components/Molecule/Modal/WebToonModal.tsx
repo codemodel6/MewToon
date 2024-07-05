@@ -184,15 +184,12 @@ const WebToonModal: React.FC<WebToonModalProps> = ({
                   <button className="tag-button action">액션</button>
                   <button className="tag-button romance">로맨스</button>
                 </div>
-                <div className="contents">
-                  올해 고등학생 은우는 짝사랑하던 아린을 만난다 반가운 마음에
-                  다가갔지만 아린은...
-                </div>
+                <div className="contents">{webToonData.summary}</div>
               </div>
             </div>
             <div className="modal-music-list">
-              {dummy.map((it, idx) => (
-                <WebToonMusic key={idx} />
+              {webToonData.story.map((it, idx) => (
+                <WebToonMusic webToonStoryData={it} />
               ))}
             </div>
           </WebToonModalBlock>

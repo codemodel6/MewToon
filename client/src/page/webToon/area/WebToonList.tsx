@@ -156,6 +156,9 @@ const WebToonList: React.FC<WebToonListInterface> = ({
       authors: it.authors,
       title: it.title,
       thumbnail: it.thumbnail,
+      tag: it.tag,
+      summary: it.summary,
+      story: it.story,
     });
     console.log(it);
   };
@@ -173,10 +176,7 @@ const WebToonList: React.FC<WebToonListInterface> = ({
           <WebToonOverlay $overLayState={hoverState[it.id] === true}>
             <div>제목 : {it.title}</div>
             <div>작가 : {it.authors.join(" / ")}</div>
-            <div>
-              올해 고등학생 은우는 짝사랑하던 아린을 만난다 반가운 마음에
-              다가갔지만 아린은...
-            </div>
+            <div>{it.summary}</div>
           </WebToonOverlay>
           <div className="webtoon-block">
             <img src={it.thumbnail[0]} alt="썸네일" />

@@ -12,6 +12,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import ScrollTab from "../../components/Organism/ScrollTab";
 import SearchTab from "../../components/Organism/SearchTab";
 import PageNation from "../../components/Molecule/PagiNation/PagiNation";
+import { musicArr } from "../project/contents/musicBox/musicArr";
 
 const WebToonWrapper = styled.div`
   display: flex;
@@ -21,11 +22,19 @@ const WebToonWrapper = styled.div`
   width: 100%;
 `;
 
+export interface episodProps {
+  episode: string;
+  episodeMusic: string;
+}
+
 export interface ToonProps {
   id: number;
   authors: string[];
   title: string;
   thumbnail: string[];
+  tag: string[];
+  summary: string;
+  story: episodProps[];
 }
 
 interface WebToonResponse {
@@ -34,7 +43,15 @@ interface WebToonResponse {
 }
 
 // 웹툰 모달 데이터의 초기 값
-const initialToonObj = { id: 0, authors: [], title: "", thumbnail: [] };
+const initialToonObj = {
+  id: 0,
+  authors: [],
+  title: "",
+  thumbnail: [],
+  tag: [],
+  summary: "",
+  story: [],
+};
 
 const WebToon = () => {
   // 모달 state
@@ -68,7 +85,23 @@ const WebToon = () => {
           title,
           authors,
           thumbnail,
-          episode: [],
+          tag: ["액션", "로맨스"],
+          summary:
+            "올해 고등학생 은우는 짝사랑하던 아린을 만난다 반가운 마음에 다가갔지만 아린은...",
+          story: [
+            {
+              episode: "1화",
+              episodeMusic: musicArr[0].play,
+            },
+            {
+              episode: "2화",
+              episodeMusic: musicArr[1].play,
+            },
+            {
+              episode: "3화",
+              episodeMusic: musicArr[2].play,
+            },
+          ],
         })
       );
 
