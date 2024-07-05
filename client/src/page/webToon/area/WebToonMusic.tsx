@@ -1,12 +1,17 @@
 import styled from "styled-components";
-import { centerColumn } from "../../../components/CSS/Global/GlobalDisplay";
+import {
+  aroundRow,
+  centerColumn,
+} from "../../../components/CSS/Global/GlobalDisplay";
 import pause from "../../../components/CSS/image/MusicImg/pause.png";
 import play from "../../../components/CSS/image/MusicImg/play.png";
+import reStart from "../../../components/CSS/image/MusicImg/restart.png";
 import { useEffect, useRef, useState } from "react";
 import { musicArr } from "../../project/contents/musicBox/musicArr";
 import { MainColor } from "../../../components/CSS/Color/ColorNote";
 import {
   handlePlay,
+  handleReset,
   handleStop,
   handleTimeChange,
 } from "../../../components/Function/music";
@@ -28,7 +33,7 @@ const WebToonMusicList = styled.div`
 
   .music-area {
     ${centerColumn}
-    width: 80%;
+    width: 78%;
     height: 100%;
     padding: 0 2% 0 2%;
     border-right: 1px solid black;
@@ -39,8 +44,8 @@ const WebToonMusicList = styled.div`
   }
 
   .on-off-area {
-    ${centerColumn}
-    width: 10%;
+    ${aroundRow}
+    width: 12%;
     height: 100%;
 
     button {
@@ -141,6 +146,13 @@ const WebToonMusic: React.FC<WebToonMusicProps> = ({ webToonStoryData }) => {
           }
         >
           <img src={audioState ? pause : play} alt="재생도구" />
+        </button>
+        <button
+          onClick={() =>
+            handleReset(tonnAudioRef, setCurrentTime, setAudioState)
+          }
+        >
+          <img src={reStart} alt="처음으로" />
         </button>
       </div>
     </WebToonMusicList>
