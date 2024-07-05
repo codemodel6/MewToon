@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import {
   aroundRow,
+  betweenRow,
   centerColumn,
 } from "../../../components/CSS/Global/GlobalDisplay";
 import pause from "../../../components/CSS/image/MusicImg/pause.png";
@@ -14,6 +15,7 @@ import {
   handleReset,
   handleStop,
   handleTimeChange,
+  handleTimeFormat,
 } from "../../../components/Function/music";
 import { episodProps } from "../WebToon";
 
@@ -32,11 +34,20 @@ const WebToonMusicList = styled.div`
   }
 
   .music-area {
-    ${centerColumn}
+    display: flex;
+    flex-direction: column;
     width: 78%;
     height: 100%;
-    padding: 0 2% 0 2%;
+    padding: 1% 2% 0 2%;
     border-right: 1px solid black;
+
+    .time {
+      ${betweenRow}
+      width: 100%;
+      font-size: 15px;
+      font-weight: bold;
+      margin-bottom: 3px;
+    }
 
     input {
       width: 100%;
@@ -126,6 +137,10 @@ const WebToonMusic: React.FC<WebToonMusicProps> = ({ webToonStoryData }) => {
       <audio ref={tonnAudioRef} src={playMusic} />
       <div className="episode-area">{webToonStoryData.episode}</div>
       <div className="music-area">
+        <div className="time">
+          <span>{handleTimeFormat(currentTime)}</span>
+          <span>{handleTimeFormat(duration)}</span>
+        </div>
         <input
           type="range"
           value={currentTime}
