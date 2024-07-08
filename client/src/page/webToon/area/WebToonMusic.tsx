@@ -74,9 +74,13 @@ const WebToonMusicList = styled.div`
 
 interface WebToonMusicProps {
   webToonStoryData: episodProps;
+  modalState: boolean;
 }
 
-const WebToonMusic: React.FC<WebToonMusicProps> = ({ webToonStoryData }) => {
+const WebToonMusic: React.FC<WebToonMusicProps> = ({
+  webToonStoryData,
+  modalState,
+}) => {
   console.log("흠냐=-------------------", webToonStoryData);
   // 노래 ref
   const tonnAudioRef = useRef<HTMLAudioElement | null>(null);
@@ -131,6 +135,14 @@ const WebToonMusic: React.FC<WebToonMusicProps> = ({ webToonStoryData }) => {
       clearInterval(timeInterval);
     };
   }, []);
+
+  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - 훅 기능 : 모달이 꺼질 시 음악 데이터 초기 설정
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+  useEffect(() => {
+    // 현재 더미데이터 이기때문에 강제로 리셋해준다
+    handleReset(tonnAudioRef, setCurrentTime, setAudioState);
+  }, [modalState]);
 
   return (
     <WebToonMusicList>

@@ -189,7 +189,7 @@ const WebToonModal: React.FC<WebToonModalProps> = ({
             </div>
             <div className="modal-music-list">
               {webToonData.story.map((it, idx) => (
-                <WebToonMusic webToonStoryData={it} />
+                <WebToonMusic webToonStoryData={it} modalState={modalState} />
               ))}
             </div>
           </WebToonModalBlock>
