@@ -262,9 +262,10 @@ const MusicBox = () => {
       </MusicPlayerWrapper>
       <MusicList
         setPlayMusic={setPlayMusic}
-        handlePlay={handlePlay}
         musicId={musicId}
         setMusicId={setMusicId}
+        setAudioState={setAudioState}
+        audioRef={audioRef}
       />
     </MusicBoxWrapper>
   );
