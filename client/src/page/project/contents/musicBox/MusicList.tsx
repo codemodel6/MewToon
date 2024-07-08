@@ -1,3 +1,4 @@
+import { MutableRefObject } from "react";
 import styled from "styled-components";
 import {
   BlackColor,
@@ -5,14 +6,9 @@ import {
   GrayColor,
   MainColor,
   SubColor,
-  WhiteColor,
 } from "../../../../components/CSS/Color/ColorNote";
-import { handleMusic, musicArr } from "./musicArr";
-import {
-  aroundRow,
-  centerRow,
-} from "../../../../components/CSS/Global/GlobalDisplay";
-import { useEffect, useState } from "react";
+import { aroundRow } from "../../../../components/CSS/Global/GlobalDisplay";
+import { musicArr, MusicProps } from "./musicArr";
 import { handlePlay } from "../../../../components/Function/music";
 
 const MusicListWrapper = styled.div`
@@ -95,7 +91,15 @@ const MusicListWrapper = styled.div`
   }
 `;
 
-const MusicList = ({
+interface ListProps {
+  setPlayMusic: React.Dispatch<React.SetStateAction<string | undefined>>;
+  musicId: number;
+  setMusicId: React.Dispatch<React.SetStateAction<number>>;
+  setAudioState: React.Dispatch<React.SetStateAction<boolean>>;
+  audioRef: MutableRefObject<HTMLAudioElement | null>;
+}
+
+const MusicList: React.FC<ListProps> = ({
   setPlayMusic,
   musicId,
   setMusicId,
@@ -105,7 +109,7 @@ const MusicList = ({
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   - 함수 기능 : 리스트에서 노래 선택 후 실행시키는 함수
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-  const handleClick = (it) => {
+  const handleClick = (it: MusicProps) => {
     setMusicId(it.id);
     setPlayMusic(it.play);
     handlePlay(setAudioState, audioRef);
