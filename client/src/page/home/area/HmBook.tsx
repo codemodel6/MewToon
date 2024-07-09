@@ -1,9 +1,4 @@
 import styled from "styled-components";
-import Img0 from "../../../components/CSS/image/BookImg/book_1.jpg";
-import Img1 from "../../../components/CSS/image/BookImg/book_2.jpg";
-import Img2 from "../../../components/CSS/image/BookImg/book_3.jpg";
-import Img3 from "../../../components/CSS/image/BookImg/book_4.jpg";
-import Img4 from "../../../components/CSS/image/BookImg/book_5.jpg";
 import homeRight from "../../../components/CSS/image/HomeImg/homeRight.png";
 import { useEffect, useState } from "react";
 import { aroundRow } from "../../../components/CSS/Global/GlobalDisplay";
@@ -228,49 +223,29 @@ const BookListWrapper = styled.div`
 
 const dummyBook = [
   {
-    isActive: false,
     id: 0,
-    category: "소설",
-    phrases: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem",
-    mainImg: Img0,
-    author: "김애란",
-    title: "바깥은 여름",
+    mainImg:
+      "https://image-comic.pstatic.net/webtoon/769209/thumbnail/thumbnail_IMAG21_3511dcdd-6e33-4171-8839-598d6d266215.jpg",
   },
   {
-    isActive: false,
     id: 1,
-    category: "에세이",
-    phrases: " eaque ipsa quae ab illo inventore",
-    mainImg: Img1,
-    author: "욘 표세",
-    title: "샤이닝",
+    mainImg:
+      "https://image-comic.pstatic.net/webtoon/820897/thumbnail/thumbnail_IMAG21_90f68f1d-cc97-4357-b7e8-de994918ff8d.jpg",
   },
   {
-    isActive: false,
     id: 2,
-    category: "인문학",
-    phrases: " ipsum quia dolor sit amet",
-    mainImg: Img2,
-    author: "한강",
-    title: "채식주의자",
+    mainImg:
+      "https://image-comic.pstatic.net/webtoon/816809/thumbnail/thumbnail_IMAG21_55348686-22ee-49ed-ae07-ad9b39ec748f.jpg",
   },
   {
-    isActive: false,
     id: 3,
-    category: "사회과학",
-    phrases: " Quis autem vel eum iure reprehenderit qui in ea voluptate",
-    mainImg: Img3,
-    author: "최은영",
-    title: "아주 희미한 빛으로도",
+    mainImg:
+      "https://image-comic.pstatic.net/webtoon/602910/thumbnail/thumbnail_IMAG21_e861f2cf-6157-4d33-8e02-7b4cbf0a8baf.jpg",
   },
   {
-    isActive: false,
     id: 4,
-    category: "역사",
-    phrases: " cumque nihil impedit quo minus id",
-    mainImg: Img4,
-    author: "밀란 쿤데라",
-    title: "참을 수 없는 존재의 가벼움",
+    mainImg:
+      "https://image-comic.pstatic.net/webtoon/648419/thumbnail/thumbnail_IMAG21_d9398229-cbfd-47dc-9208-0a6fb936f3a7.jpg",
   },
 ];
 
