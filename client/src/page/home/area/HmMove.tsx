@@ -8,6 +8,9 @@ import dog from "../../../components/CSS/image/MusicImg/random.png";
 import { handleScrollAnimation } from "../../../components/Function/scroll";
 import jersey from "../../../components/CSS/image/HomeImg/jersey.jpg";
 import { GrayColor } from "../../../components/CSS/Color/ColorNote";
+import naver from "../../../components/CSS/image/HomeImg/naver.png";
+import kakaoPage from "../../../components/CSS/image/HomeImg/kakaopage.png";
+import kakao from "../../../components/CSS/image/HomeImg/kakao.png";
 
 const MoveWrapper = styled.section<{
   topAnimation: string;
@@ -58,7 +61,7 @@ const MoveWrapper = styled.section<{
     opacity: 0;
   }
 
-  .computerImg {
+  .naver {
     width: 150px;
     height: 150px;
     position: absolute;
@@ -69,7 +72,7 @@ const MoveWrapper = styled.section<{
     opacity: 0;
   }
 
-  .catImg {
+  .kakao {
     width: 150px;
     height: 150px;
     position: absolute;
@@ -80,7 +83,7 @@ const MoveWrapper = styled.section<{
     opacity: 0;
   }
 
-  .dogImg {
+  .kakaoPage {
     width: 150px;
     height: 150px;
     position: absolute;
@@ -305,9 +308,9 @@ const HmMove = () => {
         </h1>
 
         <img className="codelandImg" src={codeLand} alt="메인화면이미지" />
-        <img className="computerImg" src={computer} alt="컴퓨터이미지" />
-        <img className="catImg" src={cat} alt="고양이이미지" />
-        <img className="dogImg" src={dog} alt="강아지이미지" />
+        <img className="naver" src={naver} alt="네이버웹툰로고" />
+        <img className="kakao" src={kakao} alt="카카오웹툰로고" />
+        <img className="kakaoPage" src={kakaoPage} alt="카카오페이지웹툰로고" />
         <img className="dragonImg" src={codeLand} alt="드래곤이미지" />
         <h1 className="bottomText">
           코드랜드에 오신것을

@@ -364,8 +364,8 @@ const HmBook = () => {
         subAnimation={subAnimation}
         clickAnimation={clickAnimation}
       >
-        <p className="main">독서는 마음의 양식</p>
-        <p className="sub">책을 읽도록 합시다</p>
+        <p className="main">인기있는 웹툰을</p>
+        <p className="sub">노래와 함께 즐겨보세요</p>
         <p className="click">
           CLICK <img src={homeRight} alt="오른쪽 화살표"></img>
         </p>
