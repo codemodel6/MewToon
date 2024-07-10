@@ -3,8 +3,8 @@
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
 
 import styled from "styled-components";
-import { aroundRow, centerColumn } from "./GlobalDisplay";
-import { GrayColor, MainColor, WhiteColor } from "../Color/ColorNote";
+import { aroundRow, betweenRow, centerColumn } from "./GlobalDisplay";
+import { FontSize, GrayColor, MainColor, WhiteColor } from "../Color/ColorNote";
 
 export const GlobalWrapper = styled.div<{ height: string }>`
   display: flex;
@@ -73,9 +73,37 @@ export const GlobalSecondTabWrapper = styled.div<{ $scrollAction: boolean }>`
   z-index: 98;
   top: ${(props) => (props.$scrollAction ? "0" : "137px")};
   opacity: ${(props) => (props.$scrollAction ? "0" : "1")};
+  padding: 0 15% 0 15%;
 
-  input {
-    width: 80%;
+  .input-wrapper {
+    ${betweenRow}
+    width: 70%;
     height: 100%;
+
+    input {
+      font-size: ${FontSize.large};
+      width: 94%;
+      height: 100%;
+      padding: 0 20px 0 20px;
+
+      &:focus-within {
+        outline: none;
+      }
+    }
+
+    button {
+      background-color: ${MainColor.Main100};
+      width: 6%;
+      height: 100%;
+
+      img {
+        width: 50%;
+        height: 50%;
+      }
+    }
+
+    &:focus-within {
+      border: 5px solid ${MainColor.Main300};
+    }
   }
 `;

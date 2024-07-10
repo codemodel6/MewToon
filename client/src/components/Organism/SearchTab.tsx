@@ -5,6 +5,7 @@ import {
 } from "../CSS/Global/GlobalWrapper";
 import { handleScroll } from "../Function/scroll";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import searchImg from "../../components/CSS/image/search.png";
 
 export interface SearchTabInterface {
   tabArr: { title: string; moveURL: string }[];
@@ -26,7 +27,7 @@ const SearchTab: React.FC<SearchTabInterface> = ({ tabArr }) => {
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
   useEffect(() => {
     const scrollCallback = () => {
-      handleScroll(scrollData, setScrollData, setScrollAction, 600);
+      handleScroll(scrollData, setScrollData, setScrollAction, 550);
     };
 
     window.addEventListener("scroll", scrollCallback);
@@ -49,7 +50,12 @@ const SearchTab: React.FC<SearchTabInterface> = ({ tabArr }) => {
 
   return (
     <GlobalSecondTabWrapper $scrollAction={scrollAction}>
-      <input></input>
+      <div className="input-wrapper">
+        <input />
+        <button>
+          <img src={searchImg} alt="돋보기" />
+        </button>
+      </div>
     </GlobalSecondTabWrapper>
   );
 };
