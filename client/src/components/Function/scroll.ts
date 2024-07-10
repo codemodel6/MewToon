@@ -7,7 +7,8 @@ interface ScrollFunction {
   (
     scrollData: number,
     setScrollData: React.Dispatch<React.SetStateAction<number>>,
-    setScrolAction: React.Dispatch<React.SetStateAction<boolean>>
+    setScrolAction: React.Dispatch<React.SetStateAction<boolean>>,
+    minMove: number
   ): void;
 }
 
@@ -17,15 +18,18 @@ interface ScrollFunction {
 export const handleScroll: ScrollFunction = (
   scrollData,
   setScrollData,
-  setScrollAction
+  setScrollAction,
+  minMove
 ) => {
-  if (window.scrollY > scrollData) {
-    setScrollAction(true);
-  } else {
-    setScrollAction(false);
+  // 현재 위치가 minMove보다 클 시 함수 동작
+  if (window.scrollY > minMove) {
+    if (window.scrollY > scrollData) {
+      setScrollAction(true);
+    } else {
+      setScrollAction(false);
+    }
+    setScrollData(window.scrollY);
   }
-
-  setScrollData(window.scrollY);
 };
 
 /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

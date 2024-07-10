@@ -17,7 +17,7 @@ const ScrollTab: React.FC<ScrollTabInterface> = ({ tabArr }) => {
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
   useEffect(() => {
     const scrollCallback = () => {
-      handleScroll(scrollData, setScrollData, setScrollAction);
+      handleScroll(scrollData, setScrollData, setScrollAction, 0);
     };
 
     window.addEventListener("scroll", scrollCallback);

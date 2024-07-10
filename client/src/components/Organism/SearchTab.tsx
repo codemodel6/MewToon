@@ -26,7 +26,7 @@ const SearchTab: React.FC<SearchTabInterface> = ({ tabArr }) => {
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
   useEffect(() => {
     const scrollCallback = () => {
-      handleScroll(scrollData, setScrollData, setScrollAction);
+      handleScroll(scrollData, setScrollData, setScrollAction, 600);
     };
 
     window.addEventListener("scroll", scrollCallback);

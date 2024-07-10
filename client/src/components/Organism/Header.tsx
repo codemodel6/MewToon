@@ -102,7 +102,7 @@ const Header: React.FC<HeaderProps> = () => {
    * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
   useEffect(() => {
     const scrollCallback = () => {
-      handleScroll(scrollData, setScrollData, setScrollAction);
+      handleScroll(scrollData, setScrollData, setScrollAction, 0);
     };
     window.addEventListener("scroll", scrollCallback);
     return () => {
