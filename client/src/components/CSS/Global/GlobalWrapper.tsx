@@ -60,7 +60,6 @@ export const GlobalTabWrapper = styled.div<{ $scrollAction: boolean }>`
   }
 `;
 
-// 수정 요망
 export const GlobalSecondTabWrapper = styled.div<{ $scrollAction: boolean }>`
   display: flex;
   width: 100%;
@@ -74,6 +73,12 @@ export const GlobalSecondTabWrapper = styled.div<{ $scrollAction: boolean }>`
   top: ${(props) => (props.$scrollAction ? "0" : "137px")};
   opacity: ${(props) => (props.$scrollAction ? "0" : "1")};
   padding: 0 15% 0 15%;
+
+  .dropdown-wrapper {
+    width: 30%;
+    height: 100%;
+    background-color: orange;
+  }
 
   .input-wrapper {
     display: flex;
@@ -91,6 +96,10 @@ export const GlobalSecondTabWrapper = styled.div<{ $scrollAction: boolean }>`
       &:focus-within {
         outline: none;
       }
+    }
+
+    input::placeholder {
+      color: rgba(65, 105, 225, 0.3);
     }
 
     button {

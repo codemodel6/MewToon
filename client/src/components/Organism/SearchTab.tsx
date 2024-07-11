@@ -6,6 +6,7 @@ import {
 import { handleScroll } from "../Function/scroll";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import searchImg from "../../components/CSS/image/search.png";
+import Dropdown from "../Molecule/Dropdown/Dropdown";
 
 export interface SearchTabInterface {
   tabArr: { title: string; moveURL: string }[];
@@ -50,8 +51,17 @@ const SearchTab: React.FC<SearchTabInterface> = ({ tabArr }) => {
 
   return (
     <GlobalSecondTabWrapper $scrollAction={scrollAction}>
+      <div className="dropdown-wrapper">
+        {/* <Dropdown
+          itemArr={itemArr}
+          toggle={toggle}
+          setToggle={setToggle}
+          value={value}
+          setValue={setValue}
+        /> */}
+      </div>
       <div className="input-wrapper">
-        <input />
+        <input placeholder="웹툰명을 검색하세요" />
         <button>
           <img src={searchImg} alt="돋보기" />
         </button>
