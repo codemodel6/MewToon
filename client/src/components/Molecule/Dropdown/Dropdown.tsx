@@ -114,7 +114,7 @@ const Dropdown: React.FC<DropdownProps> = ({
       <SelectButton type="button" onClick={() => setToggle(!toggle)}>
         {value}
       </SelectButton>
-      <DropdownContainer size={size} className={toggle ? "open" : "close"}>
+      <DropdownContainer $size={size} className={toggle ? "open" : "close"}>
         <ul>
           {itemArr.map((it, idx) => (
             <li
