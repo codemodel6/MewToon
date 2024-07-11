@@ -76,15 +76,17 @@ export const GlobalSecondTabWrapper = styled.div<{ $scrollAction: boolean }>`
   padding: 0 15% 0 15%;
 
   .input-wrapper {
-    ${betweenRow}
+    display: flex;
     width: 70%;
     height: 100%;
+    border: 1px solid ${MainColor.Main100};
 
     input {
       font-size: ${FontSize.large};
       width: 94%;
       height: 100%;
       padding: 0 20px 0 20px;
+      border: none;
 
       &:focus-within {
         outline: none;
@@ -97,13 +99,14 @@ export const GlobalSecondTabWrapper = styled.div<{ $scrollAction: boolean }>`
       height: 100%;
 
       img {
+        border: none;
         width: 50%;
         height: 50%;
       }
     }
 
     &:focus-within {
-      border: 5px solid ${MainColor.Main300};
+      outline: none;
     }
   }
 `;
