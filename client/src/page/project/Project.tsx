@@ -11,8 +11,9 @@ import OrTab from "../../components/Organism/ScrollTab";
 import ProjectIntro from "./area/ProjectIntro";
 import { centerColumn } from "../../components/CSS/Global/GlobalDisplay";
 import { FontSize } from "../../components/CSS/Color/ColorNote";
-import ProjectList from "./area/ProjectList";
 import ProjectContents from "./contents/ProjectContents";
+import Dropdown from "../../components/Molecule/Dropdown/Dropdown";
+import DropdowBlock from "../../components/Molecule/Dropdown/DropdownBlock";
 
 const ProjectWrapper = styled.div`
   display: flex;
@@ -34,6 +35,15 @@ const ProjectTitle = styled.div`
   font-weight: bold;
 `;
 
+const ProjectListWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  margin-top: 15px;
+  margin-bottom: 30px;
+`;
+
 const Project = () => {
   return (
     <GlobalWrapper height="2700px">
@@ -43,7 +53,9 @@ const Project = () => {
         subText="Project"
       />
       <OrTab tabArr={skillTabArr} />
-      <ProjectList />
+      <ProjectListWrapper>
+        <DropdowBlock />
+      </ProjectListWrapper>
       <ProjectWrapper>
         <ProjectContents />
         <ProjectTitle>소개</ProjectTitle>
