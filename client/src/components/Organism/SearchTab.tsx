@@ -51,6 +51,7 @@ const SearchTab: React.FC<SearchTabInterface> = ({ tabArr }) => {
 
   return (
     <GlobalSecondTabWrapper $scrollAction={scrollAction}>
+      <div className="img-wrapper"></div>
       <div className="dropdown-wrapper">
         {/* <Dropdown
           itemArr={itemArr}

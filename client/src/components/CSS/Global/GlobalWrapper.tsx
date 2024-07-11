@@ -33,10 +33,11 @@ export const GlobalTabWrapper = styled.div<{ $scrollAction: boolean }>`
   background-color: ${WhiteColor.White100};
   z-index: 99;
   border-bottom: 1px solid ${GrayColor.Gray000};
+  padding: 0 10% 0 10%;
 
   ul {
-    ${aroundRow}
-    width: 80%;
+    ${betweenRow}
+    width: 100%;
     height: 100%;
 
     li {
@@ -61,7 +62,7 @@ export const GlobalTabWrapper = styled.div<{ $scrollAction: boolean }>`
 `;
 
 export const GlobalSecondTabWrapper = styled.div<{ $scrollAction: boolean }>`
-  display: flex;
+  ${betweenRow}
   width: 100%;
   height: 80px;
   position: sticky;
@@ -72,23 +73,30 @@ export const GlobalSecondTabWrapper = styled.div<{ $scrollAction: boolean }>`
   z-index: 98;
   top: ${(props) => (props.$scrollAction ? "0" : "137px")};
   opacity: ${(props) => (props.$scrollAction ? "0" : "1")};
-  padding: 0 15% 0 15%;
+  padding: 0 10% 0 10%;
+
+  .img-wrapper {
+    width: 24%;
+    height: 100%;
+    background-color: red;
+  }
 
   .dropdown-wrapper {
-    width: 30%;
+    width: 14%;
     height: 100%;
     background-color: orange;
   }
 
   .input-wrapper {
     display: flex;
-    width: 70%;
+    width: 59%;
     height: 100%;
     border: 1px solid ${MainColor.Main100};
+    /* border: 1px solid ${GrayColor.Gray000}; */
 
     input {
       font-size: ${FontSize.large};
-      width: 94%;
+      width: 95%;
       height: 100%;
       padding: 0 20px 0 20px;
       border: none;
@@ -104,7 +112,7 @@ export const GlobalSecondTabWrapper = styled.div<{ $scrollAction: boolean }>`
 
     button {
       background-color: ${MainColor.Main100};
-      width: 6%;
+      width: 5%;
       height: 100%;
 
       img {
