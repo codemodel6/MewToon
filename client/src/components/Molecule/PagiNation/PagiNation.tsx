@@ -82,7 +82,6 @@ interface PageNationProps {
 }
 
 const PageNation: React.FC<PageNationProps> = ({ totalPage, page }) => {
-  console.log("시작 : ", totalPage, page);
   // 페이지네이션을 진행할 state
   const [pageNationArr, setPageNationArr] = useState<number[]>([]);
 

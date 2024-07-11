@@ -32,6 +32,7 @@ const ProjectList = () => {
         setToggle={setToggle}
         value={value}
         setValue={setValue}
+        urlKey={"name"}
       />
     </ProjectListWrapper>
   );

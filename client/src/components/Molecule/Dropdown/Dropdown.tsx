@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import styled from "styled-components";
 import { FontSize, GrayColor, MainColor } from "../../CSS/Color/ColorNote";
 import { centerRow } from "../../CSS/Global/GlobalDisplay";
@@ -57,7 +57,8 @@ const DropdownContainer = styled.div`
     > li {
       ${centerRow}
       height: 50px;
-      width: 33.33%;
+      /* width: 33.33%; */
+      width: 100%;
       list-style: none;
       padding: 3px 0;
       cursor: pointer;
@@ -80,6 +81,7 @@ interface DropdownProps {
   setToggle: React.Dispatch<React.SetStateAction<boolean>>;
   value: string;
   setValue: React.Dispatch<React.SetStateAction<string>>;
+  urlKey: string;
 }
 
 interface DropdownFunction {
@@ -92,22 +94,22 @@ const Dropdown: React.FC<DropdownProps> = ({
   setToggle,
   value,
   setValue,
+  urlKey,
 }) => {
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  // url의 이름을 가져온다
-  const name = searchParams.get("name");
-
   const navigate = useNavigate();
+  const location = useLocation();
+  const queryString = new URLSearchParams(location.search);
 
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   - 함수 기능 : 토글을 선택한 값으로 변경 후 주소 변경
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-  const handleDropdown: DropdownFunction = (props) => {
+  const handleDropdown: DropdownFunction = (settingItem) => {
     setToggle(!toggle);
-    setValue(props);
-    // setSearchParams({name:props})
-    navigate(`/project?name=${props}`);
+    setValue(settingItem);
+
+    // 페이지 설정
+    queryString.set(urlKey, settingItem);
+    navigate(`${location.pathname}?${queryString.toString()}`);
   };
 
   return (
