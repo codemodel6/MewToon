@@ -13,7 +13,7 @@ import { GlobalWrapper } from "../../../components/CSS/Global/GlobalWrapper";
 import car from "../../components/CSS/image/car.jpg";
 import OrTab from "../../../components/Organism/ScrollTab";
 import GlobalTitle from "../../../components/Organism/GlobalTitle";
-import { mapTabArr } from "../../../components/dummy/TabArr";
+import { mapTabArr } from "../../../components/dummy/dummy";
 import InfoQuestion from "./InfoQuestion";
 
 const MapWrapper = styled.div`

@@ -4,7 +4,7 @@ import { GlobalWrapper } from "../../components/CSS/Global/GlobalWrapper";
 import OrTab from "../../components/Organism/ScrollTab";
 import GlobalTitle from "../../components/Organism/GlobalTitle";
 import macao from "../../components/CSS/image/macao.jpg";
-import { mapTabArr } from "../../components/dummy/TabArr";
+import { mapTabArr } from "../../components/dummy/dummy";
 import Map from "./area/Map";
 
 const InfoWrapper = styled.div`

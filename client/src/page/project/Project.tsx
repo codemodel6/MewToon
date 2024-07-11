@@ -6,7 +6,7 @@ import styled from "styled-components";
 import building from "../../components/CSS/image/building.jpg";
 import GlobalTitle from "../../components/Organism/GlobalTitle";
 import { GlobalWrapper } from "../../components/CSS/Global/GlobalWrapper";
-import { skillTabArr } from "../../components/dummy/TabArr";
+import { itemArr, skillTabArr } from "../../components/dummy/dummy";
 import OrTab from "../../components/Organism/ScrollTab";
 import ProjectIntro from "./area/ProjectIntro";
 import { centerColumn } from "../../components/CSS/Global/GlobalDisplay";
@@ -40,6 +40,7 @@ const ProjectListWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   width: 50%;
+  height: 70px;
   margin-top: 15px;
   margin-bottom: 30px;
 `;
@@ -54,7 +55,12 @@ const Project = () => {
       />
       <OrTab tabArr={skillTabArr} />
       <ProjectListWrapper>
-        <DropdowBlock />
+        <DropdowBlock
+          itemArr={itemArr}
+          urlKey={"name"}
+          firstTitle="프로젝트 리스트 ▼"
+          size={"max"}
+        />
       </ProjectListWrapper>
       <ProjectWrapper>
         <ProjectContents />

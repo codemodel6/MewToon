@@ -82,6 +82,7 @@ export const GlobalSecondTabWrapper = styled.div<{ $scrollAction: boolean }>`
   }
 
   .dropdown-wrapper {
+    display: flex;
     width: 14%;
     height: 100%;
     background-color: orange;

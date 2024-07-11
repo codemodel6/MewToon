@@ -9,7 +9,7 @@ import PageNation from "../../components/Molecule/PagiNation/PagiNation";
 import GlobalTitle from "../../components/Organism/GlobalTitle";
 import NavigateTab from "../../components/Organism/NavigateTab";
 import SearchTab from "../../components/Organism/SearchTab";
-import { webToonArr } from "../../components/dummy/TabArr";
+import { webToonArr } from "../../components/dummy/dummy";
 import { musicArr } from "../project/contents/musicBox/musicArr";
 import WebToonList from "./area/WebToonList";
 

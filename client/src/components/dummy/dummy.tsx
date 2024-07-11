@@ -8,6 +8,10 @@ interface MoveArrInterface {
   moveURL: string;
 }
 
+export interface DropdownItem {
+  name: string;
+}
+
 // skill 탭
 export const skillTabArr: ScrollArrInterface[] = [
   { title: "프로젝트", move: 600 },
@@ -32,4 +36,17 @@ export const webToonArr: MoveArrInterface[] = [
   { title: "금", moveURL: "FRI" },
   { title: "토", moveURL: "SAT" },
   { title: "일", moveURL: "SUN" },
+];
+
+export const itemArr: DropdownItem[] = [
+  { name: "musicBox" },
+  { name: "drawing" },
+  { name: "youtube" },
+  { name: "report" },
+];
+
+export const platformArr: DropdownItem[] = [
+  { name: "NAVER" },
+  { name: "KAKAO" },
+  { name: "KAKAO_PAGE" },
 ];

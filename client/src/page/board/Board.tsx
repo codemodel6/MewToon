@@ -9,7 +9,7 @@ import towers from "../../components/CSS/image/towers.jpg";
 import WriteModal from "../../components/Molecule/Modal/WriteModal";
 import OrTab from "../../components/Organism/ScrollTab";
 import GlobalTitle from "../../components/Organism/GlobalTitle";
-import { boardTabArr } from "../../components/dummy/TabArr";
+import { boardTabArr } from "../../components/dummy/dummy";
 import BoardContent from "./area/BoardContent";
 import BoardList from "./area/BoardList";
 import BoardTopic from "./area/BoardTopic";

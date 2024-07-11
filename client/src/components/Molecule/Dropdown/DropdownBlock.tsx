@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useState } from "react";
 import Dropdown from "./Dropdown";
+import { DropdownItem } from "../../dummy/dummy";
 
 const DropdownWrapper = styled.div`
   display: flex;
@@ -8,18 +9,23 @@ const DropdownWrapper = styled.div`
   height: 100%;
 `;
 
-const itemArr = [
-  { name: "musicBox", url: "" },
-  { name: "drawing", url: "" },
-  { name: "youtube", url: "" },
-  { name: "report", url: "" },
-];
+interface DropdownBlickProps {
+  itemArr: DropdownItem[];
+  urlKey: string;
+  firstTitle: string;
+  size: string;
+}
 
-const DropdownBlock = () => {
+const DropdownBlock: React.FC<DropdownBlickProps> = ({
+  itemArr,
+  urlKey,
+  firstTitle,
+  size,
+}) => {
   // 프로젝트 리스트 on/off
   const [toggle, setToggle] = useState<boolean>(false);
   // 드롭다운 값
-  const [value, setValue] = useState<string>("프로젝트 리스트 ▼");
+  const [value, setValue] = useState<string>(firstTitle);
 
   return (
     <DropdownWrapper>
@@ -29,7 +35,8 @@ const DropdownBlock = () => {
         setToggle={setToggle}
         value={value}
         setValue={setValue}
-        urlKey={"name"}
+        urlKey={urlKey}
+        size={size}
       />
     </DropdownWrapper>
   );

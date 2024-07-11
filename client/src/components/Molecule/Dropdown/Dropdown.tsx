@@ -3,6 +3,7 @@ import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import styled from "styled-components";
 import { FontSize, GrayColor, MainColor } from "../../CSS/Color/ColorNote";
 import { centerRow } from "../../CSS/Global/GlobalDisplay";
+import { DropdownItem } from "../../dummy/dummy";
 
 const DropdownDiv = styled.div`
   height: 100%;
@@ -14,7 +15,7 @@ const DropdownDiv = styled.div`
 
 const SelectButton = styled.button`
   width: 100%;
-  height: 50px;
+  height: 100%;
   background-color: ${MainColor.Main100};
   color: white;
   border: none;
@@ -23,10 +24,9 @@ const SelectButton = styled.button`
   cursor: pointer;
   font-size: ${FontSize.medium};
   font-weight: bold;
-  /* border-radius: 20px; */
 `;
 
-const DropdownContainer = styled.div`
+const DropdownContainer = styled.div<{ $size: string }>`
   width: 100%;
   background-color: white;
   border: 1px solid ${GrayColor.Gray500};
@@ -70,18 +70,14 @@ const DropdownContainer = styled.div`
   }
 `;
 
-interface PropsObj {
-  name: string;
-  url: string;
-}
-
 interface DropdownProps {
-  itemArr: PropsObj[];
+  itemArr: DropdownItem[];
   toggle: boolean;
   setToggle: React.Dispatch<React.SetStateAction<boolean>>;
   value: string;
   setValue: React.Dispatch<React.SetStateAction<string>>;
   urlKey: string;
+  size: string;
 }
 
 interface DropdownFunction {
@@ -95,6 +91,7 @@ const Dropdown: React.FC<DropdownProps> = ({
   value,
   setValue,
   urlKey,
+  size,
 }) => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -117,7 +114,7 @@ const Dropdown: React.FC<DropdownProps> = ({
       <SelectButton type="button" onClick={() => setToggle(!toggle)}>
         {value}
       </SelectButton>
-      <DropdownContainer className={toggle ? "open" : "close"}>
+      <DropdownContainer size={size} className={toggle ? "open" : "close"}>
         <ul>
           {itemArr.map((it, idx) => (
             <li
