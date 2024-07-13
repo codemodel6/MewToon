@@ -15,13 +15,13 @@ import {
 } from "../../CSS/Color/ColorNote";
 
 const PageNationWrapper = styled.div`
-  margin-top: 20px;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   color: white;
-  height: 40px;
 
   ul {
     display: flex;

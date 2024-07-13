@@ -16,7 +16,6 @@ const WebToonListWrapper = styled.div`
   flex-wrap: wrap;
   width: 80%;
   height: 1500px;
-  /* background-color: blue; */
   margin-top: 20px;
   cursor: pointer;
   position: absolute;

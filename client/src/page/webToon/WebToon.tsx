@@ -30,6 +30,11 @@ const LoadingWrapper = styled.div`
   width: 100%;
 `;
 
+const PageWrapper = styled.div`
+  height: 80px;
+  width: 100%;
+`;
+
 export interface episodProps {
   episode: string;
   episodeMusic: string;
@@ -129,7 +134,7 @@ const WebToon = () => {
   }, [location.search]);
 
   return (
-    <GlobalWrapper height="2500px">
+    <GlobalWrapper height="2350px">
       <GlobalTitle
         imageUrl={building}
         mainText="웹툰을 선택해보아요"
@@ -156,7 +161,9 @@ const WebToon = () => {
         setModalState={setModalState}
         webToonData={webToonData}
       />
-      <PageNation totalPage={toonTotalPage} page={queryPage} />
+      <PageWrapper>
+        <PageNation totalPage={toonTotalPage} page={queryPage} />
+      </PageWrapper>
     </GlobalWrapper>
   );
 };

@@ -173,6 +173,13 @@ const EmptyWrapper = styled.div`
   border-bottom: 3px solid ${MainColor.Main100};
 `;
 
+const PageWrapper = styled.div`
+  height: 40px;
+  margin-top: 20px;
+  width: 100%;
+  background-color: red;
+`;
+
 interface ListInterface {
   modalState: boolean;
   setModalState: React.Dispatch<React.SetStateAction<boolean>>;
@@ -287,7 +294,9 @@ const BoardList: React.FC<ListInterface> = ({
         {totalPage === 0 ? (
           ""
         ) : (
-          <PagiNation totalPage={totalPage} page={page} />
+          <PageWrapper>
+            <PagiNation totalPage={totalPage} page={page} />
+          </PageWrapper>
         )}
       </div>
       {/* <SearchBar
