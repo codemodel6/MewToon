@@ -12,12 +12,21 @@ import SearchTab from "../../components/Organism/SearchTab";
 import { webToonArr } from "../../components/dummy/dummy";
 import { musicArr } from "../project/contents/musicBox/musicArr";
 import WebToonList from "./area/WebToonList";
+import Spinner from "../../components/Molecule/Spinner/Spinner";
+import { centerRow } from "../../components/CSS/Global/GlobalDisplay";
+import { handleScrollMove } from "../../components/Function/scroll";
 
 const WebToonWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   height: 100%;
+  width: 100%;
+`;
+
+const LoadingWrapper = styled.div`
+  ${centerRow}
+  height: 90vh;
   width: 100%;
 `;
 
@@ -61,6 +70,8 @@ const WebToon = () => {
   const [toonTotalPage, setToonTotalPage] = useState<number>(0);
   // 웹툰 모달 데이터
   const [webToonData, setWebToonData] = useState<ToonProps>(initialToonObj);
+  // 로딩 상태
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   // url의 쿼리스트링을 가져온다
   const location = useLocation();
@@ -69,44 +80,50 @@ const WebToon = () => {
 
   useEffect(() => {
     const handleWebToon = async () => {
-      const webToonResponse = await axios.get<WebToonResponse>(
-        `https://korea-webtoon-api-cc7dda2f0d77.herokuapp.com/webtoons${location.search}&perPage=12`
-      );
+      setIsLoading(true);
+      handleScrollMove(506);
+      try {
+        const webToonResponse = await axios.get<WebToonResponse>(
+          `https://korea-webtoon-api-cc7dda2f0d77.herokuapp.com/webtoons${location.search}&perPage=12`
+        );
 
-      // 페이지 총 개수
-      const totalPage = webToonResponse.data.total;
-      setToonTotalPage(Math.ceil(totalPage / 12));
+        // 페이지 총 개수
+        const totalPage = webToonResponse.data.total;
+        setToonTotalPage(Math.ceil(totalPage / 12));
 
-      // 웹툰 리스트
-      const filterData = webToonResponse.data.webtoons.map(
-        ({ id, title, authors, thumbnail }) => ({
-          id,
-          title,
-          authors,
-          thumbnail,
-          tag: ["액션", "로맨스"],
-          summary:
-            "올해 고등학생 은우는 짝사랑하던 아린을 만난다 반가운 마음에 다가갔지만 아린은...",
-          story: [
-            {
-              episode: "1화",
-              episodeMusic: musicArr[0].play,
-            },
-            {
-              episode: "2화",
-              episodeMusic: musicArr[1].play,
-            },
-            {
-              episode: "3화",
-              episodeMusic: musicArr[2].play,
-            },
-          ],
-        })
-      );
+        // 웹툰 리스트
+        const filterData = webToonResponse.data.webtoons.map(
+          ({ id, title, authors, thumbnail }) => ({
+            id,
+            title,
+            authors,
+            thumbnail,
+            tag: ["액션", "로맨스"],
+            summary:
+              "올해 고등학생 은우는 짝사랑하던 아린을 만난다 반가운 마음에 다가갔지만 아린은...",
+            story: [
+              {
+                episode: "1화",
+                episodeMusic: musicArr[0].play,
+              },
+              {
+                episode: "2화",
+                episodeMusic: musicArr[1].play,
+              },
+              {
+                episode: "3화",
+                episodeMusic: musicArr[2].play,
+              },
+            ],
+          })
+        );
 
-      setWebToonList([...filterData]);
-
-      console.log("filterData : ", filterData);
+        setWebToonList([...filterData]);
+      } catch (error) {
+        console.error("웹툰 데이터 로딩 실패 :", error);
+      } finally {
+        setIsLoading(false);
+      }
     };
     handleWebToon();
   }, [location.search]);
@@ -121,12 +138,18 @@ const WebToon = () => {
       <NavigateTab tabArr={webToonArr} />
       <SearchTab tabArr={webToonArr} />
       <WebToonWrapper>
-        <WebToonList
-          webToonList={webToonList}
-          modalState={modalState}
-          setModalState={setModalState}
-          setWebToonData={setWebToonData}
-        ></WebToonList>
+        {isLoading ? (
+          <LoadingWrapper>
+            <Spinner />
+          </LoadingWrapper>
+        ) : (
+          <WebToonList
+            webToonList={webToonList}
+            modalState={modalState}
+            setModalState={setModalState}
+            setWebToonData={setWebToonData}
+          ></WebToonList>
+        )}
       </WebToonWrapper>
       <WebToonModal
         modalState={modalState}
