@@ -89,7 +89,7 @@ export const GlobalSecondTabWrapper = styled.div<{ $scrollAction: boolean }>`
   }
 
   .input-wrapper {
-    display: flex;
+    ${betweenRow}
     width: 59%;
     height: 100%;
     border: 1px solid ${MainColor.Main100};
@@ -113,7 +113,7 @@ export const GlobalSecondTabWrapper = styled.div<{ $scrollAction: boolean }>`
 
     button {
       background-color: ${MainColor.Main100};
-      width: 5%;
+      width: 50px;
       height: 100%;
 
       img {

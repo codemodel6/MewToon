@@ -24,6 +24,8 @@ const SearchTab: React.FC<SearchTabInterface> = ({ tabArr }) => {
   const [scrollData, setScrollData] = useState<number>(0);
   // 스크롤이 진행중인지 확인
   const [scrollAction, setScrollAction] = useState<boolean>(false);
+  // search내용
+  const [searchData, setSearchData] = useState<string>("");
 
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   - 훅 기능 : 스크롤이 위, 아래로 이동함에 따라 tabDiv 위치 변경
@@ -41,12 +43,24 @@ const SearchTab: React.FC<SearchTabInterface> = ({ tabArr }) => {
     };
   }, [scrollData]);
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault(); // 엔터 키가 입력 필드에서 기본 제출 동작을 하지 않도록 합니다.
+      handleNavigate();
+    }
+  };
+
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   - 함수 기능 : 요일 변경 함수
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-  const handleNavigate = (moveURL: string) => {
-    // 쿼리스트링 객체 세팅
-    queryString.set("updateDay", moveURL);
+  const handleNavigate = () => {
+    // 검색
+    queryString.set("keyword", searchData);
+    queryString.set("page", "1");
+    // 요일 삭제
+    queryString.delete("updateDay");
+    // input값 초기화
+    setSearchData("");
     // 변경된 쿼리스트링으로 이동
     navigate(`${location.pathname}?${queryString.toString()}`);
   };
@@ -63,8 +77,13 @@ const SearchTab: React.FC<SearchTabInterface> = ({ tabArr }) => {
         />
       </div>
       <div className="input-wrapper">
-        <input placeholder="웹툰명을 검색하세요" />
-        <button>
+        <input
+          placeholder="웹툰명을 검색하세요"
+          value={searchData}
+          onChange={(e) => setSearchData(e.target.value)}
+          onKeyDown={(e) => handleKeyDown(e)}
+        />
+        <button onClick={handleNavigate}>
           <img src={searchImg} alt="돋보기" />
         </button>
       </div>

@@ -43,6 +43,8 @@ const NavigateTab: React.FC<NavigateTabInterface> = ({ tabArr }) => {
   const handleNavigate = (moveURL: string) => {
     // 쿼리스트링 객체 세팅
     queryString.set("updateDay", moveURL);
+    queryString.set("page", "1");
+    queryString.delete("keyword");
     // 변경된 쿼리스트링으로 이동
     navigate(`${location.pathname}?${queryString.toString()}`);
   };
