@@ -11,6 +11,7 @@ import { GrayColor } from "../../../components/CSS/Color/ColorNote";
 import naver from "../../../components/CSS/image/HomeImg/naver.png";
 import kakaoPage from "../../../components/CSS/image/HomeImg/kakaopage.png";
 import kakao from "../../../components/CSS/image/HomeImg/kakao.png";
+import mewCat from "../../../components/CSS/image/mewCat.png";
 
 const MoveWrapper = styled.section<{
   topAnimation: string;
@@ -52,7 +53,7 @@ const MoveWrapper = styled.section<{
     animation: ${(props) => props.bottomAnimation} 1s ease-out forwards;
   }
 
-  .codelandImg {
+  .mewCatImg {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -62,8 +63,8 @@ const MoveWrapper = styled.section<{
   }
 
   .naver {
-    width: 150px;
-    height: 150px;
+    width: 120px;
+    height: 120px;
     position: absolute;
     top: 20%;
     right: 30%;
@@ -73,8 +74,8 @@ const MoveWrapper = styled.section<{
   }
 
   .kakao {
-    width: 150px;
-    height: 150px;
+    width: 100px;
+    height: 100px;
     position: absolute;
     top: 20%;
     right: 20%;
@@ -84,8 +85,8 @@ const MoveWrapper = styled.section<{
   }
 
   .kakaoPage {
-    width: 150px;
-    height: 150px;
+    width: 100px;
+    height: 100px;
     position: absolute;
     top: 20%;
     right: 10%;
@@ -161,16 +162,16 @@ const MoveWrapper = styled.section<{
     }
 
     100% {
-      width: 300px;
-      height: 300px;
+      width: 250px;
+      height: 250px;
       opacity: 1;
     }
   }
 
   @keyframes imgDisAppear {
     0% {
-      width: 300px;
-      height: 300px;
+      width: 250px;
+      height: 250px;
       opacity: 1;
     }
 
@@ -307,7 +308,7 @@ const HmMove = () => {
           쉽게 접근 가능한
         </h1>
 
-        <img className="codelandImg" src={codeLand} alt="메인화면이미지" />
+        <img className="mewCatImg" src={mewCat} alt="메인화면이미지" />
         <img className="naver" src={naver} alt="네이버웹툰로고" />
         <img className="kakao" src={kakao} alt="카카오웹툰로고" />
         <img className="kakaoPage" src={kakaoPage} alt="카카오페이지웹툰로고" />

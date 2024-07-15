@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { FontSize, MainColor } from "../CSS/Color/ColorNote";
 import { betweenRow } from "../CSS/Global/GlobalDisplay";
-import onion from "../CSS/image/onion.png";
+import mewCat from "../CSS/image/mewCat.png";
 import { handleScroll } from "../Function/scroll";
 
 interface TestInterface {
@@ -51,10 +51,11 @@ const MyHeader = styled.header<{
     }
 
     .imgDiv {
-      width: 100px;
-      height: 100%;
+      margin-left: 20px;
+      width: 70px;
+      height: 70px;
       font-weight: bold;
-      background-image: url(${onion});
+      background-image: url(${mewCat});
       background-size: contain; // 이미지를 배경에 꽉 채움
       background-position: center; // 배경의 초기값을 가운데로
       background-repeat: no-repeat; // 배경보다 이미지가 작아도 반복하지 않음

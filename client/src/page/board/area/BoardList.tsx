@@ -177,7 +177,6 @@ const PageWrapper = styled.div`
   height: 40px;
   margin-top: 20px;
   width: 100%;
-  background-color: red;
 `;
 
 interface ListInterface {
