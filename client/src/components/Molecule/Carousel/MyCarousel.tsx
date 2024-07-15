@@ -95,15 +95,15 @@ const MyCarousel = () => {
       <div className="carousel">
         <Slider {...settings}>
           <div className="textWrapper">
-            <div className="title">CodeLand</div>
+            <div className="title">MewToon</div>
             <div className="contents">
-              코드랜드는 좋은 아이디어를 표현하는 사이트로
+              뮤툰은 웹툰에 어울리는 노래를 들려주는,
               <br />
-              상상하는 모든걸 개발할 수 있습니다.
+              웹툰에 재미를 더해주는 사이트입니다.
             </div>
           </div>
           <div className="gifWrapper">
-            <img src={masicCat} alt="코드랜드" />
+            <img src={masicCat} alt="마법고양이" />
           </div>
           <div className="textWrapper">
             <div className="title">Design</div>
@@ -114,7 +114,7 @@ const MyCarousel = () => {
             </div>
           </div>
           <div className="gifWrapper">
-            <img src={habugerCat} alt="디자인" />
+            <img src={habugerCat} alt="디자인고양이" />
           </div>
           <div className="textWrapper">
             <div className="title">Experience</div>
@@ -125,7 +125,7 @@ const MyCarousel = () => {
             </div>
           </div>
           <div className="gifWrapper">
-            <img src={pizzaCat} alt="경험" />
+            <img src={pizzaCat} alt="피자고양이" />
           </div>
         </Slider>
       </div>

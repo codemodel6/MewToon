@@ -312,7 +312,7 @@ const HmMove = () => {
         <img className="naver" src={naver} alt="네이버웹툰로고" />
         <img className="kakao" src={kakao} alt="카카오웹툰로고" />
         <img className="kakaoPage" src={kakaoPage} alt="카카오페이지웹툰로고" />
-        <img className="dragonImg" src={codeLand} alt="드래곤이미지" />
+        <img className="dragonImg" src={codeLand} alt="달리는냥이" />
         <h1 className="bottomText">
           코드랜드에 오신것을
           <br />
