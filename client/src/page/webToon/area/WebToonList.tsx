@@ -1,34 +1,31 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { FontSize, GrayColor } from "../../../components/CSS/Color/ColorNote";
-import {
-  betweenRow,
-  centerRow,
-} from "../../../components/CSS/Global/GlobalDisplay";
-import 화산귀환 from "../../../components/CSS/image/WebToonImg/화산귀환.png";
-import { ToonProps } from "../WebToon";
+import { centerRow } from "../../../components/CSS/Global/GlobalDisplay";
 import { handleModal } from "../../../components/Function/modal";
+import { ToonProps } from "../WebToon";
 
 const WebToonListWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
   flex-wrap: wrap;
   width: 80%;
   height: 1500px;
   margin-top: 20px;
-  cursor: pointer;
   position: absolute;
 `;
 
-const WebToonWrapper = styled.div<{ $hoverState: boolean }>`
+const WebToonWrapper = styled.div<{ $hoverState: boolean; $idx: number }>`
   border: 1px solid ${GrayColor.Gray300};
   width: 24%;
   height: 33%;
   padding: 20px;
   color: black;
+  cursor: pointer;
   animation: ${(props) =>
     props.$hoverState ? "rotateLeft 1s forwards" : "rotateRevoke 1s forwards"};
+  margin-right: ${(props) => (props.$idx ? "1.33%" : "0")};
+  margin-bottom: 20px;
 
   .webtoon-block {
     width: 100%;
@@ -43,7 +40,6 @@ const WebToonWrapper = styled.div<{ $hoverState: boolean }>`
     .title {
       ${centerRow}
       font-size: ${FontSize.xlarge};
-      /* background-color: darkblue; */
       width: 100%;
       height: 10%;
       transform: ${(props) =>
@@ -166,6 +162,7 @@ const WebToonList: React.FC<WebToonListInterface> = ({
     <WebToonListWrapper>
       {webToonList.map((it, idx) => (
         <WebToonWrapper
+          $idx={(idx + 1) % 4}
           $hoverState={!!hoverState[it.id]}
           onMouseEnter={() => handleMouseEnter(it.id)}
           onMouseLeave={() => handleMouseLeave(it.id)}

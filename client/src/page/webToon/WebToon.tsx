@@ -33,6 +33,7 @@ const LoadingWrapper = styled.div`
 const PageWrapper = styled.div`
   height: 80px;
   width: 100%;
+  margin-bottom: 30px;
 `;
 
 export interface episodProps {
@@ -134,7 +135,7 @@ const WebToon = () => {
   }, [location.search]);
 
   return (
-    <GlobalWrapper height="2350px">
+    <GlobalWrapper height="2400px">
       <GlobalTitle
         imageUrl={building}
         mainText="웹툰과 노래를 함께"
