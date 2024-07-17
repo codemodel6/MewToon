@@ -73,7 +73,7 @@ const SearchTab: React.FC<SearchTabInterface> = ({ tabArr }) => {
           itemArr={platformArr}
           urlKey={"provider"}
           firstTitle={"플랫폼 ▼"}
-          size={"min"}
+          size={"max"}
         />
       </div>
       <div className="input-wrapper">

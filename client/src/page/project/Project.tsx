@@ -59,7 +59,7 @@ const Project = () => {
           itemArr={itemArr}
           urlKey={"name"}
           firstTitle="프로젝트 리스트 ▼"
-          size={"max"}
+          size={"min"}
         />
       </ProjectListWrapper>
       <ProjectWrapper>

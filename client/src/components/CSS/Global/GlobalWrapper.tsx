@@ -33,31 +33,37 @@ export const GlobalTabWrapper = styled.div<{ $scrollAction: boolean }>`
   background-color: ${WhiteColor.White100};
   z-index: 99;
   border-bottom: 1px solid ${GrayColor.Gray000};
-  padding: 0 10% 0 10%;
 
-  ul {
+  .around-ul {
+    ${aroundRow}
+    width: 100%;
+    height: 100%;
+  }
+
+  .between-ul {
+    padding: 0 10% 0 10%;
     ${betweenRow}
     width: 100%;
     height: 100%;
+  }
 
-    li {
-      ${centerColumn}
-      height: 80%;
-      font-size: 20px;
-      color: ${GrayColor.Gray100};
-      font-weight: bold;
-      cursor: pointer;
-      border-radius: 50%;
+  li {
+    ${centerColumn}
+    height: 80%;
+    font-size: 20px;
+    color: ${GrayColor.Gray100};
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 50%;
 
-      &.here {
-        background-color: ${MainColor.Main100};
-        color: white;
-      }
+    &.here {
+      background-color: ${MainColor.Main100};
+      color: white;
     }
+  }
 
-    .move {
-      width: 50px;
-    }
+  .move {
+    width: 50px;
   }
 `;
 

@@ -57,8 +57,7 @@ const DropdownContainer = styled.div<{ $size: string }>`
     > li {
       ${centerRow}
       height: 50px;
-      /* width: 33.33%; */
-      width: 100%;
+      width: ${(props) => (props.$size === "max" ? "100%" : "33.33%")};
       list-style: none;
       padding: 3px 0;
       cursor: pointer;

@@ -108,7 +108,7 @@ const WebToon = () => {
               "올해 고등학생 은우는 짝사랑하던 아린을 만난다 반가운 마음에 다가갔지만 아린은...",
             story: [
               {
-                episode: "1화",
+                episode: "3화",
                 episodeMusic: musicArr[0].play,
               },
               {
@@ -116,7 +116,7 @@ const WebToon = () => {
                 episodeMusic: musicArr[1].play,
               },
               {
-                episode: "3화",
+                episode: "1화",
                 episodeMusic: musicArr[2].play,
               },
             ],

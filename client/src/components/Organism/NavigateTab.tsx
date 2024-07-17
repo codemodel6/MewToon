@@ -51,7 +51,7 @@ const NavigateTab: React.FC<NavigateTabInterface> = ({ tabArr }) => {
 
   return (
     <GlobalTabWrapper $scrollAction={scrollAction}>
-      <ul>
+      <ul className="between-ul">
         {tabArr.map((it, idx) => (
           <li
             key={idx}

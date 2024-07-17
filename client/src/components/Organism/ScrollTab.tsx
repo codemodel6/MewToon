@@ -30,7 +30,7 @@ const ScrollTab: React.FC<ScrollTabInterface> = ({ tabArr }) => {
 
   return (
     <GlobalTabWrapper $scrollAction={scrollAction}>
-      <ul>
+      <ul className="around-ul">
         {tabArr.map((it, idx) => (
           <li key={idx} onClick={() => handleScrollMove(it.move)}>
             {it.title}
