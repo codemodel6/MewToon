@@ -13,6 +13,7 @@ const WebToonListWrapper = styled.div`
   height: 1500px;
   margin-top: 20px;
   position: absolute;
+  margin-bottom: 20px;
 `;
 
 const WebToonWrapper = styled.div<{ $hoverState: boolean; $idx: number }>`
