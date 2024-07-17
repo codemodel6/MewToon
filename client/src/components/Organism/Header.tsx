@@ -143,7 +143,7 @@ const Header: React.FC<HeaderProps> = () => {
             navigate("/project?name=musicBox");
           }}
         >
-          Project
+          프로젝트
         </button>
         <button
           className={`menuButton ${boardPage ? "here" : ""}`}
@@ -151,7 +151,7 @@ const Header: React.FC<HeaderProps> = () => {
             navigate("/board?page=1");
           }}
         >
-          Board
+          게시판
         </button>
         <button
           className={`menuButton ${informationPage ? "here" : ""}`}
@@ -159,7 +159,7 @@ const Header: React.FC<HeaderProps> = () => {
             navigate("/information");
           }}
         >
-          Information
+          상세
         </button>
         <div className="loginDiv"></div>
       </div>

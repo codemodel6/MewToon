@@ -20,8 +20,8 @@ const Information = () => {
     <GlobalWrapper height="2700px">
       <GlobalTitle
         imageUrl={macao}
-        mainText="카카오 지도를 이용해서 만들어보자"
-        subText="Map"
+        mainText="상세한 정보를"
+        subText="Information"
       />
       <OrTab tabArr={mapTabArr} />
       <InfoWrapper>

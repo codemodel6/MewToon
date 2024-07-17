@@ -7,7 +7,7 @@ import cat from "../../../components/CSS/image/HomeImg/cat.png";
 import dog from "../../../components/CSS/image/MusicImg/random.png";
 import { handleScrollAnimation } from "../../../components/Function/scroll";
 import jersey from "../../../components/CSS/image/HomeImg/jersey.jpg";
-import { GrayColor } from "../../../components/CSS/Color/ColorNote";
+import { BlackColor, GrayColor } from "../../../components/CSS/Color/ColorNote";
 import naver from "../../../components/CSS/image/HomeImg/naver.png";
 import kakaoPage from "../../../components/CSS/image/HomeImg/kakaopage.png";
 import kakao from "../../../components/CSS/image/HomeImg/kakao.png";
@@ -22,7 +22,7 @@ const MoveWrapper = styled.section<{
   position: relative;
   width: 100%;
   height: 100%;
-  color: ${GrayColor.Gray100};
+  color: ${BlackColor.Black100};
 
   .photo {
     position: absolute;
@@ -33,7 +33,7 @@ const MoveWrapper = styled.section<{
   .topText {
     width: 100px;
     position: absolute;
-    font-size: 30px;
+    font-size: 28px;
     width: 500px;
     top: 150px;
     left: 200px;
@@ -44,7 +44,7 @@ const MoveWrapper = styled.section<{
   .bottomText {
     width: 200px;
     position: absolute;
-    font-size: 30px;
+    font-size: 28px;
     width: 500px;
     bottom: 200px;
     right: 100px;
@@ -132,23 +132,23 @@ const MoveWrapper = styled.section<{
   //--- 하단 글자 애니메이션 ---
   @keyframes bottomAppear {
     0% {
-      right: -100px;
+      right: -30px;
       opacity: 0;
     }
     100% {
-      right: 30px;
+      right: 120px;
       opacity: 1;
     }
   }
 
   @keyframes bottomDisAppear {
     0% {
-      right: 30px;
+      right: 120px;
       opacity: 1;
     }
 
     100% {
-      right: -100px;
+      right: -30px;
       opacity: 0;
     }
   }
@@ -303,9 +303,9 @@ const HmMove = () => {
         img2Animation={img2Animation}
       >
         <h1 className="topText">
-          개발자를 위한
+          웹툰에 노래를 더하다
           <br />
-          쉽게 접근 가능한
+          재미에 재미를 더하다!
         </h1>
 
         <img className="mewCatImg" src={mewCat} alt="메인화면이미지" />
@@ -314,9 +314,9 @@ const HmMove = () => {
         <img className="kakaoPage" src={kakaoPage} alt="카카오페이지웹툰로고" />
         <img className="dragonImg" src={codeLand} alt="달리는냥이" />
         <h1 className="bottomText">
-          코드랜드에 오신것을
+          웹툰과 어울리는 음악을 즐길 수 있는
           <br />
-          환영합니다!
+          뮤툰에 오신것을 환영합니다
         </h1>
       </MoveWrapper>
     </GlobalBlock>

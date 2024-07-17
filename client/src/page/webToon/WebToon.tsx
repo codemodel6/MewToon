@@ -137,7 +137,7 @@ const WebToon = () => {
     <GlobalWrapper height="2350px">
       <GlobalTitle
         imageUrl={building}
-        mainText="웹툰을 선택해보아요"
+        mainText="웹툰과 노래를 함께"
         subText="WebToon"
       />
       <NavigateTab tabArr={webToonArr} />

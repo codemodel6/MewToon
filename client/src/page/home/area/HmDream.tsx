@@ -216,12 +216,12 @@ const HmDream = () => {
         -Stephen Leacock
       </h1>
       <h1 className="secondText">
-        코드랜드는 꿈꾸고 만들어 보고 싶은 것을 개발하는 페이지 입니다.
+        뮤툰은 사업성을 꿈꾸며 더 좋은 미래를 위해 만든 페이지 입니다.
         <br />
-        높은 곳을 바라보며 꿈꾸는 것은 성공을 위한 필수 사상입니다.
-        <br />그 여정을 코드랜드에서 시작하겠습니다.
+        높은 곳을 바라보며 꿈꾸는 것은 성공을 위한 필수 사상이기에
+        <br />그 여정을 이곳에서 시작하겠습니다.
       </h1>
-      <h1 className="thirdText">당신의 꿈을. 저의 꿈을 함께 이뤄봐요!</h1>
+      <h1 className="thirdText">당신의 꿈을. 저의 꿈을.</h1>
       <img className="handImg" src={handshake} alt="악수이미지" />
     </DreamWrapper>
   );

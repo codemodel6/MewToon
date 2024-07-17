@@ -55,7 +55,7 @@ const Board = () => {
     <GlobalWrapper height="2700px">
       <GlobalTitle
         imageUrl={towers}
-        mainText="게시판을 만들껍니다"
+        mainText="살아 숨쉬는 게시판"
         subText="Board"
       />
       <OrTab tabArr={boardTabArr} />
