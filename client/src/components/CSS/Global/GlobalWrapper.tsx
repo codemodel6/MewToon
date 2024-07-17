@@ -83,15 +83,18 @@ export const GlobalSecondTabWrapper = styled.div<{ $scrollAction: boolean }>`
 
   .img-wrapper {
     width: 24%;
-    height: 100%;
-    background-color: red;
+    height: 50px;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
   }
 
   .dropdown-wrapper {
     display: flex;
     width: 14%;
     height: 100%;
-    background-color: orange;
   }
 
   .input-wrapper {
@@ -99,7 +102,6 @@ export const GlobalSecondTabWrapper = styled.div<{ $scrollAction: boolean }>`
     width: 59%;
     height: 100%;
     border: 1px solid ${MainColor.Main100};
-    /* border: 1px solid ${GrayColor.Gray000}; */
 
     input {
       font-size: ${FontSize.large};

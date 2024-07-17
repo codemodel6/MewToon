@@ -12,6 +12,7 @@ import naver from "../../../components/CSS/image/HomeImg/naver.png";
 import kakaoPage from "../../../components/CSS/image/HomeImg/kakaopage.png";
 import kakao from "../../../components/CSS/image/HomeImg/kakao.png";
 import mewCat from "../../../components/CSS/image/mewCat.png";
+import mewRun from "../../../components/CSS/image/mewRun.png";
 
 const MoveWrapper = styled.section<{
   topAnimation: string;
@@ -53,7 +54,7 @@ const MoveWrapper = styled.section<{
     animation: ${(props) => props.bottomAnimation} 1s ease-out forwards;
   }
 
-  .mewCatImg {
+  .mewRunImg {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -95,9 +96,7 @@ const MoveWrapper = styled.section<{
     opacity: 0;
   }
 
-  .dragonImg {
-    width: 200px;
-    height: 200px;
+  .mewCatImg {
     position: absolute;
     bottom: 20%;
     animation: ${(props) => props.topAnimation} 1s ease-out forwards;
@@ -162,16 +161,16 @@ const MoveWrapper = styled.section<{
     }
 
     100% {
-      width: 250px;
-      height: 250px;
+      width: 600px;
+      height: 130px;
       opacity: 1;
     }
   }
 
   @keyframes imgDisAppear {
     0% {
-      width: 250px;
-      height: 250px;
+      width: 600px;
+      height: 130px;
       opacity: 1;
     }
 
@@ -308,11 +307,11 @@ const HmMove = () => {
           재미에 재미를 더하다!
         </h1>
 
-        <img className="mewCatImg" src={mewCat} alt="메인화면이미지" />
+        <img className="mewRunImg" src={mewRun} alt="뮤캣런" />
         <img className="naver" src={naver} alt="네이버웹툰로고" />
         <img className="kakao" src={kakao} alt="카카오웹툰로고" />
         <img className="kakaoPage" src={kakaoPage} alt="카카오페이지웹툰로고" />
-        <img className="dragonImg" src={codeLand} alt="달리는냥이" />
+        <img className="mewCatImg" src={mewCat} alt="메인화면이미지" />
         <h1 className="bottomText">
           웹툰과 어울리는 음악을 즐길 수 있는
           <br />

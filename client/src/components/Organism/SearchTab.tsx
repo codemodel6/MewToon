@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from "react";
-import {
-  GlobalSecondTabWrapper,
-  GlobalTabWrapper,
-} from "../CSS/Global/GlobalWrapper";
-import { handleScroll } from "../Function/scroll";
-import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import searchImg from "../../components/CSS/image/search.png";
-import Dropdown from "../Molecule/Dropdown/Dropdown";
+import { GlobalSecondTabWrapper } from "../CSS/Global/GlobalWrapper";
+import { handleScroll } from "../Function/scroll";
 import DropdownBlock from "../Molecule/Dropdown/DropdownBlock";
 import { platformArr } from "../dummy/dummy";
+import mewRun from "../CSS/image/mewRun.png";
 
 export interface SearchTabInterface {
   tabArr: { title: string; moveURL: string }[];
@@ -67,7 +64,6 @@ const SearchTab: React.FC<SearchTabInterface> = ({ tabArr }) => {
 
   return (
     <GlobalSecondTabWrapper $scrollAction={scrollAction}>
-      <div className="img-wrapper"></div>
       <div className="dropdown-wrapper">
         <DropdownBlock
           itemArr={platformArr}
@@ -75,6 +71,9 @@ const SearchTab: React.FC<SearchTabInterface> = ({ tabArr }) => {
           firstTitle={"플랫폼 ▼"}
           size={"max"}
         />
+      </div>
+      <div className="img-wrapper">
+        <img className="mewRunImg" src={mewRun} alt="달리는뮤켓" />
       </div>
       <div className="input-wrapper">
         <input
