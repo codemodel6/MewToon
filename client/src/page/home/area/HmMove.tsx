@@ -1,18 +1,13 @@
-import React, { useEffect, useRef, useState } from "react";
-import { GlobalBlock } from "../../../components/CSS/Global/GlobalBlock";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
-import codeLand from "../../../components/CSS/image/FooterImg/github.png";
-import computer from "../../../components/CSS/image/HomeImg/computer.png";
-import cat from "../../../components/CSS/image/HomeImg/cat.png";
-import dog from "../../../components/CSS/image/MusicImg/random.png";
-import { handleScrollAnimation } from "../../../components/Function/scroll";
-import jersey from "../../../components/CSS/image/HomeImg/jersey.jpg";
-import { BlackColor, GrayColor } from "../../../components/CSS/Color/ColorNote";
-import naver from "../../../components/CSS/image/HomeImg/naver.png";
-import kakaoPage from "../../../components/CSS/image/HomeImg/kakaopage.png";
+import { BlackColor } from "../../../components/CSS/Color/ColorNote";
+import { GlobalBlock } from "../../../components/CSS/Global/GlobalBlock";
 import kakao from "../../../components/CSS/image/HomeImg/kakao.png";
+import kakaoPage from "../../../components/CSS/image/HomeImg/kakaopage.png";
+import naver from "../../../components/CSS/image/HomeImg/naver.png";
 import mewCat from "../../../components/CSS/image/mewCat.png";
 import mewRun from "../../../components/CSS/image/mewRun.png";
+import { handleScrollAnimation } from "../../../components/Function/scroll";
 
 const MoveWrapper = styled.section<{
   topAnimation: string;

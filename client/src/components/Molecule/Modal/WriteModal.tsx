@@ -12,8 +12,8 @@ import {
   SubColor,
   WhiteColor,
 } from "../../CSS/Color/ColorNote";
-import { CancelButton, GlobalButton } from "../../CSS/Global/GlobalItem";
 import { centerColumn } from "../../CSS/Global/GlobalDisplay";
+import { CancelButton, GlobalButton } from "../../CSS/Global/GlobalItem";
 import { handleModal } from "../../Function/modal";
 
 const WriteModalWrapper = styled.div`

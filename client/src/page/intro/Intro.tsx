@@ -2,10 +2,10 @@
 - / 컴포넌트
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
 
-import React, { useEffect } from "react";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { GlobalBlock } from "../../components/CSS/Global/GlobalBlock";
-import { useNavigate } from "react-router-dom";
 
 const IntroWrapper = styled.div`
   display: flex;

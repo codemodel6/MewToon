@@ -1,7 +1,7 @@
-import styled from "styled-components";
 import { useState } from "react";
-import Dropdown from "./Dropdown";
+import styled from "styled-components";
 import { DropdownItem } from "../../dummy/dummy";
+import Dropdown from "./Dropdown";
 
 const DropdownWrapper = styled.div`
   display: flex;

@@ -2,10 +2,10 @@
 - 데이트피커 컴포넌트
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
 
-import React, { useState, forwardRef, useEffect } from "react";
+import { ko } from "date-fns/esm/locale";
+import { forwardRef, useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { ko } from "date-fns/esm/locale";
 import "./MyPicker.css";
 
 const MyPicker = ({ setMyDate, type }) => {

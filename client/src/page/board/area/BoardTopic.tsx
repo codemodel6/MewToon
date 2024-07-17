@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { GrayColor } from "../../../components/CSS/Color/ColorNote";
 import { centerColumn } from "../../../components/CSS/Global/GlobalDisplay";
 import BoardCarousel from "../../../components/Molecule/Carousel/BoardCarousel";
 

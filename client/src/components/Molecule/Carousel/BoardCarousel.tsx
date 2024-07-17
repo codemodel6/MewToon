@@ -1,14 +1,9 @@
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
 import styled from "styled-components";
-import {
-  FontSize,
-  MainColor,
-  SubColor,
-  WhiteColor,
-} from "../../CSS/Color/ColorNote";
 import { topicList } from "../../../page/board/area/topicList";
+import { FontSize, MainColor, WhiteColor } from "../../CSS/Color/ColorNote";
 
 const CarouselWrapper = styled.div`
   display: flex;

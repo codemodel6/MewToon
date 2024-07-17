@@ -1,16 +1,7 @@
 import styled from "styled-components";
-import {
-  FontSize,
-  GrayColor,
-  SubColor,
-} from "../../../components/CSS/Color/ColorNote";
-import {
-  aroundRow,
-  centerColumn,
-} from "../../../components/CSS/Global/GlobalDisplay";
+import { FontSize, GrayColor } from "../../../components/CSS/Color/ColorNote";
+import { aroundRow } from "../../../components/CSS/Global/GlobalDisplay";
 import { GlobalButton } from "../../../components/CSS/Global/GlobalItem";
-import { useEffect } from "react";
-import axios from "axios";
 
 const InfoQuestionWrapper = styled.div`
   display: flex;

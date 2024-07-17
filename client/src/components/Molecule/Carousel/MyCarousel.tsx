@@ -3,15 +3,14 @@
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
 
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
 import styled from "styled-components";
-import { centerColumn, centerRow } from "../../CSS/Global/GlobalDisplay";
-import computerCat from "../../CSS/image/HomeImg/gif/computerCat.gif";
-import pizzaCat from "../../CSS/image/HomeImg/gif/pizzaCat.gif";
-import masicCat from "../../CSS/image/HomeImg/gif/masicCat.gif";
+import { MainColor } from "../../CSS/Color/ColorNote";
+import { centerColumn } from "../../CSS/Global/GlobalDisplay";
 import habugerCat from "../../CSS/image/HomeImg/gif/habugerCat.gif";
-import { GrayColor, MainColor } from "../../CSS/Color/ColorNote";
+import masicCat from "../../CSS/image/HomeImg/gif/masicCat.gif";
+import pizzaCat from "../../CSS/image/HomeImg/gif/pizzaCat.gif";
 
 const CarouselWrapper = styled.div`
   display: flex;

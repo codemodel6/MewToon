@@ -2,12 +2,12 @@
 - 푸터 컴포넌트
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
 
+import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { BlackColor, WhiteColor } from "../CSS/Color/ColorNote";
-import { useLocation } from "react-router-dom";
 import { centerColumn, centerRow } from "../CSS/Global/GlobalDisplay";
-import github from "../CSS/image/FooterImg/github.png";
 import facebook from "../CSS/image/FooterImg/facebook.png";
+import github from "../CSS/image/FooterImg/github.png";
 import instagram from "../CSS/image/FooterImg/instagram.png";
 import twitter from "../CSS/image/FooterImg/twitter.png";
 import { handleLink } from "../Function/scroll";

@@ -1,7 +1,7 @@
 import netflix from "../../../components/CSS/image/ProjectImg/netflix.jpg";
 import painting from "../../../components/CSS/image/ProjectImg/painting.jpg";
-import report from "../../../components/CSS/image/ProjectImg/report.jpg";
 import recod from "../../../components/CSS/image/ProjectImg/recod.jpg";
+import report from "../../../components/CSS/image/ProjectImg/report.jpg";
 
 export interface ProjetInterface {
   mainImage: any;

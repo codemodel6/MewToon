@@ -1,13 +1,9 @@
-import styled from "styled-components";
-import homeRight from "../../../components/CSS/image/HomeImg/homeRight.png";
 import { useEffect, useState } from "react";
+import styled from "styled-components";
+import { GrayColor, MainColor } from "../../../components/CSS/Color/ColorNote";
 import { aroundRow } from "../../../components/CSS/Global/GlobalDisplay";
+import homeRight from "../../../components/CSS/image/HomeImg/homeRight.png";
 import { handleScrollAnimation } from "../../../components/Function/scroll";
-import {
-  GrayColor,
-  MainColor,
-  SubColor,
-} from "../../../components/CSS/Color/ColorNote";
 
 const BookWrapper = styled.div`
   ${aroundRow}

@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import searchImg from "../../components/CSS/image/search.png";
 import { GlobalSecondTabWrapper } from "../CSS/Global/GlobalWrapper";
+import mewRun from "../CSS/image/mewRun.png";
 import { handleScroll } from "../Function/scroll";
 import DropdownBlock from "../Molecule/Dropdown/DropdownBlock";
 import { platformArr } from "../dummy/dummy";
-import mewRun from "../CSS/image/mewRun.png";
 
 export interface SearchTabInterface {
   tabArr: { title: string; moveURL: string }[];

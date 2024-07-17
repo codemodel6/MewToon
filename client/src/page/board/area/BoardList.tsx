@@ -3,7 +3,7 @@
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
 
 import { useEffect, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import styled from "styled-components";
 import {
   FontSize,
@@ -16,9 +16,9 @@ import {
   centerRow,
 } from "../../../components/CSS/Global/GlobalDisplay";
 import { GlobalButton } from "../../../components/CSS/Global/GlobalItem";
+import { handleModal } from "../../../components/Function/modal";
 import PagiNation from "../../../components/Molecule/PagiNation/PagiNation";
 import { serverBoardObj1, serverBoardObj2 } from "./serverBoardObj";
-import { handleModal } from "../../../components/Function/modal";
 
 const BoardListBlock = styled.div<{ $toggle: boolean }>`
   height: 100%;

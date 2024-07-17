@@ -3,17 +3,16 @@
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
 
 import styled from "styled-components";
-import building from "../../components/CSS/image/building.jpg";
-import GlobalTitle from "../../components/Organism/GlobalTitle";
+import { FontSize } from "../../components/CSS/Color/ColorNote";
+import { centerColumn } from "../../components/CSS/Global/GlobalDisplay";
 import { GlobalWrapper } from "../../components/CSS/Global/GlobalWrapper";
+import building from "../../components/CSS/image/building.jpg";
 import { itemArr, skillTabArr } from "../../components/dummy/dummy";
+import DropdowBlock from "../../components/Molecule/Dropdown/DropdownBlock";
+import GlobalTitle from "../../components/Organism/GlobalTitle";
 import OrTab from "../../components/Organism/ScrollTab";
 import ProjectIntro from "./area/ProjectIntro";
-import { centerColumn } from "../../components/CSS/Global/GlobalDisplay";
-import { FontSize } from "../../components/CSS/Color/ColorNote";
 import ProjectContents from "./contents/ProjectContents";
-import Dropdown from "../../components/Molecule/Dropdown/Dropdown";
-import DropdowBlock from "../../components/Molecule/Dropdown/DropdownBlock";
 
 const ProjectWrapper = styled.div`
   display: flex;

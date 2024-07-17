@@ -3,19 +3,17 @@
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
 
 import styled from "styled-components";
+import WebToonMusic from "../../../page/webToon/area/WebToonMusic";
 import { ToonProps } from "../../../page/webToon/WebToon";
 import {
   BlackColor,
   FontSize,
-  GrayColor,
   MainColor,
   SubColor,
 } from "../../CSS/Color/ColorNote";
 import { centerColumn } from "../../CSS/Global/GlobalDisplay";
 import { handleModal } from "../../Function/modal";
 import { Overlay } from "./Overlay";
-import WebToonMusic from "../../../page/webToon/area/WebToonMusic";
-import { useRef, useState } from "react";
 
 const WebToonModalWrapper = styled.div`
   display: none;

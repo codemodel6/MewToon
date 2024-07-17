@@ -2,17 +2,12 @@
 - 페이지네이션 컴포넌트
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
 
-import styled from "styled-components";
 import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import styled from "styled-components";
 import left from "../../../components/CSS/image/left.png";
 import right from "../../../components/CSS/image/right.png";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import {
-  BlackColor,
-  FontSize,
-  GrayColor,
-  MainColor,
-} from "../../CSS/Color/ColorNote";
+import { FontSize, GrayColor, MainColor } from "../../CSS/Color/ColorNote";
 
 const PageNationWrapper = styled.div`
   width: 100%;

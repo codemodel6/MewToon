@@ -2,19 +2,12 @@
 - /map 컴포넌트
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
 
-import { useEffect } from "react";
 import styled from "styled-components";
 import { MainColor } from "../../../components/CSS/Color/ColorNote";
 import {
   aroundRow,
   centerColumn,
 } from "../../../components/CSS/Global/GlobalDisplay";
-import { GlobalWrapper } from "../../../components/CSS/Global/GlobalWrapper";
-import car from "../../components/CSS/image/car.jpg";
-import OrTab from "../../../components/Organism/ScrollTab";
-import GlobalTitle from "../../../components/Organism/GlobalTitle";
-import { mapTabArr } from "../../../components/dummy/dummy";
-import InfoQuestion from "./InfoQuestion";
 
 const MapWrapper = styled.div`
   ${centerColumn}

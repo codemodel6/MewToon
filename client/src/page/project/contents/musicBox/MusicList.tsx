@@ -8,8 +8,8 @@ import {
   SubColor,
 } from "../../../../components/CSS/Color/ColorNote";
 import { aroundRow } from "../../../../components/CSS/Global/GlobalDisplay";
-import { musicArr, MusicProps } from "./musicArr";
 import { handlePlay } from "../../../../components/Function/music";
+import { musicArr, MusicProps } from "./musicArr";
 
 const MusicListWrapper = styled.div`
   display: flex;

@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import InfoQuestion from "./area/InfoQuestion";
 import { GlobalWrapper } from "../../components/CSS/Global/GlobalWrapper";
-import OrTab from "../../components/Organism/ScrollTab";
-import GlobalTitle from "../../components/Organism/GlobalTitle";
 import macao from "../../components/CSS/image/macao.jpg";
 import { mapTabArr } from "../../components/dummy/dummy";
+import GlobalTitle from "../../components/Organism/GlobalTitle";
+import OrTab from "../../components/Organism/ScrollTab";
+import InfoQuestion from "./area/InfoQuestion";
 import Map from "./area/Map";
 
 const InfoWrapper = styled.div`

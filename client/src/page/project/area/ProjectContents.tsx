@@ -1,10 +1,9 @@
 import styled from "styled-components";
+import { FontSize } from "../../../components/CSS/Color/ColorNote";
 import {
   betweenRow,
   centerColumn,
-  centerRow,
 } from "../../../components/CSS/Global/GlobalDisplay";
-import { FontSize } from "../../../components/CSS/Color/ColorNote";
 
 const ProjectContentsWrapper = styled.div`
   ${centerColumn}

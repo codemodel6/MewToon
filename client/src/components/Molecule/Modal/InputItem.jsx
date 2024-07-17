@@ -2,10 +2,10 @@
 - 모달을 보여주기 위한 버튼과 모달이 있는 컴포넌트
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
 
-import styled from "styled-components";
-import { GlobalModalButton, GlobalModal } from "../../GlobalCss/GlobalItem";
-import ScrollModal from "./ScrollModal";
 import { useState } from "react";
+import styled from "styled-components";
+import { GlobalModal, GlobalModalButton } from "../../GlobalCss/GlobalItem";
+import ScrollModal from "./ScrollModal";
 
 const InputItemDiv = styled.div`
   display: flex;

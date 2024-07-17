@@ -1,21 +1,19 @@
+import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
+import {
+  GrayColor,
+  SubColor,
+} from "../../../../components/CSS/Color/ColorNote";
 import {
   aroundRow,
   betweenRow,
   centerColumn,
 } from "../../../../components/CSS/Global/GlobalDisplay";
-import MusicList from "./MusicList";
-import { useEffect, useRef, useState } from "react";
+import next from "../../../../components/CSS/image/MusicImg/next.png";
 import pause from "../../../../components/CSS/image/MusicImg/pause.png";
 import play from "../../../../components/CSS/image/MusicImg/play.png";
-import reStart from "../../../../components/CSS/image/MusicImg/restart.png";
-import next from "../../../../components/CSS/image/MusicImg/next.png";
 import random from "../../../../components/CSS/image/MusicImg/random.png";
-import { musicArr } from "./musicArr";
-import {
-  GrayColor,
-  SubColor,
-} from "../../../../components/CSS/Color/ColorNote";
+import reStart from "../../../../components/CSS/image/MusicImg/restart.png";
 import {
   handleNext,
   handlePlay,
@@ -26,6 +24,8 @@ import {
   handleTimeChange,
   handleTimeFormat,
 } from "../../../../components/Function/music";
+import { musicArr } from "./musicArr";
+import MusicList from "./MusicList";
 
 const MusicBoxWrapper = styled.div`
   display: flex;

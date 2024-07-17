@@ -10,8 +10,8 @@ import {
   centerColumn,
 } from "../../../../components/CSS/Global/GlobalDisplay";
 import {
-  GlobalButton,
   CancelButton,
+  GlobalButton,
 } from "../../../../components/CSS/Global/GlobalItem";
 
 const ReportWrapper = styled.div`

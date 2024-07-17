@@ -1,6 +1,6 @@
+import React from "react";
 import styled from "styled-components";
 import { MainColor } from "../../../../components/CSS/Color/ColorNote";
-import React from "react";
 import eraser from "../../../../components/CSS/image/eraser.png";
 
 const PaletteWrapper = styled.div`

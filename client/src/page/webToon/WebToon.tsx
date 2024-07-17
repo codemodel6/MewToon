@@ -2,19 +2,19 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
+import { centerRow } from "../../components/CSS/Global/GlobalDisplay";
 import { GlobalWrapper } from "../../components/CSS/Global/GlobalWrapper";
 import building from "../../components/CSS/image/building.jpg";
+import { handleScrollMove } from "../../components/Function/scroll";
 import WebToonModal from "../../components/Molecule/Modal/WebToonModal";
 import PageNation from "../../components/Molecule/PagiNation/PagiNation";
+import Spinner from "../../components/Molecule/Spinner/Spinner";
 import GlobalTitle from "../../components/Organism/GlobalTitle";
 import NavigateTab from "../../components/Organism/NavigateTab";
 import SearchTab from "../../components/Organism/SearchTab";
 import { webToonArr } from "../../components/dummy/dummy";
 import { musicArr } from "../project/contents/musicBox/musicArr";
 import WebToonList from "./area/WebToonList";
-import Spinner from "../../components/Molecule/Spinner/Spinner";
-import { centerRow } from "../../components/CSS/Global/GlobalDisplay";
-import { handleScrollMove } from "../../components/Function/scroll";
 
 const WebToonWrapper = styled.div`
   display: flex;

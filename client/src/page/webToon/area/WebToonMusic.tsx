@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import {
   aroundRow,
@@ -7,9 +8,6 @@ import {
 import pause from "../../../components/CSS/image/MusicImg/pause.png";
 import play from "../../../components/CSS/image/MusicImg/play.png";
 import reStart from "../../../components/CSS/image/MusicImg/restart.png";
-import { useEffect, useRef, useState } from "react";
-import { musicArr } from "../../project/contents/musicBox/musicArr";
-import { MainColor } from "../../../components/CSS/Color/ColorNote";
 import {
   handlePlay,
   handleReset,

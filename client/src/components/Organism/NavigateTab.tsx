@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
-import {
-  GlobalSecondTabWrapper,
-  GlobalTabWrapper,
-} from "../CSS/Global/GlobalWrapper";
+import { useLocation, useNavigate } from "react-router-dom";
+import { GlobalTabWrapper } from "../CSS/Global/GlobalWrapper";
 import { handleScroll } from "../Function/scroll";
-import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 
 export interface NavigateTabInterface {
   tabArr: { title: string; moveURL: string }[];

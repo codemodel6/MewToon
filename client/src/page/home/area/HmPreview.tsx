@@ -1,20 +1,15 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { GrayColor } from "../../../components/CSS/Color/ColorNote";
 import {
   aroundRow,
   centerColumn,
-  centerRow,
 } from "../../../components/CSS/Global/GlobalDisplay";
-import {
-  FontSize,
-  GrayColor,
-  MainColor,
-} from "../../../components/CSS/Color/ColorNote";
-import { useEffect, useState } from "react";
-import { handleScrollAnimation } from "../../../components/Function/scroll";
+import boardImg from "../../../components/CSS/image/HomeImg/board.jpg";
+import mapImg from "../../../components/CSS/image/HomeImg/map.jpg";
 import musicImg from "../../../components/CSS/image/HomeImg/music.png";
 import pencilImg from "../../../components/CSS/image/HomeImg/pencil.jpg";
-import mapImg from "../../../components/CSS/image/HomeImg/map.jpg";
-import boardImg from "../../../components/CSS/image/HomeImg/board.jpg";
+import { handleScrollAnimation } from "../../../components/Function/scroll";
 
 const PreviewWrapper = styled.div`
   display: flex;

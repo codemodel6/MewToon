@@ -1,9 +1,9 @@
-import QWER from "../../../../components/Music/고민중독-QWER.mp3";
-import TTL from "../../../../components/Music/TTL-티아라.mp3";
-import HelloHello from "../../../../components/Music/HelloHello-FTIsland.mp3";
 import FtIsalndImg from "../../../../components/CSS/image/MusicImg/ftisland.png";
 import QWERImg from "../../../../components/CSS/image/MusicImg/QWER.png";
 import TTLImg from "../../../../components/CSS/image/MusicImg/TTL.png";
+import HelloHello from "../../../../components/Music/HelloHello-FTIsland.mp3";
+import TTL from "../../../../components/Music/TTL-티아라.mp3";
+import QWER from "../../../../components/Music/고민중독-QWER.mp3";
 
 const handleName = (music: string) => {
   return music.replace("/static/media/", "").split("-")[0];

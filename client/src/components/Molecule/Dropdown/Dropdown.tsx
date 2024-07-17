@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import React from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { FontSize, GrayColor, MainColor } from "../../CSS/Color/ColorNote";
 import { centerRow } from "../../CSS/Global/GlobalDisplay";

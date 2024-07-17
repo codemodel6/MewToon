@@ -1,11 +1,6 @@
 import { Triangle } from "react-loader-spinner";
 import styled from "styled-components";
-import {
-  BlackColor,
-  FontSize,
-  MainColor,
-  SubColor,
-} from "../../CSS/Color/ColorNote";
+import { MainColor } from "../../CSS/Color/ColorNote";
 import { centerColumn } from "../../CSS/Global/GlobalDisplay";
 
 export const SpinnerContainer = styled.div`
