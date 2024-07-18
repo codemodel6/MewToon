@@ -38,7 +38,7 @@ const PageNationWrapper = styled.div`
       height: 100%;
       font-weight: bold;
 
-      a {
+      span {
         cursor: pointer;
         color: ${GrayColor.Gray100};
         border: none;
@@ -46,7 +46,7 @@ const PageNationWrapper = styled.div`
         text-decoration: none;
       }
 
-      &.on a {
+      &.on span {
         color: ${MainColor.Main100};
       }
     }
@@ -165,7 +165,7 @@ const PageNation: React.FC<PageNationProps> = ({ totalPage, page }) => {
             className={page === it ? "on" : ""}
             onClick={() => handleNumber(it)}
           >
-            <a>{it}</a>
+            <span>{it}</span>
           </li>
         ))}
       </ul>

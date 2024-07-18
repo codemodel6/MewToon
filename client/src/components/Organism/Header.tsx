@@ -6,11 +6,6 @@ import { betweenRow } from "../CSS/Global/GlobalDisplay";
 import mewCat from "../CSS/image/mewCat.png";
 import { handleScroll } from "../Function/scroll";
 
-interface TestInterface {
-  scrollAction: boolean;
-  hoverBoolean: boolean;
-}
-
 const MyHeader = styled.header<{
   $scrollAction: boolean;
   $hoverBoolean: boolean;

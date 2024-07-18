@@ -7,13 +7,12 @@ import styled from "styled-components";
 import { GlobalWrapper } from "../../components/CSS/Global/GlobalWrapper";
 import towers from "../../components/CSS/image/towers.jpg";
 import WriteModal from "../../components/Molecule/Modal/WriteModal";
-import OrTab from "../../components/Organism/ScrollTab";
 import GlobalTitle from "../../components/Organism/GlobalTitle";
+import OrTab from "../../components/Organism/ScrollTab";
 import { boardTabArr } from "../../components/dummy/dummy";
 import BoardContent from "./area/BoardContent";
 import BoardList from "./area/BoardList";
 import BoardTopic from "./area/BoardTopic";
-import { handleModal } from "../../components/Function/modal";
 
 const BoardWrapper = styled.div`
   display: flex;
@@ -38,8 +37,6 @@ interface ToggleFun {
 const Board = () => {
   // 게시판을 보여주는 state
   const [toggle, setToggle] = useState<boolean>(false);
-  // DB에서 가져온 BoardList State
-  const [myContent, setMyContent] = useState<{}>({});
   // 모달 state
   const [modalState, setModalState] = useState<boolean>(false);
 

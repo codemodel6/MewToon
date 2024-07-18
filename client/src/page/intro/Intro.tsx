@@ -134,7 +134,7 @@ const Intro = () => {
     }, 5800);
 
     return () => clearTimeout(endIntro);
-  }, []);
+  }, [navigate]);
 
   return (
     <GlobalBlock>

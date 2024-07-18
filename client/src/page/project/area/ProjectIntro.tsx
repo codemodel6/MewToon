@@ -103,7 +103,7 @@ const ProjectIntroWrapper = styled.div`
 
 const ProjectIntro = () => {
   const [urlName, setUrlName] = useState<string | null>("musicBox");
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   useEffect(() => {
     // ulr 경로의 name으로 설정
