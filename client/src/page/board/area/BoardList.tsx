@@ -186,13 +186,6 @@ interface ListInterface {
   handleToggle: () => void;
 }
 
-interface PageDataProps {
-  title: string;
-  startDT: string;
-  endDT: string;
-  pageNum: number;
-}
-
 interface BoardProps {
   id: number;
   title: string;
@@ -221,15 +214,9 @@ const BoardList: React.FC<ListInterface> = ({
   // 페이지에 보여줄 게시글 state
   const [boardList, setBoardList] = useState<BoardInterface>(serverBoardObj1);
   // 총 페이지 수 state
-  const [totalPage, setTotalPage] = useState<number>(10);
+  const [totalPage] = useState<number>(10);
   // url의 페이지를 가져오는 state
-  const [searchParams, setSearchParams] = useSearchParams();
-  // searchBar의 입력한 값 state
-  const [searchValue, setSearchValue] = useState<string>("");
-  // 시작 날짜 state
-  const [startDate, setStartDate] = useState("");
-  // 끝 날짜 state
-  const [endDate, setEndDate] = useState("");
+  const [searchParams] = useSearchParams();
 
   // 현재 page 쪽 정보
   const searchPage = searchParams.get("page");

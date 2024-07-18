@@ -83,7 +83,7 @@ const WebToonMusic: React.FC<WebToonMusicProps> = ({
   // 노래 ref
   const tonnAudioRef = useRef<HTMLAudioElement | null>(null);
   // 작동시킬 노래
-  const [playMusic, setPlayMusic] = useState<string | undefined>(
+  const [playMusic] = useState<string | undefined>(
     webToonStoryData.episodeMusic
   );
   // 노래 재생 상태

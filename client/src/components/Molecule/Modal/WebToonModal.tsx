@@ -161,8 +161,6 @@ const WebToonModal: React.FC<WebToonModalProps> = ({
     handleModal(modalState, setModalState);
   };
 
-  const dummy = [0, 1, 2];
-
   return (
     <Overlay $modalState={modalState}>
       <WebToonModalWrapper className={`${modalState ? "open" : ""}`}>
