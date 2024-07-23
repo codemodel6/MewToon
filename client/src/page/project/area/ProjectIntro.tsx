@@ -16,7 +16,7 @@ const ProjectIntroWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  height: 80vh;
+  height: 40%;
   width: 90%;
   box-shadow: 10px 10px 20px 0px ${GrayColor.Gray300};
   padding: 40px;
