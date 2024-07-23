@@ -142,12 +142,12 @@ const Intro = () => {
         <div className="AnimationDiv">
           <div className="text">
             <span>M</span>
-            <span>E</span>
-            <span>W</span>
+            <span>e</span>
+            <span>w</span>
             <span>T</span>
-            <span>O</span>
-            <span>O</span>
-            <span>N</span>
+            <span>o</span>
+            <span>o</span>
+            <span>n</span>
           </div>
         </div>
         <div className="welcomeDiv">WELCOME</div>
