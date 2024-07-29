@@ -4,6 +4,12 @@ import TTLImg from "../../../../components/CSS/image/MusicImg/TTL.png";
 import HelloHello from "../../../../components/Music/HelloHello-FTIsland.mp3";
 import TTL from "../../../../components/Music/TTL-티아라.mp3";
 import QWER from "../../../../components/Music/고민중독-QWER.mp3";
+import Lomentic from "../../../../components/Music/로맨틱 겨울 - 김찬호.mp3";
+import Ben from "../../../../components/Music/혼술하고 싶은 밤-벤.mp3";
+import Seventeen from "../../../../components/Music/청춘찬가-세븐틴.mp3";
+import LomenticImg from "../../../../components/CSS/image/MusicImg/Lomentic.jpg";
+import BenImg from "../../../../components/CSS/image/MusicImg/Ben.jpg";
+import SeventeenImg from "../../../../components/CSS/image/MusicImg/Seventeen.png";
 
 const handleName = (music: string) => {
   return music.replace("/static/media/", "").split("-")[0];
@@ -42,5 +48,26 @@ export const musicArr: MusicProps[] = [
     author: handleAuthor(HelloHello),
     play: HelloHello,
     img: FtIsalndImg,
+  },
+  {
+    id: 4,
+    name: handleName(Seventeen),
+    author: handleAuthor(Seventeen),
+    play: Seventeen,
+    img: SeventeenImg,
+  },
+  {
+    id: 5,
+    name: handleName(Lomentic),
+    author: handleAuthor(Lomentic),
+    play: Lomentic,
+    img: LomenticImg,
+  },
+  {
+    id: 6,
+    name: handleName(Ben),
+    author: handleAuthor(Ben),
+    play: Ben,
+    img: BenImg,
   },
 ];
