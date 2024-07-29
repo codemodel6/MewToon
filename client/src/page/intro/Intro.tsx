@@ -65,9 +65,6 @@ const IntroWrapper = styled.div`
       span:nth-child(7) {
         animation-delay: 3.2s;
       }
-      span:nth-child(8) {
-        animation-delay: 3.4s;
-      }
 
       @keyframes spin {
         0% {
@@ -109,7 +106,7 @@ const IntroWrapper = styled.div`
     font-size: 50px;
     font-weight: bold;
     animation: welcome 1.5s ease-in-out forwards;
-    animation-delay: 3.5s;
+    animation-delay: 3.3s;
     padding-left: 100px;
 
     @keyframes welcome {
@@ -137,21 +134,20 @@ const Intro = () => {
     }, 5800);
 
     return () => clearTimeout(endIntro);
-  }, []);
+  }, [navigate]);
 
   return (
     <GlobalBlock>
       <IntroWrapper>
         <div className="AnimationDiv">
           <div className="text">
-            <span>C</span>
-            <span>O</span>
-            <span>D</span>
-            <span>E</span>
-            <span>L</span>
-            <span>A</span>
-            <span>N</span>
-            <span>D</span>
+            <span>M</span>
+            <span>e</span>
+            <span>w</span>
+            <span>T</span>
+            <span>o</span>
+            <span>o</span>
+            <span>n</span>
           </div>
         </div>
         <div className="welcomeDiv">WELCOME</div>

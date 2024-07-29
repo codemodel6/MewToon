@@ -1,5 +1,5 @@
 import { ReactElement, useEffect, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import styled from "styled-components";
 import { MainColor } from "../../../components/CSS/Color/ColorNote";
 import Canvas from "./canvas/Canvas";
@@ -25,17 +25,15 @@ const ProjectContent = () => {
   const name = searchParams.get("name");
   console.log(name);
 
-  const navigate = useNavigate();
-
-  const nameList: string[] = ["musicBox", "drawing", "youtube", "report"];
-  const componentList: ReactElement[] = [
-    <MusicBox />,
-    <Canvas />,
-    <MyYoutube />,
-    <Report />,
-  ];
-
   useEffect(() => {
+    const nameList: string[] = ["musicBox", "drawing", "youtube", "report"];
+    const componentList: ReactElement[] = [
+      <MusicBox />,
+      <Canvas />,
+      <MyYoutube />,
+      <Report />,
+    ];
+
     for (let i = 0; i < nameList.length; i++) {
       if (name === nameList[i]) {
         setNowComponent(componentList[i]);

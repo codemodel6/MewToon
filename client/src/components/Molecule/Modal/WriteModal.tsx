@@ -1,8 +1,3 @@
-/** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-- 그래프 결과를 저장 할 수 있는 모달
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-
-import { useState } from "react";
 import styled from "styled-components";
 import {
   BlackColor,
@@ -156,10 +151,6 @@ interface WriteProps {
 }
 
 const WriteModal: React.FC<WriteProps> = ({ modalState, setModalState }) => {
-  // 저장할 이름 state
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   - 함수 기능 : 저장하는 함수
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/

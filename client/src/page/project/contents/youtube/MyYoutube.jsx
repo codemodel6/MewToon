@@ -1,13 +1,17 @@
 import YouTube from "react-youtube";
 import styled from "styled-components";
 import { GrayColor } from "../../../../components/CSS/Color/ColorNote";
+import movie from "../../../../components/CSS/image/ProjectImg/movie.png";
 
 const YoutubeWrapper = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
   height: 100%;
-  background-color: orange; // 영화 포스터 이미지로 변경합시다
+  background-image: url(${movie}); // 영화 포스터 이미지로 변경합시다
+  background-size: contain; // 이미지를 배경에 꽉 채움
+  background-position: center; // 배경의 초기값을 가운데로
+  background-repeat: no-repeat; // 배경보다 이미지가 작아도 반복하지 않음
 
   .info {
     display: flex;
@@ -15,7 +19,6 @@ const YoutubeWrapper = styled.div`
     padding-top: 80px;
     padding-left: 100px;
     padding-right: 100px;
-    background-color: orangered;
     width: 50%;
     height: 100%;
     color: white;
@@ -45,28 +48,27 @@ const YoutubeWrapper = styled.div`
     justify-content: center;
     width: 50%;
     height: 100%;
-    background-color: skyblue;
   }
 `;
 
-const textContents = `안녕하세요 이 영화를 소개해볼게요 이 영화는 말이죠 계속 말을 이어나가 볼게요 어디어디`;
+const textContents = `은둔형 외톨이 고등학생 현수가 가족을 잃고 이사 간 아파트에서 겪는 기괴하고도 충격적인 이야기`;
 
 const MyYoutube = () => {
   return (
     <YoutubeWrapper>
       <div className="info">
-        <p className="title">제목</p>
-        <p className="sub">서브 타이틀 입니다</p>
+        <p className="title">스위트홈</p>
+        <p className="sub">죽어버리거나, 괴물로 살아남거나</p>
         <textarea value={textContents}></textarea>
       </div>
       <div className="youtubeDiv">
         <YouTube
-          videoId="https://www.youtube.com/watch?v=1KsgnZ9p1pI"
+          videoId="https://www.youtube.com/watch?v=AOiZ-IekJg0"
           opts={{
             width: "800px",
             height: "450px",
             playerVars: {
-              autoplay: 1, //자동 재생 ㅇ
+              autoplay: 1, //자동 재생 O
               modestbranding: 1, // 컨트롤 바에 youtube 로고를 표시하지 않음
               loop: 1, //반복 재생
             },

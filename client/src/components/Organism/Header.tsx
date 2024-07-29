@@ -6,11 +6,6 @@ import { betweenRow } from "../CSS/Global/GlobalDisplay";
 import mewCat from "../CSS/image/mewCat.png";
 import { handleScroll } from "../Function/scroll";
 
-interface TestInterface {
-  scrollAction: boolean;
-  hoverBoolean: boolean;
-}
-
 const MyHeader = styled.header<{
   $scrollAction: boolean;
   $hoverBoolean: boolean;
@@ -67,14 +62,30 @@ const MyHeader = styled.header<{
     }
 
     .loginDiv {
-      width: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-left: 10px;
+      margin-right: 20px;
+      width: 250px;
       height: 70%;
       background-color: ${MainColor.Main100};
       border-radius: 10px;
+      font-weight: bold;
+      color: white;
       transform: translateY(
         ${(props) => (props.$scrollAction ? "-100%" : "0")}
       );
       transition: transform 1s ease; // 속성, 지속시간, 타이밍함수
+
+      .user-info {
+        font-size: ${FontSize.medium};
+        margin-bottom: 2px;
+      }
+
+      .welcome {
+        font-size: ${FontSize.small};
+      }
     }
   }
 `;
@@ -161,7 +172,10 @@ const Header: React.FC<HeaderProps> = () => {
         >
           상세
         </button>
-        <div className="loginDiv"></div>
+        <div className="loginDiv">
+          <span className="user-info">User 님</span>
+          <span className="welcome">안녕하세요</span>
+        </div>
       </div>
     </MyHeader>
   );

@@ -16,7 +16,6 @@ const SearchTab: React.FC<SearchTabInterface> = ({ tabArr }) => {
   const location = useLocation();
   // url의 쿼리스트링을 가져온다
   const queryString = new URLSearchParams(location.search);
-  const queryDay = queryString.get("updateDay");
   // 스크롤 위치 값
   const [scrollData, setScrollData] = useState<number>(0);
   // 스크롤이 진행중인지 확인
