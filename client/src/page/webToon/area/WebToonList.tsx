@@ -27,7 +27,7 @@ const WebToonWrapper = styled.div<{ $hoverState: boolean; $idx: number }>`
   margin-right: ${(props) => (props.$idx ? "1.33%" : "0")};
   margin-bottom: 20px;
 
-  .webtoon-block {
+  .webtoonBlock {
     width: 100%;
     height: 100%;
     position: relative;
@@ -174,7 +174,7 @@ const WebToonList: React.FC<WebToonListInterface> = ({
             <div>작가 : {it.authors.join(" / ")}</div>
             <div>{it.summary}</div>
           </WebToonOverlay>
-          <div className="webtoon-block">
+          <div className="webtoonBlock">
             <img src={it.thumbnail[0]} alt="썸네일" />
             <div className="title">{it.title}</div>
             <div className="author">{it.authors.join(" / ")}</div>

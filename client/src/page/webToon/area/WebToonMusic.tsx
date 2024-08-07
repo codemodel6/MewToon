@@ -23,7 +23,7 @@ const WebToonMusicList = styled.div`
   width: 100%;
   height: 75px;
 
-  .episode-area {
+  .episodeArea {
     ${centerColumn}
     width: 10%;
     height: 100%;
@@ -31,7 +31,7 @@ const WebToonMusicList = styled.div`
     border-right: 1px solid black;
   }
 
-  .music-area {
+  .musicArea {
     display: flex;
     flex-direction: column;
     width: 78%;
@@ -52,7 +52,7 @@ const WebToonMusicList = styled.div`
     }
   }
 
-  .on-off-area {
+  .onOffArea {
     ${aroundRow}
     width: 12%;
     height: 100%;
@@ -145,8 +145,8 @@ const WebToonMusic: React.FC<WebToonMusicProps> = ({
   return (
     <WebToonMusicList>
       <audio ref={tonnAudioRef} src={playMusic} />
-      <div className="episode-area">{webToonStoryData.episode}</div>
-      <div className="music-area">
+      <div className="episodeArea">{webToonStoryData.episode}</div>
+      <div className="musicArea">
         <div className="time">
           <span>{handleTimeFormat(currentTime)}</span>
           <span>{handleTimeFormat(duration)}</span>
@@ -162,7 +162,7 @@ const WebToonMusic: React.FC<WebToonMusicProps> = ({
           }
         />
       </div>
-      <div className="on-off-area">
+      <div className="onOffArea">
         <button
           onClick={() =>
             audioState

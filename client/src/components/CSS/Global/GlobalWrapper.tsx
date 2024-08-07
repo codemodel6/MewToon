@@ -81,7 +81,7 @@ export const GlobalSecondTabWrapper = styled.div<{ $scrollAction: boolean }>`
   opacity: ${(props) => (props.$scrollAction ? "0" : "1")};
   padding: 0 10% 0 10%;
 
-  .img-wrapper {
+  .imgWrapper {
     width: 24%;
     height: 50px;
 
@@ -91,13 +91,13 @@ export const GlobalSecondTabWrapper = styled.div<{ $scrollAction: boolean }>`
     }
   }
 
-  .dropdown-wrapper {
+  .dropdownWrapper {
     display: flex;
     width: 14%;
     height: 100%;
   }
 
-  .input-wrapper {
+  .inputWrapper {
     ${betweenRow}
     width: 59%;
     height: 100%;

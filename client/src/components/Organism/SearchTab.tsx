@@ -63,7 +63,7 @@ const SearchTab: React.FC<SearchTabInterface> = ({ tabArr }) => {
 
   return (
     <GlobalSecondTabWrapper $scrollAction={scrollAction}>
-      <div className="dropdown-wrapper">
+      <div className="dropdownWrapper">
         <DropdownBlock
           itemArr={platformArr}
           urlKey={"provider"}
@@ -71,10 +71,10 @@ const SearchTab: React.FC<SearchTabInterface> = ({ tabArr }) => {
           size={"max"}
         />
       </div>
-      <div className="img-wrapper">
+      <div className="imgWrapper">
         <img className="mewRunImg" src={mewRun} alt="달리는뮤켓" />
       </div>
-      <div className="input-wrapper">
+      <div className="inputWrapper">
         <input
           placeholder="웹툰명을 검색하세요"
           value={searchData}
