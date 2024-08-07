@@ -9,7 +9,7 @@ export const GlobalBlock = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 100vh;
+  height: 1000px;
 `;
 
 export const GlobalCenterBlock = styled(GlobalBlock)`

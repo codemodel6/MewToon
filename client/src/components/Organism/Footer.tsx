@@ -78,7 +78,7 @@ const Footer = () => {
           onClick={() => handleLink("https://x.com/?lang=ko&mx=2")}
         />
       </div>
-      <div className="infoDiv">상호: (주)코드랜드 | 대표자명: 김경배</div>
+      <div className="infoDiv">상호: (주)뮤툰 | 대표자명: 김경배</div>
       <div className="infoDiv">
         연락처: 010-6625-0937 | 이메일: codemodel6@gmail.com | 제작: React,
         Typescript

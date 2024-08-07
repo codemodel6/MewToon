@@ -49,11 +49,11 @@ export const WhiteColor = {
 };
 
 export const FontSize = {
-  xxlarge: "22px",
-  xlarge: "20px",
-  large: "18px",
-  medium: "16px",
-  small: "14px",
-  xsmall: "12px",
-  xxsmall: "10px",
+  xxlarge: "1.2vw",
+  xlarge: "1.1vw",
+  large: "1vw",
+  medium: "0.9vw",
+  small: "0.8vw",
+  xsmall: "0.7vw",
+  xxsmall: "0.6vw",
 };

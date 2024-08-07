@@ -24,7 +24,7 @@ const BoardWrapper = styled.div`
   .boardListWrapper {
     display: flex;
     flex-direction: row;
-    height: 100vh;
+    height: 900px;
     width: 100%;
     position: relative;
   }

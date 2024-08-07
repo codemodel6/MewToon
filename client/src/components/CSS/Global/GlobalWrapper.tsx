@@ -11,7 +11,7 @@ export const GlobalWrapper = styled.div<{ height: string }>`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: ${(props) => props.height};
+  /* height: ${(props) => props.height}; */
 `;
 
 export const AsideWrapper = styled.div`

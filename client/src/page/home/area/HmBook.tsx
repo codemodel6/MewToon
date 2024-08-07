@@ -8,7 +8,7 @@ import { handleScrollAnimation } from "../../../components/Function/scroll";
 const BookWrapper = styled.div`
   ${aroundRow}
   width: 100%;
-  height: 100vh;
+  height: 1000px;
   background: linear-gradient(
     0.4turn,
     #b3b3ff,
@@ -142,7 +142,7 @@ const BookListWrapper = styled.div`
   justify-content: center;
   width: 50%;
   height: 80%;
-  padding-right: 100px;
+  padding-right: 5%;
 
   // 책들을 담는 캐러셀 div
   .bookCarouse {
@@ -150,14 +150,14 @@ const BookListWrapper = styled.div`
     flex-direction: row;
     justify-content: center;
     align-items: flex-end;
-    width: 700px;
+    width: 36vw;
     height: 90%;
     position: relative;
     margin-bottom: 10px;
 
     // 하나의 책 div
     .book {
-      width: 350px;
+      width: 18vw;
       position: absolute;
 
       // 책 이미지
@@ -330,7 +330,7 @@ const HmBook = () => {
     let newBookList; // 새로운 책 list
 
     // 선택한 책 위치에 따라 기능 처리
-    if (selectIndex > Math.floor(myBookList.length / 2)) {
+    if (selectIndex >= Math.floor(myBookList.length / 2)) {
       // 책 리스트 아이디 - 1 하여 새로운 배열로 만든다
       newBookList = myBookList.map((it, idx) => ({
         ...it,

@@ -11,7 +11,7 @@ const DreamWrapper = styled.section<{
 }>`
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: 1000px;
   background-image: url(${central});
   background-size: cover; // 이미지를 배경에 꽉 채움
   background-position: center; // 배경의 초기값을 가운데로
