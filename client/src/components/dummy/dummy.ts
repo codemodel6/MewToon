@@ -19,8 +19,8 @@ export const skillTabArr: ScrollArrInterface[] = [
 ];
 // Map 탭
 export const mapTabArr: ScrollArrInterface[] = [
-  { title: "정보", move: 700 },
-  { title: "오시는 길", move: 1600 },
+  { title: "지도", move: 600 },
+  { title: "문의사항", move: 1450 },
 ];
 // Board 탭
 export const boardTabArr: ScrollArrInterface[] = [

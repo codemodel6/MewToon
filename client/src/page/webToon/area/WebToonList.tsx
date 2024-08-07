@@ -12,7 +12,6 @@ const WebToonListWrapper = styled.div`
   width: 80%;
   height: 1500px;
   margin-top: 20px;
-  position: absolute;
   margin-bottom: 20px;
 `;
 

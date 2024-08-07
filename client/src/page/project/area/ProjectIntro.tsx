@@ -16,10 +16,11 @@ const ProjectIntroWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  height: 40%;
+  height: 700px;
   width: 90%;
   box-shadow: 10px 10px 20px 0px ${GrayColor.Gray300};
   padding: 40px;
+  margin-bottom: 40px;
 
   .introImgDiv {
     height: 100%;
@@ -32,7 +33,6 @@ const ProjectIntroWrapper = styled.div`
   }
 
   .introInfo {
-    height: 100%;
     width: 48%;
     padding: 40px;
 
@@ -67,7 +67,6 @@ const ProjectIntroWrapper = styled.div`
       flex-direction: row;
       align-items: center;
       font-size: ${FontSize.xlarge};
-      height: 5%;
       width: 100%;
       margin-bottom: 50px;
 

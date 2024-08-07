@@ -22,16 +22,22 @@ const WebToonWrapper = styled.div`
   align-items: center;
   height: 100%;
   width: 100%;
+  margin-bottom: 20px;
 `;
 
 const LoadingWrapper = styled.div`
-  ${centerRow}
-  height: 90vh;
+  display: flex;
+  height: 1500px;
   width: 100%;
+
+  .LoadingBlock {
+    height: 800px;
+    width: 100%;
+  }
 `;
 
 const PageWrapper = styled.div`
-  height: 80px;
+  height: 60px;
   width: 100%;
   margin-bottom: 30px;
 `;
@@ -146,7 +152,9 @@ const WebToon = () => {
       <WebToonWrapper>
         {isLoading ? (
           <LoadingWrapper>
-            <Spinner />
+            <div className="LoadingBlock">
+              <Spinner />
+            </div>
           </LoadingWrapper>
         ) : (
           <WebToonList

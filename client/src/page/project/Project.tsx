@@ -38,8 +38,8 @@ const ProjectListWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 50%;
-  height: 70px;
+  width: 40%;
+  height: 50px;
   margin-top: 15px;
   margin-bottom: 30px;
 `;

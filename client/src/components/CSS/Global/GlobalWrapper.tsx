@@ -25,7 +25,7 @@ export const AsideWrapper = styled.div`
 export const GlobalTabWrapper = styled.div<{ $scrollAction: boolean }>`
   ${centerColumn}
   width: 100%;
-  height: 80px;
+  height: 60px;
   position: sticky;
   // 스크롤에 따라 위치 변경
   top: ${(props) => (props.$scrollAction ? "0" : "80px")};
@@ -70,14 +70,14 @@ export const GlobalTabWrapper = styled.div<{ $scrollAction: boolean }>`
 export const GlobalSecondTabWrapper = styled.div<{ $scrollAction: boolean }>`
   ${betweenRow}
   width: 100%;
-  height: 80px;
+  height: 60px;
   position: sticky;
   background-color: ${WhiteColor.White100};
   border-bottom: 1px solid ${GrayColor.Gray000};
   transition: opacity 0.8s ease, top 0.8s ease; // 속성, 지속시간, 타이밍함수
   transition-delay: ${(props) => (props.$scrollAction ? "0s" : "0.2s")};
   z-index: 98;
-  top: ${(props) => (props.$scrollAction ? "0" : "137px")};
+  top: ${(props) => (props.$scrollAction ? "0" : "142px")};
   opacity: ${(props) => (props.$scrollAction ? "0" : "1")};
   padding: 0 10% 0 10%;
 
