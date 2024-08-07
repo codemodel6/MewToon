@@ -37,19 +37,19 @@ const BookTitle = styled.div<{
 
   .main {
     position: relative;
-    font-size: 50px;
+    font-size: 3.5rem;
     animation: ${(props) => props.mainAnimation} 1s ease-out forwards;
   }
   .sub {
     position: relative;
-    font-size: 40px;
+    font-size: 3rem;
     top: 50px;
     animation: ${(props) => props.subAnimation} 1s ease-out forwards;
   }
 
   .click {
     position: absolute;
-    font-size: 60px;
+    font-size: 4rem;
     font-weight: bold;
     bottom: 40px;
     animation: ${(props) => props.clickAnimation} 1s ease-out forwards;
