@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { GlobalWrapper } from "../../components/CSS/Global/GlobalWrapper";
-import building from "../../components/CSS/image/building.jpg";
+import webToon from "../../components/CSS/image/webToon.jpg";
 import { handleScrollMove } from "../../components/Function/scroll";
 import WebToonModal from "../../components/Molecule/Modal/WebToonModal";
 import PageNation from "../../components/Molecule/PagiNation/PagiNation";
@@ -142,7 +142,7 @@ const WebToon = () => {
   return (
     <GlobalWrapper>
       <GlobalTitle
-        imageUrl={building}
+        imageUrl={webToon}
         mainText="웹툰과 노래를 함께"
         subText="WebToon"
       />
