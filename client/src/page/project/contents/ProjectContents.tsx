@@ -12,7 +12,7 @@ const ProjectContentWrapper = styled.div`
   flex-direction: column;
   box-shadow: 0px 0px 20px 0px ${MainColor.Main200};
   width: 90%;
-  height: 80vh;
+  height: 800px;
   margin-bottom: 80px;
 `;
 

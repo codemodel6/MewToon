@@ -29,7 +29,7 @@ const CarouselWrapper = styled.div`
   );
 
   .slick-slider {
-    height: 90vh;
+    height: 900px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -63,7 +63,7 @@ const CarouselWrapper = styled.div`
   }
 
   .gifWrapper {
-    height: 50vh;
+    height: 480px;
     text-align: center;
     margin: 0 auto;
 

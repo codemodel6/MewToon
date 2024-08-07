@@ -12,7 +12,7 @@ import {
 const MapWrapper = styled.div`
   ${centerColumn}
   width: 100%;
-  height: 90vh;
+  height: 800px;
 
   .mapDiv {
     width: 50%;
