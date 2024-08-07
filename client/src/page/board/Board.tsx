@@ -49,7 +49,7 @@ const Board = () => {
   };
 
   return (
-    <GlobalWrapper height="2700px">
+    <GlobalWrapper>
       <GlobalTitle
         imageUrl={towers}
         mainText="살아 숨쉬는 게시판"

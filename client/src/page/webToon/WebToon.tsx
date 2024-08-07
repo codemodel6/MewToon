@@ -2,7 +2,6 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
-import { centerRow } from "../../components/CSS/Global/GlobalDisplay";
 import { GlobalWrapper } from "../../components/CSS/Global/GlobalWrapper";
 import building from "../../components/CSS/image/building.jpg";
 import { handleScrollMove } from "../../components/Function/scroll";
@@ -141,7 +140,7 @@ const WebToon = () => {
   }, [location.search]);
 
   return (
-    <GlobalWrapper height="2400px">
+    <GlobalWrapper>
       <GlobalTitle
         imageUrl={building}
         mainText="웹툰과 노래를 함께"

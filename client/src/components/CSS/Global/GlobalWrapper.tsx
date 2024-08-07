@@ -6,12 +6,11 @@ import styled from "styled-components";
 import { aroundRow, betweenRow, centerColumn } from "./GlobalDisplay";
 import { FontSize, GrayColor, MainColor, WhiteColor } from "../Color/ColorNote";
 
-export const GlobalWrapper = styled.div<{ height: string }>`
+export const GlobalWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  /* height: ${(props) => props.height}; */
 `;
 
 export const AsideWrapper = styled.div`

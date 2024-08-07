@@ -46,7 +46,7 @@ const ProjectListWrapper = styled.div`
 
 const Project = () => {
   return (
-    <GlobalWrapper height="2700px">
+    <GlobalWrapper>
       <GlobalTitle
         imageUrl={building}
         mainText="특색있는 프로젝트의 경험"

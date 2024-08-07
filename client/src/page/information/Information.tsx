@@ -17,7 +17,7 @@ const InfoWrapper = styled.div`
 
 const Information = () => {
   return (
-    <GlobalWrapper height="2700px">
+    <GlobalWrapper>
       <GlobalTitle
         imageUrl={macao}
         mainText="상세한 정보를"
