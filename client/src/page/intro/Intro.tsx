@@ -14,17 +14,17 @@ const IntroWrapper = styled.div`
   align-items: center;
   perspective: 1000px;
   perspective-origin: 50% 50%;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   background-color: black;
-  padding-right: 500px;
+  padding-right: 25%;
 
   .AnimationDiv {
-    width: 500px;
-    height: 800px;
+    width: 30vh;
+    height: 30vw;
     border: 1px solid #215ba6;
     transform-style: preserve-3d;
-    margin-left: 600px;
+    margin-left: 50%;
     animation: spin 5s ease-in-out forwards;
 
     .text {
@@ -32,7 +32,7 @@ const IntroWrapper = styled.div`
       justify-content: center;
       align-items: center;
       height: 100%;
-      font-size: 50px;
+      font-size: 2vw;
       color: #fff;
       font-weight: bold;
       transform: rotateZ(270deg) rotateY(10deg);
@@ -103,7 +103,7 @@ const IntroWrapper = styled.div`
     justify-content: flex-end;
     width: 300px;
     color: white;
-    font-size: 50px;
+    font-size: 2vw;
     font-weight: bold;
     animation: welcome 1.5s ease-in-out forwards;
     animation-delay: 3.3s;
