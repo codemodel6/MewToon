@@ -180,6 +180,10 @@ interface ContentProps {
   setToggle: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
+const handleAlert = () => {
+  alert("권한이 없습니다.");
+};
+
 const BoardContent: React.FC<ContentProps> = ({ toggle, setToggle }) => {
   return (
     <BoardContentWrapper $toggle={toggle}>
@@ -191,12 +195,16 @@ const BoardContent: React.FC<ContentProps> = ({ toggle, setToggle }) => {
         <div className="scrollBoard">
           <div className="boardContent">게시판 내용 입니다</div>
           <div className="heartWrapper">
-            <button>♥</button>
+            <button onClick={handleAlert}>♥</button>
             <div className="heartDiv">1</div>
           </div>
           <div className="boardUpdateDiv">
-            <button className="updateButton">수정</button>
-            <button className="deleteButton">삭제</button>
+            <button className="updateButton" onClick={handleAlert}>
+              수정
+            </button>
+            <button className="deleteButton" onClick={handleAlert}>
+              삭제
+            </button>
           </div>
           <div className="commentCountDiv">0개의 댓글이 있습니다 ▼</div>
           <div className="commentDiv">
@@ -204,7 +212,7 @@ const BoardContent: React.FC<ContentProps> = ({ toggle, setToggle }) => {
               <input />
             </div>
             <div className="commentButtonDiv">
-              <button>댓글 등록</button>
+              <button onClick={handleAlert}>댓글 등록</button>
             </div>
           </div>
           <BoardComment />

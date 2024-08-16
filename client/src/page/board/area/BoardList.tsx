@@ -214,7 +214,7 @@ const BoardList: React.FC<ListInterface> = ({
   // 페이지에 보여줄 게시글 state
   const [boardList, setBoardList] = useState<BoardInterface>(serverBoardObj1);
   // 총 페이지 수 state
-  const [totalPage] = useState<number>(10);
+  const [totalPage] = useState<number>(2);
   // url의 페이지를 가져오는 state
   const [searchParams] = useSearchParams();
 
