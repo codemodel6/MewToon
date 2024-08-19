@@ -5,6 +5,8 @@ import { FontSize, MainColor } from "../CSS/Color/ColorNote";
 import { betweenRow } from "../CSS/Global/GlobalDisplay";
 import mewCat from "../CSS/image/mewCat.png";
 import { handleScroll } from "../Function/scroll";
+import { handleModal } from "../Function/modal";
+import Login from "../Molecule/Login/Login";
 
 const MyHeader = styled.header<{
   $scrollAction: boolean;
@@ -99,6 +101,8 @@ const Header: React.FC<HeaderProps> = () => {
   const [scrollAction, setScrollAction] = useState<boolean>(false);
   // 호버 유무
   const [hoverBoolean, setHoverBoolean] = useState<boolean>(false);
+  // 모달 state
+  const [loginModalState, setLoginModalState] = useState<boolean>(false);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -129,6 +133,7 @@ const Header: React.FC<HeaderProps> = () => {
 
   return (
     <MyHeader $scrollAction={scrollAction} $hoverBoolean={hoverBoolean}>
+      <Login modalState={loginModalState} setModalState={setLoginModalState} />
       <div
         className="menuDiv"
         onMouseEnter={() => setHoverBoolean(true)}
@@ -172,7 +177,10 @@ const Header: React.FC<HeaderProps> = () => {
         >
           상세
         </button>
-        <div className="loginDiv">
+        <div
+          className="loginDiv"
+          onClick={() => handleModal(loginModalState, setLoginModalState)}
+        >
           <span className="user-info">User 님</span>
           <span className="welcome">안녕하세요</span>
         </div>
