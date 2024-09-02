@@ -22,7 +22,7 @@ const SelectButton = styled.button`
   text-align: center;
   z-index: 2;
   cursor: pointer;
-  font-size: ${FontSize.medium};
+  font-size: ${FontSize.small};
   font-weight: bold;
 `;
 

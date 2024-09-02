@@ -38,7 +38,7 @@ const BoardListBlock = styled.div<{ $toggle: boolean }>`
     height: 60px;
     background-color: ${MainColor.Main100};
     color: ${WhiteColor.White100};
-    font-size: ${FontSize.large};
+    font-size: ${FontSize.medium};
     font-weight: bold;
 
     .common {
@@ -66,7 +66,7 @@ const BoardListBlock = styled.div<{ $toggle: boolean }>`
       height: 37px;
       border-bottom: 2px solid ${GrayColor.Gray000};
       cursor: pointer;
-      font-size: ${FontSize.medium};
+      font-size: ${FontSize.small};
       color: ${GrayColor.Gray100};
 
       &:hover {

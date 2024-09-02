@@ -103,7 +103,7 @@ export const GlobalSecondTabWrapper = styled.div<{ $scrollAction: boolean }>`
     border: 1px solid ${MainColor.Main100};
 
     input {
-      font-size: ${FontSize.large};
+      font-size: ${FontSize.medium};
       width: 95%;
       height: 100%;
       padding: 0 20px 0 20px;

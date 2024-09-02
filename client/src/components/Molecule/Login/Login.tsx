@@ -2,14 +2,10 @@ import styled from "styled-components";
 import {
   BlackColor,
   FontSize,
-  GrayColor,
   MainColor,
-  SubColor,
   WhiteColor,
 } from "../../CSS/Color/ColorNote";
-import { centerColumn } from "../../CSS/Global/GlobalDisplay";
-import { CancelButton, GlobalButton } from "../../CSS/Global/GlobalItem";
-import { handleModal } from "../../Function/modal";
+import { centerColumn, centerRow } from "../../CSS/Global/GlobalDisplay";
 import { Overlay } from "../Modal/WriteModal";
 
 const LoginWrapper = styled.div`
@@ -24,111 +20,56 @@ const LoginWrapper = styled.div`
     display: block;
   }
 
-  .modalDataDiv {
+  .loginBlock {
+    ${centerRow}
     background-color: ${WhiteColor.White100};
-    width: 800px;
-    height: 600px;
+    width: 1100px;
+    height: 700px;
     margin-bottom: 40px;
-    border: 3px solid ${MainColor.Main200};
+    border: 1px solid ${MainColor.Main200};
     border-radius: 10px;
     font-weight: bold;
     color: ${BlackColor.Black100};
 
-    .modalTitle {
+    .loginHalfBlock {
+      /* display: flex;
+      flex-direction: column;
+      align-items: center; */
       ${centerColumn}
-      height: 15%;
-      width: 100%;
-      font-size: xx-large;
-      border-bottom: 3px solid ${MainColor.Main200};
-      font-weight: bold;
-    }
+      width: 50%;
+      height: 100%;
 
-    .modalContents {
-      display: flex;
-      flex-direction: row;
-      width: 100%;
-      height: 85%;
-
-      .titleDiv {
-        width: 25%;
-        height: 100%;
-        font-size: x-large;
-        border-right: 3px solid ${MainColor.Main200};
-
-        .myTitle {
-          ${centerColumn}
-          width: 100%;
-          height: 17%;
-          border-bottom: 3px solid ${MainColor.Main200};
-        }
-
-        .noLineTitle {
-          ${centerColumn}
-          width: 100%;
-          height: 17%;
-        }
+      .loginGif {
+        background-color: orange;
       }
 
-      .contentsDiv {
-        width: 75%;
-        height: 100%;
+      .loginTitle {
+        ${centerColumn}
+        width: 70%;
+        height: 7%;
+        background-color: orange;
+        margin-bottom: 10%;
+        font-size: ${FontSize.large};
+      }
 
-        .modalInputDiv {
-          ${centerColumn}
-          height: 17%;
-          width: 100%;
-          border-bottom: 3px solid ${MainColor.Main200};
+      .loginIdInput {
+        width: 70%;
+        height: 7%;
+        background-color: orange;
+      }
 
-          input {
-            width: 90%;
-            height: 45px;
-            border: 3px solid ${SubColor.Sub100};
-            padding-left: 20px;
-            background-color: ${WhiteColor.White100};
-            color: ${GrayColor.Gray100};
-            font-size: ${FontSize.medium};
-          }
+      .loginPwInput {
+        width: 70%;
+        height: 7%;
+        background-color: orange;
+      }
 
-          input:focus {
-            outline: none;
-            border: 3px solid ${SubColor.Sub300};
-          }
-        }
-
-        .modalTextDiv {
-          height: 83%;
-          width: 100%;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-
-          textArea {
-            width: 90%;
-            height: 90%;
-            border: 3px solid ${SubColor.Sub100};
-            padding: 10px 20px 10px 20px;
-            background-color: ${WhiteColor.White100};
-            resize: none;
-            color: ${GrayColor.Gray100};
-            font-size: ${FontSize.medium};
-          }
-
-          textArea:focus {
-            outline: none;
-            border: 3px solid ${SubColor.Sub300};
-          }
-        }
+      .loginValidationArea {
+        width: 70%;
+        height: 7%;
+        background-color: ${WhiteColor.White100};
       }
     }
-  }
-
-  .buttonDiv {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
   }
 `;
 
@@ -138,47 +79,18 @@ interface LoginProps {
 }
 
 const Login: React.FC<LoginProps> = ({ modalState, setModalState }) => {
-  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  - 함수 기능 : 저장하는 함수
-  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-  const handleSave = async () => {
-    alert("권한이 없습니다.");
-  };
-
-  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  - 함수 기능 : 취소 버튼을 눌렀을 때 모달을 닫는 함수
-  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-  const handleCancel = () => {
-    handleModal(modalState, setModalState);
-  };
-
   return (
     <Overlay $modalState={modalState}>
       <LoginWrapper className={`${modalState ? "open" : ""}`}>
-        <div className="modalDataDiv">
-          <div className="modalTitle">글 쓰기</div>
-          <div className="modalContents">
-            <div className="titleDiv">
-              <div className="myTitle">제목</div>
-              <div className="noLineTitle">내용</div>
-            </div>
-            <div className="contentsDiv">
-              <div className="modalInputDiv">
-                <input />
-              </div>
-              <div className="modalTextDiv">
-                <textarea />
-              </div>
-            </div>
+        <div className="loginBlock">
+          <div className="loginHalfBlock"></div>
+          <div className="loginHalfBlock">
+            <span className="loginTitle">MewToon</span>
+            <span className="loginIdInput"></span>
+            <span className="loginValidationArea"></span>
+            <span className="loginPwInput"></span>
+            <span className="loginValidationArea"></span>
           </div>
-        </div>
-        <div className="buttonDiv">
-          <GlobalButton width="200px" height="40px" onClick={handleSave}>
-            저장
-          </GlobalButton>
-          <CancelButton width="200px" height="40px" onClick={handleCancel}>
-            취소
-          </CancelButton>
         </div>
       </LoginWrapper>
     </Overlay>

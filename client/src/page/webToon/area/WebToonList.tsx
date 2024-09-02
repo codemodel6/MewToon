@@ -39,7 +39,7 @@ const WebToonWrapper = styled.div<{ $hoverState: boolean; $idx: number }>`
 
     .title {
       ${centerRow}
-      font-size: ${FontSize.xlarge};
+      font-size: ${FontSize.medium};
       width: 100%;
       height: 10%;
       transform: ${(props) =>
@@ -48,7 +48,7 @@ const WebToonWrapper = styled.div<{ $hoverState: boolean; $idx: number }>`
 
     .author {
       ${centerRow}
-      font-size: ${FontSize.medium};
+      font-size: ${FontSize.small};
       padding: 0 10px 0 10px;
       width: 100%;
       height: 8%;
@@ -90,7 +90,7 @@ const WebToonOverlay = styled.div<{ $overLayState: boolean }>`
   transition: opacity 1s ease-in;
   color: white;
   font-weight: 20px;
-  font-size: ${FontSize.xlarge};
+  font-size: ${FontSize.medium};
   transform: rotateY(-180deg);
 
   div {

@@ -30,7 +30,7 @@ const ProjectTitle = styled.div`
   width: 25%;
   height: 50px;
   margin-bottom: 50px;
-  font-size: ${FontSize.xxlarge};
+  font-size: ${FontSize.medium};
   font-weight: bold;
 `;
 

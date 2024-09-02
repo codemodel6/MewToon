@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { centerColumn } from "../../../components/CSS/Global/GlobalDisplay";
 import BoardCarousel from "../../../components/Molecule/Carousel/BoardCarousel";
+import { FontSize } from "../../../components/CSS/Color/ColorNote";
 
 const BoardTopicWrapper = styled.div`
   display: flex;
@@ -12,7 +13,7 @@ const BoardTopicWrapper = styled.div`
 
   .title {
     text-align: center;
-    font-size: 30px;
+    font-size: ${FontSize.xxmedium};
     font-weight: bold;
     color: "black";
     margin-bottom: 8%;

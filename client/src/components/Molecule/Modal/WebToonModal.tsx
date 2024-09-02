@@ -129,7 +129,7 @@ const WebToonModalBlock = styled.div`
       .contents {
         height: 70%;
         width: 100%;
-        font-size: ${FontSize.large};
+        font-size: ${FontSize.medium};
       }
     }
   }

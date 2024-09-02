@@ -68,7 +68,7 @@ const MusicListWrapper = styled.div`
       border-bottom: 2px solid ${MainColor.Main200};
       width: 100%;
       height: 10%;
-      font-size: ${FontSize.medium};
+      font-size: ${FontSize.small};
       transition: transform 0.15s ease-in-out; /* 애니메이션 추가 */
       cursor: pointer;
 

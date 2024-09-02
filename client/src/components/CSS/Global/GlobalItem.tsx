@@ -20,7 +20,7 @@ export const GlobalButton = styled.button<{ width: string; height: string }>`
   height: ${(props) => props.height};
   border: 2px solid ${MainColor.Main100};
   border-radius: 5px;
-  font-size: ${FontSize.medium};
+  font-size: ${FontSize.small};
   background-color: ${WhiteColor.White100};
   color: ${BlackColor.Black100};
   font-weight: bold;

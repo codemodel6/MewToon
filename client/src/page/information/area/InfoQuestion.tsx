@@ -12,7 +12,7 @@ const InfoQuestionWrapper = styled.div`
   padding-top: 5%;
 
   .title {
-    font-size: 30px;
+    font-size: ${FontSize.xxmedium};
     font-weight: bold;
     color: "black";
     margin-bottom: 5%;
@@ -36,7 +36,7 @@ const InfoWriteContents = styled.div`
     width: 100%;
     height: 40px;
     margin-bottom: 5px;
-    font-size: ${FontSize.large};
+    font-size: ${FontSize.medium};
     color: black;
   }
 

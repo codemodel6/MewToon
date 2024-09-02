@@ -23,7 +23,7 @@ const PageNationWrapper = styled.div`
     flex-direction: row;
     align-items: center;
     height: 100%;
-    font-size: ${FontSize.xlarge};
+    font-size: ${FontSize.medium};
     margin: 0;
     padding: 0;
     margin-right: 10px;

@@ -33,7 +33,7 @@ const MyHeader = styled.header<{
 
     .menuButton {
       height: 100%;
-      font-size: ${FontSize.xxlarge};
+      font-size: ${FontSize.xmedium};
       color: ${(props) => (props.$hoverBoolean ? "black" : "white")};
       background-color: transparent;
       font-weight: bold;
@@ -132,60 +132,62 @@ const Header: React.FC<HeaderProps> = () => {
   }
 
   return (
-    <MyHeader $scrollAction={scrollAction} $hoverBoolean={hoverBoolean}>
+    <>
       <Login modalState={loginModalState} setModalState={setLoginModalState} />
-      <div
-        className="menuDiv"
-        onMouseEnter={() => setHoverBoolean(true)}
-        onMouseLeave={() => setHoverBoolean(false)}
-      >
+      <MyHeader $scrollAction={scrollAction} $hoverBoolean={hoverBoolean}>
         <div
-          className="imgDiv"
-          onClick={() => {
-            navigate("/home");
-          }}
-        ></div>
-        <button
-          className={`menuButton ${webToonPage ? "here" : ""}`}
-          onClick={() => {
-            navigate("/webToon?provider=NAVER&updateDay=MON&page=1");
-          }}
+          className="menuDiv"
+          onMouseEnter={() => setHoverBoolean(true)}
+          onMouseLeave={() => setHoverBoolean(false)}
         >
-          웹툰
-        </button>
-        <button
-          className={`menuButton ${projectPage ? "here" : ""}`}
-          onClick={() => {
-            navigate("/project?name=musicBox");
-          }}
-        >
-          프로젝트
-        </button>
-        <button
-          className={`menuButton ${boardPage ? "here" : ""}`}
-          onClick={() => {
-            navigate("/board?page=1");
-          }}
-        >
-          게시판
-        </button>
-        <button
-          className={`menuButton ${informationPage ? "here" : ""}`}
-          onClick={() => {
-            navigate("/information");
-          }}
-        >
-          상세
-        </button>
-        <div
-          className="loginDiv"
-          onClick={() => handleModal(loginModalState, setLoginModalState)}
-        >
-          <span className="user-info">User 님</span>
-          <span className="welcome">안녕하세요</span>
+          <div
+            className="imgDiv"
+            onClick={() => {
+              navigate("/home");
+            }}
+          ></div>
+          <button
+            className={`menuButton ${webToonPage ? "here" : ""}`}
+            onClick={() => {
+              navigate("/webToon?provider=NAVER&updateDay=MON&page=1");
+            }}
+          >
+            웹툰
+          </button>
+          <button
+            className={`menuButton ${projectPage ? "here" : ""}`}
+            onClick={() => {
+              navigate("/project?name=musicBox");
+            }}
+          >
+            프로젝트
+          </button>
+          <button
+            className={`menuButton ${boardPage ? "here" : ""}`}
+            onClick={() => {
+              navigate("/board?page=1");
+            }}
+          >
+            게시판
+          </button>
+          <button
+            className={`menuButton ${informationPage ? "here" : ""}`}
+            onClick={() => {
+              navigate("/information");
+            }}
+          >
+            상세
+          </button>
+          <div
+            className="loginDiv"
+            onClick={() => handleModal(loginModalState, setLoginModalState)}
+          >
+            <span className="user-info">User 님</span>
+            <span className="welcome">안녕하세요</span>
+          </div>
         </div>
-      </div>
-    </MyHeader>
+      </MyHeader>
+    </>
   );
 };
 

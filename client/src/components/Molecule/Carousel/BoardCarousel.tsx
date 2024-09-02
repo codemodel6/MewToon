@@ -46,7 +46,7 @@ const CarouselWrapper = styled.div`
         justify-content: space-between;
         height: 10%;
         padding: 0 10px;
-        font-size: ${FontSize.medium};
+        font-size: ${FontSize.small};
         font-weight: bold;
         background-color: ${MainColor.Main300};
         color: ${WhiteColor.White100};

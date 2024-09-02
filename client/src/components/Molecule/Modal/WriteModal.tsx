@@ -85,7 +85,7 @@ const WriteModalWrapper = styled.div`
             padding-left: 20px;
             background-color: ${WhiteColor.White100};
             color: ${GrayColor.Gray100};
-            font-size: ${FontSize.medium};
+            font-size: ${FontSize.small};
           }
 
           input:focus {
@@ -110,7 +110,7 @@ const WriteModalWrapper = styled.div`
             background-color: ${WhiteColor.White100};
             resize: none;
             color: ${GrayColor.Gray100};
-            font-size: ${FontSize.medium};
+            font-size: ${FontSize.small};
           }
 
           textArea:focus {

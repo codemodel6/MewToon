@@ -51,7 +51,7 @@ const ProjectIntroWrapper = styled.div`
       display: flex;
       flex-direction: row;
       align-items: center;
-      font-size: ${FontSize.xxlarge};
+      font-size: ${FontSize.medium};
       width: 100%;
       color: ${GrayColor.Gray100};
       margin-bottom: 10px;
@@ -66,14 +66,14 @@ const ProjectIntroWrapper = styled.div`
       display: flex;
       flex-direction: row;
       align-items: center;
-      font-size: ${FontSize.xlarge};
+      font-size: ${FontSize.xsmall};
       width: 100%;
       margin-bottom: 50px;
 
       button {
         background-color: white;
         font-weight: bold;
-        font-size: ${FontSize.large};
+        font-size: ${FontSize.small};
         height: 100%;
         margin-right: 20px;
       }
@@ -94,7 +94,7 @@ const ProjectIntroWrapper = styled.div`
     .contents {
       height: 70%;
       width: 100%;
-      font-size: ${FontSize.xxlarge};
+      font-size: ${FontSize.medium};
       color: ${GrayColor.Gray100};
     }
   }
