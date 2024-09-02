@@ -7,6 +7,8 @@ import {
 } from "../../CSS/Color/ColorNote";
 import { centerColumn, centerRow } from "../../CSS/Global/GlobalDisplay";
 import { Overlay } from "../Modal/WriteModal";
+import { GlobalButton } from "../../CSS/Global/GlobalItem";
+import computerCat from "../../CSS/image/HomeImg/gif/computerCat.gif";
 
 const LoginWrapper = styled.div`
   display: none;
@@ -31,43 +33,67 @@ const LoginWrapper = styled.div`
     font-weight: bold;
     color: ${BlackColor.Black100};
 
-    .loginHalfBlock {
-      /* display: flex;
-      flex-direction: column;
-      align-items: center; */
+    .loginLeftBlock {
       ${centerColumn}
       width: 50%;
       height: 100%;
+      background-color: ${MainColor.Main100};
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px;
 
       .loginGif {
-        background-color: orange;
+        width: 80%;
+        height: 80%;
       }
+    }
+
+    .loginRightBlock {
+      ${centerColumn}
+      width: 50%;
+      height: 100%;
 
       .loginTitle {
         ${centerColumn}
         width: 70%;
         height: 7%;
-        background-color: orange;
-        margin-bottom: 10%;
+        margin-bottom: 5%;
         font-size: ${FontSize.large};
       }
 
       .loginIdInput {
+        ${centerColumn}
         width: 70%;
         height: 7%;
-        background-color: orange;
+        border: 2px solid ${MainColor.Main100};
+        border-radius: 10px;
+        padding: 1%;
+        font-size: ${FontSize.xsmall};
       }
 
       .loginPwInput {
+        ${centerColumn}
         width: 70%;
         height: 7%;
-        background-color: orange;
+        border: 2px solid ${MainColor.Main100};
+        border-radius: 10px;
+        padding: 1%;
+        font-size: ${FontSize.xsmall};
       }
 
       .loginValidationArea {
+        ${centerColumn}
         width: 70%;
-        height: 7%;
+        height: 5%;
         background-color: ${WhiteColor.White100};
+      }
+
+      .loginToolBlock {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        width: 70%;
+        height: 15%;
       }
     }
   }
@@ -83,13 +109,23 @@ const Login: React.FC<LoginProps> = ({ modalState, setModalState }) => {
     <Overlay $modalState={modalState}>
       <LoginWrapper className={`${modalState ? "open" : ""}`}>
         <div className="loginBlock">
-          <div className="loginHalfBlock"></div>
-          <div className="loginHalfBlock">
+          <div className="loginLeftBlock">
+            <img src={computerCat} alt="컴퓨터캣"></img>
+          </div>
+          <div className="loginRightBlock">
             <span className="loginTitle">MewToon</span>
-            <span className="loginIdInput"></span>
+            <input className="loginIdInput" placeholder="ID"></input>
             <span className="loginValidationArea"></span>
-            <span className="loginPwInput"></span>
+            <input className="loginPwInput" placeholder="Password"></input>
             <span className="loginValidationArea"></span>
+            <div className="loginToolBlock">
+              <GlobalButton width="100%" height="45%">
+                로그인
+              </GlobalButton>
+              <GlobalButton width="100%" height="45%">
+                회원가입
+              </GlobalButton>
+            </div>
           </div>
         </div>
       </LoginWrapper>
