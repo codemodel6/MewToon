@@ -1,14 +1,11 @@
 import styled from "styled-components";
-import {
-  BlackColor,
-  FontSize,
-  MainColor,
-  WhiteColor,
-} from "../../CSS/Color/ColorNote";
+import { BlackColor, MainColor, WhiteColor } from "../../CSS/Color/ColorNote";
 import { centerColumn, centerRow } from "../../CSS/Global/GlobalDisplay";
-import { Overlay } from "../Modal/WriteModal";
-import { GlobalButton } from "../../CSS/Global/GlobalItem";
 import computerCat from "../../CSS/image/HomeImg/gif/computerCat.gif";
+import { Overlay } from "../Modal/WriteModal";
+import SignUpForm from "./SignUpForm";
+import { useState } from "react";
+import LoginForm from "./LoginForm";
 
 const LoginWrapper = styled.div`
   display: none;
@@ -46,56 +43,6 @@ const LoginWrapper = styled.div`
         height: 80%;
       }
     }
-
-    .loginRightBlock {
-      ${centerColumn}
-      width: 50%;
-      height: 100%;
-
-      .loginTitle {
-        ${centerColumn}
-        width: 70%;
-        height: 7%;
-        margin-bottom: 5%;
-        font-size: ${FontSize.large};
-      }
-
-      .loginIdInput {
-        ${centerColumn}
-        width: 70%;
-        height: 7%;
-        border: 2px solid ${MainColor.Main100};
-        border-radius: 10px;
-        padding: 1%;
-        font-size: ${FontSize.xsmall};
-      }
-
-      .loginPwInput {
-        ${centerColumn}
-        width: 70%;
-        height: 7%;
-        border: 2px solid ${MainColor.Main100};
-        border-radius: 10px;
-        padding: 1%;
-        font-size: ${FontSize.xsmall};
-      }
-
-      .loginValidationArea {
-        ${centerColumn}
-        width: 70%;
-        height: 5%;
-        background-color: ${WhiteColor.White100};
-      }
-
-      .loginToolBlock {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between;
-        width: 70%;
-        height: 15%;
-      }
-    }
   }
 `;
 
@@ -105,6 +52,8 @@ interface LoginProps {
 }
 
 const Login: React.FC<LoginProps> = ({ modalState, setModalState }) => {
+  const [loginToggle, setLoginToggle] = useState<boolean>(false);
+
   return (
     <Overlay $modalState={modalState}>
       <LoginWrapper className={`${modalState ? "open" : ""}`}>
@@ -112,21 +61,14 @@ const Login: React.FC<LoginProps> = ({ modalState, setModalState }) => {
           <div className="loginLeftBlock">
             <img src={computerCat} alt="컴퓨터캣"></img>
           </div>
-          <div className="loginRightBlock">
-            <span className="loginTitle">MewToon</span>
-            <input className="loginIdInput" placeholder="ID"></input>
-            <span className="loginValidationArea"></span>
-            <input className="loginPwInput" placeholder="Password"></input>
-            <span className="loginValidationArea"></span>
-            <div className="loginToolBlock">
-              <GlobalButton width="100%" height="45%">
-                로그인
-              </GlobalButton>
-              <GlobalButton width="100%" height="45%">
-                회원가입
-              </GlobalButton>
-            </div>
-          </div>
+          {!loginToggle ? (
+            <LoginForm
+              loginToggle={loginToggle}
+              setLoginToggle={setLoginToggle}
+            />
+          ) : (
+            <SignUpForm />
+          )}
         </div>
       </LoginWrapper>
     </Overlay>
