@@ -5,8 +5,8 @@ import { GlobalButton } from "../../CSS/Global/GlobalItem";
 
 const LoginFormWrapper = styled.div`
   ${centerColumn}
-  width: 50%;
-  height: 100%;
+  width: 100%;
+  height: 90%;
 
   .LoginFormTitle {
     ${centerColumn}
@@ -63,7 +63,7 @@ const LoginForm: React.FC<LoginFormProps> = ({
   setLoginToggle,
 }) => {
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  - 함수 기능 : 글쓰기 모달을 키고 끄는 함수
+  - 함수 기능 : 로그인/회원가입 컴포넌트를 보여주는 함수
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
   const handleLoginToggle = () => {
     setLoginToggle(!loginToggle);

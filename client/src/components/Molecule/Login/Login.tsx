@@ -1,5 +1,10 @@
 import styled from "styled-components";
-import { BlackColor, MainColor, WhiteColor } from "../../CSS/Color/ColorNote";
+import {
+  BlackColor,
+  FontSize,
+  MainColor,
+  WhiteColor,
+} from "../../CSS/Color/ColorNote";
 import { centerColumn, centerRow } from "../../CSS/Global/GlobalDisplay";
 import computerCat from "../../CSS/image/HomeImg/gif/computerCat.gif";
 import { Overlay } from "../Modal/WriteModal";
@@ -30,7 +35,7 @@ const LoginWrapper = styled.div`
     font-weight: bold;
     color: ${BlackColor.Black100};
 
-    .loginLeftBlock {
+    .loginGifBlock {
       ${centerColumn}
       width: 50%;
       height: 100%;
@@ -43,6 +48,37 @@ const LoginWrapper = styled.div`
         height: 80%;
       }
     }
+
+    .loginComponentsBlock {
+      ${centerColumn}
+      width: 50%;
+      height: 100%;
+
+      .loginCloseBlock {
+        display: flex;
+        align-items: center;
+        justify-content: right;
+        width: 100%;
+        height: 10%;
+        padding-right: 10px;
+
+        .loginCloseButton {
+          background-color: ${WhiteColor.White100};
+          border: 2px solid ${MainColor.Main100};
+          border-radius: 50%;
+          width: 50px;
+          height: 50px;
+          font-weight: bold;
+          color: ${MainColor.Main100};
+          font-size: ${FontSize.small};
+
+          &:hover {
+            background-color: ${MainColor.Main100};
+            color: ${WhiteColor.White100};
+          }
+        }
+      }
+    }
   }
 `;
 
@@ -53,22 +89,35 @@ interface LoginProps {
 
 const Login: React.FC<LoginProps> = ({ modalState, setModalState }) => {
   const [loginToggle, setLoginToggle] = useState<boolean>(false);
+  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - 함수 기능 : 로그인 모달을 끄는 함수
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+  const handleModalState = () => {
+    setModalState(!modalState);
+  };
 
   return (
     <Overlay $modalState={modalState}>
       <LoginWrapper className={`${modalState ? "open" : ""}`}>
         <div className="loginBlock">
-          <div className="loginLeftBlock">
+          <div className="loginGifBlock">
             <img src={computerCat} alt="컴퓨터캣"></img>
           </div>
-          {!loginToggle ? (
-            <LoginForm
-              loginToggle={loginToggle}
-              setLoginToggle={setLoginToggle}
-            />
-          ) : (
-            <SignUpForm />
-          )}
+          <div className="loginComponentsBlock">
+            <div className="loginCloseBlock">
+              <button className="loginCloseButton" onClick={handleModalState}>
+                X
+              </button>
+            </div>
+            {!loginToggle ? (
+              <LoginForm
+                loginToggle={loginToggle}
+                setLoginToggle={setLoginToggle}
+              />
+            ) : (
+              <SignUpForm />
+            )}
+          </div>
         </div>
       </LoginWrapper>
     </Overlay>

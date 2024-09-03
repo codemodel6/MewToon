@@ -5,8 +5,8 @@ import { GlobalButton } from "../../CSS/Global/GlobalItem";
 
 const SignUpFormWrapper = styled.div`
   ${centerColumn}
-  width: 50%;
-  height: 100%;
+  width: 100%;
+  height: 90%;
 
   .SignUpFormTitle {
     ${centerColumn}
