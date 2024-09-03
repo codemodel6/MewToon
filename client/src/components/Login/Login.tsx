@@ -4,10 +4,10 @@ import {
   FontSize,
   MainColor,
   WhiteColor,
-} from "../../CSS/Color/ColorNote";
-import { centerColumn, centerRow } from "../../CSS/Global/GlobalDisplay";
-import computerCat from "../../CSS/image/HomeImg/gif/computerCat.gif";
-import { Overlay } from "../Modal/WriteModal";
+} from "../CSS/Color/ColorNote";
+import { centerColumn, centerRow } from "../CSS/Global/GlobalDisplay";
+import computerCat from "../CSS/image/HomeImg/gif/computerCat.gif";
+import { Overlay } from "../Molecule/Modal/WriteModal";
 import SignUpForm from "./SignUpForm";
 import { useState } from "react";
 import LoginForm from "./LoginForm";

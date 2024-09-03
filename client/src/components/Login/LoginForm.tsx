@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { FontSize, MainColor, WhiteColor } from "../../CSS/Color/ColorNote";
-import { centerColumn } from "../../CSS/Global/GlobalDisplay";
-import { GlobalButton } from "../../CSS/Global/GlobalItem";
+import { FontSize, MainColor, WhiteColor } from "../CSS/Color/ColorNote";
+import { centerColumn } from "../CSS/Global/GlobalDisplay";
+import { GlobalButton } from "../CSS/Global/GlobalItem";
 
 const LoginFormWrapper = styled.div`
   ${centerColumn}

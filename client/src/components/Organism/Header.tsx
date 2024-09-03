@@ -6,7 +6,7 @@ import { betweenRow } from "../CSS/Global/GlobalDisplay";
 import mewCat from "../CSS/image/mewCat.png";
 import { handleScroll } from "../Function/scroll";
 import { handleModal } from "../Function/modal";
-import Login from "../Molecule/Login/Login";
+import Login from "../Login/Login";
 
 const MyHeader = styled.header<{
   $scrollAction: boolean;
