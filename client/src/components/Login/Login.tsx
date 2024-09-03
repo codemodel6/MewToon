@@ -53,6 +53,7 @@ const LoginWrapper = styled.div`
       ${centerColumn}
       width: 50%;
       height: 100%;
+      padding-bottom: 5%;
 
       .loginCloseBlock {
         display: flex;

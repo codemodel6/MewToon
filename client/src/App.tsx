@@ -11,24 +11,29 @@ import Intro from "./page/intro/Intro";
 import Project from "./page/project/Project";
 import store from "./page/redux/store";
 import WebToon from "./page/webToon/WebToon";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 function App() {
+  const queryClient = new QueryClient();
+
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <ScrollTop />
-        <div className="App">
-          <Header />
-          <Routes>
-            <Route path="/" element={<Intro />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/webToon" element={<WebToon />} />
-            <Route path="/project" element={<Project />} />
-            <Route path="/board" element={<Board />} />
-            <Route path="/information" element={<Information />} />
-          </Routes>
-          <Footer />
-        </div>
+        <QueryClientProvider client={queryClient}>
+          <ScrollTop />
+          <div className="App">
+            <Header />
+            <Routes>
+              <Route path="/" element={<Intro />} />
+              <Route path="/home" element={<Home />} />
+              <Route path="/webToon" element={<WebToon />} />
+              <Route path="/project" element={<Project />} />
+              <Route path="/board" element={<Board />} />
+              <Route path="/information" element={<Information />} />
+            </Routes>
+            <Footer />
+          </div>
+        </QueryClientProvider>
       </BrowserRouter>
     </Provider>
   );

@@ -49,7 +49,7 @@ const LoginFormWrapper = styled.div`
     align-items: center;
     justify-content: space-between;
     width: 70%;
-    height: 17%;
+    height: 110px;
   }
 `;
 
@@ -68,6 +68,7 @@ const LoginForm: React.FC<LoginFormProps> = ({
   const handleLoginToggle = () => {
     setLoginToggle(!loginToggle);
   };
+
   return (
     <LoginFormWrapper>
       <span className="LoginFormTitle">MewToon</span>
