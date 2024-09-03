@@ -2,10 +2,10 @@ import { UserCredential } from "firebase/auth";
 import { useState } from "react";
 import { useMutation, UseMutationResult } from "react-query";
 import styled from "styled-components";
+import { LoginDataProps, signUp } from "../../firebase/signUp";
 import { FontSize, MainColor, WhiteColor } from "../CSS/Color/ColorNote";
 import { centerColumn } from "../CSS/Global/GlobalDisplay";
 import { GlobalButton } from "../CSS/Global/GlobalItem";
-import { signUp } from "../../firebase/auth";
 
 const SignUpFormWrapper = styled.div`
   ${centerColumn}
@@ -63,20 +63,17 @@ const SignUpFormWrapper = styled.div`
   }
 `;
 
-interface SignUpProps {
-  email: string;
-  password: string;
-}
-
 const SignUpForm = () => {
   // 회원가입에 보낼 데이터 state
-  const [singUpObj, setSingUpObj] = useState<SignUpProps>({
+  const [singUpObj, setSingUpObj] = useState<LoginDataProps>({
     email: "",
     password: "",
   });
 
   // 입력 필드 핸들러
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSingUpInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const { name, value } = event.target;
     setSingUpObj((prev) => ({ ...prev, [name]: value }));
   };
@@ -87,9 +84,9 @@ const SignUpForm = () => {
                                  Firebase Authentication의 createUserWithEmailAndPassword 메서드가 
                                  성공적으로 값을 반환했을 때 UserCredential 객체를 반환
                 Error          : signUp 함수가 실패했을 때 반환되는 에러의 타입
-                FormState      : signUp 함수를 호출할 때 필요한 입력 변수의 타입
+                LoginDataProps : signUp 함수를 호출할 때 필요한 입력 변수의 타입
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-  const mutation: UseMutationResult<UserCredential, Error, SignUpProps> =
+  const signUpQuery: UseMutationResult<UserCredential, Error, LoginDataProps> =
     useMutation(signUp, {
       onSuccess: (data) => {
         console.log("회원가입 성공:", data.user);
@@ -106,7 +103,7 @@ const SignUpForm = () => {
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    mutation.mutate(singUpObj); // 회원가입
+    signUpQuery.mutate(singUpObj); // 회원가입
   };
 
   return (
@@ -119,7 +116,7 @@ const SignUpForm = () => {
           className="SignUpFormIdInput"
           value={singUpObj.email}
           placeholder="E-mail"
-          onChange={handleInputChange}
+          onChange={handleSingUpInputChange}
           required
         ></input>
         <span className="SignUpFormValidationArea"></span>
@@ -129,13 +126,13 @@ const SignUpForm = () => {
           className="SignUpFormPwInput"
           value={singUpObj.password}
           placeholder="Password"
-          onChange={handleInputChange}
+          onChange={handleSingUpInputChange}
           required
         ></input>
         <span className="SignUpFormValidationArea"></span>
         <div className="SignUpFormToolBlock">
           <GlobalButton type="submit" width="100%" height="50px">
-            {mutation.isLoading ? "가입 중..." : "회원가입"}
+            {signUpQuery.isLoading ? "Loading.." : "회원가입"}
           </GlobalButton>
         </div>
       </form>

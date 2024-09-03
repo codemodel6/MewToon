@@ -1,7 +1,7 @@
 import { createUserWithEmailAndPassword, UserCredential } from "firebase/auth";
 import { auth } from "./firebase";
 
-interface SignUpDataProps {
+export interface LoginDataProps {
   email: string;
   password: string;
 }
@@ -10,7 +10,7 @@ interface SignUpDataProps {
 export const signUp = async ({
   email,
   password,
-}: SignUpDataProps): Promise<UserCredential> => {
+}: LoginDataProps): Promise<UserCredential> => {
   try {
     // Firebase Auth를 사용하여 사용자 생성
     const userCredential = await createUserWithEmailAndPassword(
@@ -18,9 +18,7 @@ export const signUp = async ({
       email,
       password
     );
-
     console.log("회원가입 성공 : ", userCredential.user);
-
     return userCredential; // 성공적으로 생성된 사용자 객체 반환
   } catch (error) {
     console.error("회원가입 에러 : ", error);
