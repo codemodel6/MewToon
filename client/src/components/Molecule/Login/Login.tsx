@@ -94,6 +94,7 @@ const Login: React.FC<LoginProps> = ({ modalState, setModalState }) => {
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
   const handleModalState = () => {
     setModalState(!modalState);
+    setLoginToggle(false);
   };
 
   return (

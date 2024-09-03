@@ -49,7 +49,7 @@ const LoginFormWrapper = styled.div`
     align-items: center;
     justify-content: space-between;
     width: 70%;
-    height: 15%;
+    height: 17%;
   }
 `;
 
