@@ -13,6 +13,7 @@ export const login = async ({
       email,
       password
     );
+    console.log("로그인 -->", userCredential.user);
     const idToken = await userCredential.user.getIdToken(); // JWT 토큰 가져오기
     return idToken;
   } catch (error) {
