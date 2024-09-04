@@ -4,17 +4,12 @@ import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { auth } from "../../firebase/firebase";
 import { FontSize, MainColor } from "../CSS/Color/ColorNote";
-import {
-  aroundRow,
-  betweenRow,
-  centerColumn,
-  centerRow,
-} from "../CSS/Global/GlobalDisplay";
+import { aroundRow, betweenRow } from "../CSS/Global/GlobalDisplay";
+import logout from "../CSS/image/LoginImg/logout.png";
 import mewCat from "../CSS/image/mewCat.png";
 import { handleModal } from "../Function/modal";
 import { handleScroll } from "../Function/scroll";
 import Login from "../Login/Login";
-import logout from "../CSS/image/LoginImg/logout.png";
 
 const MyHeader = styled.header<{
   $scrollAction: boolean;
