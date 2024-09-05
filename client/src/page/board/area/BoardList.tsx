@@ -2,7 +2,9 @@
 - 게시판 리스트 컴포넌트
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
 
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { collection, getDocs } from "firebase/firestore";
+import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import styled from "styled-components";
 import {
@@ -18,7 +20,7 @@ import {
 import { GlobalButton } from "../../../components/CSS/Global/GlobalItem";
 import { handleModal } from "../../../components/Function/modal";
 import PagiNation from "../../../components/Molecule/PagiNation/PagiNation";
-import { serverBoardObj1, serverBoardObj2 } from "./serverBoardObj";
+import { db } from "../../../firebase/firebase";
 
 const BoardListBlock = styled.div<{ $toggle: boolean }>`
   height: 100%;
@@ -186,24 +188,34 @@ interface ListInterface {
   handleToggle: () => void;
 }
 
-interface BoardProps {
-  id: number;
+// interface BoardProps {
+//   id: number;
+//   title: string;
+//   author: string;
+//   date: string;
+//   contents: string;
+//   like: number;
+// }
+
+interface BoardListProp {
+  id: string;
+  content: string;
+  createdDT: string;
+  email: string;
   title: string;
-  author: string;
-  date: string;
-  contents: string;
-  like: number;
+  uid: string;
+  updateDT: string;
 }
 
-interface PageInfoProps {
-  page: number;
-  totalPage: number;
-}
+// interface PageInfoProps {
+//   page: number;
+//   totalPage: number;
+// }
 
-interface BoardInterface {
-  listInfo: BoardProps[];
-  pageInfo: PageInfoProps;
-}
+// interface BoardInterface {
+//   listInfo: BoardProps[];
+//   pageInfo: PageInfoProps;
+// }
 
 const BoardList: React.FC<ListInterface> = ({
   modalState,
@@ -212,7 +224,7 @@ const BoardList: React.FC<ListInterface> = ({
   handleToggle,
 }) => {
   // 페이지에 보여줄 게시글 state
-  const [boardList, setBoardList] = useState<BoardInterface>(serverBoardObj1);
+  // const [boardList, setBoardList] = useState<BoardInterface>(serverBoardObj1);
   // 총 페이지 수 state
   const [totalPage] = useState<number>(2);
   // url의 페이지를 가져오는 state
@@ -226,10 +238,36 @@ const BoardList: React.FC<ListInterface> = ({
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   - 훅 기능 : 페이지 변경 시 데이터 변경.. 서버 없이 더미데이터 이기 때문에 임시 설정
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-  useEffect(() => {
-    if (page === 1) setBoardList(serverBoardObj1);
-    else setBoardList(serverBoardObj2);
-  }, [page]);
+  // useEffect(() => {
+  //   if (page === 1) setBoardList(serverBoardObj1);
+  //   else setBoardList(serverBoardObj2);
+  // }, [page]);
+
+  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - 함수 기능 : firebase에서 board의 데이터를 가져온다
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+  const getBoardList = async () => {
+    const boardCollection = collection(db, "board");
+    const boardGetDocs = await getDocs(boardCollection);
+    const boardList = boardGetDocs.docs.map((it) => ({
+      id: it.id, // 문서 ID
+      ...it.data(), // 문서 데이터
+    })) as BoardListProp[];
+    console.log("boardList : ", boardList);
+    return boardList;
+  };
+
+  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - Mutation : 페이지 변경 시 데이터 변경.. 서버 없이 더미데이터 이기 때문에 임시 설정
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+  const {
+    data: boardList,
+    // isLoading,
+    // error,
+  } = useQuery({
+    queryKey: ["boardList"], // 쿼리 키
+    queryFn: getBoardList, // 데이터를 가져오는 함수
+  });
 
   return (
     <BoardListBlock $toggle={toggle}>
@@ -257,12 +295,12 @@ const BoardList: React.FC<ListInterface> = ({
         <EmptyWrapper>검색된 결과는 존재하지 않습니다.</EmptyWrapper>
       ) : (
         <div className="boardWrapper">
-          {boardList.listInfo.map((it, idx) => (
-            <div className="boardContents" key={it.id} onClick={handleToggle}>
-              <div className="common">{it.id}</div>
+          {boardList?.map((it, idx) => (
+            <div className="boardContents" key={idx} onClick={handleToggle}>
+              <div className="common">1</div>
               <div className="title">{it.title}</div>
-              <div className="author">{it.author}</div>
-              <div className="common">{it.date}</div>
+              <div className="author">{it.email}</div>
+              <div className="common">{it.updateDT}</div>
             </div>
           ))}
         </div>
