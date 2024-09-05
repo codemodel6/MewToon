@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { FontSize, MainColor, WhiteColor } from "../CSS/Color/ColorNote";
 import { centerColumn } from "../CSS/Global/GlobalDisplay";
 import { GlobalButton } from "../CSS/Global/GlobalItem";
-import { useMutation, UseMutationResult } from "react-query";
+import { useMutation, UseMutationResult } from "@tanstack/react-query";
 import { login } from "../../firebase/login";
 import { LoginDataProps } from "../../firebase/signUp";
 import { useState } from "react";
@@ -93,7 +93,7 @@ const LoginForm: React.FC<LoginFormProps> = ({
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
   const handleLoginSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    loginQuery.mutate(loginObj);
+    loginMutation.mutate(loginObj);
   };
 
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -102,23 +102,20 @@ const LoginForm: React.FC<LoginFormProps> = ({
                 Error          : login 함수가 실패했을 때 반환되는 에러의 타입
                 LoginDataProps : login 함수를 호출할 때 필요한 입력 변수의 타입
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-  const loginQuery: UseMutationResult<string, Error, LoginDataProps> =
-    useMutation(
-      login, // login 함수 자체를 전달
-      {
-        onSuccess: (token: string) => {
-          console.log("로그인 성공, JWT 토큰:", token);
-          // 토큰을 로컬 스토리지 또는 쿠키에 저장합니다.
-          localStorage.setItem("jwtToken", token);
-          handleModalState(); // 로그인 화면을 닫는다
-          alert("로그인이 성공적으로 완료되었습니다.");
-        },
-        onError: (error: Error) => {
-          console.error("로그인 실패:", error);
-          alert("로그인에 실패했습니다. 다시 시도해 주세요.");
-        },
-      }
-    );
+  const loginMutation = useMutation({
+    mutationFn: login, // login 함수 자체를 전달
+    onSuccess: (token: string) => {
+      console.log("로그인 성공, JWT 토큰:", token);
+      // 토큰을 로컬 스토리지 또는 쿠키에 저장합니다.
+      localStorage.setItem("jwtToken", token);
+      handleModalState(); // 로그인 화면을 닫는다
+      alert("로그인이 성공적으로 완료되었습니다.");
+    },
+    onError: (error: Error) => {
+      console.error("로그인 실패:", error);
+      alert("로그인에 실패했습니다. 다시 시도해 주세요.");
+    },
+  });
 
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   - 함수 기능 : 로그인/회원가입 컴포넌트를 보여주는 함수

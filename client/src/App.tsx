@@ -11,7 +11,7 @@ import Intro from "./page/intro/Intro";
 import Project from "./page/project/Project";
 import store from "./page/redux/store";
 import WebToon from "./page/webToon/WebToon";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 function App() {
   const queryClient = new QueryClient();

@@ -1,6 +1,5 @@
-import { UserCredential } from "firebase/auth";
+import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
-import { useMutation, UseMutationResult } from "react-query";
 import styled from "styled-components";
 import { LoginDataProps, signUp } from "../../firebase/signUp";
 import { FontSize, MainColor, WhiteColor } from "../CSS/Color/ColorNote";
@@ -86,24 +85,24 @@ const SignUpForm = () => {
                 Error          : signUp 함수가 실패했을 때 반환되는 에러의 타입
                 LoginDataProps : signUp 함수를 호출할 때 필요한 입력 변수의 타입
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-  const signUpQuery: UseMutationResult<UserCredential, Error, LoginDataProps> =
-    useMutation(signUp, {
-      onSuccess: (data) => {
-        console.log("회원가입 성공:", data.user);
-        alert("회원가입이 성공적으로 완료되었습니다.");
-      },
-      onError: (error) => {
-        console.error("회원가입 실패:", error);
-        alert("회원가입에 실패했습니다: " + error.message);
-      },
-    });
+  const signUpMutation = useMutation({
+    mutationFn: signUp,
+    onSuccess: (data) => {
+      console.log("회원가입 성공:", data.user);
+      alert("회원가입이 성공적으로 완료되었습니다.");
+    },
+    onError: (error) => {
+      console.error("회원가입 실패:", error);
+      alert("회원가입에 실패했습니다: " + error.message);
+    },
+  });
 
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   - 함수 기능 : 입력한 form을 파이어베이스 서버에 전달
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    signUpQuery.mutate(singUpObj); // 회원가입
+    signUpMutation.mutate(singUpObj); // 회원가입
   };
 
   return (
@@ -132,7 +131,7 @@ const SignUpForm = () => {
         <span className="SignUpFormValidationArea"></span>
         <div className="SignUpFormToolBlock">
           <GlobalButton type="submit" width="100%" height="50px">
-            {signUpQuery.isLoading ? "Loading.." : "회원가입"}
+            회원가입
           </GlobalButton>
         </div>
       </form>
