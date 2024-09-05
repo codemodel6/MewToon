@@ -185,7 +185,7 @@ const WriteModal: React.FC<WriteProps> = ({ modalState, setModalState }) => {
   const boardCreateMutation = useMutation({
     mutationFn: boardCreate,
     onSuccess: () => {
-      alert("게시글이 성공적으로 업로드되었습니다.");
+      console.log("boardCreateMutation - onSuccess");
     },
     onError: (error: Error) => {
       alert("게시글 업로드에 실패했습니다: " + error.message);

@@ -21,9 +21,9 @@ const boardCreate = async ({ title, content }: BoardCreateProps) => {
         createdDT: formatDate(new Date()), // 생성 날짜
         updateDT: formatDate(new Date()), // 수정 날짜
       });
-      alert("게시글이 성공적으로 업로드되었습니다.");
+      console.log("boardCreate 성공");
     } catch (error) {
-      console.error("게시글 업로드 실패:", error);
+      console.error("boardCreate 실패 : ", error);
       alert("게시글 업로드에 실패했습니다.");
     }
   } else {
