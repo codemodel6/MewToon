@@ -6,12 +6,17 @@ import { handleModal } from "../Function/modal";
 import Login from "./Login";
 import styled from "styled-components";
 import { FontSize, MainColor } from "../CSS/Color/ColorNote";
-import { aroundRow } from "../CSS/Global/GlobalDisplay";
+import {
+  aroundRow,
+  centerColumn,
+  centerRow,
+} from "../CSS/Global/GlobalDisplay";
 import { LoginModalProps } from "../Organism/Header";
 
 const LoginStatusWrapper = styled.div<{ $scrollAction: boolean }>`
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: center;
   margin-right: 20px;
   width: 250px;
@@ -22,6 +27,22 @@ const LoginStatusWrapper = styled.div<{ $scrollAction: boolean }>`
   color: white;
   transform: translateY(${(props) => (props.$scrollAction ? "-100%" : "0")});
   transition: transform 1s ease; // 속성, 지속시간, 타이밍함수
+`;
+
+const LoginOffBlock = styled.button`
+  ${centerColumn}
+  height: 70%;
+  width: 70%;
+  font-size: ${FontSize.xmedium};
+  background-color: white;
+  border-radius: 10px;
+  color: ${MainColor.Main100};
+  font-weight: bold;
+`;
+const LoginOnBlock = styled.div`
+  ${centerRow}
+  height: 100%;
+  width: 100%;
 
   .loginInfoBlock {
     display: flex;
@@ -30,15 +51,15 @@ const LoginStatusWrapper = styled.div<{ $scrollAction: boolean }>`
     height: 100%;
     width: 70%;
     padding-left: 10px;
+  }
 
-    .userInfo {
-      font-size: ${FontSize.medium};
-      margin-bottom: 2px;
-    }
+  .userInfo {
+    font-size: ${FontSize.medium};
+    margin-bottom: 2px;
+  }
 
-    .welcome {
-      font-size: ${FontSize.small};
-    }
+  .welcome {
+    font-size: ${FontSize.small};
   }
 
   .loginToolBlock {
@@ -88,20 +109,25 @@ const LoginStatus: React.FC<LoginModalProps> = ({
 
   return (
     <LoginStatusWrapper $scrollAction={scrollAction}>
-      <div
-        className="loginInfoBlock"
-        onClick={() => handleModal(loginModalState, setLoginModalState)}
-      >
-        <span className="userInfo">
-          {loginUser ? loginUser?.email : "로그인해주세요"}
-        </span>
-        <span className="welcome">안녕하세요</span>
-      </div>
-      <div className="loginToolBlock">
-        <button onClick={handleLogout}>
-          <img src={logout} alt="로그아웃"></img>
-        </button>
-      </div>
+      {loginUser ? (
+        <LoginOnBlock>
+          <div className="loginInfoBlock">
+            <span className="userInfo">{loginUser?.email}</span>
+            <span className="welcome">안녕하세요</span>
+          </div>
+          <div className="loginToolBlock">
+            <button onClick={handleLogout}>
+              <img src={logout} alt="로그아웃"></img>
+            </button>
+          </div>
+        </LoginOnBlock>
+      ) : (
+        <LoginOffBlock
+          onClick={() => handleModal(loginModalState, setLoginModalState)}
+        >
+          Login
+        </LoginOffBlock>
+      )}
     </LoginStatusWrapper>
   );
 };
