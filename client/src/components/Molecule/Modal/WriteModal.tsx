@@ -10,6 +10,9 @@ import {
 import { centerColumn } from "../../CSS/Global/GlobalDisplay";
 import { CancelButton, GlobalButton } from "../../CSS/Global/GlobalItem";
 import { handleModal } from "../../Function/modal";
+import { useState } from "react";
+import boardCreate, { BoardCreateProps } from "../../../firebase/boardCreate";
+import { useMutation } from "@tanstack/react-query";
 
 const WriteModalWrapper = styled.div`
   display: none;
@@ -23,99 +26,104 @@ const WriteModalWrapper = styled.div`
     display: block;
   }
 
-  .modalDataDiv {
-    background-color: ${WhiteColor.White100};
-    width: 800px;
-    height: 600px;
-    margin-bottom: 40px;
-    border: 3px solid ${MainColor.Main200};
-    border-radius: 10px;
-    font-weight: bold;
-    color: ${BlackColor.Black100};
+  .boardFormBlock {
+    width: 100%;
+    height: 100%;
 
-    .modalTitle {
-      ${centerColumn}
-      height: 15%;
-      width: 100%;
-      font-size: xx-large;
-      border-bottom: 3px solid ${MainColor.Main200};
+    .modalDataDiv {
+      background-color: ${WhiteColor.White100};
+      width: 800px;
+      height: 600px;
+      margin-bottom: 40px;
+      border: 3px solid ${MainColor.Main200};
+      border-radius: 10px;
       font-weight: bold;
-    }
+      color: ${BlackColor.Black100};
 
-    .modalContents {
-      display: flex;
-      flex-direction: row;
-      width: 100%;
-      height: 85%;
-
-      .titleDiv {
-        width: 25%;
-        height: 100%;
-        font-size: x-large;
-        border-right: 3px solid ${MainColor.Main200};
-
-        .myTitle {
-          ${centerColumn}
-          width: 100%;
-          height: 17%;
-          border-bottom: 3px solid ${MainColor.Main200};
-        }
-
-        .noLineTitle {
-          ${centerColumn}
-          width: 100%;
-          height: 17%;
-        }
+      .modalTitle {
+        ${centerColumn}
+        height: 15%;
+        width: 100%;
+        font-size: xx-large;
+        border-bottom: 3px solid ${MainColor.Main200};
+        font-weight: bold;
       }
 
-      .contentsDiv {
-        width: 75%;
-        height: 100%;
+      .modalContents {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: 85%;
 
-        .modalInputDiv {
-          ${centerColumn}
-          height: 17%;
-          width: 100%;
-          border-bottom: 3px solid ${MainColor.Main200};
+        .titleDiv {
+          width: 25%;
+          height: 100%;
+          font-size: x-large;
+          border-right: 3px solid ${MainColor.Main200};
 
-          input {
-            width: 90%;
-            height: 45px;
-            border: 3px solid ${SubColor.Sub100};
-            padding-left: 20px;
-            background-color: ${WhiteColor.White100};
-            color: ${GrayColor.Gray100};
-            font-size: ${FontSize.small};
+          .myTitle {
+            ${centerColumn}
+            width: 100%;
+            height: 17%;
+            border-bottom: 3px solid ${MainColor.Main200};
           }
 
-          input:focus {
-            outline: none;
-            border: 3px solid ${SubColor.Sub300};
+          .noLineTitle {
+            ${centerColumn}
+            width: 100%;
+            height: 17%;
           }
         }
 
-        .modalTextDiv {
-          height: 83%;
-          width: 100%;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
+        .contentsDiv {
+          width: 75%;
+          height: 100%;
 
-          textArea {
-            width: 90%;
-            height: 90%;
-            border: 3px solid ${SubColor.Sub100};
-            padding: 10px 20px 10px 20px;
-            background-color: ${WhiteColor.White100};
-            resize: none;
-            color: ${GrayColor.Gray100};
-            font-size: ${FontSize.small};
+          .modalInputDiv {
+            ${centerColumn}
+            height: 17%;
+            width: 100%;
+            border-bottom: 3px solid ${MainColor.Main200};
+
+            input {
+              width: 90%;
+              height: 45px;
+              border: 3px solid ${SubColor.Sub100};
+              padding-left: 20px;
+              background-color: ${WhiteColor.White100};
+              color: ${GrayColor.Gray100};
+              font-size: ${FontSize.small};
+            }
+
+            input:focus {
+              outline: none;
+              border: 3px solid ${SubColor.Sub300};
+            }
           }
 
-          textArea:focus {
-            outline: none;
-            border: 3px solid ${SubColor.Sub300};
+          .modalTextDiv {
+            height: 83%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            textArea {
+              width: 90%;
+              height: 90%;
+              border: 3px solid ${SubColor.Sub100};
+              padding: 10px 20px 10px 20px;
+              background-color: ${WhiteColor.White100};
+              resize: none;
+              color: ${GrayColor.Gray100};
+              font-size: ${FontSize.small};
+            }
+
+            textArea:focus {
+              outline: none;
+              border: 3px solid ${SubColor.Sub300};
+            }
           }
         }
       }
@@ -151,12 +159,38 @@ interface WriteProps {
 }
 
 const WriteModal: React.FC<WriteProps> = ({ modalState, setModalState }) => {
-  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  - 함수 기능 : 저장하는 함수
-  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-  const handleSave = async () => {
-    alert("권한이 없습니다.");
+  const [boardObj, setBoardObj] = useState<BoardCreateProps>({
+    title: "",
+    content: "",
+  });
+
+  const handleBoardObjInputChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> // input과 textarea 2개의 타입 가능
+  ) => {
+    const { name, value } = event.target;
+    setBoardObj((prev) => ({ ...prev, [name]: value }));
   };
+
+  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - 함수 기능 : 파이어베이스에 게시판 생성을 하는 mutation을 실행시키는 함수
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+  const handleBoardCreateSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    boardCreateMutation.mutate(boardObj); // mutate 함수 호출
+  };
+
+  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - mutation : boardCreate 함수를 실행하는 mutation
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+  const boardCreateMutation = useMutation({
+    mutationFn: boardCreate,
+    onSuccess: () => {
+      alert("게시글이 성공적으로 업로드되었습니다.");
+    },
+    onError: (error: Error) => {
+      alert("게시글 업로드에 실패했습니다: " + error.message);
+    },
+  });
 
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   - 함수 기능 : 취소 버튼을 눌렀을 때 모달을 닫는 함수
@@ -168,31 +202,52 @@ const WriteModal: React.FC<WriteProps> = ({ modalState, setModalState }) => {
   return (
     <Overlay $modalState={modalState}>
       <WriteModalWrapper className={`${modalState ? "open" : ""}`}>
-        <div className="modalDataDiv">
-          <div className="modalTitle">글 쓰기</div>
-          <div className="modalContents">
-            <div className="titleDiv">
-              <div className="myTitle">제목</div>
-              <div className="noLineTitle">내용</div>
-            </div>
-            <div className="contentsDiv">
-              <div className="modalInputDiv">
-                <input />
+        <form className="boardFormBlock" onSubmit={handleBoardCreateSubmit}>
+          <div className="modalDataDiv">
+            <div className="modalTitle">글 쓰기</div>
+            <div className="modalContents">
+              <div className="titleDiv">
+                <div className="myTitle">제목</div>
+                <div className="noLineTitle">내용</div>
               </div>
-              <div className="modalTextDiv">
-                <textarea />
+              <div className="contentsDiv">
+                <div className="modalInputDiv">
+                  <input
+                    type="text"
+                    name="title"
+                    value={boardObj.title}
+                    placeholder="제목"
+                    onChange={handleBoardObjInputChange}
+                    required
+                  />
+                </div>
+                <div className="modalTextDiv">
+                  <textarea
+                    name="content"
+                    className="SignUpFormPwInput"
+                    value={boardObj.content}
+                    placeholder="내용"
+                    onChange={handleBoardObjInputChange}
+                    required
+                  />
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div className="buttonDiv">
-          <GlobalButton width="200px" height="40px" onClick={handleSave}>
-            저장
-          </GlobalButton>
-          <CancelButton width="200px" height="40px" onClick={handleCancel}>
-            취소
-          </CancelButton>
-        </div>
+          <div className="buttonDiv">
+            <GlobalButton type="submit" width="200px" height="40px">
+              저장
+            </GlobalButton>
+            <CancelButton
+              type="button"
+              width="200px"
+              height="40px"
+              onClick={handleCancel}
+            >
+              취소
+            </CancelButton>
+          </div>
+        </form>
       </WriteModalWrapper>
     </Overlay>
   );

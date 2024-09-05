@@ -42,7 +42,7 @@ const BoardContentWrapper = styled.div<{ $toggle: boolean }>`
       justify-content: space-between;
       height: 6%;
       padding: 0 10px;
-      font-size: ${FontSize.large};
+      font-size: ${FontSize.medium};
       font-weight: bold;
       background-color: ${MainColor.Main100};
       color: ${WhiteColor.White100};
@@ -116,7 +116,7 @@ const BoardContentWrapper = styled.div<{ $toggle: boolean }>`
       background-color: ${MainColor.Main200};
       margin-bottom: 8px;
       color: ${GrayColor.Gray100};
-      font-size: ${FontSize.medium};
+      font-size: ${FontSize.small};
       font-weight: bold;
     }
 
