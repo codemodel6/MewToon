@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { FontSize, MainColor } from "../CSS/Color/ColorNote";
-import { aroundRow, betweenRow } from "../CSS/Global/GlobalDisplay";
+import { betweenRow } from "../CSS/Global/GlobalDisplay";
 import mewCat from "../CSS/image/mewCat.png";
 import { handleScroll } from "../Function/scroll";
-import LoginStatus from "../Login/LoginStatus";
 import Login from "../Login/Login";
+import LoginStatus from "../Login/LoginStatus";
 
 const MyHeader = styled.header<{
   $scrollAction: boolean;

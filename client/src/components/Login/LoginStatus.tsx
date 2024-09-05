@@ -1,16 +1,15 @@
 import { onAuthStateChanged, User } from "firebase/auth";
 import { useEffect, useState } from "react";
-import { auth } from "../../firebase/firebase";
-import logout from "../CSS/image/LoginImg/logout.png";
-import { handleModal } from "../Function/modal";
-import Login from "./Login";
 import styled from "styled-components";
+import { auth } from "../../firebase/firebase";
 import { FontSize, MainColor } from "../CSS/Color/ColorNote";
 import {
   aroundRow,
   centerColumn,
   centerRow,
 } from "../CSS/Global/GlobalDisplay";
+import logout from "../CSS/image/LoginImg/logout.png";
+import { handleModal } from "../Function/modal";
 import { LoginModalProps } from "../Organism/Header";
 
 const LoginStatusWrapper = styled.div<{ $scrollAction: boolean }>`
