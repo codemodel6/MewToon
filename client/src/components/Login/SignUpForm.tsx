@@ -58,11 +58,15 @@ const SignUpFormWrapper = styled.div`
     align-items: center;
     justify-content: space-between;
     width: 70%;
-    height: 7%;
+    height: 110px;
   }
 `;
 
-const SignUpForm = () => {
+interface SignUpFormProps {
+  handleLoginToggle: () => void;
+}
+
+const SignUpForm: React.FC<SignUpFormProps> = ({ handleLoginToggle }) => {
   // 회원가입에 보낼 데이터 state
   const [singUpObj, setSingUpObj] = useState<LoginDataProps>({
     email: "",
@@ -131,7 +135,15 @@ const SignUpForm = () => {
         <span className="SignUpFormValidationArea"></span>
         <div className="SignUpFormToolBlock">
           <GlobalButton type="submit" width="100%" height="50px">
-            회원가입
+            가입 완료
+          </GlobalButton>
+          <GlobalButton
+            type="button"
+            width="100%"
+            height="50px"
+            onClick={handleLoginToggle}
+          >
+            로그인 화면으로
           </GlobalButton>
         </div>
       </form>

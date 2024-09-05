@@ -98,6 +98,13 @@ const Login: React.FC<LoginProps> = ({ modalState, setModalState }) => {
     setLoginToggle(false);
   };
 
+  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - 함수 기능 : 로그인/회원가입 컴포넌트를 보여주는 함수
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+  const handleLoginToggle = () => {
+    setLoginToggle(!loginToggle);
+  };
+
   return (
     <Overlay $modalState={modalState}>
       <LoginWrapper className={`${modalState ? "open" : ""}`}>
@@ -113,12 +120,11 @@ const Login: React.FC<LoginProps> = ({ modalState, setModalState }) => {
             </div>
             {!loginToggle ? (
               <LoginForm
-                loginToggle={loginToggle}
-                setLoginToggle={setLoginToggle}
+                handleLoginToggle={handleLoginToggle}
                 handleModalState={handleModalState}
               />
             ) : (
-              <SignUpForm />
+              <SignUpForm handleLoginToggle={handleLoginToggle} />
             )}
           </div>
         </div>

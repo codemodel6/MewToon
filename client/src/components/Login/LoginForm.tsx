@@ -64,14 +64,12 @@ const LoginFormWrapper = styled.div`
 `;
 
 interface LoginFormProps {
-  loginToggle: boolean;
-  setLoginToggle: React.Dispatch<React.SetStateAction<boolean>>;
+  handleLoginToggle: () => void;
   handleModalState: () => void;
 }
 
 const LoginForm: React.FC<LoginFormProps> = ({
-  loginToggle,
-  setLoginToggle,
+  handleLoginToggle,
   handleModalState,
 }) => {
   // 로그인에 보낼 데이터 state
@@ -117,13 +115,6 @@ const LoginForm: React.FC<LoginFormProps> = ({
     },
   });
 
-  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  - 함수 기능 : 로그인/회원가입 컴포넌트를 보여주는 함수
-  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-  const handleLoginToggle = () => {
-    setLoginToggle(!loginToggle);
-  };
-
   return (
     <LoginFormWrapper>
       <form className="LoginFormBlock" onSubmit={handleLoginSubmit}>
@@ -152,7 +143,11 @@ const LoginForm: React.FC<LoginFormProps> = ({
           <GlobalButton width="100%" height="50px">
             로그인
           </GlobalButton>
-          <GlobalButton width="100%" height="50px" onClick={handleLoginToggle}>
+          <GlobalButton
+            width="100%"
+            height="50px"
+            onClick={() => handleLoginToggle()}
+          >
             회원가입
           </GlobalButton>
         </div>
