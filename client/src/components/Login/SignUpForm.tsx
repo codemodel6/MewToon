@@ -135,7 +135,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ handleLoginToggle }) => {
         <span className="SignUpFormValidationArea"></span>
         <div className="SignUpFormToolBlock">
           <GlobalButton type="submit" width="100%" height="50px">
-            가입 완료
+            회원가입
           </GlobalButton>
           <GlobalButton
             type="button"

@@ -111,7 +111,9 @@ const LoginStatus: React.FC<LoginModalProps> = ({
       {loginUser ? (
         <LoginOnBlock>
           <div className="loginInfoBlock">
-            <span className="userInfo">{loginUser?.email}</span>
+            <span className="userInfo">
+              {loginUser?.email?.split("@")[0]} 님
+            </span>
             <span className="welcome">안녕하세요</span>
           </div>
           <div className="loginToolBlock">

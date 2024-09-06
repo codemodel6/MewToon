@@ -1,4 +1,7 @@
+import { useMutation } from "@tanstack/react-query";
+import { useState } from "react";
 import styled from "styled-components";
+import boardCreate, { BoardCreateProps } from "../../../firebase/boardCreate";
 import {
   BlackColor,
   FontSize,
@@ -10,9 +13,6 @@ import {
 import { centerColumn } from "../../CSS/Global/GlobalDisplay";
 import { CancelButton, GlobalButton } from "../../CSS/Global/GlobalItem";
 import { handleModal } from "../../Function/modal";
-import { useState } from "react";
-import boardCreate, { BoardCreateProps } from "../../../firebase/boardCreate";
-import { useMutation } from "@tanstack/react-query";
 
 const WriteModalWrapper = styled.div`
   display: none;

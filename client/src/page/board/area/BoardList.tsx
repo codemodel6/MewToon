@@ -198,6 +198,7 @@ interface ListInterface {
 // }
 
 interface BoardListProp {
+  seq: number;
   id: string;
   content: string;
   createdDT: string;
@@ -249,6 +250,8 @@ const BoardList: React.FC<ListInterface> = ({
   const getBoardList = async () => {
     const boardCollection = collection(db, "board");
     const boardGetDocs = await getDocs(boardCollection);
+
+    console.log("test ->>", boardGetDocs.docs);
     const boardList = boardGetDocs.docs.map((it) => ({
       id: it.id, // 문서 ID
       ...it.data(), // 문서 데이터
@@ -297,9 +300,9 @@ const BoardList: React.FC<ListInterface> = ({
         <div className="boardWrapper">
           {boardList?.map((it, idx) => (
             <div className="boardContents" key={idx} onClick={handleToggle}>
-              <div className="common">1</div>
+              <div className="common">{it.seq}</div>
               <div className="title">{it.title}</div>
-              <div className="author">{it.email}</div>
+              <div className="author">{it.email.split("@")[0]}</div>
               <div className="common">{it.updateDT}</div>
             </div>
           ))}
