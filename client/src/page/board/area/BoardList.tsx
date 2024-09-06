@@ -3,7 +3,7 @@
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
 
 import { useQuery } from "@tanstack/react-query";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, orderBy, query } from "firebase/firestore";
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import styled from "styled-components";
@@ -248,10 +248,13 @@ const BoardList: React.FC<ListInterface> = ({
   - 함수 기능 : firebase에서 board의 데이터를 가져온다
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
   const getBoardList = async () => {
+    // Firestore 컬렉션으로 board를 가져온다
     const boardCollection = collection(db, "board");
+    // 게시글을 seq 기준 내림차순 정렬
+    const boardQuery = query(boardCollection, orderBy("seq", "asc"));
+    // 쿼리 실행하여 문서 가져오기
     const boardGetDocs = await getDocs(boardCollection);
 
-    console.log("test ->>", boardGetDocs.docs);
     const boardList = boardGetDocs.docs.map((it) => ({
       id: it.id, // 문서 ID
       ...it.data(), // 문서 데이터
