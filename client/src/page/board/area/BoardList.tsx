@@ -20,7 +20,7 @@ import {
 import { GlobalButton } from "../../../components/CSS/Global/GlobalItem";
 import { handleModal } from "../../../components/Function/modal";
 import PagiNation from "../../../components/Molecule/PagiNation/PagiNation";
-import { db } from "../../../firebase/firebase";
+import { auth, db } from "../../../firebase/firebase";
 
 const BoardListBlock = styled.div<{ $toggle: boolean }>`
   height: 100%;
@@ -251,9 +251,9 @@ const BoardList: React.FC<ListInterface> = ({
     // Firestore 컬렉션으로 board를 가져온다
     const boardCollection = collection(db, "board");
     // 게시글을 seq 기준 내림차순 정렬
-    const boardQuery = query(boardCollection, orderBy("seq", "asc"));
+    const boardQuery = query(boardCollection, orderBy("seq", "desc"));
     // 쿼리 실행하여 문서 가져오기
-    const boardGetDocs = await getDocs(boardCollection);
+    const boardGetDocs = await getDocs(boardQuery);
 
     const boardList = boardGetDocs.docs.map((it) => ({
       id: it.id, // 문서 ID
@@ -274,6 +274,16 @@ const BoardList: React.FC<ListInterface> = ({
     queryKey: ["boardList"], // 쿼리 키
     queryFn: getBoardList, // 데이터를 가져오는 함수
   });
+
+  const handleModalWrite = () => {
+    const user = auth.currentUser;
+
+    if (user) handleModal(modalState, setModalState);
+    else {
+      alert("로그인해주세요");
+      return;
+    }
+  };
 
   return (
     <BoardListBlock $toggle={toggle}>
@@ -312,11 +322,7 @@ const BoardList: React.FC<ListInterface> = ({
         </div>
       )}
       <div className="writeDiv">
-        <GlobalButton
-          width="120px"
-          height="30px"
-          onClick={() => handleModal(modalState, setModalState)}
-        >
+        <GlobalButton width="120px" height="30px" onClick={handleModalWrite}>
           글 쓰기
         </GlobalButton>
       </div>
