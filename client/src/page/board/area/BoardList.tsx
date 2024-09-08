@@ -3,7 +3,14 @@
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
 
 import { useQuery } from "@tanstack/react-query";
-import { collection, getDocs, orderBy, query } from "firebase/firestore";
+import {
+  collection,
+  getCountFromServer,
+  getDocs,
+  limit,
+  orderBy,
+  query,
+} from "firebase/firestore";
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import styled from "styled-components";
@@ -224,10 +231,8 @@ const BoardList: React.FC<ListInterface> = ({
   toggle,
   handleToggle,
 }) => {
-  // 페이지에 보여줄 게시글 state
-  // const [boardList, setBoardList] = useState<BoardInterface>(serverBoardObj1);
   // 총 페이지 수 state
-  const [totalPage] = useState<number>(2);
+  const [totalPage, setTotalPage] = useState<number>(0);
   // url의 페이지를 가져오는 state
   const [searchParams] = useSearchParams();
 
@@ -237,21 +242,26 @@ const BoardList: React.FC<ListInterface> = ({
   console.log(page);
 
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  - 훅 기능 : 페이지 변경 시 데이터 변경.. 서버 없이 더미데이터 이기 때문에 임시 설정
-  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-  // useEffect(() => {
-  //   if (page === 1) setBoardList(serverBoardObj1);
-  //   else setBoardList(serverBoardObj2);
-  // }, [page]);
-
-  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   - 함수 기능 : firebase에서 board의 데이터를 가져온다
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
   const getBoardList = async () => {
-    // Firestore 컬렉션으로 board를 가져온다
+    // firestore 컬렉션으로 board를 가져온다
     const boardCollection = collection(db, "board");
+    const pageSize = 10; // 한 페이지에 보여줄 board 수
+    const boardGetCount = await getCountFromServer(boardCollection);
+    const boardAllPage = boardGetCount.data().count; // 총 문서 수
+
+    const boardDivisionPage = Math.ceil(boardAllPage / pageSize); // 올림
+    setTotalPage(boardDivisionPage);
+    console.log("Total documents: ", boardDivisionPage);
+    // 페이지 사이즈
+
     // 게시글을 seq 기준 내림차순 정렬
-    const boardQuery = query(boardCollection, orderBy("seq", "desc"));
+    const boardQuery = query(
+      boardCollection,
+      orderBy("seq", "desc"),
+      limit(pageSize)
+    );
     // 쿼리 실행하여 문서 가져오기
     const boardGetDocs = await getDocs(boardQuery);
 
@@ -275,9 +285,11 @@ const BoardList: React.FC<ListInterface> = ({
     queryFn: getBoardList, // 데이터를 가져오는 함수
   });
 
+  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - 함수 기능 : 글쓰기 모달을 불러온다
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
   const handleModalWrite = () => {
     const user = auth.currentUser;
-
     if (user) handleModal(modalState, setModalState);
     else {
       alert("로그인해주세요");
