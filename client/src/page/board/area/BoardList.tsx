@@ -19,8 +19,8 @@ import {
 import { GlobalButton } from "../../../components/CSS/Global/GlobalItem";
 import { handleModal } from "../../../components/Function/modal";
 import PagiNation from "../../../components/Molecule/PagiNation/PagiNation";
-import { getBoardList } from "../../../firebase/getBoardList";
 import { auth } from "../../../firebase/firebase";
+import { getBoardList } from "../../../firebase/getBoardList";
 
 const BoardListBlock = styled.div<{ $toggle: boolean }>`
   height: 100%;
@@ -112,57 +112,6 @@ const BoardListBlock = styled.div<{ $toggle: boolean }>`
   .pagiNationDiv {
     width: 30%;
     height: 60px;
-  }
-`;
-
-const DatePcikerWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  width: 80%;
-  height: 40px;
-  margin-bottom: 2px;
-  font-weight: bold;
-
-  .datePickerDiv {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    width: 30%;
-    height: 100%;
-    color: ${WhiteColor.White100};
-    font-size: ${FontSize.medium};
-  }
-
-  .pickerArea {
-    ${centerColumn}
-    height: 100%;
-    width: 30%;
-  }
-
-  .searchArea {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: center;
-    height: 100%;
-    width: 30%;
-
-    .searchButton {
-      text-align: center;
-      width: 80%;
-      height: 30px;
-      background-color: ${WhiteColor.White100};
-      border: 2px solid ${MainColor.Main200};
-      color: ${GrayColor.Gray100};
-      border-radius: 5px;
-      font-weight: bold;
-
-      &:hover {
-        background-color: ${MainColor.Main200};
-      }
-    }
   }
 `;
 

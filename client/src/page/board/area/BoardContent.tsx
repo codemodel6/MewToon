@@ -190,6 +190,21 @@ const BoardContent: React.FC<ContentProps> = ({
   setToggle,
   boardDetailSeq,
 }) => {
+  // React Query로 게시글 상세 정보 가져오기
+  // const { data, isLoading, error } = useQuery({
+  //   queryKey: ["boardDetail", boardDetailSeq], // 쿼리 키에 id 포함
+  //   queryFn: () => getBoardDetail(boardDetailSeq), // id를 넘겨서 쿼리 실행
+  //   enabled: !!boardDetailSeq, // id가 있을 때만 쿼리 실행
+  // });
+
+  // if (isLoading) {
+  //   return <div>Loading...</div>;
+  // }
+
+  // if (error) {
+  //   return <div>Error: {(error as Error).message}</div>;
+  // }
+
   return (
     <BoardContentWrapper $toggle={toggle}>
       <div className="boardContentBlock">
