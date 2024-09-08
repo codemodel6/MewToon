@@ -3,15 +3,7 @@
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
 
 import { useQuery } from "@tanstack/react-query";
-import {
-  collection,
-  getCountFromServer,
-  getDocs,
-  limit,
-  orderBy,
-  query,
-} from "firebase/firestore";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import styled from "styled-components";
 import {
@@ -27,7 +19,8 @@ import {
 import { GlobalButton } from "../../../components/CSS/Global/GlobalItem";
 import { handleModal } from "../../../components/Function/modal";
 import PagiNation from "../../../components/Molecule/PagiNation/PagiNation";
-import { auth, db } from "../../../firebase/firebase";
+import { getBoardList } from "../../../firebase/getBoardList";
+import { auth } from "../../../firebase/firebase";
 
 const BoardListBlock = styled.div<{ $toggle: boolean }>`
   height: 100%;
@@ -192,47 +185,17 @@ interface ListInterface {
   modalState: boolean;
   setModalState: React.Dispatch<React.SetStateAction<boolean>>;
   toggle: boolean;
-  handleToggle: () => void;
+  handleBoardDetail: (boardSeq: number) => void;
 }
-
-// interface BoardProps {
-//   id: number;
-//   title: string;
-//   author: string;
-//   date: string;
-//   contents: string;
-//   like: number;
-// }
-
-interface BoardListProp {
-  seq: number;
-  id: string;
-  content: string;
-  createdDT: string;
-  email: string;
-  title: string;
-  uid: string;
-  updateDT: string;
-}
-
-// interface PageInfoProps {
-//   page: number;
-//   totalPage: number;
-// }
-
-// interface BoardInterface {
-//   listInfo: BoardProps[];
-//   pageInfo: PageInfoProps;
-// }
 
 const BoardList: React.FC<ListInterface> = ({
   modalState,
   setModalState,
   toggle,
-  handleToggle,
+  handleBoardDetail,
 }) => {
   // 총 페이지 수 state
-  const [totalPage, setTotalPage] = useState<number>(0);
+  const [totalPage, setTotalPage] = useState<number | undefined>(0);
   // url의 페이지를 가져오는 state
   const [searchParams] = useSearchParams();
 
@@ -242,42 +205,10 @@ const BoardList: React.FC<ListInterface> = ({
   console.log(page);
 
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  - 함수 기능 : firebase에서 board의 데이터를 가져온다
-  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-  const getBoardList = async () => {
-    // firestore 컬렉션으로 board를 가져온다
-    const boardCollection = collection(db, "board");
-    const pageSize = 10; // 한 페이지에 보여줄 board 수
-    const boardGetCount = await getCountFromServer(boardCollection);
-    const boardAllPage = boardGetCount.data().count; // 총 문서 수
-
-    const boardDivisionPage = Math.ceil(boardAllPage / pageSize); // 올림
-    setTotalPage(boardDivisionPage);
-    console.log("Total documents: ", boardDivisionPage);
-    // 페이지 사이즈
-
-    // 게시글을 seq 기준 내림차순 정렬
-    const boardQuery = query(
-      boardCollection,
-      orderBy("seq", "desc"),
-      limit(pageSize)
-    );
-    // 쿼리 실행하여 문서 가져오기
-    const boardGetDocs = await getDocs(boardQuery);
-
-    const boardList = boardGetDocs.docs.map((it) => ({
-      id: it.id, // 문서 ID
-      ...it.data(), // 문서 데이터
-    })) as BoardListProp[];
-    console.log("boardList : ", boardList);
-    return boardList;
-  };
-
-  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   - Mutation : 페이지 변경 시 데이터 변경.. 서버 없이 더미데이터 이기 때문에 임시 설정
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
   const {
-    data: boardList,
+    data: boardListData,
     // isLoading,
     // error,
   } = useQuery({
@@ -297,22 +228,15 @@ const BoardList: React.FC<ListInterface> = ({
     }
   };
 
+  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - 훅 기능 : 페이지네이션
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+  useEffect(() => {
+    setTotalPage(boardListData?.boardDivisionPage);
+  }, [boardListData]);
+
   return (
     <BoardListBlock $toggle={toggle}>
-      <DatePcikerWrapper>
-        <div className="datePickerDiv">
-          <div className="pickerArea">
-            {/* <MyPicker setMyDate={setStartDate} type={"S"} /> */}
-          </div>
-          ~
-          <div className="pickerArea">
-            {/* <MyPicker setMyDate={setEndDate} type={"E"} /> */}
-          </div>
-          <div className="searchArea">
-            <button className="searchButton">검색</button>
-          </div>
-        </div>
-      </DatePcikerWrapper>
       <div className="boardTitleLine">
         <div className="common">글번호</div>
         <div className="title">제목</div>
@@ -323,8 +247,12 @@ const BoardList: React.FC<ListInterface> = ({
         <EmptyWrapper>검색된 결과는 존재하지 않습니다.</EmptyWrapper>
       ) : (
         <div className="boardWrapper">
-          {boardList?.map((it, idx) => (
-            <div className="boardContents" key={idx} onClick={handleToggle}>
+          {boardListData?.boardList?.map((it, idx) => (
+            <div
+              className="boardContents"
+              key={it.seq}
+              onClick={() => handleBoardDetail(it.seq)}
+            >
               <div className="common">{it.seq}</div>
               <div className="title">{it.title}</div>
               <div className="author">{it.email.split("@")[0]}</div>
@@ -347,14 +275,6 @@ const BoardList: React.FC<ListInterface> = ({
           </PageWrapper>
         )}
       </div>
-      {/* <SearchBar
-    setBoardList={setBoardList}
-    setTotalPage={setTotalPage}
-    page={page}
-    searchValue={searchValue}
-    setSearchValue={setSearchValue}
-    pageData={pageData}
-   /> */}
     </BoardListBlock>
   );
 };

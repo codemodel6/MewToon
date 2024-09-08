@@ -2,12 +2,11 @@ import {
   addDoc,
   collection,
   doc,
-  getDocs,
   increment,
   runTransaction,
 } from "firebase/firestore";
-import { auth, db } from "./firebase"; // Firebase 초기화한 파일
 import { formatDate } from "../components/Function/date";
+import { auth, db } from "./firebase"; // Firebase 초기화한 파일
 
 export interface BoardCreateProps {
   title: string;
@@ -40,6 +39,7 @@ const boardCreate = async ({ title, content }: BoardCreateProps) => {
           email: user.email, // 로그인한 사용자 이메일
           title: title, // 게시글 제목
           content: content, // 게시글 내용
+          heart: 0, // 좋아요 수
           createdDT: formatDate(new Date()), // 생성 날짜
           updateDT: formatDate(new Date()), // 수정 날짜
         });

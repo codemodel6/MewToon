@@ -178,13 +178,18 @@ const BoardContentWrapper = styled.div<{ $toggle: boolean }>`
 interface ContentProps {
   toggle: boolean;
   setToggle: React.Dispatch<React.SetStateAction<boolean>>;
+  boardDetailSeq: number | null;
 }
 
 const handleAlert = () => {
   alert("권한이 없습니다.");
 };
 
-const BoardContent: React.FC<ContentProps> = ({ toggle, setToggle }) => {
+const BoardContent: React.FC<ContentProps> = ({
+  toggle,
+  setToggle,
+  boardDetailSeq,
+}) => {
   return (
     <BoardContentWrapper $toggle={toggle}>
       <div className="boardContentBlock">

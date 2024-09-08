@@ -30,8 +30,8 @@ const BoardWrapper = styled.div`
   }
 `;
 
-interface ToggleFun {
-  (): void;
+interface BoardDetailProps {
+  (boardId: number): void;
 }
 
 const Board = () => {
@@ -39,13 +39,15 @@ const Board = () => {
   const [toggle, setToggle] = useState<boolean>(false);
   // 모달 state
   const [modalState, setModalState] = useState<boolean>(false);
+  // board detail
+  const [boardDetailSeq, setBoardDetailSeq] = useState<number | null>(null);
 
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  - 함수 기능 : 게시판을 불러오는 기능
  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-  const handleToggle: ToggleFun = () => {
+  const handleBoardDetail: BoardDetailProps = (boardSeq) => {
+    setBoardDetailSeq(boardSeq);
     setToggle(true);
-    // 데이터 불러오면 될듯?
   };
 
   return (
@@ -62,9 +64,13 @@ const Board = () => {
             modalState={modalState}
             setModalState={setModalState}
             toggle={toggle}
-            handleToggle={handleToggle}
+            handleBoardDetail={handleBoardDetail}
           />
-          <BoardContent toggle={toggle} setToggle={setToggle} />
+          <BoardContent
+            toggle={toggle}
+            setToggle={setToggle}
+            boardDetailSeq={boardDetailSeq}
+          />
         </div>
         <div className="boardListWrapper">
           <BoardTopic />

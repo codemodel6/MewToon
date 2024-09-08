@@ -72,7 +72,7 @@ const PageNationWrapper = styled.div`
 `;
 
 interface PageNationProps {
-  totalPage: number;
+  totalPage: number | undefined;
   page: number;
 }
 
@@ -102,7 +102,6 @@ const PageNation: React.FC<PageNationProps> = ({ totalPage, page }) => {
         const cutArr = totalArr.slice(i, i + 5);
         myArr.push(cutArr);
       }
-      console.log("--->", myArr);
 
       // 만들어놓은 배열 저장
       setSaveArr([...myArr]);
