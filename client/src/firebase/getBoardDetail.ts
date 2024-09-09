@@ -11,11 +11,11 @@ export interface BoardDetailProp {
 }
 
 export const getBoardDetail = async (
-  boardSeq: number | null
+  boardId: string
 ): Promise<BoardDetailProp | null> => {
   try {
     // firestore에서 해당 게시글 문서를 가져오기
-    const docRef = doc(db, "board", String(boardSeq));
+    const docRef = doc(db, "board", boardId);
     const boardDetailGetDoc = await getDoc(docRef);
 
     if (boardDetailGetDoc.exists()) {

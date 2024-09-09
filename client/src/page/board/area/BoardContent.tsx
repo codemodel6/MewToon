@@ -2,6 +2,7 @@
 - 개별 게시판 컴포넌트
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
 
+import { useQuery } from "@tanstack/react-query";
 import styled from "styled-components";
 import {
   FontSize,
@@ -15,6 +16,7 @@ import {
   centerColumn,
   centerRow,
 } from "../../../components/CSS/Global/GlobalDisplay";
+import { getBoardDetail } from "../../../firebase/getBoardDetail";
 import BoardComment from "./BoardComment";
 
 const BoardContentWrapper = styled.div<{ $toggle: boolean }>`
@@ -178,7 +180,7 @@ const BoardContentWrapper = styled.div<{ $toggle: boolean }>`
 interface ContentProps {
   toggle: boolean;
   setToggle: React.Dispatch<React.SetStateAction<boolean>>;
-  boardDetailSeq: number | null;
+  boardDetailId: string;
 }
 
 const handleAlert = () => {
@@ -188,35 +190,29 @@ const handleAlert = () => {
 const BoardContent: React.FC<ContentProps> = ({
   toggle,
   setToggle,
-  boardDetailSeq,
+  boardDetailId,
 }) => {
   // React Query로 게시글 상세 정보 가져오기
-  // const { data, isLoading, error } = useQuery({
-  //   queryKey: ["boardDetail", boardDetailSeq], // 쿼리 키에 id 포함
-  //   queryFn: () => getBoardDetail(boardDetailSeq), // id를 넘겨서 쿼리 실행
-  //   enabled: !!boardDetailSeq, // id가 있을 때만 쿼리 실행
-  // });
-
-  // if (isLoading) {
-  //   return <div>Loading...</div>;
-  // }
-
-  // if (error) {
-  //   return <div>Error: {(error as Error).message}</div>;
-  // }
+  const { data } = useQuery({
+    queryKey: ["boardDetail", boardDetailId], // 쿼리 키에 id 포함
+    queryFn: () => getBoardDetail(boardDetailId), // id를 넘겨서 쿼리 실행
+    enabled: !!boardDetailId, // id가 있을 때만 쿼리 실행
+  });
 
   return (
     <BoardContentWrapper $toggle={toggle}>
       <div className="boardContentBlock">
         <div className="boardInfo">
-          <p>게시판 제목</p>
-          <p>글쓴이 || 생성날짜</p>
+          <p>{data?.title}</p>
+          <p>
+            {data?.email.split("@")[0]} || {data?.updateDT}
+          </p>
         </div>
         <div className="scrollBoard">
-          <div className="boardContent">게시판 내용 입니다</div>
+          <div className="boardContent">{data?.content}</div>
           <div className="heartWrapper">
             <button onClick={handleAlert}>♥</button>
-            <div className="heartDiv">1</div>
+            <div className="heartDiv">{data?.heart}</div>
           </div>
           <div className="boardUpdateDiv">
             <button className="updateButton" onClick={handleAlert}>
