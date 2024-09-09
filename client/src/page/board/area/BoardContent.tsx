@@ -18,6 +18,7 @@ import {
 } from "../../../components/CSS/Global/GlobalDisplay";
 import { getBoardDetail } from "../../../firebase/getBoardDetail";
 import BoardComment from "./BoardComment";
+import { auth } from "../../../firebase/firebase";
 
 const BoardContentWrapper = styled.div<{ $toggle: boolean }>`
   display: flex;
@@ -181,6 +182,7 @@ interface ContentProps {
   toggle: boolean;
   setToggle: React.Dispatch<React.SetStateAction<boolean>>;
   boardDetailId: string;
+  boardDetaiUid: string;
 }
 
 const handleAlert = () => {
@@ -191,6 +193,7 @@ const BoardContent: React.FC<ContentProps> = ({
   toggle,
   setToggle,
   boardDetailId,
+  boardDetaiUid,
 }) => {
   // React Query로 게시글 상세 정보 가져오기
   const { data } = useQuery({
@@ -198,6 +201,8 @@ const BoardContent: React.FC<ContentProps> = ({
     queryFn: () => getBoardDetail(boardDetailId), // id를 넘겨서 쿼리 실행
     enabled: !!boardDetailId, // id가 있을 때만 쿼리 실행
   });
+
+  const user = auth.currentUser; // firebase user 정보
 
   return (
     <BoardContentWrapper $toggle={toggle}>
@@ -215,12 +220,18 @@ const BoardContent: React.FC<ContentProps> = ({
             <div className="heartDiv">{data?.heart}</div>
           </div>
           <div className="boardUpdateDiv">
-            <button className="updateButton" onClick={handleAlert}>
-              수정
-            </button>
-            <button className="deleteButton" onClick={handleAlert}>
-              삭제
-            </button>
+            {user?.uid === boardDetaiUid ? (
+              <>
+                <button className="updateButton" onClick={handleAlert}>
+                  수정
+                </button>
+                <button className="deleteButton" onClick={handleAlert}>
+                  삭제
+                </button>
+              </>
+            ) : (
+              ""
+            )}
           </div>
           <div className="commentCountDiv">0개의 댓글이 있습니다 ▼</div>
           <div className="commentDiv">
