@@ -3,9 +3,9 @@
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
 
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import {
-  BlackColor,
   FontSize,
   GrayColor,
   MainColor,
@@ -17,15 +17,14 @@ import {
   centerColumn,
   centerRow,
 } from "../../../components/CSS/Global/GlobalDisplay";
+import { delBoardDetail } from "../../../firebase/delBoardDetail";
+import { auth } from "../../../firebase/firebase";
 import {
   BoardDetailProp,
   getBoardDetail,
 } from "../../../firebase/getBoardDetail";
-import BoardComment from "./BoardComment";
-import { auth } from "../../../firebase/firebase";
-import { useEffect, useState } from "react";
 import { updBoardDetail } from "../../../firebase/updBoardDetail";
-import { delBoardDetail } from "../../../firebase/delBoardDetail";
+import BoardComment from "./BoardComment";
 
 const BoardContentWrapper = styled.div<{
   $toggle: boolean;
