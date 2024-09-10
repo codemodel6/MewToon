@@ -5,6 +5,7 @@ import { LoginDataProps, signUp } from "../../firebase/signUp";
 import { FontSize, MainColor, WhiteColor } from "../CSS/Color/ColorNote";
 import { centerColumn } from "../CSS/Global/GlobalDisplay";
 import { GlobalButton } from "../CSS/Global/GlobalItem";
+import { toast } from "react-toastify";
 
 const SignUpFormWrapper = styled.div`
   ${centerColumn}
@@ -93,11 +94,11 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ handleLoginToggle }) => {
     mutationFn: signUp,
     onSuccess: (data) => {
       console.log("회원가입 성공:", data.user);
-      alert("회원가입이 성공적으로 완료되었습니다.");
+      toast.success("회원가입 성공");
     },
     onError: (error) => {
       console.error("회원가입 실패:", error);
-      alert("회원가입에 실패했습니다: " + error.message);
+      toast.error("회원가입 실패. 다시 시도해주세요.");
     },
   });
 

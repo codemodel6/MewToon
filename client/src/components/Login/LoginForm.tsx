@@ -108,14 +108,11 @@ const LoginForm: React.FC<LoginFormProps> = ({
       // 토큰을 로컬 스토리지 또는 쿠키에 저장합니다.
       localStorage.setItem("jwtToken", token);
       handleModalState(); // 로그인 화면을 닫는다
-      toast.success("로그인 성공!", {
-        position: "top-right",
-        autoClose: 3000, // 3초 후 자동 닫힘
-      });
+      toast.success("로그인 성공");
     },
     onError: (error: Error) => {
       console.error("로그인 실패:", error);
-      alert("로그인에 실패했습니다. 다시 시도해 주세요.");
+      toast.error("로그인 실패. 다시 시도해주세요.");
     },
   });
 
