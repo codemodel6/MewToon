@@ -6,6 +6,7 @@ import { LoginDataProps } from "../../firebase/signUp";
 import { FontSize, MainColor, WhiteColor } from "../CSS/Color/ColorNote";
 import { centerColumn } from "../CSS/Global/GlobalDisplay";
 import { GlobalButton } from "../CSS/Global/GlobalItem";
+import { toast } from "react-toastify";
 
 const LoginFormWrapper = styled.div`
   ${centerColumn}
@@ -107,7 +108,10 @@ const LoginForm: React.FC<LoginFormProps> = ({
       // 토큰을 로컬 스토리지 또는 쿠키에 저장합니다.
       localStorage.setItem("jwtToken", token);
       handleModalState(); // 로그인 화면을 닫는다
-      alert("로그인이 성공적으로 완료되었습니다.");
+      toast.success("로그인 성공!", {
+        position: "top-right",
+        autoClose: 3000, // 3초 후 자동 닫힘
+      });
     },
     onError: (error: Error) => {
       console.error("로그인 실패:", error);

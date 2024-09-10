@@ -12,6 +12,8 @@ import Project from "./page/project/Project";
 import store from "./page/redux/store";
 import WebToon from "./page/webToon/WebToon";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const queryClient = new QueryClient();
@@ -22,6 +24,17 @@ function App() {
         <QueryClientProvider client={queryClient}>
           <ScrollTop />
           <div className="App">
+            <ToastContainer
+              position="top-right" // 모든 알림이 오른쪽 상단에 표시됨
+              autoClose={3000} // 3초 후 자동 닫힘
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+            />
             <Header />
             <Routes>
               <Route path="/" element={<Intro />} />
