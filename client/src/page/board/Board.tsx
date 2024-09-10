@@ -31,7 +31,7 @@ const BoardWrapper = styled.div`
 `;
 
 interface BoardDetailProps {
-  (boardId: number): void;
+  (boardId: string, boardUid: string): void;
 }
 
 const Board = () => {
@@ -39,14 +39,17 @@ const Board = () => {
   const [toggle, setToggle] = useState<boolean>(false);
   // 모달 state
   const [modalState, setModalState] = useState<boolean>(false);
-  // board detail
-  const [boardDetailSeq, setBoardDetailSeq] = useState<number | null>(null);
+  // board detail Id
+  const [boardDetailId, setBoardDetailId] = useState<string>("");
+  // board userId
+  const [boardDetailUid, setBoardDetailUId] = useState<string>("");
 
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  - 함수 기능 : 게시판을 불러오는 기능
  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-  const handleBoardDetail: BoardDetailProps = (boardSeq) => {
-    setBoardDetailSeq(boardSeq);
+  const handleBoardDetail: BoardDetailProps = (boardId, boardUid) => {
+    setBoardDetailId(boardId);
+    setBoardDetailUId(boardUid);
     setToggle(true);
   };
 
@@ -69,7 +72,8 @@ const Board = () => {
           <BoardContent
             toggle={toggle}
             setToggle={setToggle}
-            boardDetailSeq={boardDetailSeq}
+            boardDetailId={boardDetailId}
+            boardDetaiUid={boardDetailUid}
           />
         </div>
         <div className="boardListWrapper">

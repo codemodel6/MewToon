@@ -186,6 +186,7 @@ const WriteModal: React.FC<WriteProps> = ({ modalState, setModalState }) => {
     mutationFn: boardCreate,
     onSuccess: () => {
       console.log("boardCreateMutation - onSuccess");
+      handleCancel(); // 모달 닫는 함수 실행
     },
     onError: (error: Error) => {
       alert("게시글 업로드에 실패했습니다: " + error.message);
@@ -193,7 +194,7 @@ const WriteModal: React.FC<WriteProps> = ({ modalState, setModalState }) => {
   });
 
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  - 함수 기능 : 취소 버튼을 눌렀을 때 모달을 닫는 함수
+  - 함수 기능 : 모달을 닫는 함수
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
   const handleCancel = () => {
     handleModal(modalState, setModalState);

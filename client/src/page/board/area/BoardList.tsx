@@ -134,7 +134,7 @@ interface ListInterface {
   modalState: boolean;
   setModalState: React.Dispatch<React.SetStateAction<boolean>>;
   toggle: boolean;
-  handleBoardDetail: (boardSeq: number) => void;
+  handleBoardDetail: (boardId: string, boardUid: string) => void;
 }
 
 const BoardList: React.FC<ListInterface> = ({
@@ -200,7 +200,7 @@ const BoardList: React.FC<ListInterface> = ({
             <div
               className="boardContents"
               key={it.seq}
-              onClick={() => handleBoardDetail(it.seq)}
+              onClick={() => handleBoardDetail(it.id, it.uid)}
             >
               <div className="common">{it.seq}</div>
               <div className="title">{it.title}</div>
