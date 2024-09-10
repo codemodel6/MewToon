@@ -2,9 +2,10 @@
 - 개별 게시판 컴포넌트
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
 
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import styled from "styled-components";
 import {
+  BlackColor,
   FontSize,
   GrayColor,
   MainColor,
@@ -16,11 +17,20 @@ import {
   centerColumn,
   centerRow,
 } from "../../../components/CSS/Global/GlobalDisplay";
-import { getBoardDetail } from "../../../firebase/getBoardDetail";
+import {
+  BoardDetailProp,
+  getBoardDetail,
+} from "../../../firebase/getBoardDetail";
 import BoardComment from "./BoardComment";
 import { auth } from "../../../firebase/firebase";
+import { useEffect, useState } from "react";
+import { updBoardDetail } from "../../../firebase/updBoardDetail";
+import { delBoardDetail } from "../../../firebase/delBoardDetail";
 
-const BoardContentWrapper = styled.div<{ $toggle: boolean }>`
+const BoardContentWrapper = styled.div<{
+  $toggle: boolean;
+  $modeToggle: boolean;
+}>`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -39,6 +49,11 @@ const BoardContentWrapper = styled.div<{ $toggle: boolean }>`
     height: 750px;
     margin-left: 100px;
 
+    .boardContentForm {
+      width: 100%;
+      height: 100%;
+    }
+
     .boardInfo {
       display: flex;
       align-items: center;
@@ -49,6 +64,18 @@ const BoardContentWrapper = styled.div<{ $toggle: boolean }>`
       font-weight: bold;
       background-color: ${MainColor.Main100};
       color: ${WhiteColor.White100};
+
+      input {
+        background-color: ${(props) =>
+          props.$modeToggle ? "white" : "transparent"};
+        color: ${(props) => (props.$modeToggle ? "black" : "white")};
+        font-weight: ${(props) => (props.$modeToggle ? "" : "bold")};
+        font-size: ${FontSize.medium};
+        border: none;
+        height: 80%;
+        padding: 2px;
+        outline: none;
+      }
     }
 
     .scrollBoard {
@@ -59,8 +86,17 @@ const BoardContentWrapper = styled.div<{ $toggle: boolean }>`
 
     .boardContent {
       width: 100%;
-      height: 400px;
-      padding: 20px;
+      min-height: 400px;
+      padding: 10px;
+
+      textarea {
+        padding: 10px;
+        border: 1px solid
+          ${(props) => (props.$modeToggle ? `${MainColor.Main100}` : "white")};
+        font-size: ${FontSize.small};
+        min-height: 360px;
+        min-width: 100%;
+      }
     }
 
     .heartWrapper {
@@ -195,6 +231,9 @@ const BoardContent: React.FC<ContentProps> = ({
   boardDetailId,
   boardDetaiUid,
 }) => {
+  const [modeToggle, setModeToggle] = useState<boolean>(false);
+  const queryClient = useQueryClient();
+
   // React Query로 게시글 상세 정보 가져오기
   const { data } = useQuery({
     queryKey: ["boardDetail", boardDetailId], // 쿼리 키에 id 포함
@@ -204,31 +243,171 @@ const BoardContent: React.FC<ContentProps> = ({
 
   const user = auth.currentUser; // firebase user 정보
 
+  // board detail 제목, 내용 데이터
+  const [boardDetailObj, setBoardDetailObj] = useState<
+    Partial<BoardDetailProp>
+  >({
+    title: data?.title,
+    content: data?.content,
+  });
+
+  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - 훅 기능 : firebase의 data가 변경 될 때 마다 firebase 데이터를 가져온다
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+  useEffect(() => {
+    if (data) {
+      setBoardDetailObj({
+        title: data.title,
+        content: data.content,
+      });
+    }
+  }, [data]);
+
+  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - 함수 기능 : 게시글 읽기/수정 모드
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+  const handleModeToggle = () => {
+    setModeToggle(!modeToggle); // 모드 변경
+  };
+
+  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - 함수 기능 : 화면의 제목과 타이틀이 변경될 때의 함수
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+  const handleBoardDetailObjInputChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> // input과 textarea 2개의 타입 가능
+  ) => {
+    const { name, value } = event.target;
+    setBoardDetailObj((prev) => ({ ...prev, [name]: value }));
+  };
+
+  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - 함수 기능 : 화면의 데이터로 updateMutation을 실행시키는 함수
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+  const handleUpdateBoardDetail = () => {
+    updateMutation.mutate(boardDetailObj); // 수정 mutation 실행
+  };
+
+  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - Mutation : board detail 수정 mutation
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+  const updateMutation = useMutation({
+    mutationFn: (boardDetailData: Partial<BoardDetailProp>) =>
+      updBoardDetail(boardDetailId, boardDetailData),
+    onSuccess: () => {
+      // 캐시 무효화하여 데이터 업데이트
+      queryClient.invalidateQueries({
+        queryKey: ["boardDetail", boardDetailId],
+      });
+      console.log("게시글 수정 성공!");
+      handleModeToggle(); // 읽기 모드로 변경
+    },
+    onError: (error: Error) => {
+      console.error("게시글 수정 실패: ", error);
+    },
+  });
+
+  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - 함수 기능 : deleteMutation 실행 함수
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+  const handleDeleteBoardDetail = () => {
+    window.confirm("게시글을 삭제하시겠습니까?");
+    deleteMutation.mutate(); // 수정 mutation 실행
+  };
+
+  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - Mutation : board detail 삭제 mutation
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+  const deleteMutation = useMutation({
+    mutationFn: () => delBoardDetail(boardDetailId),
+    onSuccess: () => {
+      // 캐시 무효화하여 데이터 업데이트
+      queryClient.invalidateQueries({ queryKey: ["boardList"] }); // 게시글 목록 캐시 무효화
+      queryClient.invalidateQueries({
+        queryKey: ["boardDetail", boardDetailId], // 상세 게시글 캐시 무효화
+      });
+      console.log("게시글 삭제 성공!");
+      setToggle(false);
+    },
+    onError: (error: Error) => {
+      console.error("게시글 삭제 실패: ", error);
+    },
+  });
+
+  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - 함수 기능 : 게시글 수정 취소 함수
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+  const handleCancelUpdate = () => {
+    setBoardDetailObj({
+      title: data?.title,
+      content: data?.content,
+    });
+    handleModeToggle();
+  };
+
   return (
-    <BoardContentWrapper $toggle={toggle}>
+    <BoardContentWrapper $toggle={toggle} $modeToggle={modeToggle}>
       <div className="boardContentBlock">
         <div className="boardInfo">
-          <p>{data?.title}</p>
+          <input
+            name="title"
+            value={boardDetailObj.title}
+            onChange={handleBoardDetailObjInputChange}
+            readOnly={!modeToggle}
+          />
           <p>
             {data?.email.split("@")[0]} || {data?.updateDT}
           </p>
         </div>
         <div className="scrollBoard">
-          <div className="boardContent">{data?.content}</div>
+          <div className="boardContent">
+            <textarea
+              name="content"
+              value={boardDetailObj.content}
+              onChange={handleBoardDetailObjInputChange}
+            />
+          </div>
+
           <div className="heartWrapper">
             <button onClick={handleAlert}>♥</button>
             <div className="heartDiv">{data?.heart}</div>
           </div>
           <div className="boardUpdateDiv">
             {user?.uid === boardDetaiUid ? (
-              <>
-                <button className="updateButton" onClick={handleAlert}>
-                  수정
-                </button>
-                <button className="deleteButton" onClick={handleAlert}>
-                  삭제
-                </button>
-              </>
+              !modeToggle ? (
+                <>
+                  <button
+                    className="updateButton"
+                    type="button"
+                    onClick={handleModeToggle}
+                  >
+                    수정
+                  </button>
+                  <button
+                    className="deleteButton"
+                    type="button"
+                    onClick={handleDeleteBoardDetail}
+                  >
+                    삭제
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button
+                    className="updateButton"
+                    type="submit"
+                    onClick={handleUpdateBoardDetail}
+                  >
+                    완료
+                  </button>
+                  <button
+                    type="button"
+                    className="deleteButton"
+                    onClick={handleCancelUpdate}
+                  >
+                    취소
+                  </button>
+                </>
+              )
             ) : (
               ""
             )}
