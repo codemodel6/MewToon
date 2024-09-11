@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { login } from "../../firebase/login";
 import { LoginDataProps } from "../../firebase/signUp";
@@ -67,11 +67,13 @@ const LoginFormWrapper = styled.div`
 interface LoginFormProps {
   handleLoginToggle: () => void;
   handleModalState: () => void;
+  modalState: boolean;
 }
 
 const LoginForm: React.FC<LoginFormProps> = ({
   handleLoginToggle,
   handleModalState,
+  modalState,
 }) => {
   // 로그인에 보낼 데이터 state
   const [loginObj, setLoginObj] = useState<LoginDataProps>({
@@ -86,6 +88,17 @@ const LoginForm: React.FC<LoginFormProps> = ({
     const { name, value } = event.target;
     setLoginObj((prev) => ({ ...prev, [name]: value }));
   };
+
+  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - 훅 기능 : modal이 꺼지면 입력한 데이터를 초기화한다
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+  useEffect(() => {
+    if (!modalState)
+      setLoginObj({
+        email: "",
+        password: "",
+      });
+  }, [modalState]);
 
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   - 함수 기능 : 로그인 mutate 실행시키는 함수

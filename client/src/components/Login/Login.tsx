@@ -122,9 +122,13 @@ const Login: React.FC<LoginProps> = ({ modalState, setModalState }) => {
               <LoginForm
                 handleLoginToggle={handleLoginToggle}
                 handleModalState={handleModalState}
+                modalState={modalState}
               />
             ) : (
-              <SignUpForm handleLoginToggle={handleLoginToggle} />
+              <SignUpForm
+                handleLoginToggle={handleLoginToggle}
+                modalState={modalState}
+              />
             )}
           </div>
         </div>

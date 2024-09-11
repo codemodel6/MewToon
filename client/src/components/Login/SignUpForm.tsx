@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { LoginDataProps, signUp } from "../../firebase/signUp";
 import { FontSize, MainColor, WhiteColor } from "../CSS/Color/ColorNote";
@@ -65,14 +65,29 @@ const SignUpFormWrapper = styled.div`
 
 interface SignUpFormProps {
   handleLoginToggle: () => void;
+  modalState: boolean;
 }
 
-const SignUpForm: React.FC<SignUpFormProps> = ({ handleLoginToggle }) => {
+const SignUpForm: React.FC<SignUpFormProps> = ({
+  handleLoginToggle,
+  modalState,
+}) => {
   // 회원가입에 보낼 데이터 state
   const [singUpObj, setSingUpObj] = useState<LoginDataProps>({
     email: "",
     password: "",
   });
+
+  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - 훅 기능 : modal이 꺼지면 입력한 데이터를 초기화한다
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+  useEffect(() => {
+    if (!modalState)
+      setSingUpObj({
+        email: "",
+        password: "",
+      });
+  }, [modalState]);
 
   // 입력 필드 핸들러
   const handleSingUpInputChange = (
