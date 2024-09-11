@@ -2,7 +2,6 @@
 - 게시판 리스트 컴포넌트
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
 
-import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import styled from "styled-components";
@@ -20,7 +19,7 @@ import { GlobalButton } from "../../../components/CSS/Global/GlobalItem";
 import { handleModal } from "../../../components/Function/modal";
 import PagiNation from "../../../components/Molecule/PagiNation/PagiNation";
 import { auth } from "../../../firebase/firebase";
-import { getBoardList } from "../../../firebase/getBoardList";
+import { BoardListProp, getBoardList } from "../../../firebase/getBoardList";
 
 const BoardListBlock = styled.div<{ $toggle: boolean }>`
   height: 100%;
@@ -147,23 +146,25 @@ const BoardList: React.FC<ListInterface> = ({
   const [totalPage, setTotalPage] = useState<number | undefined>(0);
   // url의 페이지를 가져오는 state
   const [searchParams] = useSearchParams();
+  // boardList
+  const [boardList, setBoardList] = useState<BoardListProp[] | undefined>([]);
 
   // 현재 page 쪽 정보
   const searchPage = searchParams.get("page");
   const page = Number(searchPage);
-  console.log(page);
 
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  - Mutation : 페이지 변경 시 데이터 변경.. 서버 없이 더미데이터 이기 때문에 임시 설정
+  - 훅 기능 : firebase 서버 데이터 실시간 가져오기
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-  const {
-    data: boardListData,
-    // isLoading,
-    // error,
-  } = useQuery({
-    queryKey: ["boardList"], // 쿼리 키
-    queryFn: getBoardList, // 데이터를 가져오는 함수
-  });
+  useEffect(() => {
+    const unsubscribe = getBoardList((boardList, boardDivisionPage) => {
+      setBoardList(boardList);
+      setTotalPage(boardDivisionPage);
+    });
+
+    // 컴포넌트가 언마운트될 때 리스너 해제
+    return () => unsubscribe();
+  }, []);
 
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   - 함수 기능 : 글쓰기 모달을 불러온다
@@ -177,13 +178,6 @@ const BoardList: React.FC<ListInterface> = ({
     }
   };
 
-  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  - 훅 기능 : 페이지네이션
-  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-  useEffect(() => {
-    setTotalPage(boardListData?.boardDivisionPage);
-  }, [boardListData]);
-
   return (
     <BoardListBlock $toggle={toggle}>
       <div className="boardTitleLine">
@@ -196,7 +190,7 @@ const BoardList: React.FC<ListInterface> = ({
         <EmptyWrapper>검색된 결과는 존재하지 않습니다.</EmptyWrapper>
       ) : (
         <div className="boardWrapper">
-          {boardListData?.boardList?.map((it, idx) => (
+          {boardList?.map((it, idx) => (
             <div
               className="boardContents"
               key={it.seq}
