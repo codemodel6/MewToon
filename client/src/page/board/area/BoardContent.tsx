@@ -221,10 +221,6 @@ interface ContentProps {
   boardDetaiUid: string;
 }
 
-const handleAlert = () => {
-  alert("권한이 없습니다.");
-};
-
 const BoardContent: React.FC<ContentProps> = ({
   toggle,
   setToggle,
@@ -233,6 +229,7 @@ const BoardContent: React.FC<ContentProps> = ({
 }) => {
   const [modeToggle, setModeToggle] = useState<boolean>(false);
   const queryClient = useQueryClient();
+  const [heartState, setHeartState] = useState<number>(0);
 
   // React Query로 게시글 상세 정보 가져오기
   const { data } = useQuery({
@@ -260,6 +257,7 @@ const BoardContent: React.FC<ContentProps> = ({
         title: data.title,
         content: data.content,
       });
+      setHeartState(data.heart);
     }
   }, [data]);
 
@@ -312,7 +310,7 @@ const BoardContent: React.FC<ContentProps> = ({
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
   const handleDeleteBoardDetail = () => {
     window.confirm("게시글을 삭제하시겠습니까?");
-    deleteMutation.mutate(); // 수정 mutation 실행
+    deleteMutation.mutate(); // 삭제 mutation 실행
   };
 
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -346,6 +344,20 @@ const BoardContent: React.FC<ContentProps> = ({
     handleModeToggle();
   };
 
+  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - 함수 기능 : 하트 좋아요 추가 함수
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+  const handleHeartCount = () => {
+    setHeartState(heartState + 1);
+  };
+
+  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - 함수 기능 : 미구현을 위한 함수
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+  const handleAlert = () => {
+    toast.error("권한이 없습니다.");
+  };
+
   return (
     <BoardContentWrapper $toggle={toggle} $modeToggle={modeToggle}>
       <div className="boardContentBlock">
@@ -370,8 +382,8 @@ const BoardContent: React.FC<ContentProps> = ({
           </div>
 
           <div className="heartWrapper">
-            <button onClick={handleAlert}>♥</button>
-            <div className="heartDiv">{data?.heart}</div>
+            <button onClick={handleHeartCount}>♥</button>
+            <div className="heartDiv">{heartState}</div>
           </div>
           <div className="boardUpdateDiv">
             {user?.uid === boardDetaiUid ? (
