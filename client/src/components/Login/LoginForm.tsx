@@ -91,8 +91,37 @@ const LoginForm: React.FC<LoginFormProps> = ({
   - 함수 기능 : 로그인 mutate 실행시키는 함수
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
   const handleLoginSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    // 새로고침 방지
     event.preventDefault();
+    // 예외처리 함수 실행
+    const validation = handleLoginValidation();
+    if (!validation) return;
+
+    // 로그인 mutation 실행
     loginMutation.mutate(loginObj);
+  };
+
+  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - 함수 기능 : 회원가입 예외처리
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+  const handleLoginValidation = () => {
+    // email 체크
+    const emailRegExp = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-za-z0-9\-]+/;
+    // password 체크
+    const passwordRegExp =
+      /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
+    if (!emailRegExp.test(loginObj.email)) {
+      toast.warning("아이디는 이메일 형식을 입력해야합니다.");
+      return false;
+    }
+    if (!passwordRegExp.test(loginObj.password)) {
+      toast.warning(
+        "비밀번호는 8~15자 이상의 영문, 숫자, 특수문자 조합이 필요합니다."
+      );
+      return false;
+    }
+
+    return true;
   };
 
   /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

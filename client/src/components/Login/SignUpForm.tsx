@@ -106,8 +106,37 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ handleLoginToggle }) => {
   - 함수 기능 : 입력한 form을 파이어베이스 서버에 전달
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    // 새로고침 방지
     event.preventDefault();
-    signUpMutation.mutate(singUpObj); // 회원가입
+    // 예외처리 함수 실행
+    const validation = handleSignUpValidation();
+    if (!validation) return;
+
+    // 회원가입 mutation 실행
+    signUpMutation.mutate(singUpObj);
+  };
+
+  /** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - 함수 기능 : 회원가입 예외처리
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+  const handleSignUpValidation = () => {
+    // email 체크
+    const emailRegExp = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-za-z0-9\-]+/;
+    // password 체크
+    const passwordRegExp =
+      /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
+    if (!emailRegExp.test(singUpObj.email)) {
+      toast.warning("아이디는 이메일 형식을 입력해야합니다.");
+      return false;
+    }
+    if (!passwordRegExp.test(singUpObj.password)) {
+      toast.warning(
+        "비밀번호는 8~15자 이상의 영문, 숫자, 특수문자 조합이 필요합니다."
+      );
+      return false;
+    }
+
+    return true;
   };
 
   return (
