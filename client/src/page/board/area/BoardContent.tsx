@@ -25,6 +25,7 @@ import {
 } from "../../../firebase/getBoardDetail";
 import { updBoardDetail } from "../../../firebase/updBoardDetail";
 import BoardComment from "./BoardComment";
+import { toast } from "react-toastify";
 
 const BoardContentWrapper = styled.div<{
   $toggle: boolean;
@@ -297,11 +298,12 @@ const BoardContent: React.FC<ContentProps> = ({
       queryClient.invalidateQueries({
         queryKey: ["boardDetail", boardDetailId],
       });
-      console.log("게시글 수정 성공!");
       handleModeToggle(); // 읽기 모드로 변경
+      toast.success("게시글이 수정되었습니다.");
     },
     onError: (error: Error) => {
       console.error("게시글 수정 실패: ", error);
+      toast.error("게시글 수정 실패.");
     },
   });
 
@@ -324,11 +326,12 @@ const BoardContent: React.FC<ContentProps> = ({
       queryClient.invalidateQueries({
         queryKey: ["boardDetail", boardDetailId], // 상세 게시글 캐시 무효화
       });
-      console.log("게시글 삭제 성공!");
       setToggle(false);
+      toast.success("게시글이 삭제되었습니다.");
     },
     onError: (error: Error) => {
       console.error("게시글 삭제 실패: ", error);
+      toast.error("게시글 삭제 실패.");
     },
   });
 

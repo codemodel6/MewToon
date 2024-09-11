@@ -13,6 +13,7 @@ import {
 import { centerColumn } from "../../CSS/Global/GlobalDisplay";
 import { CancelButton, GlobalButton } from "../../CSS/Global/GlobalItem";
 import { handleModal } from "../../Function/modal";
+import { toast } from "react-toastify";
 
 const WriteModalWrapper = styled.div`
   display: none;
@@ -187,9 +188,11 @@ const WriteModal: React.FC<WriteProps> = ({ modalState, setModalState }) => {
     onSuccess: () => {
       console.log("boardCreateMutation - onSuccess");
       handleCancel(); // 모달 닫는 함수 실행
+      toast.success("게시글이 업로드 되었습니다.");
     },
     onError: (error: Error) => {
       alert("게시글 업로드에 실패했습니다: " + error.message);
+      toast.error("게시글 업로드 실패.");
     },
   });
 

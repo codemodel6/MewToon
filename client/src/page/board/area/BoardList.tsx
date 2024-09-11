@@ -20,6 +20,7 @@ import { handleModal } from "../../../components/Function/modal";
 import PagiNation from "../../../components/Molecule/PagiNation/PagiNation";
 import { auth } from "../../../firebase/firebase";
 import { BoardListProp, getBoardList } from "../../../firebase/getBoardList";
+import { toast } from "react-toastify";
 
 const BoardListBlock = styled.div<{ $toggle: boolean }>`
   height: 100%;
@@ -173,7 +174,7 @@ const BoardList: React.FC<ListInterface> = ({
     const user = auth.currentUser;
     if (user) handleModal(modalState, setModalState);
     else {
-      alert("로그인해주세요");
+      toast.warning("로그인해주세요");
       return;
     }
   };

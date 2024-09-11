@@ -11,6 +11,7 @@ import {
 import logout from "../CSS/image/LoginImg/logout.png";
 import { handleModal } from "../Function/modal";
 import { LoginModalProps } from "../Organism/Header";
+import { toast } from "react-toastify";
 
 const LoginStatusWrapper = styled.div<{ $scrollAction: boolean }>`
   display: flex;
@@ -104,6 +105,7 @@ const LoginStatus: React.FC<LoginModalProps> = ({
 
   const handleLogout = async () => {
     await auth.signOut();
+    toast.success("로그아웃 되었습니다.");
   };
 
   return (
