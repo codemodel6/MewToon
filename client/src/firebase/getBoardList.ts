@@ -1,7 +1,5 @@
 import {
   collection,
-  getCountFromServer,
-  getDocs,
   limit,
   onSnapshot,
   orderBy,

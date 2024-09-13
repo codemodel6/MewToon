@@ -1,12 +1,12 @@
 import { useMutation } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import styled from "styled-components";
 import { login } from "../../firebase/login";
 import { LoginDataProps } from "../../firebase/signUp";
 import { FontSize, MainColor, WhiteColor } from "../CSS/Color/ColorNote";
 import { centerColumn } from "../CSS/Global/GlobalDisplay";
 import { GlobalButton } from "../CSS/Global/GlobalItem";
-import { toast } from "react-toastify";
 
 const LoginFormWrapper = styled.div`
   ${centerColumn}
@@ -119,7 +119,7 @@ const LoginForm: React.FC<LoginFormProps> = ({
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
   const handleLoginValidation = () => {
     // email 체크
-    const emailRegExp = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-za-z0-9\-]+/;
+    const emailRegExp = /^[A-Za-z0-9_.-]+@[A-Za-z0-9-]+\.[A-Za-z0-9-]+/;
     // password 체크
     const passwordRegExp =
       /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
