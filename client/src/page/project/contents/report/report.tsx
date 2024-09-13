@@ -39,7 +39,7 @@ const ReportForm = styled.div`
     height: 40px;
     padding-left: 5px;
     margin-bottom: 5px;
-    font-size: ${FontSize.large};
+    font-size: ${FontSize.medium};
     color: black;
   }
 
@@ -47,7 +47,7 @@ const ReportForm = styled.div`
     width: 100%;
     height: 100px;
     padding: 10px;
-    font-size: ${FontSize.medium};
+    font-size: ${FontSize.small};
     margin-bottom: 5px;
     border: 3px ridge ${SubColor.Sub300};
     border-radius: 5px;
@@ -95,15 +95,15 @@ const ReportResult = styled.div`
 
 const Report = () => {
   // 이번주 진행사항
-  const [thisWeek, setThisWeek] = useState("");
+  const [thisWeek, setThisWeek] = useState<string>("");
   // 다음주 진행사항
-  const [nextWeek, setNextWeek] = useState("");
+  const [nextWeek, setNextWeek] = useState<string>("");
   // 기타사항
-  const [other, setOther] = useState("");
+  const [other, setOther] = useState<string>("");
   // 개인 만족도
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState<number>(0);
   // 완성된 글
-  const [final, setFinal] = useState("");
+  const [final, setFinal] = useState<string>("");
   // 합칠 글
   let combi = `<이번주 진행사항>\n${thisWeek}\n<다음주 진행사항>\n${nextWeek}\n`;
   combi += `<기타사항>\n${other}\n<개인 만족도>\n${value}`;
@@ -158,7 +158,7 @@ const Report = () => {
         <input
           type="number"
           value={value}
-          onChange={(e) => setValue(e.target.value)}
+          onChange={(e) => setValue(Number(e.target.value))}
         ></input>
         {/* <MySlider value={value} setValue={setValue} max={5} /> */}
         <div className="buttonDiv">
