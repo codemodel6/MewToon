@@ -27,7 +27,7 @@
 <h2>로그인</h2>
 <img alt="로그인" width="500px" height="300px" src="https://private-user-images.githubusercontent.com/110915850/368643103-0ebdbce9-1df0-493c-8fb3-1e70584e5010.gif?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MjY3NTI1NTEsIm5iZiI6MTcyNjc1MjI1MSwicGF0aCI6Ii8xMTA5MTU4NTAvMzY4NjQzMTAzLTBlYmRiY2U5LTFkZjAtNDkzYy04ZmIzLTFlNzA1ODRlNTAxMC5naWY_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQwOTE5JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MDkxOVQxMzI0MTFaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT02NjUxMTJlYmI1MjUzYjM2MTA1NjUyYmE1MDA1ZDA1ZDNkMmQ3NDY2NWZhNDM2MTBkNjRmNjAwYzcwNzY1MjczJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZhY3Rvcl9pZD0wJmtleV9pZD0wJnJlcG9faWQ9MCJ9.Qm0Xu3tbYlcVtxRCCM3u3fhzJZfm3MZ9VUn9QOxOJaE">
 <p>
-  display flex 및 position과 transtion 및 animation에 대한 높은 이해를 바탕으로 인트로를 직접 제작하였습니다.
+  로그인 화면은 firebase를 사용해 만들었고 react-query를 이용해 통신을 진행하였습니다. jwt토큰을 이용해 구현하려 하였으나 firebase는 자체적 ID 토큰이 있어서 firebase ID 토큰으로 구현하였습니다. 전달받은 토큰은 로컬스토리지에 저장하였습니다. 회원가입, 로그인, 예외처리가 발생할 경우 react-toastify 로 메시지를 주어 좋은 UI를 만들었습니다.
 </p>
 
 <br/>
