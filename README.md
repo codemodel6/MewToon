@@ -8,8 +8,16 @@
 
 <br/>
 
-<h2>메인 화면</h2>
+<h2>인트로</h2>
 <img alt="메인" width="500px" height="300px" src="https://private-user-images.githubusercontent.com/110915850/368646496-2c09cc0b-a307-411e-a520-abf88daafac3.gif?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MjY3MDM5MDAsIm5iZiI6MTcyNjcwMzYwMCwicGF0aCI6Ii8xMTA5MTU4NTAvMzY4NjQ2NDk2LTJjMDljYzBiLWEzMDctNDExZS1hNTIwLWFiZjg4ZGFhZmFjMy5naWY_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQwOTE4JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MDkxOFQyMzUzMjBaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT02NTkwNDg5NGM1NjA1Mzc4MjM3ODNmNTNkMDBmN2UwZDA4MDUzNDhhNTlmYWVjZTA5ODU4MzdiOWM3ZDc2MTY4JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZhY3Rvcl9pZD0wJmtleV9pZD0wJnJlcG9faWQ9MCJ9.u4hlECZGv5bYAb-JEUtApx-OrNE9VBA8e21KUNZdsQM">
+<p>
+  메인화면은 스크롤한 위치에 따라 실행되도록 제작하였습니다. 공통함수에 모든 스크롤 함수를 정리하여 많은 화면에서 재사용 할 수 있게끔 만들었습니다. 첫번째 화면은 react-carousel을 사용하였는데, 커스텀이 어렵다는 단점이 있었습니다. 그래서 3번째 화면에 웹툰을 누르면 이동하는 캐러셀은 transtion을 이용해 직접 제작해보았습니다.
+</p>
+
+<br/>
+
+<h2>메인 화면</h2>
+<img alt="인트로" width="500px" height="300px" src="https://private-user-images.githubusercontent.com/110915850/369002850-a4f20e1f-9ef0-436b-b4d5-1bd4d1f42d76.gif?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MjY3NTE4MDYsIm5iZiI6MTcyNjc1MTUwNiwicGF0aCI6Ii8xMTA5MTU4NTAvMzY5MDAyODUwLWE0ZjIwZTFmLTllZjAtNDM2Yi1iNGQ1LTFiZDRkMWY0MmQ3Ni5naWY_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQwOTE5JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MDkxOVQxMzExNDZaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT03MzViNjliNDdhODY5ZDM3MWUzNmU5NzU2YTIxNDZmZmI3OTk2MjA4ZTBjODE5YTA2MGIyNDY3Yjk1MDYwNTJkJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZhY3Rvcl9pZD0wJmtleV9pZD0wJnJlcG9faWQ9MCJ9.9pvwOiRm7rRpHda7Qfj0w2Sfzo7hfoRQ1biriH1GTl4">
 <p>
   메인화면은 스크롤한 위치에 따라 실행되도록 제작하였습니다. 공통함수에 모든 스크롤 함수를 정리하여 많은 화면에서 재사용 할 수 있게끔 만들었습니다. 첫번째 화면은 react-carousel을 사용하였는데, 커스텀이 어렵다는 단점이 있었습니다. 그래서 3번째 화면에 웹툰을 누르면 이동하는 캐러셀은 transtion을 이용해 직접 제작해보았습니다.
 </p>
@@ -19,7 +27,7 @@
 <h2>로그인</h2>
 <img alt="로그인" width="500px" height="300px" src="https://private-user-images.githubusercontent.com/110915850/368643103-0ebdbce9-1df0-493c-8fb3-1e70584e5010.gif?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MjY3MDM4MDUsIm5iZiI6MTcyNjcwMzUwNSwicGF0aCI6Ii8xMTA5MTU4NTAvMzY4NjQzMTAzLTBlYmRiY2U5LTFkZjAtNDkzYy04ZmIzLTFlNzA1ODRlNTAxMC5naWY_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQwOTE4JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MDkxOFQyMzUxNDVaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1iODhiM2Q5NWUxMjFhYWU1YTY3YjBkYzE3NTE4NWU0MTViYzllMzc1NDAxZWY5ZDMwMjQwOWVjNDViZjEzZDk0JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZhY3Rvcl9pZD0wJmtleV9pZD0wJnJlcG9faWQ9MCJ9.oRAjTdu2-4WVwyx6tNX4SC17Btr1dTCxObV8L4-kl2Q">
 <p>
-  로그인 화면은 firebase를 사용해 만들었고 react-query를 이용해 통신을 진행하였습니다. jwt토큰을 이용해 구현하려 하였으나 firebase는 자체적 ID 토큰이 있어서 firebase ID 토큰으로 구현하였습니다. 전달받은 토큰은 로컬스토리지에 저장하였습니다. 회원가입, 로그인, 예외처리가 발생할 경우 react-toastify 로 메시지를 주어 좋은 UI를 만들었습니다.
+  display flex 및 position과 transtion 및 animation에 대한 높은 이해를 바탕으로 인트로를 직접 제작하였습니다.
 </p>
 
 <br/>
@@ -41,6 +49,7 @@
 <br/>
 
 <h2>뮤직 플레이어</h2>
+<img alt="노래" width="500px" height="300px" src="https://private-user-images.githubusercontent.com/110915850/369003020-79409f0c-83aa-42da-85b1-1b4713df67aa.gif?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MjY3NTE3MzgsIm5iZiI6MTcyNjc1MTQzOCwicGF0aCI6Ii8xMTA5MTU4NTAvMzY5MDAzMDIwLTc5NDA5ZjBjLTgzYWEtNDJkYS04NWIxLTFiNDcxM2RmNjdhYS5naWY_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQwOTE5JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MDkxOVQxMzEwMzhaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT02N2YzNjM2Y2I4NTU0MTY0ZGFhNzhjNDA4ODk1MmU5YTQyOWJjYWYyODk2MTAwMzgyZDZiNDBjN2UxMjAxNDg0JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZhY3Rvcl9pZD0wJmtleV9pZD0wJnJlcG9faWQ9MCJ9.1ZNh6CV0Vgju_TQiDmkLNpueXb_1t8E0xRx-XSR_6l4">
 <p>
   audio 태그를 사용해 만든 음악 플레이어입니다. 삼성 music에 영감을 받아 제작하였으며 노래 시작, 일시정지, 초기화, 이전곡, 다음곡, 랜덤노래시작 기능을 제작하였습니다. audio 태그에 대해 많이 알아본 파트였습니다.
 </p>
