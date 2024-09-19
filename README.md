@@ -11,7 +11,7 @@
 <h2>인트로</h2>
 <img alt="메인" width="500px" height="300px" src="https://private-user-images.githubusercontent.com/110915850/369002850-a4f20e1f-9ef0-436b-b4d5-1bd4d1f42d76.gif?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MjY3NTI2OTQsIm5iZiI6MTcyNjc1MjM5NCwicGF0aCI6Ii8xMTA5MTU4NTAvMzY5MDAyODUwLWE0ZjIwZTFmLTllZjAtNDM2Yi1iNGQ1LTFiZDRkMWY0MmQ3Ni5naWY_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQwOTE5JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MDkxOVQxMzI2MzRaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1kOWQ2ZjhkOGU2NmUyYzhjYjI4ZDcwZDA4ODlmY2UxN2Y2MzZlN2Y5NWJhNTEyNDZkNzQ1ZGUzM2E3ZDVmZTI0JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZhY3Rvcl9pZD0wJmtleV9pZD0wJnJlcG9faWQ9MCJ9.jCXBIRTh3T5M3IGsfNqusOR2T-WgBumUDL7niDFB_qY">
 <p>
-  메인화면은 스크롤한 위치에 따라 실행되도록 제작하였습니다. 공통함수에 모든 스크롤 함수를 정리하여 많은 화면에서 재사용 할 수 있게끔 만들었습니다. 첫번째 화면은 react-carousel을 사용하였는데, 커스텀이 어렵다는 단점이 있었습니다. 그래서 3번째 화면에 웹툰을 누르면 이동하는 캐러셀은 transtion을 이용해 직접 제작해보았습니다.
+  display flex와 position, transtion 및 animation의 높은 이해도로 인트로를 직접 제작하였습니다.
 </p>
 
 <br/>
